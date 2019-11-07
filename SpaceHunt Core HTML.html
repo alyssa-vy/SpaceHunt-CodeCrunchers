@@ -1,0 +1,65 @@
+<html>
+
+<head>
+<! --
+//
+// *** 
+// *** JavaScript functions loaded as include files
+// *** Allows each team member to own their own code
+// ***
+//
+-->
+
+<!--
+// *** User Story: SH-3	Running out of energy	Priority: HIGH
+// *** Story: As a player, I want to be notified when I run out of
+// *** energy so I know I have lost the game
+-->
+
+<script src="RunningOutOfEnergy.js"></script>
+
+<!--
+// *** User Story: SH-4	Running out of supplies	Priority: HIGH
+// *** Story: As a player, I want to be notified when I run out of
+// *** supplies so I know I have lost the game
+-->
+
+<script src="RunningOutOfSupplies.js"></script>
+
+<!--
+// *** User Story: SH-1	Spacecraft Movement	Priority: HIGH
+// *** Story: As a player, I want to be able to move my spacecraft 
+// *** 0, 90, 180 or 270 degrees, and a specific distance from my 
+// *** current position so I can visit celestial points in the game space.
+-->
+
+<script src="SpaceCraftMovement.js"></script>
+
+
+</head>
+
+<body>
+<h1>SpaceHunt</h1>
+<form name=UI>
+STATUS
+<p>Current Location: 
+X <input type=text name=xValue size=4>
+Y <input type=text name=yValue size=4>
+<p>
+<p>Energy <input type=text name=energy size=4>
+<p>Supplies <input type=text name=supplies size=4>%
+<p>
+<hr>
+MAKE A MOVE
+<p>Distance <input type=text name=distance size=4>
+<p>
+<input type=button value="0" onclick=moveSpacecraft(0,distance)>
+<input type=button value="90" onclick=moveSpacecraft(90,distance)>
+<input type=button value="180" onclick=moveSpacecraft(180,distance)>
+<input type=button value="270" onclick=moveSpacecraft(270,distance)>
+
+</form>
+
+</body>
+
+</html>
