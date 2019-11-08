@@ -1,8 +1,4 @@
 # SpaceHunt
- SpaceHunt Core
+ SpaceHunt
 
- Core html/javascript for the SpaceHunt game.
- This is intended to get students started.
-
- The core consists of a form that makes calls to functions that are included
- from .js files
+ This repo contains the core files for SpaceHunt, a project collaborated in our CS300 class at PSU.
