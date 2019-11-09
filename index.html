@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="css/styles.css">
         <meta charset="utf-8">
 
+        <script src="Sensors.js"></script>
         <script src="RunningOutOfEnergy.js"></script>
         <script src="RunningOutOfSupplies.js"></script>
         <script src="SpaceCraftMovement.js"></script>
@@ -41,7 +42,14 @@
                     <input type=button value="90" onclick=moveSpacecraft(90,distance)>
                     <input type=button value="180" onclick=moveSpacecraft(180,distance)>
                     <input type=button value="270" onclick=moveSpacecraft(270,distance)>
+                    <br>
+                    <br>
+                    <input type=button value="Use Sensors" onclick=deploySensor()>
                 </form>
+                <div id="log" align="center">
+                    <h2> Log </h2>
+                    <textarea name="log" id="" cols="100" rows="10"></textarea>
+                </div>
             </div>
             <div class="page" id="configuration">
                 <form name="configurationSelectors">
