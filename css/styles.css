@@ -1,0 +1,4 @@
+/* Makes all divs within main vanish if they don't have the "visible" class applied to them */
+.main > div:not(.visible){
+    display: none;
+}
