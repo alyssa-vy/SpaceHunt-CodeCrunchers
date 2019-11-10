@@ -10,6 +10,8 @@
         <script src="RunningOutOfSupplies.js"></script>
         <script src="SpaceCraftMovement.js"></script>
         <script src="js/switchToPage.js"></script>
+        <script src="js/config.js"></script>
+
 
     </head>
 
@@ -45,8 +47,26 @@
             </div>
             <div class="page" id="configuration">
                 <form name="configurationSelectors">
+                    <input type="number" name="initialLocationX" value=4 min=0 max=1000 oninput="validateNumber()">Initial x coordinate
+                    <br>
+                    <input type="number" name="initialLocationY" value=4 min=0 max=1000 oninput="validateNumber()">Initial y coordinate
+                    <br>
+                    <input type="number" name="boardWidth" value=120 min=10 max=1000 oninput="validateNumber()">Board width
+                    <br>
+                    <input type="number" name="boardHeight" value=120 min=10 max=1000 oninput="validateNumber()">Board height
+                    <br>
+                    <input type="number" name="initialEnergy" value=100 min=0 oninput="validateNumber()">Initial energy
+                    <br>
+                    <input type="number" name="initialSupplies" value=100 min=0 oninput="validateNumber()">Initial supplies
+                    <br>
+                    <input type="number" name="initialCredits" value=100 min=0 oninput="validateNumber()">Initial credits
+                    <br>
                     <input type="checkbox" name="godMode">God mode
-                    <input type=button value="Done" onclick=switchToPage("mainMenu")>
+                    <br>
+                    <input type="checkbox" name="staticWormholeBehavior">Static wormhole behavior
+                    <br>
+                    <input type=button value="Default" onclick=switchToPage("mainMenu");getConfig()>
+                    <input type=button value="Done" onclick=switchToPage("mainMenu");getConfig()>
                 </form>
             </div>
         </div>
