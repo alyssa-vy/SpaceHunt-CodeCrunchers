@@ -69,7 +69,7 @@ const position = {
         //Call the functions to subtract energy and supplies as well as
         //make sure those fields are still valid to play the game.
         resources.subtractEnergy(10*evaledDistance);
-        resources.subtractSupplies();
+        resources.subtractSuppliesTwo();
         resources.checkEnergy();
         resources.checkSupplies();
 
