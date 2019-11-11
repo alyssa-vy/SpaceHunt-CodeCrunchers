@@ -2,13 +2,8 @@
 const resources = {
 	_energy;
 	_supplies;
-	//Story: As a player, I want to be notified when I run out of energy so I know I have lost the game.
-	//Acceptance Criteria:
-	//1. Verify that if the player's energy has fallen below one, a message is sent to the player.
-	//2. Verify that if the player's energy has fallen below one and the configuration is 
-	//   set to "regular play" the game ends.
-
-	function initResources() {
+	
+	function updateResources() {
 		_energy = eval(document.UI.energy.value);
 		_supplies = eval(document.UI.supplies.value);
 	}
@@ -40,12 +35,6 @@ const resources = {
 		_energy -= evaledAdd;
 		document.UI.energy.value = _energy;
 	}
-
-	//Story: As a player, I want to be notified when I run out of supplies so I know I have lost the game.
-	//Acceptance Criteria:
-	//1. Verify that if the player's supplies have fallen below one percent, a message is sent to the player.
-	//2. Verify that if the player's supplies have fallen below one percent, and 
-	//   the configuration is set to "regular play" the game ends.
 
 	function checkSupplies() {
 		//alert("Checking Supplies");
