@@ -55,12 +55,17 @@ const resources = {
 		document.UI.supplies.value = _supplies;
 	}
 	
-	function subtractSuplies(toSubtract) {
+	function subtractSupplies(toSubtract) {
 		let evaledSubtract = eval(toSubtract);
 		if (evaledSubtract < 0){
 			alert ("Do not call subtractSupplies with negative value - call with positive value to be subtracted");
 		}
 		_supplies -= evaledAdd;
+		document.UI.supplies.value = _supplies;
+	}
+	
+	function subtractSuppliesTwo() {
+		_supplies -= 2;
 		document.UI.supplies.value = _supplies;
 	}
 };
