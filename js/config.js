@@ -48,7 +48,26 @@ function validateNumber(){
 }
 
 function validateCoordinate(coordinate){
-    
+    numberInput = event.target;
+    if (numberInput.value === "" || isNaN(numberInput.value)){
+        setInvalid(numberInput, "Please enter a whole number");
+        return;
+    }
+    coordinateValue = parseInt(numberInput.value);
+    if (coordinate === "x"){
+        borderUpperLimit = parseInt(configurationSelectors.boardWidth.value);
+        borderLowerLimit = parseInt(configurationSelectors.boardWidth.min);
+    }
+    else{
+        borderUpperLimit = parseInt(configurationSelectors.boardHeight.value);
+        borderLowerLimit = parseInt(configurationSelectors.boardHeight.min);
+    }
+    if (coordinateValue < borderLowerLimit || coordinateValue > borderUpperLimit){
+        setInvalid(event.target, "Coordinate must be within map border");
+    }
+    else{
+        setValid(event.target);
+    }
 }
 
 function isInt(string){
