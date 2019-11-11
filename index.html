@@ -29,7 +29,7 @@
                 <form name=UI>
                     STATUS
                     <p>Current Location:
-                    X <input type=text name=xValue size=4>
+                    X <input type=text name=xValue size=4> 
                     Y <input type=text name=yValue size=4>
                     </p>
                     <p></p>
@@ -40,10 +40,10 @@
                     MAKE A MOVE
                     <p>Distance <input type=text name=distance size=4>
                     <p>
-                    <input type=button value="0" onclick=moveSpacecraft(0,distance)>
-                    <input type=button value="90" onclick=moveSpacecraft(90,distance)>
-                    <input type=button value="180" onclick=moveSpacecraft(180,distance)>
-                    <input type=button value="270" onclick=moveSpacecraft(270,distance)>
+                    <input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)">
+                    <input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)">
+                    <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
+                    <input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
                     <br>
                     <br>
                     <input type=button value="Use Sensors" onclick=deploySensor()>
