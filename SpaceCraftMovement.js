@@ -1,4 +1,5 @@
-//Global vairbale for the max size of the map deminsion.
+
+//Global varibale for the max size of the map deminsion.
 const max = 128;
 
 //Nested position object within the spacecraft object representing
@@ -15,22 +16,67 @@ const position = {
     set y(num) { this._y = num; },
 
     moveSpacecraft(angle, distance) {
+        let evaledDistance = eval(distance);
         //Error checking to make sure that the values passes in for 
         //angle and distance are indeed numbers.
-        if(typeof angle !== 'number' || typeof distance !== 'number' || distance < 1) {
-            alert("Error in attempting to move spacecraft.\nPlease provide valid values for the angle and distance when attempting to move.");
+        if(evaledDistance < 1) {
+            alert("Error in attempting to move spacecraft.\nPlease provide a positive value for the distance in which you would like to travle.");
             return false;
         }
 
         if(angle === 0) {
-            if((x + distance) >= max) {
-                //Do call a wormhole function
+            //User wants to move East.
+            if((this._x + evaledDistance) >= max) {
+                //User has tried to move off the map.
+                this.wormhole();
             }
+            else {
+                this._x += evaledDistance;
+            }
+        } else if(angle === 90) {
+            //User wants to move North.
+            if((this._y + evaledDistance) >= max) {
+                //User has tried to move off the map.
+                this.wormhole();
+            }
+            else {
+                this._y += evaledDistance;
+            }
+        } else if(angle === 180) {
+            //User wants to move West.
+            if((this._x - evaledDistance) < 0) {
+                //User has tried to move off the map.
+                this.wormhole();
+            }
+            else {
+                this._x -= evaledDistance;
+            }
+        } else if(angle === 270) {
+            //User wants to move South.
+            if((this._y - evaledDistance) < 0) {
+                //User has tried to move off the map.
+                this.wormhole();
+            }
+            else {
+                this._y -= evaledDistance;
+            }
+        } else {
+            //User did not specify a valid angle when trying to move.
+            alert("Error when attempting to move.\nMust enter a valid angle (0, 90, 180, or 270).");
+            return false;
         }
 
+        checkEnergy();
+        checkSupplies();
 
-        /*alert("Move Space Craft");
-            checkEnergy();
-            checkSupplies();*/
+        document.UI.xValue.value = this._x;
+        document.UI.yValue.value = this._y;
+        return true;    //Movement was executed successfully.
+    },
+
+    wormhole() {
+        this._x = Math.floor(Math.random() * max);
+        this._y = Math.floor(Math.random() * max);
     }
-}
+
+};
