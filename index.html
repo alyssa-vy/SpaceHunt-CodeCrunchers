@@ -45,11 +45,11 @@
                     <input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
                     <br>
                     <br>
-                    <input type=button value="Use Sensors" onclick=deploySensor()>
+                    <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
                 </form>
-                <div id="log" align="center">
+                <div id="logarea" align="center">
                     <h2> Log </h2>
-                    <textarea name="log" id="" cols="100" rows="10"></textarea>
+                    <textarea id="log" cols="100" rows="10"></textarea>
                 </div>
             </div>
             <div class="page" id="configuration" oninput=disableSubmitIfInvalid() onclick=disableSubmitIfInvalid()>

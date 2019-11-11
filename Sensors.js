@@ -4,6 +4,13 @@
 // 2. Verify that celestial objects within two CP of the current CP are displayed
 // 3. Verify that celestial objects within two CP of the current CP are added to the Celestial M
 
+function addToLog() {
+    document.getElementById('log').value = "Test";
+}
+
 function deploySensor() {
-    alert("Deploying Sensors")
+    //checkSupplies();
+    //subtractSuppliesTwo(); // this breaks my next two statements?
+    alert("Deploying Sensors");
+    addToLog();
 }
