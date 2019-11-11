@@ -73,14 +73,17 @@ const position = {
         resources.checkEnergy();
         resources.checkSupplies();
 
-        document.UI.xValue.value = this._x;
-        document.UI.yValue.value = this._y;
+        this.updateHTMLform();
         return true;    //Movement was executed successfully.
     },
 
     wormhole() {
         this._x = Math.floor(Math.random() * max);
         this._y = Math.floor(Math.random() * max);
-    }
+    },
 
+    updateHTMLform() {
+        document.UI.xValue.value = this._x;
+        document.UI.yValue.value = this._y;
+    }
 };
