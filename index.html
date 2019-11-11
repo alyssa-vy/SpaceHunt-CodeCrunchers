@@ -16,7 +16,7 @@
 
     </head>
 
-    <body>
+    <body onload="setConfigurationDefault()">
         <div id="main">
             <h1>SpaceHunt</h1>
             <div class="page visible" id="mainMenu">
@@ -53,28 +53,42 @@
                     <textarea name="log" id="" cols="100" rows="10"></textarea>
                 </div>
             </div>
-            <div class="page" id="configuration">
+            <div class="page" id="configuration" oninput=disableSubmitIfInvalid() onclick=disableSubmitIfInvalid()>
                 <form name="configurationSelectors">
-                    <input type="number" name="initialLocationX" value=4 min=0 max=1000 oninput="validateNumber()">Initial x coordinate
-                    <br>
-                    <input type="number" name="initialLocationY" value=4 min=0 max=1000 oninput="validateNumber()">Initial y coordinate
-                    <br>
-                    <input type="number" name="boardWidth" value=120 min=10 max=1000 oninput="validateNumber()">Board width
-                    <br>
-                    <input type="number" name="boardHeight" value=120 min=10 max=1000 oninput="validateNumber()">Board height
-                    <br>
-                    <input type="number" name="initialEnergy" value=100 min=0 oninput="validateNumber()">Initial energy
-                    <br>
-                    <input type="number" name="initialSupplies" value=100 min=0 oninput="validateNumber()">Initial supplies
-                    <br>
-                    <input type="number" name="initialCredits" value=100 min=0 oninput="validateNumber()">Initial credits
-                    <br>
+                    <div oninput=validateCoordinate("x")>
+                        <input type="number" name="initialLocationX">
+                        Initial x coordinate<span class="invalidInputMessage"></span>
+                    </div>
+                    <div oninput=validateCoordinate("y")>
+                        <input type="number" name="initialLocationY">
+                        Initial y coordinate<span class="invalidInputMessage"></span>
+                    </div>
+                    <div oninput=validateNumber()>
+                        <input type="number" name="boardWidth" min=10 max=1000>
+                        Board width<span class="invalidInputMessage"></span>
+                    </div>
+                    <div oninput=validateNumber()>
+                        <input type="number" name="boardHeight" min=10 max=1000>
+                        Board height<span class="invalidInputMessage"></span>
+                    </div>
+                    <div oninput=validateNumber()>
+                        <input type="number" name="initialEnergy" min=0>
+                        Initial energy<span class="invalidInputMessage"></span>
+                    </div>
+                    <div oninput=validateNumber()>
+                        <input type="number" name="initialSupplies" min=0>
+                        Initial supplies<span class="invalidInputMessage"></span>
+                    </div>
+                    <div oninput=validateNumber()>
+                        <input type="number" name="initialCredits" min=0>
+                        Initial credits<span class="invalidInputMessage"></span>
+                    </div>
                     <input type="checkbox" name="godMode">God mode
                     <br>
                     <input type="checkbox" name="staticWormholeBehavior">Static wormhole behavior
                     <br>
-                    <input type=button value="Default" onclick=switchToPage("mainMenu");getConfig()>
-                    <input type=button value="Done" onclick=switchToPage("mainMenu");getConfig()>
+                    <input type=button value="Default" onclick=setConfigurationDefault()>
+                    <input id="configurationSubmitButton" type=button value="Done" onclick=switchToPage("mainMenu")>
                 </form>
             </div>
         </div>
