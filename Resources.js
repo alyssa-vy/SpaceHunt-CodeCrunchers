@@ -1,12 +1,12 @@
 
 const resources = {
-	_energy;
-	_supplies;
+	_energy,
+	_supplies,
 	
 	function updateResources() {
 		_energy = eval(document.UI.energy.value);
 		_supplies = eval(document.UI.supplies.value);
-	}
+	},
 
 	function checkEnergy() {
 		//alert ("Checking Energy");
@@ -16,7 +16,7 @@ const resources = {
 				//call gameover function
 			}*/
 		}
-	}
+	},
 	
 	function addEnergy(toAdd) {
 		let evaledAdd = eval(toAdd);
@@ -25,7 +25,7 @@ const resources = {
 		}
 		_energy += evaledAdd;
 		document.UI.energy.value = _energy;
-	}
+	},
 	
 	function subtractEnergy(toSubtract) {
 		let evaledSubtract = eval(toSubtract);
@@ -34,7 +34,7 @@ const resources = {
 		}
 		_energy -= evaledAdd;
 		document.UI.energy.value = _energy;
-	}
+	},
 
 	function checkSupplies() {
 		//alert("Checking Supplies");
@@ -44,7 +44,7 @@ const resources = {
 				//call gameover function
 			}*/
 		}
-	}
+	},
 	
 	function addSupplies(toAdd) {
 		let evaledAdd = eval(toAdd);
@@ -53,7 +53,7 @@ const resources = {
 		}
 		_supplies += evaledAdd;
 		document.UI.supplies.value = _supplies;
-	}
+	},
 	
 	function subtractSupplies(toSubtract) {
 		let evaledSubtract = eval(toSubtract);
@@ -62,7 +62,7 @@ const resources = {
 		}
 		_supplies -= evaledAdd;
 		document.UI.supplies.value = _supplies;
-	}
+	},
 	
 	function subtractSuppliesTwo() {
 		_supplies -= 2;
