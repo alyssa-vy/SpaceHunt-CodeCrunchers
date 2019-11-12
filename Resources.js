@@ -43,7 +43,9 @@ const resources = {
 			/*if (!godMode){
 				//call gameover function
 			}*/
+			return false;
 		}
+		return true;
 	},
 	
 	function addSupplies(toAdd) {
