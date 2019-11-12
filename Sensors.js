@@ -15,6 +15,16 @@ function deploySensor() {
     //checkSupplies();
     //subtractSuppliesTwo(); // this breaks my next two statements?
     //resources.subtractSuppliesTwo();
+	if (resources.checkSupplies()){
+		alert("true");
+	}else{
+		alert("false");
+	}
+	if (resources.subtractSuppliesTwo()){
+		alert("true");
+	}else{
+		alert("false");
+	}
     if (resources.checkSupplies()) {
         resources.subtractSuppliesTwo();
     }
