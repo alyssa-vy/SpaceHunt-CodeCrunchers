@@ -29,8 +29,8 @@ function getConfig(){
 
 function validateNumber(){
     numberInput= event.target;
-    min = parseInt(numberInput.min)
-    max = parseInt(numberInput.max)
+    min = parseInt(numberInput.min);
+    max = parseInt(numberInput.max);
     if (numberInput.value === "" || isNaN(numberInput.value)){
         setInvalid(numberInput, "Please enter a whole number");
         return;
