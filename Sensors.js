@@ -4,16 +4,22 @@
 // 2. Verify that celestial objects within two CP of the current CP are displayed
 // 3. Verify that celestial objects within two CP of the current CP are added to the Celestial Map
 
-function addToLog() {
-    artifact = "Planet" // test celestial artifact
-    x = 1
-    y = 2
+function addToLog(artifact, x, y) {
+    //artifact = "Planet" // test celestial artifact
+    //x = 1
+    //y = 2
     document.getElementById('log').value += artifact + " detected at celestial point (" + x + ", " + y + ")\n"
 }
 
 function deploySensor() {
     //checkSupplies();
     //subtractSuppliesTwo(); // this breaks my next two statements?
+    //resources.subtractSuppliesTwo();
+    currentx = document.UI.xValue.value
+    currenty = document.UI.yValue.value
     alert("Deploying Sensors");
-    addToLog();
+    if (Map[currentx][currenty] != null)
+        addToLog(Map[currentx][currenty], currentx, currenty);
+
+    //addToLog();
 }
