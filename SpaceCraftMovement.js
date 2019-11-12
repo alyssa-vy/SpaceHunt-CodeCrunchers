@@ -17,7 +17,7 @@ const position = {
 
     moveSpacecraft(angle, distance) {
         let evaledDistance = eval(distance);
-        //Error checking to make sure that the values passes in for 
+        //Error checking to make sure that the values passes in for
         //angle and distance are indeed numbers.
         if(evaledDistance < 1) {
             alert("Error in attempting to move spacecraft.\nPlease provide a positive value for the distance in which you would like to travle.");
@@ -69,21 +69,18 @@ const position = {
         //Call the functions to subtract energy and supplies as well as
         //make sure those fields are still valid to play the game.
         resources.subtractEnergy(10*evaledDistance);
-        resources.subtractSuppliesTwo();
+        resources.subtractSupplies();
         resources.checkEnergy();
         resources.checkSupplies();
 
-        this.updateHTMLform();
+        document.UI.xValue.value = this._x;
+        document.UI.yValue.value = this._y;
         return true;    //Movement was executed successfully.
     },
 
     wormhole() {
         this._x = Math.floor(Math.random() * max);
         this._y = Math.floor(Math.random() * max);
-    },
-
-    updateHTMLform() {
-        document.UI.xValue.value = this._x;
-        document.UI.yValue.value = this._y;
     }
+
 };
