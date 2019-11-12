@@ -15,8 +15,11 @@ function deploySensor() {
     //checkSupplies();
     //subtractSuppliesTwo(); // this breaks my next two statements?
     //resources.subtractSuppliesTwo();
-    currentx = document.UI.xValue.value
-    currenty = document.UI.yValue.value
+    if (resources.checkSupplies()) {
+        resources.subtractSuppliesTwo();
+    }
+    currentx = document.UI.xValue.value;
+    currenty = document.UI.yValue.value;
     alert("Deploying Sensors");
     if (Map[currentx][currenty] != null)
         addToLog(Map[currentx][currenty], currentx, currenty);
