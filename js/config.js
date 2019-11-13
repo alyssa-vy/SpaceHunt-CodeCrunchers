@@ -31,8 +31,6 @@ function validateNumber(){
     numberInput= event.target;
     minVal = parseInt(numberInput.min);
     maxVal= parseInt(numberInput.max);
-    if (numberInput.value === "" || isNaN(numberInput.value) || isInt(numberInput.value)){
-        setInvalid(numberInput, "Please enter a whole number");
         return;
     }
     currentValue = parseInt(numberInput.value)

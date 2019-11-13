@@ -6,12 +6,15 @@
         <link rel="stylesheet" href="css/styles.css">
         <meta charset="utf-8">
 
+
+        <script src="Resources.js"></script>
         <script src="Sensors.js"></script>
-        <script src="RunningOutOfEnergy.js"></script>
-        <script src="RunningOutOfSupplies.js"></script>
         <script src="SpaceCraftMovement.js"></script>
         <script src="js/switchToPage.js"></script>
         <script src="js/config.js"></script>
+        <script src="js/addArtifact.js"></script>
+        <script src="js/initializeMap.js"></script>
+        <script src="js/loadOptions.js"></script>
 
 
     </head>
@@ -33,8 +36,8 @@
                     Y <input type=text name=yValue size=4>
                     </p>
                     <p></p>
-                    <p>Energy <input type=text name=energy size=4>
-                    <p>Supplies <input type=text name=supplies size=4>%
+                    <p>Energy <input type=text name=energy size=4 onChange="resources.updateResources()">
+                    <p>Supplies <input type=text name=supplies size=4 onChange="resources.updateResources()">%
                     <p>
                     <hr>
                     MAKE A MOVE
@@ -46,14 +49,15 @@
                     <input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
                     <br>
                     <br>
-                    <input type=button value="Use Sensors" onclick=deploySensor()>
+                    <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
                 </form>
-                <div id="log" align="center">
+                <!-- Log area where the user can see points on the map they have traveled to and/or used sensors on -->
+                <div id="logarea" align="center">
                     <h2> Log </h2>
-                    <textarea name="log" id="" cols="100" rows="10"></textarea>
+                    <textarea readonly id="log" cols="100" rows="10"></textarea>
                 </div>
             </div>
-            <div class="page" id="configuration" oninput=disableSubmitIfInvalid() onclick=disableSubmitIfInvalid()>
+            <div class="page" id="configuration" oninput=disableSubmitIfInvalid(); onclick=disableSubmitIfInvalid()>
                 <form name="configurationSelectors">
                     <div oninput=validateCoordinate("x")>
                         <input type="number" name="initialLocationX">
@@ -88,9 +92,44 @@
                     <input type="checkbox" name="staticWormholeBehavior">Static wormhole behavior
                     <br>
                     <input type=button value="Default" onclick=setConfigurationDefault()>
-                    <input id="configurationSubmitButton" type=button value="Done" onclick=switchToPage("mainMenu")>
+                    <input id="configurationSubmitButton" type=button value="Configure Artifacts" onclick=initializeMap()>
                 </form>
             </div>
+
+            <div class="page" id="artifactPlacement">
+                <input id="planetXLocation" type="number" name="planetXLocation" value="0" oninput=disablePlanetAdd()>Planet X<br>
+                <input id="planetYLocation" type="number" name="planetYLocation" value="0" oninput=disablePlanetAdd()>Planet Y<br>
+                <select id="planetType" name="planetType" oninput=disablePlanetAdd()>
+                    <option value="" disabled selected> Select Planet</option>
+                    <option value="Pentium 1">Pentium 1</option>
+                    <option value="Pentium 2">Pentium 2</option>
+                    <option value="Pentium 3">Pentium 3</option>
+                    <option value="Pentium 4">Pentium 4</option>
+                    <option value="Pentium 5">Pentium 5</option>
+                    <option value="Pentium 6">Pentium 6</option>
+                    <option value="Pentium 7">Pentium 7</option>
+                    <option value="Celeron">Celeron</option>
+                    <option value="Xeon">Xeon</option>
+                    <option value="Ryzen">Ryzen</option>
+                </select>
+                <input id="addPlanetButton" name="addPlanetButton" type="button" value="Add Planet" disabled onclick=addArtifact(planetXLocation.value,planetYLocation.value,planetType.value)><br>
+
+                <br>
+                <input id="stationXLocation" name="stationXLocation" type=number value="0" oninput=disableAddIfInvalid(stationXLocation.value,stationYLocation.value,"addSpaceStationButton")> Space Station X<br>
+                <input id="stationYLocation" name="stationYLocation" type=number value="0" oninput=disableAddIfInvalid(stationXLocation.value,stationYLocation.value,"addSpaceStationButton")> Space Station Y<br>
+                <input id="addSpaceStationButton" name="addSPaceStationButton" type="button" value="Add Space Station" onclick=addArtifact(stationXLocation.value,stationYLocation.value,"SpaceStation")>
+                <br>
+
+                <br>
+                <input id="asteroidXLocation" name="asteroidXLocation" type=number value="0" oninput=disableAddIfInvalid(asteroidXLocation.value,asteroidYLocation.value,"addAsteroidButton")> Asteroid X<br>
+                <input id="asteroidYLocation" name="asteroidYLocation" type=number value="0" oninput=disableAddIfInvalid(asteroidXLocation.value,asteroidYLocation.value,"addAsteroidButton")> Asteroid Y<br>
+                <input id="addAsteroidButton" name="addAsteroidButton" type="button" value="Add Asteroid" onclick=addArtifact(asteroidXLocation.value,asteroidYLocation.value,"Asteroid")>
+                <br>
+
+                <br>
+                <input id="artifactSubmitButton" name="artifactSubmitButton" type="button" value="Done" onclick=switchToPage("mainMenu")>
+            </div>
+
         </div>
     </body>
 </html>
