@@ -4,8 +4,8 @@ const resources = {
 	_supplies,
 	
 	updateResources(){
-		_energy = eval(document.UI.energy.value);
-		_supplies = eval(document.UI.supplies.value);
+		this._energy = eval(document.UI.energy.value);
+		this._supplies = eval(document.UI.supplies.value);
 	},
 
 	checkEnergy(){
@@ -26,8 +26,8 @@ const resources = {
 			alert ("Do not call addEnergy with negative value - call subtractEnergy to lower energy");
 			return false;
 		}
-		_energy += evaledAdd;
-		document.UI.energy.value = _energy;
+		this._energy += evaledAdd;
+		document.UI.energy.value = this._energy;
 		return true;
 	},
 	
@@ -37,8 +37,8 @@ const resources = {
 			alert ("Do not call subtractEnergy with negative value - call with positive value to be subtracted");
 			return false;
 		}
-		_energy -= evaledAdd;
-		document.UI.energy.value = _energy;
+		this._energy -= evaledAdd;
+		document.UI.energy.value = this._energy;
 		return true;
 	},
 
@@ -60,8 +60,8 @@ const resources = {
 			alert ("Do not call addSupplies with negative value - call subtractSupplies to lower supplies");
 			return false;
 		}
-		_supplies += evaledAdd;
-		document.UI.supplies.value = _supplies;
+		this._supplies += evaledAdd;
+		document.UI.supplies.value = this._supplies;
 		return true;
 	},
 	
@@ -71,14 +71,14 @@ const resources = {
 			alert ("Do not call subtractSupplies with negative value - call with positive value to be subtracted");
 			return false;
 		}
-		_supplies -= evaledAdd;
-		document.UI.supplies.value = _supplies;
+		this._supplies -= evaledAdd;
+		document.UI.supplies.value = this._supplies;
 		return true;
 	},
 	
 	subtractSuppliesTwo(){
-		_supplies -= 2;
-		document.UI.supplies.value = _supplies;
+		this._supplies -= 2;
+		document.UI.supplies.value = this._supplies;
 		return true;
 	}
 };
