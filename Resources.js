@@ -1,7 +1,7 @@
 
 const resources = {
-	_energy,
-	_supplies,
+	_energy:0,
+	_supplies:0,
 	
 	updateResources(){
 		this._energy = eval(document.UI.energy.value);
@@ -82,19 +82,3 @@ const resources = {
 		return true;
 	}
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

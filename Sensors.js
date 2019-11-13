@@ -15,7 +15,6 @@ function deploySensor() {
     //checkSupplies();
     //subtractSuppliesTwo(); // this breaks my next two statements?
     //resources.subtractSuppliesTwo();
-    /*
 	if (resources.checkSupplies()){
 		alert("true");
 	}else{
@@ -29,7 +28,7 @@ function deploySensor() {
     if (resources.checkSupplies()) {
         resources.subtractSuppliesTwo();
     }
-    */
+
     currentx = document.UI.xValue.value;
     currenty = document.UI.yValue.value;
     currentx = parseInt(currentx); // it is originally a string so convert to an integer number
