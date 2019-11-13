@@ -29,18 +29,18 @@ function getConfig(){
 
 function validateNumber(){
     numberInput= event.target;
-    min = parseInt(numberInput.min)
-    max = parseInt(numberInput.max)
-    if (numberInput.value === "" || isNaN(numberInput.value)){
+    minVal = parseInt(numberInput.min);
+    maxVal= parseInt(numberInput.max);
+    if (numberInput.value === "" || isNaN(numberInput.value) || isInt(numberInput.value)){
         setInvalid(numberInput, "Please enter a whole number");
         return;
     }
     currentValue = parseInt(numberInput.value)
-    if (currentValue < min){
-        setInvalid(numberInput, "Number must be greater than " + min);
+    if (currentValue < minVal){
+        setInvalid(numberInput, "Number must be greater than " + minVal);
     }
-    else if (currentValue > max){
-        setInvalid(numberInput, "Number must be less than " + max);
+    else if (currentValue > maxVal){
+        setInvalid(numberInput, "Number must be less than " + maxVal);
     }
     else{
         setValid(numberInput);
