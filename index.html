@@ -51,9 +51,10 @@
                     <br>
                     <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
                 </form>
+                <!-- Log area where the user can see points on the map they have traveled to and/or used sensors on -->
                 <div id="logarea" align="center">
                     <h2> Log </h2>
-                    <textarea id="log" cols="100" rows="10"></textarea>
+                    <textarea readonly id="log" cols="100" rows="10"></textarea>
                 </div>
             </div>
             <div class="page" id="configuration" oninput=disableSubmitIfInvalid(); onclick=disableSubmitIfInvalid()>
