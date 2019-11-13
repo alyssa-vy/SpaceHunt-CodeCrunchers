@@ -32,8 +32,8 @@
                 <form name=UI>
                     STATUS
                     <p>Current Location:
-                    X <input type=text name=xValue size=4>
-                    Y <input type=text name=yValue size=4>
+                    X <input type=text name=xValue size=4 onChange="position.x = document.UI.xValue.value">
+                    Y <input type=text name=yValue size=4 onChange="position.y = document.UI.yValue.value">
                     </p>
                     <p></p>
                     <p>Energy <input type=text name=energy size=4 onChange="resources.updateResources()">

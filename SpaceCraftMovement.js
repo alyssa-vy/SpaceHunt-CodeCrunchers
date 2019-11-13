@@ -5,15 +5,15 @@ const max = 128;
 //Nested position object within the spacecraft object representing
 //its current position at any given time.
 const position = {
-    _x: 0,  //X coordinate for the position of the spacecraft
-    _y: 0,  //Y coordinate for the position of the spacecraft
+    _x: eval(document.UI.xValue.value),  //X coordinate for the position of the spacecraft
+    _y: eval(document.UI.xValue.value),  //Y coordinate for the position of the spacecraft
 
     //Setter and getter functions since the field for this class
     //are private.
     get x() { return this._x; },
     get y() { return this._y; },
-    set x(num) { this._x = num; },
-    set y(num) { this._y = num; },
+    set x(num) { this._x = eval(num); },
+    set y(num) { this._y = eval(num); },
 
     moveSpacecraft(angle, distance) {
         let evaledDistance = eval(distance);
@@ -65,22 +65,26 @@ const position = {
             alert("Error when attempting to move.\nMust enter a valid angle (0, 90, 180, or 270).");
             return false;
         }
-
+        
         //Call the functions to subtract energy and supplies as well as
         //make sure those fields are still valid to play the game.
         resources.subtractEnergy(10*evaledDistance);
-        resources.subtractSupplies();
+        resources.subtractSuppliesTwo();
         resources.checkEnergy();
         resources.checkSupplies();
 
-        document.UI.xValue.value = this._x;
-        document.UI.yValue.value = this._y;
-        return true;    //Movement was executed successfully.
+        updatePoints();
+        //return true;    //Movement was executed successfully.
     },
 
     wormhole() {
         this._x = Math.floor(Math.random() * max);
         this._y = Math.floor(Math.random() * max);
+    },
+
+    updatePoints() {
+        document.UI.xValue.value = this._x;
+        document.UI.yValue.value = this._y;
     }
 
 };
