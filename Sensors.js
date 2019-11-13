@@ -15,54 +15,47 @@ function deploySensor() {
     //checkSupplies();
     //subtractSuppliesTwo(); // this breaks my next two statements?
     //resources.subtractSuppliesTwo();
-	if (resources.checkSupplies()){
-		alert("true");
-	}else{
-		alert("false");
-	}
-	if (resources.subtractSuppliesTwo()){
-		alert("true");
-	}else{
-		alert("false");
-	}
+
     if (resources.checkSupplies()) {
         resources.subtractSuppliesTwo();
-    }
+        currentx = document.UI.xValue.value;
+        currenty = document.UI.yValue.value;
+        currentx = parseInt(currentx); // it is originally a string so convert to an integer number
+        currenty = parseInt(currenty);
+        alert("Deploying Sensors");
 
-    currentx = document.UI.xValue.value;
-    currenty = document.UI.yValue.value;
-    currentx = parseInt(currentx); // it is originally a string so convert to an integer number
-    currenty = parseInt(currenty);
-    alert("Deploying Sensors");
-
-    if (Map[currentx][currenty] != null) {
-        artifact = Map[currentx][currenty];
-        addToLog(artifact, currentx, currenty);
-    }
-
-    for (var i = 1; i < 3; ++i) {
-        coordx = currentx;
-        coordx += i;
-        // Check 2 above X
-        if (Map[coordx][currenty] != null) {
-            artifact = Map[coordx][currenty];
-            addToLog(artifact, coordx, currenty);
-        }
-        coordx = currentx;
-        coordx -= i;
-        // Check 2 below X
-        if (Map[coordx][currenty] != null) {
-            artifact = Map[coordx][currenty];
-            addToLog(artifact, coordx, currenty);
-        }
-        coordy = currenty;
-        coordy += i;
-        // Check 2 right Y
-        if (Map[currentx][coordy] != null) {
-            artifact = Map[currentx][coordy];
-            addToLog(artifact, currentx, coordy);
+        if (Map[currentx][currenty] != null) {
+            artifact = Map[currentx][currenty];
+            addToLog(artifact, currentx, currenty);
         }
 
+        for (var i = 1; i < 3; ++i) {
+            coordx = currentx;
+            coordx += i;
+            // Check 2 above X
+            if (Map[coordx][currenty] != null) {
+                artifact = Map[coordx][currenty];
+                addToLog(artifact, coordx, currenty);
+            }
+            coordx = currentx;
+            coordx -= i;
+            // Check 2 below X
+            if (Map[coordx][currenty] != null) {
+                artifact = Map[coordx][currenty];
+                addToLog(artifact, coordx, currenty);
+            }
+            coordy = currenty;
+            coordy += i;
+            // Check 2 right Y
+            if (Map[currentx][coordy] != null) {
+                artifact = Map[currentx][coordy];
+                addToLog(artifact, currentx, coordy);
+            }
+
+        }
     }
+
+    else
+        return;
 
 }
