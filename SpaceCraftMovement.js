@@ -73,8 +73,8 @@ const position = {
         resources.checkEnergy();
         resources.checkSupplies();
 
-        updatePoints();
-        //return true;    //Movement was executed successfully.
+        this.updatePoints();
+        return true;    //Movement was executed successfully.
     },
 
     wormhole() {
