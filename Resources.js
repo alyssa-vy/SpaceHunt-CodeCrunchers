@@ -9,7 +9,7 @@ const resources = {
 	},
 
 	checkEnergy(){
-		alert ("Checking Energy");
+		//alert ("Checking Energy");
 		if (document.UI.energy.value <= 0){
 			alert ("Out of energy!");
 			/*if (!godMode){
@@ -43,7 +43,7 @@ const resources = {
 	},
 
 	checkSupplies(){
-		alert("Checking Supplies");
+		//alert("Checking Supplies");
 		if (document.UI.supplies.value <= 0){
 			alert ("Out of supplies!");
 			/*if (!godMode){
