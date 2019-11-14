@@ -4,65 +4,65 @@
 // 2. Verify that celestial objects within two CP of the current CP are displayed
 // 3. Verify that celestial objects within two CP of the current CP are added to the Celestial Map
 
+// get the celestial artifact and its coordinates then output a text to the textarea of the log
 function addToLog(artifact, x, y) {
-    //artifact = "Planet" // test celestial artifact
-    //x = 1
-    //y = 2
     document.getElementById('log').value += artifact + " detected at celestial point (" + x + ", " + y + ")\n"
 }
 
 function deploySensor() {
-    //checkSupplies();
-    //subtractSuppliesTwo(); // this breaks my next two statements?
-    //resources.subtractSuppliesTwo();
-	if (resources.checkSupplies()){
-		alert("true");
-	}else{
-		alert("false");
-	}
-	if (resources.subtractSuppliesTwo()){
-		alert("true");
-	}else{
-		alert("false");
-	}
-    if (resources.checkSupplies()) {
-        resources.subtractSuppliesTwo();
-    }
+    resources.subtractSuppliesTwo(); // subtract two from supplies
+    if (resources.checkSupplies()) { // if supplies are above 0 then continue using the sensors
+        alert("Deploying Sensors");
+        currentx = document.UI.xValue.value;
+        currenty = document.UI.yValue.value;
+        currentx = parseInt(currentx); // it is originally a string so convert to an integer number
+        currenty = parseInt(currenty);
 
-    currentx = document.UI.xValue.value;
-    currenty = document.UI.yValue.value;
-    currentx = parseInt(currentx); // it is originally a string so convert to an integer number
-    currenty = parseInt(currenty);
-    alert("Deploying Sensors");
-
-    if (Map[currentx][currenty] != null) {
-        artifact = Map[currentx][currenty];
-        addToLog(artifact, currentx, currenty);
-    }
-
-    for (var i = 1; i < 3; ++i) {
-        coordx = currentx;
-        coordx += i;
-        // Check 2 above X
-        if (Map[coordx][currenty] != null) {
-            artifact = Map[coordx][currenty];
-            addToLog(artifact, coordx, currenty);
-        }
-        coordx = currentx;
-        coordx -= i;
-        // Check 2 below X
-        if (Map[coordx][currenty] != null) {
-            artifact = Map[coordx][currenty];
-            addToLog(artifact, coordx, currenty);
-        }
-        coordy = currenty;
-        coordy += i;
-        // Check 2 right Y
-        if (Map[currentx][coordy] != null) {
-            artifact = Map[currentx][coordy];
-            addToLog(artifact, currentx, coordy);
+        // First check the coordinate the user is on currently to see if there is a celestial artifact there
+        if (Map[currentx][currenty] != null) {
+            artifact = Map[currentx][currenty];
+            addToLog(artifact, currentx, currenty);
         }
 
+        // Create a loop that goes around twice to check within +2CP of the current CP
+        for (var i = 1; i < 3; ++i) {
+            coordx = currentx;
+            coordx += i;
+            // Check 2 above X
+            if (Map[coordx][currenty] != null) {
+                artifact = Map[coordx][currenty];
+                addToLog(artifact, coordx, currenty);
+            }
+
+            coordy = currenty;
+            coordy += i;
+            // Check 2 right Y
+            if (Map[currentx][coordy] != null) {
+                artifact = Map[currentx][coordy];
+                addToLog(artifact, currentx, coordy);
+            }
+        }
+
+        // Create a loop that goes around twice to check within -2CP of the current CP
+        for (var i = 0; i < 3; ++i) {
+            coordx = currentx;
+            coordx -= i;
+            // Check 2 below X
+            if (Map[coordx][currenty] != null) {
+                artifact = Map[coordx][currenty];
+                addToLog(artifact, coordx, currenty);
+            }
+            coordy = currenty;
+            coordy -= i;
+            // Check 2 right Y
+            if (Map[currentx][coordy] != null) {
+                artifact = Map[currentx][coordy];
+                addToLog(artifact, currentx, coordy);
+            }
+        }
+
     }
 
+    else // if supplies are 0 or below, then return and do not use sensors (end game)
+        return;
 }

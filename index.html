@@ -19,7 +19,7 @@
 
     </head>
 
-    <body onload="setConfigurationDefault()">
+    <body onload="initConfig()">
         <div id="main">
             <h1>SpaceHunt</h1>
             <div class="page visible" id="mainMenu">
@@ -51,38 +51,40 @@
                     <br>
                     <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
                 </form>
+                <!-- Log area where the user can see points on the map they have traveled to and/or used sensors on -->
                 <div id="logarea" align="center">
                     <h2> Log </h2>
-                    <textarea id="log" cols="100" rows="10"></textarea>
+                    <textarea readonly id="log" cols="100" rows="10"></textarea>
                 </div>
             </div>
-            <div class="page" id="configuration" oninput=disableSubmitIfInvalid(); onclick=disableSubmitIfInvalid()>
+            <div class="page" id="configuration" oninput=validate() onclick=validate()>
+                <h2> Properties and behavior </h2>
                 <form name="configurationSelectors">
-                    <div oninput=validateCoordinate("x")>
+                    <div class="coordinateField">
                         <input type="number" name="initialLocationX">
                         Initial x coordinate<span class="invalidInputMessage"></span>
                     </div>
-                    <div oninput=validateCoordinate("y")>
+                    <div class="coordinateField">
                         <input type="number" name="initialLocationY">
                         Initial y coordinate<span class="invalidInputMessage"></span>
                     </div>
-                    <div oninput=validateNumber()>
+                    <div class="numberField">
                         <input type="number" name="boardWidth" min=10 max=1000>
                         Board width<span class="invalidInputMessage"></span>
                     </div>
-                    <div oninput=validateNumber()>
+                    <div class="numberField">
                         <input type="number" name="boardHeight" min=10 max=1000>
                         Board height<span class="invalidInputMessage"></span>
                     </div>
-                    <div oninput=validateNumber()>
+                    <div class="numberField">
                         <input type="number" name="initialEnergy" min=0>
                         Initial energy<span class="invalidInputMessage"></span>
                     </div>
-                    <div oninput=validateNumber()>
+                    <div class="numberField">
                         <input type="number" name="initialSupplies" min=0>
                         Initial supplies<span class="invalidInputMessage"></span>
                     </div>
-                    <div oninput=validateNumber()>
+                    <div class="numberField">
                         <input type="number" name="initialCredits" min=0>
                         Initial credits<span class="invalidInputMessage"></span>
                     </div>
@@ -91,11 +93,12 @@
                     <input type="checkbox" name="staticWormholeBehavior">Static wormhole behavior
                     <br>
                     <input type=button value="Default" onclick=setConfigurationDefault()>
-                    <input id="configurationSubmitButton" type=button value="Configure Artifacts" onclick=initializeMap()>
+                    <input id="configurationSubmitButton" type=button value="Next" onclick=initializeMap()>
                 </form>
             </div>
 
             <div class="page" id="artifactPlacement">
+                <h2> Configure Artifacts </h2>
                 <input id="planetXLocation" type="number" name="planetXLocation" value="0" oninput=disablePlanetAdd()>Planet X<br>
                 <input id="planetYLocation" type="number" name="planetYLocation" value="0" oninput=disablePlanetAdd()>Planet Y<br>
                 <select id="planetType" name="planetType" oninput=disablePlanetAdd()>
@@ -126,6 +129,7 @@
                 <br>
 
                 <br>
+                <input type="button" value="Back" onclick=switchToPage("configuration")>
                 <input id="artifactSubmitButton" name="artifactSubmitButton" type="button" value="Done" onclick=switchToPage("mainMenu")>
             </div>
 

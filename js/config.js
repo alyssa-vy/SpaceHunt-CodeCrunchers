@@ -12,6 +12,33 @@ var defaultConfig = {
     randomWormholeBehavior: true,
 };
 
+var validateEvent = new Event("validate", {
+    bubbles: true
+});
+
+function initConfig(){
+    // Binds the validate events to all the necessary config fields
+    // Bind the validateNumber() function to each numberField
+    numberFields = document.getElementsByClassName("numberField")
+    for (var i = 0; i < numberFields.length; i++){
+        numberFields[i].addEventListener("validate", function(){
+            // Because it is binded, the "this" is a div with class "numberField"
+            validateNumber(this.querySelector("input"))
+        }.bind(numberFields[i]));
+    }
+    // Binds validateXCoordinate and validateYCoordinate
+    x_coord_div = configurationSelectors.initialLocationX.parentElement
+    y_coord_div = configurationSelectors.initialLocationY.parentElement
+    x_coord_div.addEventListener("validate", function(){
+        validateXCoordinate(this.querySelector("input"))
+    }.bind(x_coord_div))
+    y_coord_div.addEventListener("validate", function(){
+        validateYCoordinate(this.querySelector("input"))
+    }.bind(y_coord_div));
+
+    setConfigurationDefault();
+}
+
 function getConfig(){
     config = defaultConfig;
     config.initialLocation.x = parseInt(configurationSelectors.initialLocationX.value);
@@ -27,53 +54,68 @@ function getConfig(){
     return config;
 }
 
-function validateNumber(){
-    numberInput= event.target;
-    min = parseInt(numberInput.min);
-    max = parseInt(numberInput.max);
-    if (numberInput.value === "" || isNaN(numberInput.value)){
-        setInvalid(numberInput, "Please enter a whole number");
+function validate(){
+    // Calls the "validate" event on each input field
+    inputFields = document.getElementById("configuration").querySelectorAll("input");
+    inputFields.forEach(function(input){
+        input.dispatchEvent(validateEvent)
+    })
+    disableSubmitIfInvalid();
+}
+
+
+function validateNumber(numberInputField){
+    value = numberInputField.value
+    minVal = parseInt(numberInputField.min);
+    maxVal= parseInt(numberInputField.max);
+    if (!(isInt(value))){
+        setInvalid(numberInputField, "Please enter a whole number");
         return;
     }
-    currentValue = parseInt(numberInput.value)
-    if (currentValue < min){
-        setInvalid(numberInput, "Number must be greater than " + min);
+    currentValue = parseInt(numberInputField.value)
+    if (currentValue < minVal){
+        setInvalid(numberInputField, "Number must be greater than " + minVal);
     }
-    else if (currentValue > max){
-        setInvalid(numberInput, "Number must be less than " + max);
+    else if (currentValue > maxVal){
+        setInvalid(numberInputField, "Number must be less than " + maxVal);
     }
     else{
-        setValid(numberInput);
+        setValid(numberInputField);
     }
 }
 
-function validateCoordinate(coordinate){
-    numberInput = event.target;
-    if (numberInput.value === "" || isNaN(numberInput.value)){
-        setInvalid(numberInput, "Please enter a whole number");
+function validateXCoordinate(numberInputField){
+    value = numberInputField.value
+    if (!(isInt(value))){
+        setInvalid(numberInputField, "Please enter a whole number");
         return;
     }
-    coordinateValue = parseInt(numberInput.value);
-    if (coordinate === "x"){
-        borderUpperLimit = parseInt(configurationSelectors.boardWidth.value);
-        borderLowerLimit = parseInt(configurationSelectors.boardWidth.min);
+    value = parseInt(value);
+    borderUpperLimit = parseInt(configurationSelectors.boardWidth.value);
+    borderLowerLimit = 0
+    if (value < borderLowerLimit || value > borderUpperLimit){
+        setInvalid(numberInputField, "Coordinate must be within the map's \"width\" border");
     }
     else{
-        borderUpperLimit = parseInt(configurationSelectors.boardHeight.value);
-        borderLowerLimit = parseInt(configurationSelectors.boardHeight.min);
-    }
-    if (coordinateValue < borderLowerLimit || coordinateValue > borderUpperLimit){
-        setInvalid(event.target, "Coordinate must be within map border");
-    }
-    else{
-        setValid(event.target);
+        setValid(numberInputField);
     }
 }
 
-function isInt(string){
-    if (isNaN(string))
-        return false;
-    return (string.includes(".") && !string.endsWith("."))
+function validateYCoordinate(numberInputField){
+    value = numberInputField.value
+    if (!(isInt(value))){
+        setInvalid(numberInputField, "Please enter a whole number");
+        return;
+    }
+    value = parseInt(value);
+    borderUpperLimit = parseInt(configurationSelectors.boardHeight.value);
+    borderLowerLimit = 0
+    if (value < borderLowerLimit || value > borderUpperLimit){
+        setInvalid(numberInputField, "Coordinate must be within the map's \"height\" border");
+    }
+    else{
+        setValid(numberInputField);
+    }
 }
 
 function setInvalid(inputField, message){
@@ -86,6 +128,11 @@ function setValid(inputField){
     inputField.classList.remove("invalidInput");
     errorMessageElement = inputField.parentElement.getElementsByClassName("invalidInputMessage")[0];
     errorMessageElement.innerHTML = "";
+}
+
+function isInt(string){
+    var isFloat = (string.includes(".") && !string.endsWith("."))
+    return !(string === "" || isNaN(string) ||  isFloat)
 }
 
 function setConfigurationDefault(){
