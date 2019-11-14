@@ -17,6 +17,9 @@ const resources = {
 			}*/
 			return false;
 		}
+		if (document.UI.energy.value > 1000){
+			document.UI.energy.value = 1000;
+		}
 		return true;
 	},
 	
@@ -28,6 +31,9 @@ const resources = {
 		}
 		this._energy += evaledAdd;
 		document.UI.energy.value = this._energy;
+		if (document.UI.energy.value > 1000){
+			document.UI.energy.value = 1000;
+		}
 		return true;
 	},
 	
@@ -51,6 +57,9 @@ const resources = {
 			}*/
 			return false;
 		}
+		if (document.UI.supplies.value > 100){
+			document.UI.supplies.value = 100;
+		}
 		return true;
 	},
 	
@@ -62,6 +71,9 @@ const resources = {
 		}
 		this._supplies += evaledAdd;
 		document.UI.supplies.value = this._supplies;
+		if (document.UI.supplies.value > 100){
+			document.UI.supplies.value = 100;
+		}
 		return true;
 	},
 	
