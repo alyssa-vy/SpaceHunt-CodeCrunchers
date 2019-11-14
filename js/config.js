@@ -17,16 +17,15 @@ var validateEvent = new Event("validate", {
 });
 
 function initConfig(){
-    // Binds the validate events to all the necessary config fields
-    // Bind the validateNumber() function to each numberField
+    // Adds validate event listeners to all the necessary config fields
     numberFields = document.getElementsByClassName("numberField")
     for (var i = 0; i < numberFields.length; i++){
         numberFields[i].addEventListener("validate", function(){
-            // Because it is binded, the "this" is a div with class "numberField"
+            // Must bind this function to give a context to what "this" is
+            // In this case, "this" is a div with a class "numberField"
             validateNumber(this.querySelector("input"))
         }.bind(numberFields[i]));
     }
-    // Binds validateXCoordinate and validateYCoordinate
     x_coord_div = configurationSelectors.initialLocationX.parentElement
     y_coord_div = configurationSelectors.initialLocationY.parentElement
     x_coord_div.addEventListener("validate", function(){
@@ -49,20 +48,18 @@ function getConfig(){
     config.initialSupplies= parseInt(configurationSelectors.initialSupplies.value);
     config.initialCredits= parseInt(configurationSelectors.initialCredits.value);
     config.godMode = configurationSelectors.godMode.checked
-    if (configurationSelectors.staticWormholeBehavior.checked)
-        config.randomWormholeBehavior = false;
+    config.randomWormholeBehavior = !configurationSelectors.staticWormholeBehavior.checked
     return config;
 }
 
 function validate(){
-    // Calls the "validate" event on each input field
+    // Checks for validation on all input fields on the configuration page
     inputFields = document.getElementById("configuration").querySelectorAll("input");
     inputFields.forEach(function(input){
         input.dispatchEvent(validateEvent)
     })
     disableSubmitIfInvalid();
 }
-
 
 function validateNumber(numberInputField){
     value = numberInputField.value
