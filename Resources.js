@@ -9,13 +9,16 @@ const resources = {
 	},
 
 	checkEnergy(){
-		alert ("Checking Energy");
+		//alert ("Checking Energy");
 		if (document.UI.energy.value <= 0){
 			alert ("Out of energy!");
 			/*if (!godMode){
 				//call gameover function
 			}*/
 			return false;
+		}
+		if (document.UI.energy.value > 1000){
+			document.UI.energy.value = 1000;
 		}
 		return true;
 	},
@@ -28,6 +31,9 @@ const resources = {
 		}
 		this._energy += evaledAdd;
 		document.UI.energy.value = this._energy;
+		if (document.UI.energy.value > 1000){
+			document.UI.energy.value = 1000;
+		}
 		return true;
 	},
 	
@@ -43,13 +49,16 @@ const resources = {
 	},
 
 	checkSupplies(){
-		alert("Checking Supplies");
+		//alert("Checking Supplies");
 		if (document.UI.supplies.value <= 0){
 			alert ("Out of supplies!");
 			/*if (!godMode){
 				//call gameover function
 			}*/
 			return false;
+		}
+		if (document.UI.supplies.value > 100){
+			document.UI.supplies.value = 100;
 		}
 		return true;
 	},
@@ -62,6 +71,9 @@ const resources = {
 		}
 		this._supplies += evaledAdd;
 		document.UI.supplies.value = this._supplies;
+		if (document.UI.supplies.value > 100){
+			document.UI.supplies.value = 100;
+		}
 		return true;
 	},
 	
