@@ -5,8 +5,12 @@ const max = 128;
 //Nested position object within the spacecraft object representing
 //its current position at any given time.
 const position = {
+    /*
     _x: eval(document.UI.xValue.value),  //X coordinate for the position of the spacecraft
     _y: eval(document.UI.xValue.value),  //Y coordinate for the position of the spacecraft
+    */
+    _x: 0,
+    _y: 0,
 
     //Setter and getter functions since the field for this class
     //are private.

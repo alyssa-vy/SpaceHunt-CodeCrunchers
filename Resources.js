@@ -37,7 +37,7 @@ const resources = {
 			alert ("Do not call subtractEnergy with negative value - call with positive value to be subtracted");
 			return false;
 		}
-		this._energy -= evaledAdd;
+		this._energy -= evaledSubtract;
 		document.UI.energy.value = this._energy;
 		return true;
 	},
