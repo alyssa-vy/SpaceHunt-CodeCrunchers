@@ -1,3 +1,4 @@
 function main(){
     initConfig();
+    initMap();
 }
