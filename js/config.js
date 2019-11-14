@@ -65,10 +65,10 @@ function validate(){
 
 
 function validateNumber(numberInputField){
-    val = numberInputField.value
+    value = numberInputField.value
     minVal = parseInt(numberInputField.min);
     maxVal= parseInt(numberInputField.max);
-    if (numberInputField.value === "" || isNaN(numberInputField.value)){
+    if (!(isInt(value))){
         setInvalid(numberInputField, "Please enter a whole number");
         return;
     }
@@ -86,7 +86,7 @@ function validateNumber(numberInputField){
 
 function validateXCoordinate(numberInputField){
     value = numberInputField.value
-    if (value === "" || isNaN(value)){
+    if (!(isInt(value))){
         setInvalid(numberInputField, "Please enter a whole number");
         return;
     }
@@ -103,7 +103,7 @@ function validateXCoordinate(numberInputField){
 
 function validateYCoordinate(numberInputField){
     value = numberInputField.value
-    if (value === "" || isNaN(value)){
+    if (!(isInt(value))){
         setInvalid(numberInputField, "Please enter a whole number");
         return;
     }
@@ -131,9 +131,8 @@ function setValid(inputField){
 }
 
 function isInt(string){
-    if (isNaN(string))
-        return false;
-    return (string.includes(".") && !string.endsWith("."))
+    var isFloat = (string.includes(".") && !string.endsWith("."))
+    return !(string === "" || isNaN(string) ||  isFloat)
 }
 
 function setConfigurationDefault(){
