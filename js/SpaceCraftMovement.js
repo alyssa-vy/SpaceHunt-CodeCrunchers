@@ -22,6 +22,7 @@ const position = {
     initPosition() {
         this._x = eval(defaultConfig.initialLocation.x);
         this._y = eval(defaultConfig.initialLocation.y);
+        this.updatePoints();
     },
 
     moveSpacecraft(angle, distance) {
