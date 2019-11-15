@@ -20,8 +20,8 @@ const position = {
     set y(num) { this._y = eval(num); },
 
     initPosition() {
-        this._x = eval(defaultConfig.initialLocation.x);
-        this._y = eval(defaultConfig.initialLocation.y);
+        this._x = parseInt(configurationSelectors.initialLocationX.value);
+        this._y = parseInt(configurationSelectors.initialLocationY.value);
         this.updatePoints();
     },
 
