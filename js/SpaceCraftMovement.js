@@ -20,8 +20,8 @@ const position = {
     set y(num) { this._y = eval(num); },
 
     initPosition() {
-        this._x = eval(defaultConfig.initialLocation.x);
-        this._y = eval(defaultConfig.initialLocation.y);
+        this._x = eval(config.initialLocation.x);
+        this._y = eval(config.initialLocation.y);
         this.updatePoints();
     },
 
@@ -36,7 +36,7 @@ const position = {
 
         if(angle === 0) {
             //User wants to move East.
-            if((this._x + evaledDistance) >= defaultConfig.boardWidth) {
+            if((this._x + evaledDistance) >= config.boardWidth) {
                 //User has tried to move off the map.
                 this.wormhole();
                 alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
@@ -46,7 +46,7 @@ const position = {
             }
         } else if(angle === 90) {
             //User wants to move North.
-            if((this._y + evaledDistance) >= defaultConfig.boardWidth) {
+            if((this._y + evaledDistance) >= config.boardWidth) {
                 //User has tried to move off the map.
                 this.wormhole();
                 alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
@@ -92,8 +92,8 @@ const position = {
     },
 
     wormhole() {
-        this._x = Math.floor(Math.random() * defaultConfig.boardWidth);
-        this._y = Math.floor(Math.random() * defaultConfig.boardWidth);
+        this._x = Math.floor(Math.random() * config.boardWidth);
+        this._y = Math.floor(Math.random() * config.boardWidth);
     },
 
     updatePoints() {

@@ -5,7 +5,7 @@ var defaultConfig = {
         x: 4,
         y: 4
     },
-    initialEnergy: 100,
+    initialEnergy: 1000,
     initialSupplies: 100,
     initialCredits: 1000,
     godMode: false,
