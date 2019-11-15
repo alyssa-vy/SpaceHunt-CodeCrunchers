@@ -19,6 +19,11 @@ const position = {
     set x(num) { this._x = eval(num); },
     set y(num) { this._y = eval(num); },
 
+    initPosition() {
+        this._x = eval(defaultConfig.initialLocation.x);
+        this._y = eval(defaultConfig.initialLocation.y);
+    },
+
     moveSpacecraft(angle, distance) {
         let evaledDistance = eval(distance);
         //Error checking to make sure that the values passes in for
