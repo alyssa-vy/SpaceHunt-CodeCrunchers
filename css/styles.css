@@ -11,3 +11,12 @@
     padding-left: 2em;
     color: red;
 }
+
+#logarea {
+    float:left;
+}
+
+#gazarea {
+    float:left;
+    visibility: hidden;
+}

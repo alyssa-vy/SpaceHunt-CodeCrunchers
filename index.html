@@ -16,6 +16,7 @@
         <script src="js/initializeMap.js"></script>
         <script src="js/loadOptions.js"></script>
         <script src="js/map.js"></script>
+        <script src ="js/Gazetteer.js"></script>
 
         <script src="js/main.js"></script>
 
@@ -55,9 +56,14 @@
                 </form>
                 <div id="map"></div>
                 <!-- Log area where the user can see points on the map they have traveled to and/or used sensors on -->
-                <div id="logarea" align="center">
-                    <h2> Log </h2>
-                    <textarea readonly id="log" cols="100" rows="10"></textarea>
+                <div id="logarea">
+                    <h2 align="center"> Log </h2>
+                    <textarea readonly id="log" cols="70" rows="10"></textarea>
+                </div>
+                <!-- Gazetteer area where a checkbox in config determines whether this textarea shows up or not -->
+                <div id="gazarea"  align="right">
+                    <h2 align="center"> Celestial Gazetteer </h2>
+                    <textarea readonly id="gazette" cols="40" rows="10"></textarea>
                 </div>
             </div>
             <div class="page" id="configuration" oninput=validate() onclick=validate()>
@@ -94,6 +100,8 @@
                     <input type="checkbox" name="godMode">God mode
                     <br>
                     <input type="checkbox" name="staticWormholeBehavior">Static wormhole behavior
+                    <br>
+                    <input type="checkbox" id="gazetteer" onclick=displayGazetteer()> Celestial Gazetteer
                     <br>
                     <input type=button value="Default" onclick=setConfigurationDefault()>
                     <input id="configurationSubmitButton" type=button value="Next" onclick=initializeMap()>
