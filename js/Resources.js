@@ -15,7 +15,7 @@ const resources = {
 			c = getConfig();
 			if (!c.godMode){
 				alert ("Game over!");
-				//call gameover function
+				gameOver();
 			}
 			return false;
 		}
@@ -57,7 +57,7 @@ const resources = {
 			c = getConfig();
 			if (!c.godMode) {
 				alert ("Game over!");
-				//call gameover function
+				gameOver();
 			}
 			return false;
 		}
