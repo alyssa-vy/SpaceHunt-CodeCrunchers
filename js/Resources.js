@@ -12,7 +12,7 @@ const resources = {
 
 	updateUI(){
 		document.UI.energy.value = this._energy;
-		document.UI.supplies.value = this._energy;
+		document.UI.supplies.value = this._supplies;
 	},
 
 	checkEnergy(){

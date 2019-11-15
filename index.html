@@ -27,11 +27,11 @@
             <h1>SpaceHunt</h1>
             <div class="page visible" id="mainMenu">
                 <form name="menuButtons">
-                    <input type=button value="Start" onclick=switchToPage("mainGame"),position.initPosition()>
+                    <input type=button value="Start" onclick=switchToPage("mainGame");position.initPosition();initGame()>
                     <input type=button value="Configure" onclick=switchToPage("configuration")>
                 </form>
             </div>
-            <div class="page" id="mainGame" onload="initGame()">
+            <div class="page" id="mainGame">
                 <form id="UI" name=UI>
                     STATUS
                     <p>Current Location:
@@ -50,8 +50,15 @@
                     <input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)">
                     <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
                     <input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
+                    <!-- The commented out code below organizes the buttons top-down-left-right. -->
+                    <!--
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)"><br>
+                    <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
+                    &nbsp;&nbsp;<input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)"><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
                     <br>
                     <br>
+                    -->
                     <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
                 </form>
                 <div id="map"></div>
