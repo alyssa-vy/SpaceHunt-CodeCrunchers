@@ -17,8 +17,7 @@ const resources = {
 		//alert ("Checking Energy");
 		if (document.UI.energy.value <= 0){
 			alert ("Out of energy!");
-			c = getConfig();
-			if (!c.godMode){
+			if (!config.godMode){
 				alert ("Game over!");
 				gameOver();
 			}
@@ -59,8 +58,7 @@ const resources = {
 		//alert("Checking Supplies");
 		if (document.UI.supplies.value <= 0){
 			alert ("Out of supplies!");
-			c = getConfig();
-			if (!c.godMode) {
+			if (!config.godMode) {
 				alert ("Game over!");
 				gameOver();
 			}
@@ -92,7 +90,7 @@ const resources = {
 			alert ("Do not call subtractSupplies with negative value - call with positive value to be subtracted");
 			return false;
 		}
-		this._supplies -= evaledAdd;
+		this._supplies -= evaledSubtract;
 		document.UI.supplies.value = this._supplies;
 		return true;
 	},
@@ -104,9 +102,8 @@ const resources = {
 	},
 
 	initResources() {
-		c = getConfig();
-		this._energy = c.initialEnergy;
-		this._supplies = c.initialSupplies;
+		this._energy = config.initialEnergy;
+		this._supplies = config.initialSupplies;
 		this.updateUI();
 	}
 };
