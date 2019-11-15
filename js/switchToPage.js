@@ -5,3 +5,7 @@ function switchToPage(id){
     }
     document.getElementById(id).classList.add("visible");
 }
+
+function gameOver(){
+    switchToPage("GameOver");
+}

@@ -8,13 +8,20 @@ const resources = {
 		this._supplies = eval(document.UI.supplies.value);
 	},
 
+	updateUI(){
+		document.UI.energy.value = this._energy;
+		document.UI.supplies.value = this._energy;
+	},
+
 	checkEnergy(){
 		//alert ("Checking Energy");
 		if (document.UI.energy.value <= 0){
 			alert ("Out of energy!");
-			/*if (!godMode){
-				//call gameover function
-			}*/
+			c = getConfig();
+			if (!c.godMode){
+				alert ("Game over!");
+				gameOver();
+			}
 			return false;
 		}
 		if (document.UI.energy.value > 1000){
@@ -52,9 +59,11 @@ const resources = {
 		//alert("Checking Supplies");
 		if (document.UI.supplies.value <= 0){
 			alert ("Out of supplies!");
-			/*if (!godMode){
-				//call gameover function
-			}*/
+			c = getConfig();
+			if (!c.godMode) {
+				alert ("Game over!");
+				gameOver();
+			}
 			return false;
 		}
 		if (document.UI.supplies.value > 100){
@@ -88,9 +97,16 @@ const resources = {
 		return true;
 	},
 	
-	subtractSuppliesTwo(){
+	subtractSuppliesTwo() {
 		this._supplies -= 2;
 		document.UI.supplies.value = this._supplies;
 		return true;
+	},
+
+	initResources() {
+		c = getConfig();
+		this._energy = c.initialEnergy;
+		this._supplies = c.initialSupplies;
+		this.updateUI();
 	}
 };
