@@ -2,6 +2,8 @@
 const resources = {
 	_energy:0,
 	_supplies:0,
+	_maxEnergy:1000,
+	_maxSupplies:100,
 	
 	updateResources(){
 		this._energy = eval(document.UI.energy.value);
@@ -23,8 +25,8 @@ const resources = {
 			}
 			return false;
 		}
-		if (document.UI.energy.value > 1000){
-			document.UI.energy.value = 1000;
+		if (document.UI.energy.value > this._maxEnergy){
+			document.UI.energy.value = this._maxEnergy;
 		}
 		return true;
 	},
@@ -64,8 +66,8 @@ const resources = {
 			}
 			return false;
 		}
-		if (document.UI.supplies.value > 100){
-			document.UI.supplies.value = 100;
+		if (document.UI.supplies.value > this._maxSupplies){
+			document.UI.supplies.value = this._maxSupplies;
 		}
 		return true;
 	},
