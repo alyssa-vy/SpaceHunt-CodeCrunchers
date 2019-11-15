@@ -26,11 +26,11 @@
             <h1>SpaceHunt</h1>
             <div class="page visible" id="mainMenu">
                 <form name="menuButtons">
-                    <input type=button value="Start" onclick=switchToPage("mainGame"),position.initPosition()>
+                    <input type=button value="Start" onclick=switchToPage("mainGame");position.initPosition();initGame()>
                     <input type=button value="Configure" onclick=switchToPage("configuration")>
                 </form>
             </div>
-            <div class="page" id="mainGame" onload="initGame()">
+            <div class="page" id="mainGame">
                 <form id="UI" name=UI>
                     STATUS
                     <p>Current Location:
