@@ -17,7 +17,7 @@ var defaultConfig = {
         x: 4,
         y: 4
     },
-    initialEnergy: 100,
+    initialEnergy: 1000,
     initialSupplies: 100,
     initialCredits: 1000,
     godMode: false,
@@ -81,14 +81,14 @@ function validateNumber(numberInputField){
 }
 
 function validateXCoordinate(numberInputField){
-    value = numberInputField.value
+    value = numberInputField.value;
     if (!(isInt(value))){
         setInvalid(numberInputField, "Please enter a whole number");
         return;
     }
     value = parseInt(value);
     borderUpperLimit = parseInt(configurationSelectors.boardWidth.value);
-    borderLowerLimit = 0
+    borderLowerLimit = 0;
     if (value < borderLowerLimit || value > borderUpperLimit){
         setInvalid(numberInputField, "Coordinate must be within the map's \"width\" border");
     }
@@ -98,14 +98,14 @@ function validateXCoordinate(numberInputField){
 }
 
 function validateYCoordinate(numberInputField){
-    value = numberInputField.value
+    value = numberInputField.value;
     if (!(isInt(value))){
         setInvalid(numberInputField, "Please enter a whole number");
         return;
     }
     value = parseInt(value);
     borderUpperLimit = parseInt(configurationSelectors.boardHeight.value);
-    borderLowerLimit = 0
+    borderLowerLimit = 0;
     if (value < borderLowerLimit || value > borderUpperLimit){
         setInvalid(numberInputField, "Coordinate must be within the map's \"height\" border");
     }

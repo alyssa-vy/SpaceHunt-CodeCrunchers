@@ -4,6 +4,42 @@
 // 2. Verify that celestial objects within two CP of the current CP are displayed
 // 3. Verify that celestial objects within two CP of the current CP are added to the Celestial Map
 
+// This is a function that acts as a class for a celestial artifact. It contains the artifact name and its x/y coordinates
+function celestialArtifact(artifactname, x, y) {
+    this.artifactname = artifactname;
+    this.x = x;
+    this.y = y;
+}
+
+var knownArtifacts = []; // create an empty array for a list of known artifacts
+
+// This function adds a celestial artifact to the list of known artifacts when scanned
+function addToList(artifact, x, y) {
+
+    if (knownArtifacts.length == 0) { // If the list is empty, add the first scanned artifact
+        toAdd = new celestialArtifact(artifact, x, y);
+        knownArtifacts.push(toAdd);
+        addToLog(artifact, x, y); // display to the log
+        return 1;
+    }
+
+    else { // If the list is not empty...
+        for (i = 0; i < knownArtifacts.length; ++i) { // check through the list to see if it has already been added
+            if (knownArtifacts[i].artifactname == artifact) { // if an artifact is already in the list then return without displaying to log or adding agian
+                return 0;
+            }
+        }
+
+        // if the artifact does not appear in the list then add it and display to the log
+        toAdd = new celestialArtifact(artifact, x, y);
+        knownArtifacts.push(toAdd);
+        addToLog(artifact, x, y);
+        return 1;
+
+    }
+
+}
+
 // get the celestial artifact and its coordinates then output a text to the textarea of the log
 function addToLog(artifact, x, y) {
     document.getElementById('log').value += artifact + " detected at celestial point (" + x + ", " + y + ")\n"
@@ -21,17 +57,18 @@ function deploySensor() {
         // First check the coordinate the user is on currently to see if there is a celestial artifact there
         if (Map[currentx][currenty] != null) {
             artifact = Map[currentx][currenty];
-            addToLog(artifact, currentx, currenty);
+            addToList(artifact, currentx, currenty);
         }
 
         // Create a loop that goes around twice to check within +2CP of the current CP
+
         for (var i = 1; i < 3; ++i) {
             coordx = currentx;
             coordx += i;
             // Check 2 above X
             if (Map[coordx][currenty] != null) {
                 artifact = Map[coordx][currenty];
-                addToLog(artifact, coordx, currenty);
+                addToList(artifact, coordx, currenty);
             }
 
             coordy = currenty;
@@ -39,7 +76,7 @@ function deploySensor() {
             // Check 2 right Y
             if (Map[currentx][coordy] != null) {
                 artifact = Map[currentx][coordy];
-                addToLog(artifact, currentx, coordy);
+                addToList(artifact, currentx, coordy);
             }
         }
 
@@ -50,16 +87,17 @@ function deploySensor() {
             // Check 2 below X
             if (Map[coordx][currenty] != null) {
                 artifact = Map[coordx][currenty];
-                addToLog(artifact, coordx, currenty);
+                addToList(artifact, coordx, currenty);
             }
             coordy = currenty;
             coordy -= i;
             // Check 2 right Y
             if (Map[currentx][coordy] != null) {
                 artifact = Map[currentx][coordy];
-                addToLog(artifact, currentx, coordy);
+                addToList(artifact, currentx, coordy);
             }
         }
+
 
     }
 
