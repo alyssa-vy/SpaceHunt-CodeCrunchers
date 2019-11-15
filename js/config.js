@@ -1,3 +1,15 @@
+var config = {
+    get boardWidth() { return parseInt(configurationSelectors.boardWidth.value) },
+    get boardHeight() { return parseInt(configurationSelectors.boardHeight.value) },
+    get initialLocationX() { return parseInt(configurationSelectors.initialLocationX.value) },
+    get initialLocationY() { return parseInt(configurationSelectors.initialLocationY.value) },
+    get initialEnergy() { return parseInt(configurationSelectors.initialEnergy.value) },
+    get initialSupplies() { return parseInt(configurationSelectors.initialSupplies.value) },
+    get initialCredits() { return parseInt(configurationSelectors.initialCredits.value) },
+    get godMode() { return configurationSelectors.godMode.checked },
+    get randomWormholeBehavior() { return !configurationSelectors.staticWormholeBehavior.checked }
+}
+
 var defaultConfig = {
     boardWidth: 120,
     boardHeight: 120,
@@ -12,17 +24,6 @@ var defaultConfig = {
     randomWormholeBehavior: true,
 };
 
-var config = {
-    get boardWidth() { return parseInt(configurationSelectors.boardWidth.value) },
-    get boardHeight() { return parseInt(configurationSelectors.boardHeight.value) },
-    get initialLocationX() { return parseInt(configurationSelectors.initialLocationX.value) },  // To get x value, "config.initialLocation.x"
-    get initialLocationY() { return parseInt(configurationSelectors.initialLocationY.value) },  // To get y value, "config.initialLocation.y", I don't know why don't ask
-    get initialEnergy() { return parseInt(configurationSelectors.initialEnergy.value) },
-    get initialSupplies() { return parseInt(configurationSelectors.initialSupplies.value) },
-    get initialCredits() { return parseInt(configurationSelectors.initialCredits.value) },
-    get godMode() { return configurationSelectors.godMode.checked },
-    get randomWormholeBehavior() { return !configurationSelectors.staticWormholeBehavior.checked }
-}
 
 var validateEvent = new Event("validate", {
     bubbles: true
