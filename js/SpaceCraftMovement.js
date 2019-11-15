@@ -39,6 +39,7 @@ const position = {
             if((this._x + evaledDistance) >= max) {
                 //User has tried to move off the map.
                 this.wormhole();
+                alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
             }
             else {
                 this._x += evaledDistance;
@@ -48,6 +49,7 @@ const position = {
             if((this._y + evaledDistance) >= max) {
                 //User has tried to move off the map.
                 this.wormhole();
+                alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
             }
             else {
                 this._y += evaledDistance;
@@ -57,6 +59,7 @@ const position = {
             if((this._x - evaledDistance) < 0) {
                 //User has tried to move off the map.
                 this.wormhole();
+                alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
             }
             else {
                 this._x -= evaledDistance;
@@ -66,6 +69,7 @@ const position = {
             if((this._y - evaledDistance) < 0) {
                 //User has tried to move off the map.
                 this.wormhole();
+                alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
             }
             else {
                 this._y -= evaledDistance;
