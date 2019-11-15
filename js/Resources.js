@@ -12,9 +12,11 @@ const resources = {
 		//alert ("Checking Energy");
 		if (document.UI.energy.value <= 0){
 			alert ("Out of energy!");
-			/*if (!godMode){
+			c = getConfig();
+			if (!c.godMode){
+				alert ("Game over!");
 				//call gameover function
-			}*/
+			}
 			return false;
 		}
 		if (document.UI.energy.value > 1000){
@@ -52,9 +54,11 @@ const resources = {
 		//alert("Checking Supplies");
 		if (document.UI.supplies.value <= 0){
 			alert ("Out of supplies!");
-			/*if (!godMode){
+			c = getConfig();
+			if (!c.godMode) {
+				alert ("Game over!");
 				//call gameover function
-			}*/
+			}
 			return false;
 		}
 		if (document.UI.supplies.value > 100){
