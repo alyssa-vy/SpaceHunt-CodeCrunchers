@@ -6,4 +6,5 @@ function main(){
 
 function initGame(){
     initResources();
+    position.initPosition();
 }
