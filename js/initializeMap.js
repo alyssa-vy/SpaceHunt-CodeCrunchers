@@ -10,7 +10,6 @@ function initializeMap() {
         Includes an example for persistent state to be used later.
     */
 
-    const config = getConfig();
     const rows = parseInt(config.boardHeight);
     const columns = parseInt(config.boardWidth);
     Map = new Array(columns);
