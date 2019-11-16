@@ -1,3 +1,20 @@
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.col-1,
+.col-3{
+    float: left;
+    width: 20%;
+}
+
+.col-2{
+    float: left;
+    width: 60%
+}
+
 /* Game world  */
 #viewport{
     margin: auto;
