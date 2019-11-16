@@ -43,6 +43,7 @@ const position = {
             }
             else {
                 this._x += evaledDistance;
+                checkCollision();
             }
         } else if(angle === 90) {
             //User wants to move North.
@@ -53,6 +54,7 @@ const position = {
             }
             else {
                 this._y += evaledDistance;
+                checkCollision();
             }
         } else if(angle === 180) {
             //User wants to move West.
@@ -63,6 +65,7 @@ const position = {
             }
             else {
                 this._x -= evaledDistance;
+                checkCollision();
             }
         } else if(angle === 270) {
             //User wants to move South.
@@ -73,6 +76,7 @@ const position = {
             }
             else {
                 this._y -= evaledDistance;
+                checkCollision();
             }
         } else {
             //User did not specify a valid angle when trying to move.
@@ -94,6 +98,7 @@ const position = {
     wormhole() {
         this._x = Math.floor(Math.random() * config.boardWidth);
         this._y = Math.floor(Math.random() * config.boardWidth);
+        checkCollision();
     },
 
     updatePoints() {

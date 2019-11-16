@@ -16,7 +16,9 @@
         <script src="js/initializeMap.js"></script>
         <script src="js/loadOptions.js"></script>
         <script src="js/map.js"></script>
-        <script src ="js/Gazetteer.js"></script>
+        <script src="js/Gazetteer.js"></script>
+        <script src="js/switchIfChecked.js"></script>
+        <script src="js/checkCollision.js"></script>
 
         <script src="js/main.js"></script>
 
@@ -44,7 +46,7 @@
                     <p>
                     <hr>
                     MAKE A MOVE
-                    <p>Distance <input type=text name=distance size=4>
+                    <p>Distance <input type=number value=1 min=1 name=distance size=4>
                     <p>
                     <input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)">
                     <input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)">
@@ -110,17 +112,20 @@
                     <br>
                     <input type="checkbox" name="staticWormholeBehavior">Static wormhole behavior
                     <br>
-                    <input type="checkbox" id="gazetteer" onclick=displayGazetteer()> Celestial Gazetteer
+                    <input type="checkbox" id="gazetteer" onclick=displayGazetteer()>Celestial Gazetteer
+                    <br>
+                    <input type=checkbox id="administrator" value="Administrator" oninput=switchIfChecked("configurationSubmitButton","configurationDoneButton")>Game Administrator
                     <br>
                     <input type=button value="Default" onclick=setConfigurationDefault()>
-                    <input id="configurationSubmitButton" type=button value="Next" onclick=initializeMap()>
+                    <input id="configurationSubmitButton" type=button value="Place Artifacts" onclick=initializeMap(); hidden>
+                    <input id="configurationDoneButton" type=button value="Done" onclick=switchToPage("mainMenu")>
                 </form>
             </div>
 
             <div class="page" id="artifactPlacement">
                 <h2> Configure Artifacts </h2>
-                <input id="planetXLocation" type="number" name="planetXLocation" value="0" oninput=disablePlanetAdd()>Planet X<br>
-                <input id="planetYLocation" type="number" name="planetYLocation" value="0" oninput=disablePlanetAdd()>Planet Y<br>
+                <input id="planetXLocation" type="number" name="planetXLocation" value="0" oninput=disablePlanetAdd()> Planet X<br>
+                <input id="planetYLocation" type="number" name="planetYLocation" value="0" oninput=disablePlanetAdd()> Planet Y<br>
                 <select id="planetType" name="planetType" oninput=disablePlanetAdd()>
                     <option value="" disabled selected> Select Planet</option>
                     <option value="Pentium 1">Pentium 1</option>
@@ -146,6 +151,12 @@
                 <input id="asteroidXLocation" name="asteroidXLocation" type=number value="0" oninput=disableAddIfInvalid(asteroidXLocation.value,asteroidYLocation.value,"addAsteroidButton")> Asteroid X<br>
                 <input id="asteroidYLocation" name="asteroidYLocation" type=number value="0" oninput=disableAddIfInvalid(asteroidXLocation.value,asteroidYLocation.value,"addAsteroidButton")> Asteroid Y<br>
                 <input id="addAsteroidButton" name="addAsteroidButton" type="button" value="Add Asteroid" onclick=addArtifact(asteroidXLocation.value,asteroidYLocation.value,"Asteroid")>
+                <br>
+
+                <br>
+                <input id="wormholeXLocation" name="wormholeXLocation" type=number value="0" oninput=disableAddIfInvalid(wormholeXLocation.value,wormholeYLocation.value,"addWormholeButton")> Wormhole X<br>
+                <input id="wormholeYLocation" name="wormholeYLocation" type=number value="0" oninput=disableAddIfInvalid(wormholeXLocation.value,wormholeYLocation.value,"addWormholeButton")> Wormhole Y<br>
+                <input id="addWormholeButton" name="addWormholeButton" type="button" value="Add Wormhole" onclick=addArtifact(wormholeXLocation.value,wormholeYLocation.value,"Wormhole")>
                 <br>
 
                 <br>
