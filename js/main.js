@@ -9,7 +9,24 @@ function initGame() {
     m = new MapClass(config.boardWidth, config.boardHeight);
 
     c = new worldCanvis(config.boardWidth, config.boardHeight);
-    // This code to bind keys is temporary. Don't rely on it being here for long.
+
+    // baddy code and binds are only temporary. They won't be here for long.
+
+    baddy = document.createElement("img");
+    baddy.src = "img/letter_b.jpg";
+    baddy.classList.add("enemy");
+    baddy.id = "baddy-1";
+    c.addToCanvas(baddy, 0, 0);
+
+    baddy2 = document.createElement("img");
+    baddy2.src = "img/letter_b.jpg";
+    baddy2.classList.add("enemy");
+    baddy2.id = "baddy-2";
+    c.addToCanvas(baddy2, 0, 14);
+
+    c.moveWest("baddy-1",1);
+    c.moveSouth("baddy-2",1);
+
     document.addEventListener('keydown', function(event) {
         if (event.code == 'ArrowRight') {
             c.moveEast("player", 1);
