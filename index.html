@@ -37,47 +37,45 @@
                     <input type=button value="Load/Save" onclick=switchToPage("savePage")>
                 </form>
             </div>
-            <div class="page" id="mainGame">
-                <div class="clearfix">
-                    <div class="col-1">
-                        <form id="UI" name=UI>
-                            <h2>STATUS</h2>
-                            <p>Coordinates:
-                            X <input type=text name=xValue size=4>
-                            Y <input type=text name=yValue size=4>
-                            </p>
-                            <p></p>
-                            <p>Energy <input type=text name=energy size=4 onChange="resources.updateResources()">
-                            <p>Supplies <input type=text name=supplies size=4 onChange="resources.updateResources()">%
-                            <p>
-                            <hr>
-                            MAKE A MOVE
-                            <p>Distance <input type=number value=1 min=1 name=distance size=4>
-                            <p>
-                            <input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)">
-                            <input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)">
-                            <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
-                            <input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
-                            <!-- The commented out code below organizes the buttons top-down-left-right. -->
-                            <!--
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)"><br>
-                            <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
-                            &nbsp;&nbsp;<input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)"><br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
-                            <br>
-                            <br>
-                            -->
-                            <br>
-                            <br>
-                            <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
-                            <input type=button value="Save Game" onclick=switchToPage("savePage")>
-                        </form>
-                    </div>
-                    <div class="col-2">
-                        <div id="viewport">
-                            <div id="gameWorld">
-                                <img class="cellObject" id="player" src="img/letter_a.jpg" alt="">
-                            </div>
+            <div class="page clearfix" id="mainGame">
+                <div class="col-1">
+                    <form id="UI" name=UI>
+                        <h2>STATUS</h2>
+                        <p>Coordinates:
+                        X <input type=text name=xValue size=4>
+                        Y <input type=text name=yValue size=4>
+                        </p>
+                        <p></p>
+                        <p>Energy <input type=text name=energy size=4 onChange="resources.updateResources()">
+                        <p>Supplies <input type=text name=supplies size=4 onChange="resources.updateResources()">%
+                        <p>
+                        <hr>
+                        MAKE A MOVE
+                        <p>Distance <input type=number value=1 min=1 name=distance size=4>
+                        <p>
+                        <input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)">
+                        <input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)">
+                        <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
+                        <input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
+                        <!-- The commented out code below organizes the buttons top-down-left-right. -->
+                        <!--
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)"><br>
+                        <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
+                        &nbsp;&nbsp;<input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)"><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
+                        <br>
+                        <br>
+                        -->
+                        <br>
+                        <br>
+                        <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
+                        <input type=button value="Save Game" onclick=switchToPage("savePage")>
+                    </form>
+                </div>
+                <div class="col-2">
+                    <div id="viewport">
+                        <div id="gameWorld">
+                            <img class="cellObject" id="player" src="img/letter_a.jpg" alt="">
                         </div>
                     </div>
                     <div class="col-3">
