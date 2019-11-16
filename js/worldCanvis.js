@@ -3,6 +3,7 @@
     Normal gameplay gives the illusion that the player travel around the world, but in fact it's the world traveling around the player.
 
     The top left of the viewport is the origin, where positive x is west (in pixels) and positive y is south (in pixels).
+    Yes, the positive y direction is DOWNWARDS not UPWARDS
     gameWorld.style.left corresponds to the x position, gameWorld.style.top corresponds to the y position.
 
     This is how rasterised coordinates work.
