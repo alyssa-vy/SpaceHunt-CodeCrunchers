@@ -1,4 +1,9 @@
 function checkCollision(){
+    /*
+        Checks to see if the player (position object) is colliding with
+        a celestial artifact in the 2D map array.
+     */
+
     if(Map[position.x][position.y] !== null){
         switch(Map[position.x][position.y]){
             case "Wormhole":

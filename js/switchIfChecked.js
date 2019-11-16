@@ -1,4 +1,12 @@
-function switchIfChecked(nextId, doneId){
+function switchIfChecked(nextId, doneId) {
+    /*
+        This function is intended to be used only for allowing game administrators
+        to proceed to the artifact placement page iff the administrator checkbox
+        is checked.
+
+        It ensures the appropriate button is visible to the appropriate user.
+     */
+
     let checked = document.getElementById("administrator").checked;
     let next = document.getElementById(nextId);
     let done = document.getElementById(doneId);

@@ -19,6 +19,7 @@
         <script src="js/Gazetteer.js"></script>
         <script src="js/switchIfChecked.js"></script>
         <script src="js/checkCollision.js"></script>
+        <script src="js/saveState.js"></script>
 
         <script src="js/main.js"></script>
 
@@ -31,6 +32,7 @@
                 <form name="menuButtons">
                     <input type=button value="Start" onclick=switchToPage("mainGame");position.initPosition();initGame()>
                     <input type=button value="Configure" onclick=switchToPage("configuration")>
+                    <input type=button value="Load/Save" onclick=switchToPage("savePage")>
                 </form>
             </div>
             <div class="page" id="mainGame">
@@ -64,6 +66,9 @@
                     <br>
                     <br>
                     <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
+                    <br>
+                    <br>
+                    <input type=button value="Save Game" onclick=switchToPage("savePage")>
                 </form>
                 <div id="map"></div>
                 <!-- Log area where the user can see points on the map they have traveled to and/or used sensors on -->
@@ -163,6 +168,14 @@
                 <input type="button" value="Back" onclick=switchToPage("configuration")>
                 <input id="artifactSubmitButton" name="artifactSubmitButton" type="button" value="Done" onclick=switchToPage("mainMenu")>
             </div>
+
+            <div class="page" id="savePage">
+                <h2>Nameable Persistent State</h2>
+                <input type="text" id="filename"> Filename <input type="button" value="Load" onclick=loadGame(filename.value)> <input type="button" value="Save" onclick=saveGame(filename.value)>
+                <br>
+                <input type="button" value="Done" onclick=switchToPage("mainMenu")>
+            </div>
+
             <div class="page" id="GameOver">
                 <h1>Game Over!</h1>
             </div>
