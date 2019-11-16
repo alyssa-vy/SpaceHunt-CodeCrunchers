@@ -78,18 +78,18 @@
                             <img class="cellObject" id="player" src="img/letter_a.jpg" alt="">
                         </div>
                     </div>
-                    <div class="col-3">
-                        <!-- Log area where the user can see points on the map they have traveled to and/or used sensors on -->
-                        <div id="logarea" align="center">
-                            <h2> LOG </h2>
-                            <textarea readonly id="log" cols="40" rows="40"></textarea>
-                            <!-- Gazetteer area where a checkbox in config determines whether this textarea shows up or not -->
-                            <div id="gazarea"  align="right">
-                                <h2 align="center"> Celestial Gazetteer </h2>
-                                <textarea readonly id="gazette" cols="40" rows="10"></textarea>
-                            </div>
-                        </div>
+                </div>
+                <div class="col-3">
+                    <!-- Log area where the user can see points on the map they have traveled to and/or used sensors on -->
+                    <div id="logarea" align="center">
+                        <h2> LOG </h2>
+                        <textarea readonly id="log" cols="40" rows="40"></textarea>
+                        <!-- Gazetteer area where a checkbox in config determines whether this textarea shows up or not -->
                     </div>
+                </div>
+                <div id="gazarea"  align="right">
+                    <h2 align="center"> Celestial Gazetteer </h2>
+                    <textarea readonly id="gazette" cols="40" rows="10"></textarea>
                 </div>
             </div>
             <div class="page" id="configuration" oninput=validate(); onclick=validate()>
