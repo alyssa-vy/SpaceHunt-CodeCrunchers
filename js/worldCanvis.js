@@ -57,7 +57,7 @@ class worldCanvis {
             this.repositionPlayer(x, y);
         }
         else{
-            element = document.getElementById(id);
+            var element = document.getElementById(id);
             var newLeftValue = x * this._pxToInt(element.style.left);
             var newTopValue = y * this._pxToInt(element.style.top);
             if (this._withinEastWestBoundaries(newLeftValue) && this._withinNorthSouthBoundaries(newTopValue)){
@@ -65,7 +65,9 @@ class worldCanvis {
                 element.style.top = newTopValue + "px";
             }
             else{
-                // Raise an error?
+                var errorMessage = x + " or " + y + " out of canvas range [0," + this.rows + "]";
+                var e = new ValueOutsideCanvasBoundaries(errorMessage);
+                throw e;
             }
         }
     }
@@ -80,7 +82,9 @@ class worldCanvis {
             this.gameWorld.style.top = newTopValue + "px";
         }
         else{
-            // Raise an error?
+            var errorMessage = x + " or " + y + " out of canvas range [0," + this.rows + "]";
+            var e = new ValueOutsideCanvasBoundaries(errorMessage);
+            throw e;
         }
     }
 
@@ -181,3 +185,9 @@ class worldCanvis {
         return parseInt(num);
     }
 }
+
+function ValueOutsideCanvasBoundaries(message){
+    this.name = "ValueOutsideCanvasBoundaries";
+    this.message = (message || "");
+}
+ValueOutsideCanvasBoundaries.prototype = Error.prototype;
