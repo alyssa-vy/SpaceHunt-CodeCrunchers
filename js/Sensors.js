@@ -26,7 +26,8 @@ function addToList(artifact, x, y) {
     else { // If the list is not empty...
         for (i = 0; i < knownArtifacts.length; ++i) { // check through the list to see if it has already been added
             if (knownArtifacts[i].artifactname == artifact) { // if an artifact is already in the list then return without displaying to log or adding agian
-                return 0;
+                if (knownArtifacts[i].x == x && knownArtifacts[i].y == y) // if artifact has same coordinates then it is already sensed.
+                    return 0;
             }
         }
 
@@ -81,7 +82,7 @@ function deploySensor() {
         }
 
         // Create a loop that goes around twice to check within -2CP of the current CP
-        for (var i = 0; i <= sensorCP; ++i) {
+        for (var i = 1; i <= sensorCP; ++i) {
             coordx = currentx;
             coordx -= i;
             // Check 2 below X
