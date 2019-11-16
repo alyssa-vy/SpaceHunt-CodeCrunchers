@@ -1,4 +1,10 @@
 function main(){
     initConfig();
-    initMap();
+    position.initPosition();
+    //initMap();
+}
+
+function initGame(){
+    resources.initResources();
+    position.initPosition();
 }

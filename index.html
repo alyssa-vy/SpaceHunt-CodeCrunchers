@@ -7,15 +7,16 @@
         <meta charset="utf-8">
 
 
+        <script src="js/config.js"></script>
         <script src="js/Resources.js"></script>
         <script src="js/Sensors.js"></script>
         <script src="js/SpaceCraftMovement.js"></script>
         <script src="js/switchToPage.js"></script>
-        <script src="js/config.js"></script>
         <script src="js/addArtifact.js"></script>
         <script src="js/initializeMap.js"></script>
         <script src="js/loadOptions.js"></script>
         <script src="js/map.js"></script>
+        <script src ="js/Gazetteer.js"></script>
 
         <script src="js/main.js"></script>
 
@@ -26,12 +27,11 @@
             <h1>SpaceHunt</h1>
             <div class="page visible" id="mainMenu">
                 <form name="menuButtons">
-                    <input type=button value="Start" onclick=switchToPage("mainGame")>
+                    <input type=button value="Start" onclick=switchToPage("mainGame");position.initPosition();initGame()>
                     <input type=button value="Configure" onclick=switchToPage("configuration")>
                 </form>
             </div>
             <div class="page" id="mainGame">
-                <div id="map"></div>
                 <form id="UI" name=UI>
                     STATUS
                     <p>Current Location:
@@ -50,14 +50,27 @@
                     <input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)">
                     <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
                     <input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
+                    <!-- The commented out code below organizes the buttons top-down-left-right. -->
+                    <!--
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)"><br>
+                    <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
+                    &nbsp;&nbsp;<input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)"><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
                     <br>
                     <br>
+                    -->
                     <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
                 </form>
+                <div id="map"></div>
                 <!-- Log area where the user can see points on the map they have traveled to and/or used sensors on -->
-                <div id="logarea" align="center">
-                    <h2> Log </h2>
-                    <textarea readonly id="log" cols="100" rows="10"></textarea>
+                <div id="logarea">
+                    <h2 align="center"> Log </h2>
+                    <textarea readonly id="log" cols="70" rows="10"></textarea>
+                </div>
+                <!-- Gazetteer area where a checkbox in config determines whether this textarea shows up or not -->
+                <div id="gazarea"  align="right">
+                    <h2 align="center"> Celestial Gazetteer </h2>
+                    <textarea readonly id="gazette" cols="40" rows="10"></textarea>
                 </div>
             </div>
             <div class="page" id="configuration" oninput=validate() onclick=validate()>
@@ -80,20 +93,22 @@
                         Board height<span class="invalidInputMessage"></span>
                     </div>
                     <div class="numberField">
-                        <input type="number" name="initialEnergy" min=0>
+                        <input type="number" name="initialEnergy" min=0 max=10000>
                         Initial energy<span class="invalidInputMessage"></span>
                     </div>
                     <div class="numberField">
-                        <input type="number" name="initialSupplies" min=0>
+                        <input type="number" name="initialSupplies" min=0 max=10000>
                         Initial supplies<span class="invalidInputMessage"></span>
                     </div>
                     <div class="numberField">
-                        <input type="number" name="initialCredits" min=0>
+                        <input type="number" name="initialCredits" min=0 max=10000>
                         Initial credits<span class="invalidInputMessage"></span>
                     </div>
                     <input type="checkbox" name="godMode">God mode
                     <br>
                     <input type="checkbox" name="staticWormholeBehavior">Static wormhole behavior
+                    <br>
+                    <input type="checkbox" id="gazetteer" onclick=displayGazetteer()> Celestial Gazetteer
                     <br>
                     <input type=button value="Default" onclick=setConfigurationDefault()>
                     <input id="configurationSubmitButton" type=button value="Next" onclick=initializeMap()>
@@ -134,6 +149,9 @@
                 <br>
                 <input type="button" value="Back" onclick=switchToPage("configuration")>
                 <input id="artifactSubmitButton" name="artifactSubmitButton" type="button" value="Done" onclick=switchToPage("mainMenu")>
+            </div>
+            <div class="page" id="GameOver">
+                <h1>Game Over!</h1>
             </div>
         </div>
     <!-- FOR MESSING AROUND ONLY -->

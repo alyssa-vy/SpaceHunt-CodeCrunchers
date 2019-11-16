@@ -1,3 +1,15 @@
+var config = {
+    get boardWidth() { return parseInt(configurationSelectors.boardWidth.value) },
+    get boardHeight() { return parseInt(configurationSelectors.boardHeight.value) },
+    get initialLocationX() { return parseInt(configurationSelectors.initialLocationX.value) },
+    get initialLocationY() { return parseInt(configurationSelectors.initialLocationY.value) },
+    get initialEnergy() { return parseInt(configurationSelectors.initialEnergy.value) },
+    get initialSupplies() { return parseInt(configurationSelectors.initialSupplies.value) },
+    get initialCredits() { return parseInt(configurationSelectors.initialCredits.value) },
+    get godMode() { return configurationSelectors.godMode.checked },
+    get randomWormholeBehavior() { return !configurationSelectors.staticWormholeBehavior.checked }
+}
+
 var defaultConfig = {
     boardWidth: 120,
     boardHeight: 120,
@@ -5,12 +17,13 @@ var defaultConfig = {
         x: 4,
         y: 4
     },
-    initialEnergy: 100,
+    initialEnergy: 1000,
     initialSupplies: 100,
     initialCredits: 1000,
     godMode: false,
     randomWormholeBehavior: true,
 };
+
 
 var validateEvent = new Event("validate", {
     bubbles: true
@@ -36,20 +49,6 @@ function initConfig(){
     }.bind(y_coord_div));
 
     setConfigurationDefault();
-}
-
-function getConfig(){
-    config = defaultConfig;
-    config.initialLocation.x = parseInt(configurationSelectors.initialLocationX.value);
-    config.initialLocation.y = parseInt(configurationSelectors.initialLocationY.value);
-    config.boardWidth = parseInt(configurationSelectors.boardWidth.value);
-    config.boardHeight= parseInt(configurationSelectors.boardHeight.value);
-    config.initialEnergy = parseInt(configurationSelectors.initialEnergy.value);
-    config.initialSupplies= parseInt(configurationSelectors.initialSupplies.value);
-    config.initialCredits= parseInt(configurationSelectors.initialCredits.value);
-    config.godMode = configurationSelectors.godMode.checked
-    config.randomWormholeBehavior = !configurationSelectors.staticWormholeBehavior.checked
-    return config;
 }
 
 function validate(){
@@ -82,14 +81,14 @@ function validateNumber(numberInputField){
 }
 
 function validateXCoordinate(numberInputField){
-    value = numberInputField.value
+    value = numberInputField.value;
     if (!(isInt(value))){
         setInvalid(numberInputField, "Please enter a whole number");
         return;
     }
     value = parseInt(value);
     borderUpperLimit = parseInt(configurationSelectors.boardWidth.value);
-    borderLowerLimit = 0
+    borderLowerLimit = 0;
     if (value < borderLowerLimit || value > borderUpperLimit){
         setInvalid(numberInputField, "Coordinate must be within the map's \"width\" border");
     }
@@ -99,14 +98,14 @@ function validateXCoordinate(numberInputField){
 }
 
 function validateYCoordinate(numberInputField){
-    value = numberInputField.value
+    value = numberInputField.value;
     if (!(isInt(value))){
         setInvalid(numberInputField, "Please enter a whole number");
         return;
     }
     value = parseInt(value);
     borderUpperLimit = parseInt(configurationSelectors.boardHeight.value);
-    borderLowerLimit = 0
+    borderLowerLimit = 0;
     if (value < borderLowerLimit || value > borderUpperLimit){
         setInvalid(numberInputField, "Coordinate must be within the map's \"height\" border");
     }

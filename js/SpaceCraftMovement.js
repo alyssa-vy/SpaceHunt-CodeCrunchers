@@ -1,6 +1,6 @@
 
 //Global varibale for the max size of the map deminsion.
-const max = 128;
+//const max = 128;
 
 //Nested position object within the spacecraft object representing
 //its current position at any given time.
@@ -19,6 +19,12 @@ const position = {
     set x(num) { this._x = eval(num); },
     set y(num) { this._y = eval(num); },
 
+    initPosition() {
+        this._x = parseInt(configurationSelectors.initialLocationX.value);
+        this._y = parseInt(configurationSelectors.initialLocationY.value);
+        this.updatePoints();
+    },
+
     moveSpacecraft(angle, distance) {
         let evaledDistance = eval(distance);
         //Error checking to make sure that the values passes in for
@@ -30,18 +36,20 @@ const position = {
 
         if(angle === 0) {
             //User wants to move East.
-            if((this._x + evaledDistance) >= max) {
+            if((this._x + evaledDistance) >= config.boardWidth) {
                 //User has tried to move off the map.
                 this.wormhole();
+                alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
             }
             else {
                 this._x += evaledDistance;
             }
         } else if(angle === 90) {
             //User wants to move North.
-            if((this._y + evaledDistance) >= max) {
+            if((this._y + evaledDistance) >= config.boardWidth) {
                 //User has tried to move off the map.
                 this.wormhole();
+                alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
             }
             else {
                 this._y += evaledDistance;
@@ -51,6 +59,7 @@ const position = {
             if((this._x - evaledDistance) < 0) {
                 //User has tried to move off the map.
                 this.wormhole();
+                alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
             }
             else {
                 this._x -= evaledDistance;
@@ -60,6 +69,7 @@ const position = {
             if((this._y - evaledDistance) < 0) {
                 //User has tried to move off the map.
                 this.wormhole();
+                alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
             }
             else {
                 this._y -= evaledDistance;
@@ -82,8 +92,8 @@ const position = {
     },
 
     wormhole() {
-        this._x = Math.floor(Math.random() * max);
-        this._y = Math.floor(Math.random() * max);
+        this._x = Math.floor(Math.random() * config.boardWidth);
+        this._y = Math.floor(Math.random() * config.boardWidth);
     },
 
     updatePoints() {
