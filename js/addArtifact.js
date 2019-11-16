@@ -217,7 +217,6 @@ function isInBounds(x, y) {
     */
     let goodx = false;
     let goody = false;
-    let config = getConfig();
     if(x >= 0 && x < config.boardWidth){
         goodx = true;
     }
