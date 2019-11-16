@@ -1,32 +1,29 @@
 /*
     While normal game object movement is rather easy to understand, the player moves a bit differently and rather unintuitively.
-    Normal gameplay gives the illusion that the player is traveling, but in fact it's the world traveling around the player.
+    Normal gameplay gives the illusion that the player travel around the world, but in fact it's the world traveling around the player.
 
-    gameWorld.style.left is the amount of pixels away of the west side of the viewport.
-    Think of the west side of the viewport as an x coordinate. As we increase the x coordinate by n amount,
-    the gameworld's border shifts to the right n amount.
-
-    You can also think of the viewport's north side as a backwards y coordinate. As we increase the y coordinate by n amount,
-    the gameworld's border shifts downwards (not upwards!) by n amount.
+    The top left of the viewport is the origin, where positive x is west (in pixels) and positive y is south (in pixels).
+    gameWorld.style.left corresponds to the x position, gameWorld.style.top corresponds to the y position.
 
     This is how rasterised coordinates work.
 
     EX.
     When moving eastward, the world must actually travel westward.
     To move the world westward, DECREMENT gameWorld.style.left
-    That is because we are shifting gameworld's border X pixels LEFT of the east side of the viewport.
+    That is because we are shifting gameworld's top left corner X pixels LEFT of the origin
+    Once again, the origin is the top left corner of the viewport
 
     EX.
     To move the world eastward (and thus, the player westward), INCREMENT gameWorld.style.left
-    That is because we are moving the world X pixels RIGHT from the LEFT side of the viewport
+    That is because we are shifting gameworld's top left corner X pixels RIGHT of the origin
 
     EX.
     To move the world south (and thus, the player north), INCREMENT gameWorld.style.top
-    That is because we are moiving the world Y pixels DOWN from the TOP side of the viewport
+    That is because we are shifting gameworld's top left corner Y pixels DOWN from the origin
 
     EX.
     To move the world north (and thus, the player south), DECREMENT gameWorld.style.top
-    That is because we are moving the world Y pixels UP the TOP side of the viewport
+    That is because we are shifting gameworld's top left corner Y pixels UP from the origin
 */
 
 class worldCanvis {
@@ -60,8 +57,8 @@ class worldCanvis {
         if (id === "player"){
             // Shift entire gameWorld
             var newLeftValue = this.pxFromLeftSide + this.pxPerCell * magnitude;
-            console.log("Old left:" + this.pxFromLeftSide)
-            console.log("New left:" + newLeftValue)
+            // console.log("Old left:" + this.pxFromLeftSide)
+            // console.log("New left:" + newLeftValue)
             if (this._withinEastWestBoundaries(newLeftValue)){
                 this.pxFromLeftSide = newLeftValue;
                 this.gameWorld.style.left = this.pxFromLeftSide + "px";
