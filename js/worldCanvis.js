@@ -155,7 +155,7 @@ class worldCanvis {
     }
 
     movePlayerNorth(magnitude){
-        movePlayerSouth(magnitude * -1);
+        this.movePlayerSouth(magnitude * -1);
     }
 
     _playerWithinEastWestBoundaries(number){
