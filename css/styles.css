@@ -1,3 +1,62 @@
+/* Game world  */
+#viewport{
+    margin: auto;
+    border: 1px solid gray;
+    width: 650px;
+    height: 650px;
+    display: block;
+    overflow: hidden;
+    background-color: rgb(13, 39, 79);
+}
+
+#gameWorld{
+    width: 4000px;  /* Set dynamically, must be divisible by 50 and >= 650px */
+    height: 4000px; /* Set dynamically, must be divisible by 50 and >= 650px */
+    position: relative;
+    /* background-color: rgb(13, 39, 79); */
+    /* Temporary background */
+    background: url("https://www.toptal.com/designers/subtlepatterns/patterns/herringbone.png");
+    z-index: 0;
+}
+
+.cellObject{
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 400;
+}
+
+#player{
+    position: sticky;
+    color: red;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 500;
+}
+
+.enemy{
+    z-index: 450;
+}
+
+.planet{
+    z-index: 300;
+}
+
+/* Outside gameworld */
+#UI{
+    display: inline-block;
+    width: 200px;
+}
+
+#logarea{
+    margin: auto;
+    display: inline-block;
+    width: 200px;
+    height: 600px;
+}
+
 /* Makes all divs within main vanish if they don't have the "visible" class applied to them */
 #main > div:not(.visible){
     display: none;
