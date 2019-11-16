@@ -1,11 +1,12 @@
 function initMap(){
     c = getConfig();
-    m = new Map(c.boardWidth, c.boardHeight);
+    m = new MapClass(c.boardWidth, c.boardHeight);
     document.getElementById("map").mapObject = m;
     m.draw();
 }
 
-class Map{
+
+class MapClass{
     constructor(width, height){
         this.width = width;
         this.height = height;

@@ -6,8 +6,6 @@ function initializeMap() {
         using the  configuration information on the previous page
         and then switches to the "artifactPlacment" page in the HTML
         using the switchToPage method,
-
-        Includes an example for persistent state to be used later.
     */
 
     const rows = parseInt(config.boardHeight);
@@ -22,12 +20,6 @@ function initializeMap() {
             Map[x][y] = null;
         }
     }
-
-    /*
-        Example for persistent state
-        localStorage.setItem("Map", Map);
-        let testMap = localStorage.getItem("Map");
-     */
 
     switchToPage("artifactPlacement");
     return Map;
