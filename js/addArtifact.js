@@ -26,6 +26,7 @@ function addArtifact(x, y, type) {
             Map[x][y] = type;
             loadOptions("planetType");
             alert(type + " was added to " + x + ", " + y);
+            addToGazetteer(type, x, y); // add the artifact to the celestial gazetteer
             return true;
         } else {
             alert("A Celestial Artifact Already Exists at that location");
