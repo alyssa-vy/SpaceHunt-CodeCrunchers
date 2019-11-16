@@ -33,13 +33,13 @@ class worldCanvis {
         this.pxPerCell = 50;  // The width & height of one unit cell
         this.rows = rows;
         this.cols = cols;
+        this.pxFromLeftSide = 0;
+        this.pxFromTopSide = 0;
         this.viewPortWidth = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).width);
         this.viewPortHeight = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).height);
         this.gameWorld = document.getElementById("gameWorld");
         this.gameWorld.style.width = rows * this.pxPerCell + "px";
         this.gameWorld.style.height = cols * this.pxPerCell + "px";
-        this.pxFromLeftSide = 0;
-        this.pxFromTopSide = 0;
         this.gameWorld.style.left = this.pxFromLeftSide + "px";
         this.gameWorld.style.top = this.pxFromTopSide + "px";
     }
@@ -49,50 +49,81 @@ class worldCanvis {
         var xPx = x * this.pxPerCell
         var yPx = y * this.pxPerCell
         this.gameWorld.appendChild(element);
-        element.style.left = xPx;
-        element.style.top = yPx;
-        // TODO Do I need to transform: translate it?
+        element.style.left = xPx + "px";
+        element.style.top = yPx + "px";
     }
 
-    moveWest(id, magnitude){
+    reposition(id, x, y){
         if (id === "player"){
-            // Shift entire gameWorld
-            var newLeftValue = this.pxFromLeftSide + this.pxPerCell * magnitude;
-            // console.log("Old left:" + this.pxFromLeftSide)
-            // console.log("New left:" + newLeftValue)
-            if (this._withinEastWestBoundaries(newLeftValue)){
-                this.pxFromLeftSide = newLeftValue;
-                this.gameWorld.style.left = this.pxFromLeftSide + "px";
-            }
+            this.repositionPlayer(x, y);
         }
         else{
-            // Shift an element on the gameWorld
+            element = document.getElementById(id);
+            var newLeftValue = x * this._pxToInt(element.style.left);
+            var newTopValue = y * this._pxToInt(element.style.top);
+            if (this._withinEastWestBoundaries(newLeftValue) && this._withinNorthSouthBoundaries(newTopValue)){
+                element.style.left = newLeftValue + "px";
+                element.style.top = newTopValue + "px";
+            }
+            else{
+                // Raise an error?
+            }
+        }
+    }
+
+    repositionPlayer(x, y){
+        var newLeftValue = x * this.pxPerCell;
+        var newTopValue = y * this.pxPerCell;
+        if (this._withinEastWestBoundaries(newLeftValue) && this._withinNorthSouthBoundaries(newTopValue)){
+            this.pxFromLeftSide = newLeftValue;
+            this.pxFromTopSide = newTopValue;
+            this.gameWorld.style.left = newLeftValue + "px";
+            this.gameWorld.style.top = newTopValue + "px";
+        }
+        else{
+            // Raise an error?
+        }
+    }
+
+    moveEast(id, magnitude){
+        if (id === "player"){
+            this.movePlayerEast(magnitude);
+        }
+        else{
+            // Shift an element on the gameWorld from origin
             var element = document.getElementById("id");
             var oldLeftValue = _pxToInt(element.style.left);
             var newLeftValue = oldLeftValue + this.pxPerCell * magnitude;
-            if (this._withinNorthSouthBoundaries(newLeftValue)){
+            if (this._withinEastWestBoundaries(newLeftValue)){
                 element.style.left = newLeftValue + "px";
             }
         }
     }
 
-    moveEast(id, magnitude){
-        this.moveWest(id, magnitude * -1);
+    moveWest(id, magnitude){
+        this.moveEast(id, magnitude * -1);
     }
 
-    moveNorth(id, magnitude){
+    movePlayerEast(magnitude){
+        // Shift entire gameWorld from origin
+        // We move the world in negative magnitude direction to give the illusion that the player moved East
+        var newLeftValue = this.pxFromLeftSide + this.pxPerCell * magnitude * -1;
+        if (this._withinEastWestBoundaries(newLeftValue)){
+            this.pxFromLeftSide = newLeftValue;
+            this.gameWorld.style.left = this.pxFromLeftSide + "px";
+        }
+    }
+
+    movePlayerWest(magnitude){
+        this.movePlayerEast(magnitude * -1);
+    }
+
+    moveSouth(id, magnitude){
         if (id === "player"){
-            // Shift entire gameWorld
-            var newTopValue = this.pxFromTopSide + this.pxPerCell * magnitude;
-            console.log("Old top:" + this.pxFromTopSide)
-            console.log("New top:" + newTopValue)
-            if (this._withinNorthSouthBoundaries(newTopValue)){
-                this.pxFromTopSide = newTopValue;
-                this.gameWorld.style.top = this.pxFromTopSide + "px";
-            }
+            this.movePlayerSouth(magnitude);
         }
         else{
-            // Shift an element on the gameWorld
+            // Shift an element on the gameWorld from origin
             var element = document.getElementById("id");
             var oldTopValue = _pxToInt(element.style.top);
             var newTopValue = oldTopValue + this.pxPerCell * magnitude;
@@ -102,8 +133,22 @@ class worldCanvis {
         }
     }
 
-    moveSouth(id, magnitude){
-        this.moveNorth(id, magnitude * -1)
+    moveNorth(id, magnitude){
+        this.moveSouth(id, magnitude * -1)
+    }
+
+    movePlayerSouth(magnitude){
+        // Shift entire gameWorld from origin
+        // We move the world in negative magnitude direction to give the illusion that the player moved South
+        var newTopValue = this.pxFromTopSide + this.pxPerCell * magnitude * -1;
+        if (this._withinNorthSouthBoundaries(newTopValue)){
+            this.pxFromTopSide = newTopValue;
+            this.gameWorld.style.top = this.pxFromTopSide + "px";
+        }
+    }
+
+    movePlayerNorth(magnitude){
+        movePlayerSouth(magnitude * -1);
     }
 
     _withinEastWestBoundaries(number){
