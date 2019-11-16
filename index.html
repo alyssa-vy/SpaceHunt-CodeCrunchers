@@ -21,6 +21,7 @@
         <script src="js/checkCollision.js"></script>
         <script src="js/saveGame.js"></script>
         <script src="js/loadGame.js"></script>
+        <script src="js/worldCanvis.js"></script>
 
         <script src="js/main.js"></script>
 
@@ -31,7 +32,7 @@
             <h1>SpaceHunt</h1>
             <div class="page visible" id="mainMenu">
                 <form name="menuButtons">
-                    <input type=button value="Start" onclick=switchToPage("mainGame");position.initPosition();initGame()>
+                    <input type=button value="Start" onclick=initGame()>
                     <input type=button value="Configure" onclick=switchToPage("configuration")>
                     <input type=button value="Load/Save" onclick=switchToPage("savePage")>
                 </form>

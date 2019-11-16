@@ -6,7 +6,7 @@ function main() {
 function initGame() {
     resources.initResources();
     position.initPosition();
-    m = new Map(config.boardWidth, config.boardHeight);
+    m = new MapClass(config.boardWidth, config.boardHeight);
 
     c = new worldCanvis(config.boardWidth, config.boardHeight);
     // This code to bind keys is temporary. Don't rely on it being here for long.
@@ -24,4 +24,6 @@ function initGame() {
             c.moveNorth("player", 1);
         }
     }.bind(c));
+    position.initPosition();
+    switchToPage("mainGame");
 }
