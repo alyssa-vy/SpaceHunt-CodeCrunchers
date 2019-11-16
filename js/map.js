@@ -1,10 +1,3 @@
-function initMap(){
-    c = getConfig();
-    m = new Map(c.boardWidth, c.boardHeight);
-    document.getElementById("map").mapObject = m;
-    m.draw();
-}
-
 class Map{
     constructor(width, height){
         this.width = width;
@@ -39,11 +32,6 @@ class Map{
     getObjectById(id){
 
     }
-
-    draw(){
-
-    }
-
 }
 
 class MapCell{
@@ -76,12 +64,6 @@ class CellObject{
         this.element.id = id;  // Could be source of problems if other elements have this ID
         this.element.cellObject = this;
         this.visited = false;
-    }
-
-    draw(){
-        // Not the actual code, just messing around
-        var gameMap = document.getElementById("map");
-        gameMap.appendChild(this.element);
     }
 
     get id(){ return this.id; }
