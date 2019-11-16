@@ -38,8 +38,8 @@ class worldCanvis {
         this.viewPortWidth = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).width);
         this.viewPortHeight = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).height);
         this.gameWorld = document.getElementById("gameWorld");
-        this.gameWorld.style.width = rows * this.pxPerCell + "px";
-        this.gameWorld.style.height = cols * this.pxPerCell + "px";
+        this.gameWorld.style.width = this.rows * this.pxPerCell + "px";
+        this.gameWorld.style.height = this.cols * this.pxPerCell + "px";
         this.gameWorld.style.left = this.pxFromLeftSide + "px";
         this.gameWorld.style.top = this.pxFromTopSide + "px";
     }
@@ -153,14 +153,14 @@ class worldCanvis {
 
     _withinEastWestBoundaries(number){
         var upperBound = 300;
-        var lowerBound = -1 * this.rows * this.pxPerCell
+        var lowerBound = -1 * this.rows * this.pxPerCell + this.viewPortWidth / 2;
         return number >= lowerBound && number <= upperBound
     }
 
     _withinNorthSouthBoundaries(number){
         var upperBound = 300;
-        var lowerBound = -1 * this.cols * this.pxPerCell
-        return number >= lowerBound && number <= upperBound
+        var lowerBound = -1 * this.cols * this.pxPerCell + this.viewPortHeight / 2;
+        return number >= lowerBound && number <= upperBound;
     }
 
     _pxToInt(pixelValue){
