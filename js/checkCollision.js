@@ -1,6 +1,4 @@
 function checkCollision(){
-    let x = position._x;
-    let y = position._y;
     if(Map[position.x][position.y] !== null){
         switch(Map[position.x][position.y]){
             case "Wormhole":
