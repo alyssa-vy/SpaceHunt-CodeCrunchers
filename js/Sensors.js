@@ -12,7 +12,7 @@ function celestialArtifact(artifactname, x, y) {
 }
 
 var knownArtifacts = []; // create an empty array for a list of known artifacts
-
+var sensorCP = 2; // originally 2 CP for sensors -> can be changed if we get enhanced sensors
 // This function adds a celestial artifact to the list of known artifacts when scanned
 function addToList(artifact, x, y) {
 
@@ -62,7 +62,7 @@ function deploySensor() {
 
         // Create a loop that goes around twice to check within +2CP of the current CP
 
-        for (var i = 1; i < 3; ++i) {
+        for (var i = 1; i <= sensorCP; ++i) {
             coordx = currentx;
             coordx += i;
             // Check 2 above X
@@ -81,7 +81,7 @@ function deploySensor() {
         }
 
         // Create a loop that goes around twice to check within -2CP of the current CP
-        for (var i = 0; i < 3; ++i) {
+        for (var i = 0; i <= sensorCP; ++i) {
             coordx = currentx;
             coordx -= i;
             // Check 2 below X
