@@ -52,6 +52,10 @@ class worldCanvis {
         element.style.top = yPx + "px";
     }
 
+    updateImage(id, imgSrc){
+        document.getElementById(id).src = imgSrc;
+    }
+
     reposition(id, x, y){
         if (id === "player"){
             this.repositionPlayer(x, y);
