@@ -45,15 +45,8 @@ const worldCanvis = {
 
     addToCanvas(element, x, y){
         element.classList.add("cellObject");
-        var xPx = x * this.pxPerCell
-        var yPx = y * this.pxPerCell
         this.gameWorld.appendChild(element);
-        element.style.left = xPx + "px";
-        element.style.top = yPx + "px";
-    },
-
-    updateImage(id, imgSrc){
-        document.getElementById(id).src = imgSrc;
+        this.reposition(element.id, x, y);
     },
 
     reposition(id, x, y){
@@ -62,8 +55,8 @@ const worldCanvis = {
         }
         else{
             var element = document.getElementById(id);
-            var newLeftValue = x * this._pxToInt(element.style.left);
-            var newTopValue = y * this._pxToInt(element.style.top);
+            var newLeftValue = x * this.pxPerCell;
+            var newTopValue = y * this.pxPerCell;
             if (this._withinEastWestBoundaries(newLeftValue) && this._withinNorthSouthBoundaries(newTopValue)){
                 element.style.left = newLeftValue + "px";
                 element.style.top = newTopValue + "px";
@@ -74,6 +67,10 @@ const worldCanvis = {
                 throw e;
             }
         }
+    },
+
+    updateImage(id, imgSrc){
+        document.getElementById(id).src = imgSrc;
     },
 
     repositionPlayer(x, y){
@@ -172,14 +169,14 @@ const worldCanvis = {
     },
 
     _withinEastWestBoundaries(number){
-        var upperBound = 0;
-        var lowerBound = -1 * this.cols * this.pxPerCell;
+        var lowerBound = 0;
+        var upperBound = this.cols * this.pxPerCell;
         return number >= lowerBound && number <= upperBound;
     },
 
     _withinNorthSouthBoundaries(number){
-        var upperBound = 0;
-        var lowerBound = -1 * this.rows * this.pxPerCell;
+        var lowerBound = 0;
+        var upperBound = this.rows * this.pxPerCell;
         return number >= lowerBound && number <= upperBound;
     },
 
