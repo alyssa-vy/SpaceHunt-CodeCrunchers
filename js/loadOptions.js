@@ -6,7 +6,7 @@
     Slot 8 Represents Xeon
     Slot 9 Represents Ryzen
  */
-PlanetsAdded = new Array(10);
+var PlanetsAdded = new Array(10);
 for(i = 0; i < 10; ++i){
     PlanetsAdded[i] = false;
 }

@@ -8,7 +8,7 @@ var config = {
     get initialCredits() { return parseInt(configurationSelectors.initialCredits.value) },
     get godMode() { return configurationSelectors.godMode.checked },
     get randomWormholeBehavior() { return !configurationSelectors.staticWormholeBehavior.checked },
-    get gazeteer() {return configurationSelectors.gazeteer.checked},
+    get gazetteer() {return configurationSelectors.gazetteer.checked},
     get gameAdministrator() { return configurationSelectors.administrator.checked}
 }
 
