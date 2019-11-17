@@ -85,7 +85,7 @@ function addToList(artifact, x, y) {
         else if (artifact == "SpaceStation")
             celestial.src = "img/spacestation.jpg";
         else if (artifact == "Asteroid")
-            celestial.src = "img/asteroid.jpeg";
+            celestial.src = "img/asteroid.png";
         else if (artifact == "Wormhole")
             celestial.src = "img/wormhole.jpg";
 
@@ -157,6 +157,45 @@ function deploySensor() {
             if (Map[currentx][coordy] != null) {
                 artifact = Map[currentx][coordy];
                 addToList(artifact, currentx, coordy);
+            }
+        }
+
+        for (var i = 1; i <= sensorCP; ++i) {
+            coordx = currentx;
+            coordx -= i;
+
+            for (var x = 1; x <= sensorCP; ++x) {
+                coordy = currenty;
+                coordy -= x;
+                if (Map[coordx][coordy] != null) {
+                    artifact = Map[coordx][coordy];
+                    addToList(artifact, coordx, coordy);
+                }
+                coordy = currenty;
+                coordy += x;
+                if (Map[coordx][coordy] != null) {
+                    artifact = Map[coordx][coordy];
+                    addToList(artifact, coordx, coordy);
+                }
+            }
+        }
+
+        for (var i = 1; i <= sensorCP; ++i) {
+            coordx = currentx;
+            coordx += i;
+            for (var x = 1; x <= sensorCP; ++x) {
+                coordy = currenty;
+                coordy -= x;
+                if (Map[coordx][coordy] != null) {
+                    artifact = Map[coordx][coordy];
+                    addToList(artifact, coordx, coordy);
+                }
+                coordy = currenty;
+                coordy += x;
+                if (Map[coordx][coordy] != null) {
+                    artifact = Map[coordx][coordy];
+                    addToList(artifact, coordx, coordy);
+                }
             }
         }
 
