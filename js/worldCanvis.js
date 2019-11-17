@@ -1,5 +1,5 @@
 /*
-    While normal game object movement is rather easy to understand, the player moves a bit differently and rather unintuitively.
+    While normal game object movement is rather simple, the player moves a bit differently and rather unintuitively.
     Normal gameplay gives the illusion that the player travel around the world, but in fact it's the world traveling around the player.
 
     The top left of the viewport is the origin, where positive x is west (in pixels) and positive y is south (in pixels).
@@ -32,8 +32,8 @@ const worldCanvis = {
         this.pxPerCell = 50;  // The width & height of one unit cell
         this.rows = config.boardHeight;
         this.cols = config.boardWidth;
-        this.pxFromLeftSide = 0;
-        this.pxFromTopSide = 0;
+        this.pxFromLeftSide = 300;
+        this.pxFromTopSide = 300;
         this.viewPortWidth = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).width);
         this.viewPortHeight = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).height);
         this.gameWorld = document.getElementById("gameWorld");
@@ -44,9 +44,6 @@ const worldCanvis = {
     },
 
     addToCanvas(element, x, y){
-        var raster = this._normalToRaster(x,y);
-        x = raster[0];
-        y = raster[1];
         element.classList.add("cellObject");
         var xPx = x * this.pxPerCell
         var yPx = y * this.pxPerCell
@@ -60,11 +57,6 @@ const worldCanvis = {
     },
 
     reposition(id, x, y){
-        var raster = this._normalToRaster(x,y);
-        x = raster[0];
-        y = raster[1];
-        console.log(x)
-        console.log(y)
         if (id === "player"){
             this.repositionPlayer(x, y);
         }
@@ -77,7 +69,7 @@ const worldCanvis = {
                 element.style.top = newTopValue + "px";
             }
             else{
-                var errorMessage = x + " or " + y + " out of canvas range [0," + this.rows + "]";
+                var errorMessage = x + " or " + y + " out of canvas range [0," + (this.rows - 1) + "]";
                 var e = new ValueOutsideCanvasBoundaries(errorMessage);
                 throw e;
             }
@@ -85,12 +77,9 @@ const worldCanvis = {
     },
 
     repositionPlayer(x, y){
-        var raster = this._normalToRaster(x,y);
-        var newLeftValue = raster[0] * this.pxPerCell;
-        var newTopValue = raster[1] * this.pxPerCell * -1;
-        console.log(raster)
-        console.log(newLeftValue)
-        console.log(newTopValue)
+        var px = this._translatePlayerCoordsToPx(x,y);
+        var newLeftValue = px[0];
+        var newTopValue = px[1];
         if (this._playerWithinEastWestBoundaries(newLeftValue) && this._playerWithinNorthSouthBoundaries(newTopValue)){
             this.pxFromLeftSide = newLeftValue;
             this.pxFromTopSide = newTopValue;
@@ -98,7 +87,7 @@ const worldCanvis = {
             this.gameWorld.style.top = newTopValue + "px";
         }
         else{
-            var errorMessage = x + " or " + y + " out of canvas range [0," + this.rows + "]";
+            var errorMessage = x + " or " + y + " out of canvas range [0," + (this.rows - 1) + "]";
             var e = new ValueOutsideCanvasBoundaries(errorMessage);
             throw e;
         }
@@ -184,13 +173,13 @@ const worldCanvis = {
 
     _withinEastWestBoundaries(number){
         var upperBound = 0;
-        var lowerBound = this.cols * this.pxPerCell;
+        var lowerBound = -1 * this.cols * this.pxPerCell;
         return number >= lowerBound && number <= upperBound;
     },
 
     _withinNorthSouthBoundaries(number){
         var upperBound = 0;
-        var lowerBound = this.rows * this.pxPerCell;
+        var lowerBound = -1 * this.rows * this.pxPerCell;
         return number >= lowerBound && number <= upperBound;
     },
 
@@ -201,8 +190,10 @@ const worldCanvis = {
         return parseInt(num);
     },
 
-    _normalToRaster(x, y){
-        y = this.rows - y;
+    _translatePlayerCoordsToPx(x, y){
+        // Player coordinates are off by 300 px. When player is at (0,0), the top and left px values are 300
+        x = 300 - (x * this.pxPerCell);
+        y = 300 - (y * this.pxPerCell);
         return [x, y];
     }
 }
