@@ -14,8 +14,8 @@ var defaultConfig = {
     boardWidth: 120,
     boardHeight: 120,
     initialLocation: {
-        x: 4,
-        y: 4
+        x: 0,
+        y: 0
     },
     initialEnergy: 1000,
     initialSupplies: 100,
