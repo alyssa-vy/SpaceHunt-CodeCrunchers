@@ -127,13 +127,13 @@
                     <br>
                     <input type="checkbox" name="staticWormholeBehavior">Static wormhole behavior
                     <br>
-                    <input type="checkbox" id="gazetteer" onclick=displayGazetteer()>Celestial Gazetteer
+                    <input type="checkbox" name="gazetteer" id="gazetteer" onclick=displayGazetteer()>Celestial Gazetteer
                     <br>
-                    <input type=checkbox id="administrator" value="Administrator" oninput=switchIfChecked("configurationSubmitButton","configurationDoneButton")>Game Administrator
+                    <input type=checkbox name="administrator" id="administrator" value="Administrator" oninput=switchIfChecked("mapCreatorButton","configurationDoneButton")>Game Administrator
                     <br>
                     <input type=button value="Default" onclick=setConfigurationDefault()>
-                    <input id="configurationSubmitButton" type=button value="Place Artifacts" onclick=initializeMap(); hidden>
-                    <input id="configurationDoneButton" type=button value="Done" onclick=switchToPage("mainMenu")>
+                    <input class="configurationSubmitButton" id="mapCreatorButton" type=button value="Place Artifacts" onclick=initializeMap(); hidden>
+                    <input class="configurationSubmitButton" id="configurationDoneButton" type=button value="Done" onclick=switchToPage("mainMenu")>
                 </form>
             </div>
 
