@@ -30,9 +30,7 @@
     width: 4000px;  /* Set dynamically, must be divisible by 50 and >= 650px */
     height: 4000px; /* Set dynamically, must be divisible by 50 and >= 650px */
     position: relative;
-    /* background-color: rgb(13, 39, 79); */
-    /* Temporary background */
-    background: url("https://www.toptal.com/designers/subtlepatterns/patterns/herringbone.png");
+    background: url("../img/gameWorldBackground.png");
     z-index: 0;
 }
 
