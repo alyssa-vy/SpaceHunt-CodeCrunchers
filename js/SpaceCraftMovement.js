@@ -20,9 +20,10 @@ const position = {
     set y(num) { this._y = eval(num); },
 
     initPosition() {
-        this._x = parseInt(configurationSelectors.initialLocationX.value);
-        this._y = parseInt(configurationSelectors.initialLocationY.value);
+        this._x = config.initialLocationX;
+        this._y = config.initialLocationY;
         this.updatePoints();
+        worldCanvis.repositionPlayer(this._x, this._y);
     },
 
     moveSpacecraft(angle, distance) {
@@ -43,17 +44,19 @@ const position = {
             }
             else {
                 this._x += evaledDistance;
+                worldCanvis.movePlayerEast(evaledDistance);
                 checkCollision();
             }
         } else if(angle === 90) {
             //User wants to move North.
-            if((this._y + evaledDistance) >= config.boardWidth) {
+            if((this._y - evaledDistance) < 0) {
                 //User has tried to move off the map.
                 this.wormhole();
                 alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
             }
             else {
-                this._y += evaledDistance;
+                this._y -= evaledDistance;
+                worldCanvis.movePlayerNorth(evaledDistance);
                 checkCollision();
             }
         } else if(angle === 180) {
@@ -65,17 +68,19 @@ const position = {
             }
             else {
                 this._x -= evaledDistance;
+                worldCanvis.movePlayerWest(evaledDistance);
                 checkCollision();
             }
         } else if(angle === 270) {
             //User wants to move South.
-            if((this._y - evaledDistance) < 0) {
+            if((this._y + evaledDistance) >= config.boardWidth) {
                 //User has tried to move off the map.
                 this.wormhole();
                 alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
             }
             else {
-                this._y -= evaledDistance;
+                this._y += evaledDistance;
+                worldCanvis.movePlayerSouth(evaledDistance);
                 checkCollision();
             }
         } else {
@@ -83,7 +88,7 @@ const position = {
             alert("Error when attempting to move.\nMust enter a valid angle (0, 90, 180, or 270).");
             return false;
         }
-        
+
         //Call the functions to subtract energy and supplies as well as
         //make sure those fields are still valid to play the game.
         resources.subtractEnergy(10*evaledDistance);
@@ -98,6 +103,7 @@ const position = {
     wormhole() {
         this._x = Math.floor(Math.random() * config.boardWidth);
         this._y = Math.floor(Math.random() * config.boardWidth);
+        worldCanvis.repositionPlayer(this._x, this._y);
         checkCollision();
     },
 
