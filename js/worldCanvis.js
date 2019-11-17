@@ -27,11 +27,11 @@
     That is because we are shifting gameworld's top left corner Y pixels UP from the origin
 */
 
-class worldCanvis {
-    constructor(rows, cols) {
+const worldCanvis = {
+    initCanvis() {
         this.pxPerCell = 50;  // The width & height of one unit cell
-        this.rows = rows;
-        this.cols = cols;
+        this.rows = config.boardHeight;
+        this.cols = config.boardWidth;
         this.pxFromLeftSide = 0;
         this.pxFromTopSide = 0;
         this.viewPortWidth = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).width);
@@ -41,22 +41,30 @@ class worldCanvis {
         this.gameWorld.style.height = this.cols * this.pxPerCell + "px";
         this.gameWorld.style.left = this.pxFromLeftSide + "px";
         this.gameWorld.style.top = this.pxFromTopSide + "px";
-    }
+    },
 
     addToCanvas(element, x, y){
+        var raster = this._normalToRaster(x,y);
+        x = raster[0];
+        y = raster[1];
         element.classList.add("cellObject");
         var xPx = x * this.pxPerCell
         var yPx = y * this.pxPerCell
         this.gameWorld.appendChild(element);
         element.style.left = xPx + "px";
         element.style.top = yPx + "px";
-    }
+    },
 
     updateImage(id, imgSrc){
         document.getElementById(id).src = imgSrc;
-    }
+    },
 
     reposition(id, x, y){
+        var raster = this._normalToRaster(x,y);
+        x = raster[0];
+        y = raster[1];
+        console.log(x)
+        console.log(y)
         if (id === "player"){
             this.repositionPlayer(x, y);
         }
@@ -74,11 +82,15 @@ class worldCanvis {
                 throw e;
             }
         }
-    }
+    },
 
     repositionPlayer(x, y){
-        var newLeftValue = x * this.pxPerCell;
-        var newTopValue = y * this.pxPerCell;
+        var raster = this._normalToRaster(x,y);
+        var newLeftValue = raster[0] * this.pxPerCell;
+        var newTopValue = raster[1] * this.pxPerCell * -1;
+        console.log(raster)
+        console.log(newLeftValue)
+        console.log(newTopValue)
         if (this._playerWithinEastWestBoundaries(newLeftValue) && this._playerWithinNorthSouthBoundaries(newTopValue)){
             this.pxFromLeftSide = newLeftValue;
             this.pxFromTopSide = newTopValue;
@@ -90,7 +102,7 @@ class worldCanvis {
             var e = new ValueOutsideCanvasBoundaries(errorMessage);
             throw e;
         }
-    }
+    },
 
     moveEast(id, magnitude){
         if (id === "player"){
@@ -105,11 +117,11 @@ class worldCanvis {
                 element.style.left = newLeftValue + "px";
             }
         }
-    }
+    },
 
     moveWest(id, magnitude){
         this.moveEast(id, magnitude * -1);
-    }
+    },
 
     movePlayerEast(magnitude){
         // Shift entire gameWorld from origin
@@ -119,11 +131,11 @@ class worldCanvis {
             this.pxFromLeftSide = newLeftValue;
             this.gameWorld.style.left = this.pxFromLeftSide + "px";
         }
-    }
+    },
 
     movePlayerWest(magnitude){
         this.movePlayerEast(magnitude * -1);
-    }
+    },
 
     moveSouth(id, magnitude){
         if (id === "player"){
@@ -138,11 +150,11 @@ class worldCanvis {
                 element.style.top = newTopValue + "px";
             }
         }
-    }
+    },
 
     moveNorth(id, magnitude){
         this.moveSouth(id, magnitude * -1)
-    }
+    },
 
     movePlayerSouth(magnitude){
         // Shift entire gameWorld from origin
@@ -152,41 +164,46 @@ class worldCanvis {
             this.pxFromTopSide = newTopValue;
             this.gameWorld.style.top = this.pxFromTopSide + "px";
         }
-    }
+    },
 
     movePlayerNorth(magnitude){
         this.movePlayerSouth(magnitude * -1);
-    }
+    },
 
     _playerWithinEastWestBoundaries(number){
         var upperBound = 300;
         var lowerBound = -1 * this.rows * this.pxPerCell + this.viewPortWidth / 2;
         return number >= lowerBound && number <= upperBound
-    }
+    },
 
     _playerWithinNorthSouthBoundaries(number){
         var upperBound = 300;
         var lowerBound = -1 * this.cols * this.pxPerCell + this.viewPortHeight / 2;
         return number >= lowerBound && number <= upperBound;
-    }
+    },
 
     _withinEastWestBoundaries(number){
         var upperBound = 0;
         var lowerBound = this.cols * this.pxPerCell;
         return number >= lowerBound && number <= upperBound;
-    }
+    },
 
     _withinNorthSouthBoundaries(number){
         var upperBound = 0;
         var lowerBound = this.rows * this.pxPerCell;
         return number >= lowerBound && number <= upperBound;
-    }
+    },
 
     _pxToInt(pixelValue){
         if (pixelValue === undefined || pixelValue === "")
             return 0;
         var num = pixelValue.substring(0, pixelValue.length - 2);
         return parseInt(num);
+    },
+
+    _normalToRaster(x, y){
+        y = this.rows - y;
+        return [x, y];
     }
 }
 
