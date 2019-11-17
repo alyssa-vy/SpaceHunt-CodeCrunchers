@@ -15,7 +15,8 @@ function initGame() {
     baddy.src = "img/letter_b.jpg";  // Add an image asset
     baddy.classList.add("enemy");   // Describe what type of object this is
     baddy.id = "baddy-1";  // All canvas objects require an id. If you don't give it an id, the canvas can't retrieve it
-    worldCanvis.addToCanvas(baddy, 0, 0);  // Send the element to canvas, which will put it in the corresponding coordinates
+    worldCanvis.addToCanvas(baddy, 5, 5);  // Send the element to canvas, which will put it in the corresponding coordinates
+    worldCanvis.reposition("baddy-1", 1, 2)  // We can also reposition baddy, just like we can reposition player
 
     baddy2 = document.createElement("img");
     baddy2.src = "img/letter_b.jpg";
@@ -32,16 +33,16 @@ function initGame() {
 
     document.addEventListener('keydown', function(event) {
         if (event.code == 'ArrowRight') {
-            c.moveEast("player", 1);
+            position.moveSpacecraft(0, 1);
         }
         if (event.code == 'ArrowDown') {
-            c.moveSouth("player", 1);
+            position.moveSpacecraft(270, 1);
         }
         if (event.code == 'ArrowLeft') {
-            c.moveWest("player", 1);
+            position.moveSpacecraft(180, 1);
         }
         if (event.code == 'ArrowUp') {
-            c.moveNorth("player", 1);
+            position.moveSpacecraft(90, 1);
         }
     }.bind());
     switchToPage("mainGame");
