@@ -5,6 +5,7 @@ function main() {
 
 function initGame() {
     resources.initResources();
+    worldCanvis.updateBoundaries(config.boardWidth, config.boardHeight);
     position.initPosition();
     m = new MapClass(config.boardWidth, config.boardHeight);
 

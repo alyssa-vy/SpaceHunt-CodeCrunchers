@@ -43,6 +43,13 @@ const worldCanvis = {
         this.gameWorld.style.top = this.pxFromTopSide + "px";
     },
 
+    updateBoundaries(rows, cols){
+        this.rows = rows;
+        this.cols = cols;
+        this.gameWorld.style.width = this.rows * this.pxPerCell + "px";
+        this.gameWorld.style.height = this.cols * this.pxPerCell + "px";
+    },
+
     addToCanvas(element, x, y){
         element.classList.add("cellObject");
         this.gameWorld.appendChild(element);
