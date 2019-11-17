@@ -64,15 +64,8 @@ const worldCanvis = {
             var element = document.getElementById(id);
             var newLeftValue = x * this.pxPerCell;
             var newTopValue = y * this.pxPerCell;
-            if (this._withinEastWestBoundaries(newLeftValue) && this._withinNorthSouthBoundaries(newTopValue)){
-                element.style.left = newLeftValue + "px";
-                element.style.top = newTopValue + "px";
-            }
-            else{
-                var errorMessage = x + " or " + y + " out of canvas range [0," + (this.rows - 1) + "]";
-                var e = new ValueOutsideCanvasBoundaries(errorMessage);
-                throw e;
-            }
+            element.style.left = newLeftValue + "px";
+            element.style.top = newTopValue + "px";
         }
     },
 
@@ -84,17 +77,10 @@ const worldCanvis = {
         var px = this._translatePlayerCoordsToPx(x,y);
         var newLeftValue = px[0];
         var newTopValue = px[1];
-        if (this._playerWithinEastWestBoundaries(newLeftValue) && this._playerWithinNorthSouthBoundaries(newTopValue)){
-            this.pxFromLeftSide = newLeftValue;
-            this.pxFromTopSide = newTopValue;
-            this.gameWorld.style.left = newLeftValue + "px";
-            this.gameWorld.style.top = newTopValue + "px";
-        }
-        else{
-            var errorMessage = x + " or " + y + " out of canvas range [0," + (this.rows - 1) + "]";
-            var e = new ValueOutsideCanvasBoundaries(errorMessage);
-            throw e;
-        }
+        this.pxFromLeftSide = newLeftValue;
+        this.pxFromTopSide = newTopValue;
+        this.gameWorld.style.left = newLeftValue + "px";
+        this.gameWorld.style.top = newTopValue + "px";
     },
 
     moveEast(id, magnitude){
@@ -106,9 +92,7 @@ const worldCanvis = {
             var element = document.getElementById(id);
             var oldLeftValue = this._pxToInt(element.style.left);
             var newLeftValue = oldLeftValue + this.pxPerCell * magnitude;
-            if (this._withinEastWestBoundaries(newLeftValue)){
-                element.style.left = newLeftValue + "px";
-            }
+            element.style.left = newLeftValue + "px";
         }
     },
 
@@ -120,10 +104,8 @@ const worldCanvis = {
         // Shift entire gameWorld from origin
         // We move the world in negative magnitude direction to give the illusion that the player moved East
         var newLeftValue = this.pxFromLeftSide + this.pxPerCell * magnitude * -1;
-        if (this._playerWithinEastWestBoundaries(newLeftValue)){
-            this.pxFromLeftSide = newLeftValue;
-            this.gameWorld.style.left = this.pxFromLeftSide + "px";
-        }
+        this.pxFromLeftSide = newLeftValue;
+        this.gameWorld.style.left = this.pxFromLeftSide + "px";
     },
 
     movePlayerWest(magnitude){
@@ -139,9 +121,7 @@ const worldCanvis = {
             var element = document.getElementById(id);
             var oldTopValue = this._pxToInt(element.style.top);
             var newTopValue = oldTopValue + this.pxPerCell * magnitude;
-            if (this._withinNorthSouthBoundaries(newTopValue)){
-                element.style.top = newTopValue + "px";
-            }
+            element.style.top = newTopValue + "px";
         }
     },
 
@@ -153,38 +133,12 @@ const worldCanvis = {
         // Shift entire gameWorld from origin
         // We move the world in negative magnitude direction to give the illusion that the player moved South
         var newTopValue = this.pxFromTopSide + this.pxPerCell * magnitude * -1;
-        if (this._playerWithinNorthSouthBoundaries(newTopValue)){
-            this.pxFromTopSide = newTopValue;
-            this.gameWorld.style.top = this.pxFromTopSide + "px";
-        }
+        this.pxFromTopSide = newTopValue;
+        this.gameWorld.style.top = this.pxFromTopSide + "px";
     },
 
     movePlayerNorth(magnitude){
         this.movePlayerSouth(magnitude * -1);
-    },
-
-    _playerWithinEastWestBoundaries(number){
-        var upperBound = 300;
-        var lowerBound = -1 * this.rows * this.pxPerCell + this.viewPortWidth / 2;
-        return number >= lowerBound && number <= upperBound
-    },
-
-    _playerWithinNorthSouthBoundaries(number){
-        var upperBound = 300;
-        var lowerBound = -1 * this.cols * this.pxPerCell + this.viewPortHeight / 2;
-        return number >= lowerBound && number <= upperBound;
-    },
-
-    _withinEastWestBoundaries(number){
-        var lowerBound = 0;
-        var upperBound = this.cols * this.pxPerCell;
-        return number >= lowerBound && number <= upperBound;
-    },
-
-    _withinNorthSouthBoundaries(number){
-        var lowerBound = 0;
-        var upperBound = this.rows * this.pxPerCell;
-        return number >= lowerBound && number <= upperBound;
     },
 
     _pxToInt(pixelValue){
@@ -201,9 +155,3 @@ const worldCanvis = {
         return [x, y];
     }
 }
-
-function ValueOutsideCanvasBoundaries(message){
-    this.name = "ValueOutsideCanvasBoundaries";
-    this.message = (message || "");
-}
-ValueOutsideCanvasBoundaries.prototype = Error.prototype;
