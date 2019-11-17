@@ -101,8 +101,14 @@ const position = {
     },
 
     wormhole() {
-        this._x = Math.floor(Math.random() * config.boardWidth);
-        this._y = Math.floor(Math.random() * config.boardWidth);
+        if (config.randomWormholeBehavior){
+            this._x = Math.floor(Math.random() * config.boardWidth);
+            this._y = Math.floor(Math.random() * config.boardWidth);
+        }
+        else{
+            this._x = Math.floor(config.boardWidth / 2);
+            this._y = Math.floor(config.boardHeight / 2);
+        }
         worldCanvis.repositionPlayer(this._x, this._y);
         checkCollision();
     },
