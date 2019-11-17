@@ -13,8 +13,8 @@ var config = {
 }
 
 var defaultConfig = {
-    boardWidth: 120,
-    boardHeight: 120,
+    boardWidth: 128,
+    boardHeight: 128,
     initialLocation: {
         x: 0,
         y: 0
