@@ -47,7 +47,7 @@ function addToList(artifact, x, y) {
             celestial.src = "img/wormhole.jpg";
         celestial.classList.add("artifact");
         celestial.id = "artifact-" + knownArtifacts.length;
-        worldCanvis.addToCanvas(celestial, x, y);
+        worldCanvas.addToCanvas(celestial, x, y);
         return 1;
     }
 
@@ -91,7 +91,7 @@ function addToList(artifact, x, y) {
 
         celestial.classList.add("artifact");
         celestial.id = "artifact-" + knownArtifacts.length;
-        worldCanvis.addToCanvas(celestial, x, y);
+        worldCanvas.addToCanvas(celestial, x, y);
         return 1;
 
     }

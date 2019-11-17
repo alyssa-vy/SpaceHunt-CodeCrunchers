@@ -1,11 +1,11 @@
 function main() {
     initConfig();
-    worldCanvis.initCanvis();
+    worldCanvas.initCanvas();
 }
 
 function initGame() {
     resources.initResources();
-    worldCanvis.updateBoundaries(config.boardWidth, config.boardHeight);
+    worldCanvas.updateBoundaries(config.boardWidth, config.boardHeight);
     position.initPosition();
     m = new MapClass(config.boardWidth, config.boardHeight);
 

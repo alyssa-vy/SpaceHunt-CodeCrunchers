@@ -27,8 +27,8 @@
     That is because we are shifting gameworld's top left corner Y pixels UP from the origin
 */
 
-const worldCanvis = {
-    initCanvis() {
+const worldCanvas = {
+    initCanvas() {
         this.pxPerCell = 50;  // The width & height of one unit cell
         this.rows = config.boardHeight;
         this.cols = config.boardWidth;

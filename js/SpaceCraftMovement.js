@@ -23,7 +23,7 @@ const position = {
         this._x = config.initialLocationX;
         this._y = config.initialLocationY;
         this.updatePoints();
-        worldCanvis.repositionPlayer(this._x, this._y);
+        worldCanvas.repositionPlayer(this._x, this._y);
     },
 
     moveSpacecraft(angle, distance) {
@@ -44,7 +44,7 @@ const position = {
             }
             else {
                 this._x += evaledDistance;
-                worldCanvis.movePlayerEast(evaledDistance);
+                worldCanvas.movePlayerEast(evaledDistance);
                 checkCollision();
             }
         } else if(angle === 90) {
@@ -56,7 +56,7 @@ const position = {
             }
             else {
                 this._y -= evaledDistance;
-                worldCanvis.movePlayerNorth(evaledDistance);
+                worldCanvas.movePlayerNorth(evaledDistance);
                 checkCollision();
             }
         } else if(angle === 180) {
@@ -68,7 +68,7 @@ const position = {
             }
             else {
                 this._x -= evaledDistance;
-                worldCanvis.movePlayerWest(evaledDistance);
+                worldCanvas.movePlayerWest(evaledDistance);
                 checkCollision();
             }
         } else if(angle === 270) {
@@ -80,7 +80,7 @@ const position = {
             }
             else {
                 this._y += evaledDistance;
-                worldCanvis.movePlayerSouth(evaledDistance);
+                worldCanvas.movePlayerSouth(evaledDistance);
                 checkCollision();
             }
         } else {
@@ -109,7 +109,7 @@ const position = {
             this._x = Math.floor(config.boardWidth / 2);
             this._y = Math.floor(config.boardHeight / 2);
         }
-        worldCanvis.repositionPlayer(this._x, this._y);
+        worldCanvas.repositionPlayer(this._x, this._y);
         checkCollision();
     },
 
