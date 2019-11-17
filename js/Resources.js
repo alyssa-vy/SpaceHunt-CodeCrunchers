@@ -2,6 +2,14 @@ const resources = {
 	_energy:0,
 	_supplies:0,
 
+	setEnergy(newEnergy){
+		this._energy = eval(newEnergy);
+	},
+
+	setSupplies(newSupplies){
+		this._supplies = eval(newSupplies);
+	},
+
 	updateResources(){
 		this._energy = eval(document.UI.energy.value);
 		this._supplies = eval(document.UI.supplies.value);
