@@ -20,6 +20,13 @@ function addToList(artifact, x, y) {
         toAdd = new celestialArtifact(artifact, x, y);
         knownArtifacts.push(toAdd);
         addToLog(artifact, x, y); // display to the log
+        celestial = document.createElement("img");
+        celestial.src = "img/letter_a.jpg";
+        celestial.classList.add("artifact");
+        celestial.id = "artifact-" + knownArtifacts.length;
+
+        alert(celestial.id);
+        worldCanvis.addToCanvas(celestial, x, y);
         return 1;
     }
 
@@ -35,11 +42,16 @@ function addToList(artifact, x, y) {
         toAdd = new celestialArtifact(artifact, x, y);
         knownArtifacts.push(toAdd);
         addToLog(artifact, x, y);
+        celestial = document.createElement("img");
+        celestial.src = "img/letter_a.jpg";
+        celestial.classList.add("artifact");
+        celestial.id = "artifact-" + knownArtifacts.length;
+        worldCanvis.addToCanvas(celestial, x, y);
         return 1;
 
     }
-
 }
+
 
 // get the celestial artifact and its coordinates then output a text to the textarea of the log
 function addToLog(artifact, x, y) {
@@ -86,6 +98,8 @@ function deploySensor() {
             coordx = currentx;
             coordx -= i;
             // Check 2 below X
+            if (coordx <= 0)
+                return;
             if (Map[coordx][currenty] != null) {
                 artifact = Map[coordx][currenty];
                 addToList(artifact, coordx, currenty);
@@ -93,6 +107,8 @@ function deploySensor() {
             coordy = currenty;
             coordy -= i;
             // Check 2 right Y
+            if (coordy <= 0)
+                return;
             if (Map[currentx][coordy] != null) {
                 artifact = Map[currentx][coordy];
                 addToList(artifact, currentx, coordy);
