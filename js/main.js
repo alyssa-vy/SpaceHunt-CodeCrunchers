@@ -1,10 +1,10 @@
 function main() {
     initConfig();
+    worldCanvis.initCanvis();
 }
 
 function initGame() {
     resources.initResources();
-    worldCanvis.initCanvis();
     position.initPosition();
     m = new MapClass(config.boardWidth, config.boardHeight);
 
