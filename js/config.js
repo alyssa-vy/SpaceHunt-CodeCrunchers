@@ -24,7 +24,7 @@ var defaultConfig = {
     initialCredits: 1000,
     godMode: false,
     randomWormholeBehavior: true,
-    gazeteer: false,
+    gazetteer: false,
     administrator: false
 };
 

@@ -1,10 +1,19 @@
 function loadGame(filename){
+
     Map = localStorage.getItem(filename + ".map");
-    config = localStorage.getItem(filename + ".config", config);
-    defaultConfig = localStorage.getItem(filename + ".dconfig", defaultConfig);
-    PlanetsAdded = localStorage.getItem(filename + ".pa", PlanetsAdded);
+    PlanetsAdded = localStorage.getItem(filename + ".pa");
+    knownArtifacts = localStorage.getItem(filename + ".ka");
+    sensorCP = localStorage.getItem(filename + ".scp");
+
+    resources.setEnergy(localStorage.getItem(filename + ".re"));
+    resources.setSupplies(localStorage.getItem(filename + ".rs"));
+    document.UI.energy.value = resources._energy;
+    document.UI.supplies.value = resources._supplies;
+
+
+
+    switchToPage("mainGame")
+    //config = localStorage.getItem(filename + ".config");
     //resources = localStorage.getItem(filename + ".resources", resources);
-    knownArtifacts = localStorage.getItem(filename + ".ka", knownArtifacts);
-    sensorCP = localStorage.getItem(filename + ".scp", sensorCP);
     //position = localStorage.getItem(filename + ".pos", position);
 }
