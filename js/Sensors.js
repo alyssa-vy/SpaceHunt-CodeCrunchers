@@ -21,11 +21,32 @@ function addToList(artifact, x, y) {
         knownArtifacts.push(toAdd);
         addToLog(artifact, x, y); // display to the log
         celestial = document.createElement("img");
-        celestial.src = "img/letter_a.jpg";
+        if (artifact == "Pentium 1")
+            celestial.src = "img/pentium_1.jpg";
+        else if (artifact == "Pentium 2")
+            celestial.src = "img/pentium_2.jpg";
+        else if (artifact == "Pentium 3")
+            celestial.src = "img/pentium_3.jpg";
+        else if (artifact == "Pentium 4")
+            celestial.src = "img/pentium_4.jpg";
+        else if (artifact == "Pentium 5")
+            celestial.src = "img/pentium_5.jpg";
+        else if (artifact == "Pentium 6")
+            celestial.src = "img/pentium_6.jpg";
+        else if (artifact == "Pentium 7")
+            celestial.src = "img/pentium_7.jpg";
+        else if (artifact == "Celeron")
+            celestial.src = "img/celeron.jpg";
+        else if (artifact == "Xeon")
+            celestial.src = "img/xeon.jpg";
+        else if (artifact == "SpaceStation")
+            celestial.src = "img/spacestation.jpg";
+        else if (artifact == "Asteroid")
+            celestial.src = "img/asteroid.png";
+        else if (artifact == "Wormhole")
+            celestial.src = "img/wormhole.jpg";
         celestial.classList.add("artifact");
         celestial.id = "artifact-" + knownArtifacts.length;
-
-        alert(celestial.id);
         worldCanvis.addToCanvas(celestial, x, y);
         return 1;
     }
@@ -43,7 +64,31 @@ function addToList(artifact, x, y) {
         knownArtifacts.push(toAdd);
         addToLog(artifact, x, y);
         celestial = document.createElement("img");
-        celestial.src = "img/letter_a.jpg";
+        if (artifact == "Pentium 1")
+            celestial.src = "img/pentium_1.jpg";
+        else if (artifact == "Pentium 2")
+            celestial.src = "img/pentium_2.jpg";
+        else if (artifact == "Pentium 3")
+            celestial.src = "img/pentium_3.jpg";
+        else if (artifact == "Pentium 4")
+            celestial.src = "img/pentium_4.jpg";
+        else if (artifact == "Pentium 5")
+            celestial.src = "img/pentium_5.jpg";
+        else if (artifact == "Pentium 6")
+            celestial.src = "img/pentium_6.jpg";
+        else if (artifact == "Pentium 7")
+            celestial.src = "img/pentium_7.jpg";
+        else if (artifact == "Celeron")
+            celestial.src = "img/celeron.jpg";
+        else if (artifact == "Xeon")
+            celestial.src = "img/xeon.jpg";
+        else if (artifact == "SpaceStation")
+            celestial.src = "img/spacestation.jpg";
+        else if (artifact == "Asteroid")
+            celestial.src = "img/asteroid.jpeg";
+        else if (artifact == "Wormhole")
+            celestial.src = "img/wormhole.jpg";
+
         celestial.classList.add("artifact");
         celestial.id = "artifact-" + knownArtifacts.length;
         worldCanvis.addToCanvas(celestial, x, y);
