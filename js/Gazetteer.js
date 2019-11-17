@@ -49,5 +49,5 @@ function drawToCanvisIfIsAlwaysVisiblePlanet(type, x, y){
     }
     planetElement.src = imgSrc;
     planetElement.id = id;
-    worldCanvis.addToCanvas(planetElement, x, y);
+    worldCanvas.addToCanvas(planetElement, x, y);
 }
