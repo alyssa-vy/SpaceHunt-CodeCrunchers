@@ -1,0 +1,1077 @@
+{
+  "id": "29113f1c-9a36-474c-b49d-0863cce7ae95",
+  "version": "2.0",
+  "name": "Space Hunt Movement",
+  "url": "http://web.cecs.pdx.edu/~avy/",
+  "tests": [{
+    "id": "f499e640-7ad6-4f93-a6d0-685eeeb306fb",
+    "name": "6) Move 180° off map",
+    "commands": [{
+      "id": "b4838fd6-8c3e-4eab-a3ba-a08d84273e3a",
+      "comment": "",
+      "command": "open",
+      "target": "http://web.cecs.pdx.edu/~avy/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "822a4c6c-7235-42a6-84ec-807a2dca91c3",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x877",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "252f470d-5288-4920-b323-e029d277eaed",
+      "comment": "",
+      "command": "click",
+      "target": "css=form > input:nth-child(1)",
+      "targets": [
+        ["css=form > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@value='Start']", "xpath:attributes"],
+        ["xpath=//div[@id='mainMenu']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b1e3ef1c-acad-4d1c-a768-5b67f605ad39",
+      "comment": "Default x CP",
+      "command": "assertValue",
+      "target": "name=xValue",
+      "targets": [],
+      "value": "0"
+    }, {
+      "id": "1e85011c-7987-48e4-8b3f-cf9fce04132a",
+      "comment": "Default energy level",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "1000"
+    }, {
+      "id": "f17c262b-9072-4358-9d9d-cd559a1a347a",
+      "comment": "Default supplies %",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [
+        ["name=supplies", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='supplies']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[4]/input", "xpath:idRelative"],
+        ["xpath=//p[4]/input", "xpath:position"]
+      ],
+      "value": "100"
+    }, {
+      "id": "2c3dec25-65c0-4d27-b8f6-3be667faacbb",
+      "comment": "",
+      "command": "click",
+      "target": "css=p > input:nth-child(3)",
+      "targets": [
+        ["css=p > input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@value='180']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[7]/input[2]", "xpath:idRelative"],
+        ["xpath=//p[7]/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "51aba82e-a96e-41e9-a65f-c12da2db7bb0",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Error\nYou have tried to move of the map. You have now been sent through a worm hole.",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cd8e36eb-0755-44f2-a296-721800537ee2",
+      "comment": "Make sure that the y CP did not subtract from 0 to -1.",
+      "command": "assertNotText",
+      "target": "name=xValue",
+      "targets": [],
+      "value": "-1"
+    }, {
+      "id": "ff585dd1-1cb8-4658-b41c-e7b469822cb1",
+      "comment": "Resulting energy after subtracting 1*k",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "990"
+    }, {
+      "id": "8871c961-eada-46f5-8662-8abe7197d720",
+      "comment": "Resulting supplies percentage after one movement and a 2% deduction.",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [
+        ["name=supplies", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='supplies']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[4]/input", "xpath:idRelative"],
+        ["xpath=//p[4]/input", "xpath:position"]
+      ],
+      "value": "98"
+    }]
+  }, {
+    "id": "7a8de1a9-5ac6-4673-979e-8d76ccc152a1",
+    "name": "5) Move 0° off map",
+    "commands": [{
+      "id": "856ada94-9680-4874-8d6c-178d78a09b05",
+      "comment": "",
+      "command": "open",
+      "target": "http://web.cecs.pdx.edu/~avy/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6cf16c9b-0e6b-4905-8ba8-136b2e09b186",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x877",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "90f2de9a-0e6a-4a2b-83a5-2526864fbacd",
+      "comment": "",
+      "command": "click",
+      "target": "css=form > input:nth-child(2)",
+      "targets": [
+        ["css=form > input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@value='Configure']", "xpath:attributes"],
+        ["xpath=//div[@id='mainMenu']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6820a605-ed48-4f8c-bebf-47226f27f3fb",
+      "comment": "",
+      "command": "click",
+      "target": "name=initialLocationX",
+      "targets": [
+        ["name=initialLocationX", "name"],
+        ["css=.coordinateField:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='initialLocationX']", "xpath:attributes"],
+        ["xpath=//div[@id='configuration']/form/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "89933527-3b97-41c2-97b8-4989b3b7102f",
+      "comment": "",
+      "command": "type",
+      "target": "name=initialLocationX",
+      "targets": [
+        ["name=initialLocationX", "name"],
+        ["css=.coordinateField:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='initialLocationX']", "xpath:attributes"],
+        ["xpath=//div[@id='configuration']/form/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "127"
+    }, {
+      "id": "2d166be6-0dda-4f44-8261-a83163d8e4e7",
+      "comment": "",
+      "command": "click",
+      "target": "id=configurationDoneButton",
+      "targets": [
+        ["id=configurationDoneButton", "id"],
+        ["css=#configurationDoneButton", "css:finder"],
+        ["xpath=//input[@id='configurationDoneButton']", "xpath:attributes"],
+        ["xpath=//div[@id='configuration']/form/input[7]", "xpath:idRelative"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "09350a72-284a-4477-a74a-f3e417b7cd5c",
+      "comment": "",
+      "command": "click",
+      "target": "css=form > input:nth-child(1)",
+      "targets": [
+        ["css=form > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@value='Start']", "xpath:attributes"],
+        ["xpath=//div[@id='mainMenu']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9c957d15-46a7-4c33-a82a-89d775e9e1db",
+      "comment": "",
+      "command": "assertValue",
+      "target": "name=xValue",
+      "targets": [],
+      "value": "127"
+    }, {
+      "id": "f31af6ed-15eb-4143-95a2-2ed633a02e13",
+      "comment": "Starting (default) energy level",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "1000"
+    }, {
+      "id": "77b50bd2-dd7a-4da4-b12e-6a0231e65887",
+      "comment": "Starting (default) supplies percentage",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [
+        ["name=supplies", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='supplies']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[4]/input", "xpath:idRelative"],
+        ["xpath=//p[4]/input", "xpath:position"]
+      ],
+      "value": "100"
+    }, {
+      "id": "b194f399-3644-44c3-8a15-603dd4e0f9fb",
+      "comment": "",
+      "command": "click",
+      "target": "css=p > input:nth-child(4)",
+      "targets": [
+        ["css=p > input:nth-child(4)", "css:finder"],
+        ["xpath=//input[@value='0']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[7]/input[3]", "xpath:idRelative"],
+        ["xpath=//p[7]/input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "40d00442-5406-4466-bc9b-c0d0e103a237",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Error\nYou have tried to move of the map. You have now been sent through a worm hole.",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f28f6314-8e0c-4696-8911-e0af9d5433e6",
+      "comment": "Making sure the value of the x CP is not 128 (the default width of the map).",
+      "command": "assertNotText",
+      "target": "name=xValue",
+      "targets": [],
+      "value": "128"
+    }, {
+      "id": "2e155621-17ee-493c-851b-c02f002ac65c",
+      "comment": "Resulting energy after subtracting 1*k",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "990"
+    }, {
+      "id": "0b2292eb-eac8-43d7-9292-fb0ebc6600f1",
+      "comment": "Resulting supplies percentage after one movement and a 2% deduction.",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [],
+      "value": "98"
+    }]
+  }, {
+    "id": "12c9af44-cb85-4f43-820e-b1d61b45da98",
+    "name": "1) Move 0° (within map)",
+    "commands": [{
+      "id": "f594bcd1-a01b-4f45-ab6c-ceb2d9d495ab",
+      "comment": "",
+      "command": "open",
+      "target": "http://web.cecs.pdx.edu/~avy/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "85112da8-5903-4d27-b8f2-73d038d31772",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x877",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "77764222-c95c-4fb7-90d0-8597156c0923",
+      "comment": "",
+      "command": "click",
+      "target": "css=form > input:nth-child(1)",
+      "targets": [
+        ["css=form > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@value='Start']", "xpath:attributes"],
+        ["xpath=//div[@id='mainMenu']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7009f210-d28e-4dcd-9a3a-dc8694ad3aab",
+      "comment": "Starting (default) x CP",
+      "command": "assertValue",
+      "target": "name=xValue",
+      "targets": [],
+      "value": "0"
+    }, {
+      "id": "fd31f480-d575-4536-bd5e-d860be7b7858",
+      "comment": "Starting (default) energy level",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "1000"
+    }, {
+      "id": "a6af64ec-de59-4315-ad67-c945790d21ff",
+      "comment": "Starting (default) supplies percentage",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [
+        ["name=supplies", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='supplies']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[4]/input", "xpath:idRelative"],
+        ["xpath=//p[4]/input", "xpath:position"]
+      ],
+      "value": "100"
+    }, {
+      "id": "1073dae3-c996-422b-9a10-f8e09e0d5949",
+      "comment": "",
+      "command": "click",
+      "target": "css=p > input:nth-child(4)",
+      "targets": [
+        ["css=p > input:nth-child(4)", "css:finder"],
+        ["xpath=//input[@value='0']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[7]/input[3]", "xpath:idRelative"],
+        ["xpath=//p[7]/input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "48a340f1-cfce-47a0-a513-32328a590f17",
+      "comment": "Value of x CP after one 0° movement",
+      "command": "assertValue",
+      "target": "name=xValue",
+      "targets": [
+        ["name=xValue", "name"],
+        ["css=p:nth-child(2) > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='xValue']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p/input", "xpath:idRelative"],
+        ["xpath=//p/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "4e69bf1b-a2fc-4cc2-b7ab-f5102849f5e0",
+      "comment": "Resulting energy after subtracting 1*k",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "990"
+    }, {
+      "id": "f1ee80c4-9211-4d4a-a549-45f3886f53f4",
+      "comment": "Resulting supplies percentage after one movement and a 2% deduction.",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [
+        ["name=supplies", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='supplies']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[4]/input", "xpath:idRelative"],
+        ["xpath=//p[4]/input", "xpath:position"]
+      ],
+      "value": "98"
+    }]
+  }, {
+    "id": "2e2bde5c-bfb9-4cc6-bbd1-4868543b7fb9",
+    "name": "2) Move 180° (within map)",
+    "commands": [{
+      "id": "004aa92c-6cce-4abb-9886-45023ee3c485",
+      "comment": "",
+      "command": "open",
+      "target": "http://web.cecs.pdx.edu/~avy/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2beebc99-9621-4451-9ef2-3726d87ada02",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x877",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4b8243f3-3bb2-41b5-8ac6-0522638a7976",
+      "comment": "",
+      "command": "click",
+      "target": "css=form > input:nth-child(1)",
+      "targets": [
+        ["css=form > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@value='Start']", "xpath:attributes"],
+        ["xpath=//div[@id='mainMenu']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ffb78bcd-2cf2-4ebb-a3bb-75fcfee82679",
+      "comment": "",
+      "command": "click",
+      "target": "css=p > input:nth-child(4)",
+      "targets": [
+        ["css=p > input:nth-child(4)", "css:finder"],
+        ["xpath=//input[@value='0']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[7]/input[3]", "xpath:idRelative"],
+        ["xpath=//p[7]/input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0bcf4452-8ae9-414e-b885-319e82cd364d",
+      "comment": "Starting test value for the x CP",
+      "command": "assertValue",
+      "target": "name=xValue",
+      "targets": [
+        ["name=xValue", "name"],
+        ["css=p:nth-child(2) > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='xValue']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p/input", "xpath:idRelative"],
+        ["xpath=//p/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "e28fe6e3-d3ff-4c54-b304-c84b5a38ca1f",
+      "comment": "",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "990"
+    }, {
+      "id": "eb0ee4a0-f1a4-49b2-a8ae-2574de5625e2",
+      "comment": "",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [],
+      "value": "98"
+    }, {
+      "id": "c8f04671-f19a-4315-9b76-4bce3ac4e55d",
+      "comment": "",
+      "command": "click",
+      "target": "css=p > input:nth-child(3)",
+      "targets": [
+        ["css=p > input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@value='180']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[7]/input[2]", "xpath:idRelative"],
+        ["xpath=//p[7]/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ca1f567-4453-45b0-b398-8a211d5a6b94",
+      "comment": "X CP should decrease by 1.",
+      "command": "assertValue",
+      "target": "name=xValue",
+      "targets": [
+        ["name=xValue", "name"],
+        ["css=p:nth-child(2) > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='xValue']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p/input", "xpath:idRelative"],
+        ["xpath=//p/input", "xpath:position"]
+      ],
+      "value": "0"
+    }, {
+      "id": "fe799757-d9a2-4032-a7b4-c46882faad7f",
+      "comment": "Energy should decrease by 1*k",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "980"
+    }, {
+      "id": "8e33b455-5cf1-4a52-b010-68b8997f3e9c",
+      "comment": "Supplies decreased by 2%",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [
+        ["name=supplies", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='supplies']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[4]/input", "xpath:idRelative"],
+        ["xpath=//p[4]/input", "xpath:position"]
+      ],
+      "value": "96"
+    }]
+  }, {
+    "id": "942c9fef-035a-4ba2-b661-f276fed2c09f",
+    "name": "4) Move 270° (within map)",
+    "commands": [{
+      "id": "259c5d70-7292-4b38-8fc1-87b23d954280",
+      "comment": "",
+      "command": "open",
+      "target": "http://web.cecs.pdx.edu/~avy/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dbb7f8ad-2d15-469c-bad4-2c4394fdd0b7",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x877",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9b8d0f1e-1e1f-48b4-8c41-56727c663244",
+      "comment": "",
+      "command": "click",
+      "target": "css=form > input:nth-child(1)",
+      "targets": [
+        ["css=form > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@value='Start']", "xpath:attributes"],
+        ["xpath=//div[@id='mainMenu']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "26ed9123-1629-49f5-86ed-48d81130e606",
+      "comment": "Starting (default) y CP",
+      "command": "assertValue",
+      "target": "name=yValue",
+      "targets": [
+        ["name=yValue", "name"],
+        ["css=p > input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='yValue']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p/input[2]", "xpath:idRelative"],
+        ["xpath=//p/input[2]", "xpath:position"]
+      ],
+      "value": "0"
+    }, {
+      "id": "9cd301c6-b058-400d-a4cb-945e32f5a678",
+      "comment": "Starting (default) energy level",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "1000"
+    }, {
+      "id": "9b2cf86b-78ed-453d-9a2b-82c3cad5afe9",
+      "comment": "Starting (default) supplies percentage",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [
+        ["name=supplies", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='supplies']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[4]/input", "xpath:idRelative"],
+        ["xpath=//p[4]/input", "xpath:position"]
+      ],
+      "value": "100"
+    }, {
+      "id": "7906c36d-3cea-497f-b209-ec9c79538ae2",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(6)",
+      "targets": [
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@value='270']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[7]/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cffe9308-0b1c-4cbf-ba4f-ebef516ab6a3",
+      "comment": "Value of y CP after one 0° movement",
+      "command": "assertValue",
+      "target": "name=yValue",
+      "targets": [
+        ["name=yValue", "name"],
+        ["css=p > input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='yValue']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p/input[2]", "xpath:idRelative"],
+        ["xpath=//p/input[2]", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "f21b4bd7-fc8c-4140-8dfd-3395d718eb68",
+      "comment": "Resulting energy after subtracting 1*k",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "990"
+    }, {
+      "id": "d1886e7b-253f-4f54-94d2-d9b92c3715d8",
+      "comment": "Resulting supplies percentage after one movement and a 2% deduction.",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [
+        ["name=supplies", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='supplies']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[4]/input", "xpath:idRelative"],
+        ["xpath=//p[4]/input", "xpath:position"]
+      ],
+      "value": "98"
+    }]
+  }, {
+    "id": "0ac10f6e-1daa-49da-828c-82637108a038",
+    "name": "3) Move 90° (within map)",
+    "commands": [{
+      "id": "6b87b776-2fa0-49bd-b546-b573b0544ee6",
+      "comment": "",
+      "command": "open",
+      "target": "http://web.cecs.pdx.edu/~avy/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8e9e6e9b-9f8f-4f72-b5b8-ed99e04e8253",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x877",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "093aae6b-5581-4218-af0e-b3f0dcada3a5",
+      "comment": "",
+      "command": "click",
+      "target": "css=form > input:nth-child(1)",
+      "targets": [
+        ["css=form > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@value='Start']", "xpath:attributes"],
+        ["xpath=//div[@id='mainMenu']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7aa31831-e99a-4426-b53e-1a99cce78400",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(6)",
+      "targets": [
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@value='270']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[7]/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "60728f6a-3f4d-4ea3-8b7c-7523b4791a2d",
+      "comment": "Starting test value for the y CP",
+      "command": "assertValue",
+      "target": "name=yValue",
+      "targets": [
+        ["name=yValue", "name"],
+        ["css=p > input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='yValue']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p/input[2]", "xpath:idRelative"],
+        ["xpath=//p/input[2]", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "75b95b76-89e6-4b41-b868-f8bfbae44566",
+      "comment": "",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "990"
+    }, {
+      "id": "1d045ca0-b2cd-4a52-814f-23c8f6810bb5",
+      "comment": "",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [],
+      "value": "98"
+    }, {
+      "id": "46d8f552-e577-4470-a0a8-aac1eb2e6b32",
+      "comment": "",
+      "command": "click",
+      "target": "css=p:nth-child(9) > input:nth-child(1)",
+      "targets": [
+        ["css=p:nth-child(9) > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@value='90']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[7]/input", "xpath:idRelative"],
+        ["xpath=//p[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7ea1b0e5-d5e2-4997-b39c-5ed1fc3ad596",
+      "comment": "Y CP should decrease by 1.",
+      "command": "assertValue",
+      "target": "name=yValue",
+      "targets": [
+        ["name=yValue", "name"],
+        ["css=p > input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='yValue']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p/input[2]", "xpath:idRelative"],
+        ["xpath=//p/input[2]", "xpath:position"]
+      ],
+      "value": "0"
+    }, {
+      "id": "55d285b9-964c-4fd8-9056-9fd4873db5d9",
+      "comment": "Energy should decrease by 1*k",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "980"
+    }, {
+      "id": "95a8b065-6683-4c2b-920c-53f0942f3312",
+      "comment": "Supplies decreased by 2%",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [
+        ["name=supplies", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='supplies']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[4]/input", "xpath:idRelative"],
+        ["xpath=//p[4]/input", "xpath:position"]
+      ],
+      "value": "96"
+    }]
+  }, {
+    "id": "d4a0b9c7-9272-4510-b680-a487f98f27a7",
+    "name": "8) Move 270° off map",
+    "commands": [{
+      "id": "83b60894-5383-4205-a107-941bb50c1136",
+      "comment": "",
+      "command": "open",
+      "target": "http://web.cecs.pdx.edu/~avy/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4de085b7-425b-41f9-b750-9f45ef2f5ffa",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x877",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "88e59330-e72c-4e1f-980a-c6aeb0b90478",
+      "comment": "",
+      "command": "click",
+      "target": "css=form > input:nth-child(2)",
+      "targets": [
+        ["css=form > input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@value='Configure']", "xpath:attributes"],
+        ["xpath=//div[@id='mainMenu']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4f8f9985-cc9c-423a-a138-1ca1ae6577ce",
+      "comment": "",
+      "command": "click",
+      "target": "name=initialLocationY",
+      "targets": [
+        ["name=initialLocationY", "name"],
+        ["css=.coordinateField:nth-child(2) > input", "css:finder"],
+        ["xpath=//input[@name='initialLocationY']", "xpath:attributes"],
+        ["xpath=//div[@id='configuration']/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d9c47c1-bb0f-4313-a795-d031b232a980",
+      "comment": "",
+      "command": "type",
+      "target": "name=initialLocationY",
+      "targets": [
+        ["name=initialLocationY", "name"],
+        ["css=.coordinateField:nth-child(2) > input", "css:finder"],
+        ["xpath=//input[@name='initialLocationY']", "xpath:attributes"],
+        ["xpath=//div[@id='configuration']/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "127"
+    }, {
+      "id": "655406b1-63a9-4879-a957-7f50052e4425",
+      "comment": "",
+      "command": "click",
+      "target": "id=configurationDoneButton",
+      "targets": [
+        ["id=configurationDoneButton", "id"],
+        ["css=#configurationDoneButton", "css:finder"],
+        ["xpath=//input[@id='configurationDoneButton']", "xpath:attributes"],
+        ["xpath=//div[@id='configuration']/form/input[7]", "xpath:idRelative"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e4ff236f-b3b9-44b2-85d2-d66d4f7977c6",
+      "comment": "",
+      "command": "click",
+      "target": "css=form > input:nth-child(1)",
+      "targets": [
+        ["css=form > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@value='Start']", "xpath:attributes"],
+        ["xpath=//div[@id='mainMenu']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "190d77a4-1c0f-49bd-98b4-aa7dfa42ff38",
+      "comment": "",
+      "command": "assertValue",
+      "target": "name=yValue",
+      "targets": [
+        ["name=yValue", "name"],
+        ["css=p > input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='yValue']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p/input[2]", "xpath:idRelative"],
+        ["xpath=//p/input[2]", "xpath:position"]
+      ],
+      "value": "127"
+    }, {
+      "id": "628d5bf0-2530-423e-bf66-a5dbf822216d",
+      "comment": "Starting (default) energy level",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "1000"
+    }, {
+      "id": "90e22a38-3e2d-4bf7-8bb5-82aa4dd54fe3",
+      "comment": "Starting (default) supplies percentage",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [
+        ["name=supplies", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='supplies']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[4]/input", "xpath:idRelative"],
+        ["xpath=//p[4]/input", "xpath:position"]
+      ],
+      "value": "100"
+    }, {
+      "id": "1d077b21-2b14-44ab-871f-b5b7e453e132",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(6)",
+      "targets": [
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@value='270']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[7]/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b5e63823-1a63-412a-bd47-4cbc453b3f0c",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Error\nYou have tried to move of the map. You have now been sent through a worm hole.",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d87b7c69-a230-4a78-8eb6-e009fcf6069b",
+      "comment": "Making sure the value of the y CP is not 128 (the default width of the map).",
+      "command": "assertNotText",
+      "target": "name=yValue",
+      "targets": [
+        ["name=yValue", "name"],
+        ["css=p > input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='yValue']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p/input[2]", "xpath:idRelative"],
+        ["xpath=//p/input[2]", "xpath:position"]
+      ],
+      "value": "128"
+    }, {
+      "id": "fd752067-11d2-4133-a2c6-b56542a68c7a",
+      "comment": "Resulting energy after subtracting 1*k",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "990"
+    }, {
+      "id": "d5b34c4f-488b-4d82-9b51-4936c0795148",
+      "comment": "Resulting supplies percentage after one movement and a 2% deduction.",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [],
+      "value": "98"
+    }]
+  }, {
+    "id": "a85f8ee5-f4fa-4d1a-ac52-94973338569c",
+    "name": "7) Move 90° off map",
+    "commands": [{
+      "id": "31b38638-a29e-40f3-bb03-fefa5f8dc835",
+      "comment": "",
+      "command": "open",
+      "target": "http://web.cecs.pdx.edu/~avy/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "efddb8de-264a-47e7-93fd-ddcaf02bca7e",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x877",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "792ebdde-3664-4f6d-a644-104df879ad53",
+      "comment": "",
+      "command": "click",
+      "target": "css=form > input:nth-child(1)",
+      "targets": [
+        ["css=form > input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@value='Start']", "xpath:attributes"],
+        ["xpath=//div[@id='mainMenu']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a3181479-6175-41b5-a99d-aaacb661b3cb",
+      "comment": "Default y CP",
+      "command": "assertValue",
+      "target": "name=yValue",
+      "targets": [
+        ["name=yValue", "name"],
+        ["css=p > input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='yValue']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p/input[2]", "xpath:idRelative"],
+        ["xpath=//p/input[2]", "xpath:position"]
+      ],
+      "value": "0"
+    }, {
+      "id": "9c74b87c-85f5-4636-85a4-63d0403cd537",
+      "comment": "Default energy level",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "1000"
+    }, {
+      "id": "4b8a23e2-00b1-4762-9b0a-3be66dbc693e",
+      "comment": "Default supplies %",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [
+        ["name=supplies", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='supplies']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[4]/input", "xpath:idRelative"],
+        ["xpath=//p[4]/input", "xpath:position"]
+      ],
+      "value": "100"
+    }, {
+      "id": "85226597-62b9-4a0c-b845-f1e107644fd5",
+      "comment": "",
+      "command": "click",
+      "target": "css=p > input:nth-child(3)",
+      "targets": [
+        ["css=p > input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@value='180']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[7]/input[2]", "xpath:idRelative"],
+        ["xpath=//p[7]/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ddf7e18e-e7b5-4934-8c77-872d4dd28a25",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Error\nYou have tried to move of the map. You have now been sent through a worm hole.",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "93fae8ea-21ba-4b55-a1bd-5a5b5f756ddb",
+      "comment": "Make sure that the y CP did not subtract from 0 to -1.",
+      "command": "assertNotText",
+      "target": "name=yValue",
+      "targets": [
+        ["name=yValue", "name"],
+        ["css=p > input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='yValue']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p/input[2]", "xpath:idRelative"],
+        ["xpath=//p/input[2]", "xpath:position"]
+      ],
+      "value": "-1"
+    }, {
+      "id": "a7763a36-2671-4463-9cb8-cab29f8b34e6",
+      "comment": "Resulting energy after subtracting 1*k",
+      "command": "assertValue",
+      "target": "name=energy",
+      "targets": [
+        ["name=energy", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='energy']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "990"
+    }, {
+      "id": "d97ab9a1-2574-451e-99be-4fed05066148",
+      "comment": "Resulting supplies percentage after one movement and a 2% deduction.",
+      "command": "assertValue",
+      "target": "name=supplies",
+      "targets": [
+        ["name=supplies", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='supplies']", "xpath:attributes"],
+        ["xpath=//form[@id='UI']/p[4]/input", "xpath:idRelative"],
+        ["xpath=//p[4]/input", "xpath:position"]
+      ],
+      "value": "98"
+    }]
+  }],
+  "suites": [{
+    "id": "4cf3f25e-557b-49e7-9046-5a669c40cfdd",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://web.cecs.pdx.edu/~avy/"],
+  "plugins": []
+}
