@@ -33,8 +33,13 @@ function saveGame(filename) {
     localStorage.setItem(filename + ".posx", position.x);
     localStorage.setItem(filename + ".posy", position.y);
 
-    localStorage.setItem(filename + ".re", resources._energy);
-    localStorage.setItem(filename + ".rs", resources._supplies);
+    if(resources._energy !== 0 && resources._supplies !== 0) {
+        localStorage.setItem(filename + ".re", resources._energy);
+        localStorage.setItem(filename + ".rs", resources._supplies);
+    } else {
+        localStorage.setItem(filename + ".re", defaultConfig.initialEnergy);
+        localStorage.setItem(filename + ".rs", defaultConfig.initialSupplies);
+    }
 
     if(config.boardWidth !== 0) {
         localStorage.setItem(filename + ".cfgw", config.boardWidth);
@@ -50,7 +55,7 @@ function saveGame(filename) {
         localStorage.setItem(filename + ".cfga", config.gameAdministrator);
     } else {
         localStorage.setItem(filename + ".cfgw", defaultConfig.boardWidth);
-        localStorage.setItem(filename + ".cfgh", defaultConfigconfig.boardHeight);
+        localStorage.setItem(filename + ".cfgh", defaultConfig.boardHeight);
         localStorage.setItem(filename + ".cfgx", defaultConfig.initialLocationX);
         localStorage.setItem(filename + ".cfgy", defaultConfig.initialLocationY);
         localStorage.setItem(filename + ".cfge", defaultConfig.initialEnergy);

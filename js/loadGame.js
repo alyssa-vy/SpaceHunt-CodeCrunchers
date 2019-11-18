@@ -22,17 +22,6 @@ function loadGame(filename){
     config.randomWormholeBehavior = localStorage.getItem(filename + ".cfgwb");
     config.gazetteer = localStorage.getItem(filename + ".cfggz");
     config.gameAdministrator = localStorage.getItem(filename + ".cfga");
-    configurationSelectors.boardWidth.value = config.boardWidth;
-    configurationSelectors.boardHeight.value = config.boardHeight;
-    configurationSelectors.initialLocationX.value = config.initialLocationX;
-    configurationSelectors.initialLocationY.value = config.initialLocationY;
-    configurationSelectors.initialEnergy.value = config.initialEnergy;
-    configurationSelectors.initialSupplies.value = config.initialSupplies;
-    configurationSelectors.initialCredits.value = config.initialCredits;
-    configurationSelectors.godMode.checked = config.godMode;
-    configurationSelectors.randomWormholeBehavior.checked = config.randomWormholeBehavior;
-    configurationSelectors.gazetteer.checked = config.gazetteer;
-    configurationSelectors.gameAdministrator = config.gameAdministrator;
     resources.updateUI();
 
     const rows = config.boardHeight;
