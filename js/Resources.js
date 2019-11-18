@@ -1,6 +1,7 @@
 const resources = {
 	_energy:0,
 	_supplies:0,
+    _initd:false,
 
 	setEnergy(newEnergy){
 		this._energy = eval(newEnergy);

@@ -22,6 +22,7 @@
         <script src="js/checkCollision.js"></script>
         <script src="js/saveGame.js"></script>
         <script src="js/loadGame.js"></script>
+        <script src="js/checkSaveNames.js"></script>
 
         <script src="js/main.js"></script>
 
@@ -34,7 +35,7 @@
                 <form name="menuButtons">
                     <input type=button value="Start" onclick=initGame()>
                     <input type=button value="Configure" onclick=switchToPage("configuration")>
-                    <input type=button value="Load/Save" onclick=switchToPage("savePage")>
+                    <input type=button value="Load/Save" onclick=loadSavedSessions()>
                 </form>
             </div>
             <div class="page clearfix" id="mainGame">
@@ -66,7 +67,7 @@
                         <br>
                         <br>
                         <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
-                        <input type=button value="Save Game" onclick=switchToPage("savePage")>
+                        <input type=button value="Save Game" onclick=loadSavedSessions()>
                     </form>
                 </div>
                 <div class="col-2">
@@ -178,7 +179,11 @@
 
             <div class="page" id="savePage">
                 <h2>Nameable Persistent State</h2>
-                <input type="text" id="filename"> Filename <input type="button" value="Load and Play" onclick=loadGame(filename.value)> <input type="button" value="Save and Exit" onclick=saveGame(filename.value)>
+                <input type="text" id="filename"> Filename <input type="button" value="Save and Exit" onclick=saveGame(filename.value)>
+                <br><br>
+                <select id="saveName" name="saveName" oninput=enableBtn()>
+                </select>
+                <input type="button" id="loadbtn" value="Load and Play" onclick=loadGame(saveName.value); disabled>
                 <br><br>
                 <input type="button" value="Return to Main Menu" onclick=switchToPage("mainMenu")>
             </div>

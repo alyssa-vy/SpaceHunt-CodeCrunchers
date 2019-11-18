@@ -9,8 +9,19 @@ var config = {
     get godMode() { return configurationSelectors.godMode.checked },
     get randomWormholeBehavior() { return !configurationSelectors.staticWormholeBehavior.checked },
     get gazetteer() {return configurationSelectors.gazetteer.checked},
-    get gameAdministrator() { return configurationSelectors.administrator.checked}
-}
+    get gameAdministrator() { return configurationSelectors.administrator.checked},
+    set boardWidth(newBoardWidth) {},
+    set boardHeight(newBoardHeight) {},
+    set initialLocationX(newInitialLocationX) {},
+    set initialLocationY(newInitialLocationY) {},
+    set initialEnergy(newInitialEnergy) {},
+    set initialSupplies(newInitialSupplies) {},
+    set initialCredits(newInitialCredits) {},
+    set godMode(newGodMode) {},
+    set randomWormholeBehavior(newBehavior) {},
+    set gazetteer(newGazetteer) {},
+    set gameAdministrator(newAdministrator) {}
+};
 
 var defaultConfig = {
     boardWidth: 128,
