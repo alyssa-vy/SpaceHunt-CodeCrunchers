@@ -30,8 +30,13 @@ function saveGame(filename) {
     localStorage.setItem(filename + ".ka", knownArtifacts);
     localStorage.setItem(filename + ".scp", sensorCP);
 
-    localStorage.setItem(filename + ".posx", position.x);
-    localStorage.setItem(filename + ".posy", position.y);
+    if (played) {
+        localStorage.setItem(filename + ".posx", position.x);
+        localStorage.setItem(filename + ".posy", position.y);
+    } else {
+        localStorage.setItem(filename + ".posx", config.initialLocationX);
+        localStorage.setItem(filename + ".posy", config.initialLocationY);
+    }
 
     if(resources._energy !== 0 && resources._supplies !== 0) {
         localStorage.setItem(filename + ".re", resources._energy);

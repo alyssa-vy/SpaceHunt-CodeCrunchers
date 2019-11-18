@@ -1,6 +1,8 @@
-
 //Global varibale for the max size of the map deminsion.
 //const max = 128;
+
+//Global for persistent state
+let played = false;
 
 //Nested position object within the spacecraft object representing
 //its current position at any given time.
@@ -24,6 +26,7 @@ const position = {
         this._y = config.initialLocationY;
         this.updatePoints();
         worldCanvas.repositionPlayer(this._x, this._y);
+        played = true;
     },
 
     moveSpacecraft(angle, distance) {
