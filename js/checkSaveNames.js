@@ -22,6 +22,18 @@ function loadSavedSessions() {
             element.appendChild(opt);
         }
 
+    } else {
+        let element = document.getElementById("saveName");
+        element.options.length = 0;
+
+        var opt0 = document.createElement('option');
+        opt0.innerHTML = "Select Saved Session";
+        opt0.selected = true;
+        opt0.value = "";
+        opt0.disabled = true;
+        element.appendChild(opt0);
+
+
     }
 
     switchToPage("savePage");
