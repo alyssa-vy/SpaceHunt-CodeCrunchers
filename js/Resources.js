@@ -1,10 +1,16 @@
-
 const resources = {
 	_energy:0,
 	_supplies:0,
-	_maxEnergy:1000,
-	_maxSupplies:100,
-	
+    _initd:false,
+
+	setEnergy(newEnergy){
+		this._energy = eval(newEnergy);
+	},
+
+	setSupplies(newSupplies){
+		this._supplies = eval(newSupplies);
+	},
+
 	updateResources(){
 		this._energy = eval(document.UI.energy.value);
 		this._supplies = eval(document.UI.supplies.value);
@@ -16,21 +22,14 @@ const resources = {
 	},
 
 	checkEnergy(){
-		//alert ("Checking Energy");
-		if (document.UI.energy.value <= 0){
+		if (document.UI.energy.value <= 0 && !config.godMode){
 			alert ("Out of energy!");
-			if (!config.godMode){
-				alert ("Game over!");
-				gameOver();
-			}
+			gameOver();
 			return false;
-		}
-		if (document.UI.energy.value > this._maxEnergy){
-			document.UI.energy.value = this._maxEnergy;
 		}
 		return true;
 	},
-	
+
 	addEnergy(toAdd){
 		let evaledAdd = eval(toAdd);
 		if (evaledAdd < 0){
@@ -39,12 +38,9 @@ const resources = {
 		}
 		this._energy += evaledAdd;
 		document.UI.energy.value = this._energy;
-		if (document.UI.energy.value > 1000){
-			document.UI.energy.value = 1000;
-		}
 		return true;
 	},
-	
+
 	subtractEnergy(toSubtract){
 		let evaledSubtract = eval(toSubtract);
 		if (evaledSubtract < 0){
@@ -52,26 +48,22 @@ const resources = {
 			return false;
 		}
 		this._energy -= evaledSubtract;
+		if (this._energy < 0){
+			this._energy = 0;
+		}
 		document.UI.energy.value = this._energy;
 		return true;
 	},
 
 	checkSupplies(){
-		//alert("Checking Supplies");
-		if (document.UI.supplies.value <= 0){
+		if (document.UI.supplies.value <= 0 && !config.godMode){
 			alert ("Out of supplies!");
-			if (!config.godMode) {
-				alert ("Game over!");
-				gameOver();
-			}
+			gameOver();
 			return false;
-		}
-		if (document.UI.supplies.value > this._maxSupplies){
-			document.UI.supplies.value = this._maxSupplies;
 		}
 		return true;
 	},
-	
+
 	addSupplies(toAdd){
 		let evaledAdd = eval(toAdd);
 		if (evaledAdd < 0){
@@ -80,12 +72,9 @@ const resources = {
 		}
 		this._supplies += evaledAdd;
 		document.UI.supplies.value = this._supplies;
-		if (document.UI.supplies.value > 100){
-			document.UI.supplies.value = 100;
-		}
 		return true;
 	},
-	
+
 	subtractSupplies(toSubtract){
 		let evaledSubtract = eval(toSubtract);
 		if (evaledSubtract < 0){
@@ -93,14 +82,15 @@ const resources = {
 			return false;
 		}
 		this._supplies -= evaledSubtract;
+		if (this._supplies < 0){
+			this._supplies = 0;
+		}
 		document.UI.supplies.value = this._supplies;
 		return true;
 	},
-	
+
 	subtractSuppliesTwo() {
-		this._supplies -= 2;
-		document.UI.supplies.value = this._supplies;
-		return true;
+		this.subtractSupplies(2);
 	},
 
 	initResources() {

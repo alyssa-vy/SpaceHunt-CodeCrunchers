@@ -7,21 +7,36 @@ var config = {
     get initialSupplies() { return parseInt(configurationSelectors.initialSupplies.value) },
     get initialCredits() { return parseInt(configurationSelectors.initialCredits.value) },
     get godMode() { return configurationSelectors.godMode.checked },
-    get randomWormholeBehavior() { return !configurationSelectors.staticWormholeBehavior.checked }
-}
+    get randomWormholeBehavior() { return !configurationSelectors.staticWormholeBehavior.checked },
+    get gazetteer() {return configurationSelectors.gazetteer.checked},
+    get gameAdministrator() { return configurationSelectors.administrator.checked},
+    set boardWidth(newBoardWidth) {},
+    set boardHeight(newBoardHeight) {},
+    set initialLocationX(newInitialLocationX) {},
+    set initialLocationY(newInitialLocationY) {},
+    set initialEnergy(newInitialEnergy) {},
+    set initialSupplies(newInitialSupplies) {},
+    set initialCredits(newInitialCredits) {},
+    set godMode(newGodMode) {},
+    set randomWormholeBehavior(newBehavior) {},
+    set gazetteer(newGazetteer) {},
+    set gameAdministrator(newAdministrator) {}
+};
 
 var defaultConfig = {
-    boardWidth: 120,
-    boardHeight: 120,
+    boardWidth: 128,
+    boardHeight: 128,
     initialLocation: {
-        x: 4,
-        y: 4
+        x: 0,
+        y: 0
     },
     initialEnergy: 1000,
     initialSupplies: 100,
     initialCredits: 1000,
     godMode: false,
     randomWormholeBehavior: true,
+    gazetteer: false,
+    administrator: false
 };
 
 
@@ -141,6 +156,9 @@ function setConfigurationDefault(){
     configurationSelectors.initialCredits.value = defaultConfig.initialCredits
     configurationSelectors.godMode.checked = defaultConfig.godMode
     configurationSelectors.staticWormholeBehavior.checked = !defaultConfig.randomWormholeBehavior
+    configurationSelectors.gazetteer.checked = defaultConfig.gazetteer
+    configurationSelectors.administrator.checked = defaultConfig.administrator
+    switchIfChecked("mapCreatorButton","configurationDoneButton")
     inputFields = configurationSelectors.querySelectorAll("input");
     inputFields.forEach(function(inputField){
         setValid(inputField);
@@ -149,10 +167,15 @@ function setConfigurationDefault(){
 
 function disableSubmitIfInvalid(){
     invalidInputFields = document.getElementById("configuration").getElementsByClassName("invalidInput");
+    submitButtons = document.getElementsByClassName("configurationSubmitButton");
     if (invalidInputFields.length > 0){
-        submitButton = document.getElementById("configurationSubmitButton").disabled = true;
+        for (var i = 0; i < submitButtons.length; i++){
+            submitButtons[i].disabled = true;
+        }
     }
     else{
-        submitButton = document.getElementById("configurationSubmitButton").disabled = false;
+        for (var i = 0; i < submitButtons.length; i++){
+            submitButtons[i].disabled = false;
+        }
     }
 }

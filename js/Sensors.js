@@ -12,7 +12,7 @@ function celestialArtifact(artifactname, x, y) {
 }
 
 var knownArtifacts = []; // create an empty array for a list of known artifacts
-
+var sensorCP = 2; // originally 2 CP for sensors -> can be changed if we get enhanced sensors
 // This function adds a celestial artifact to the list of known artifacts when scanned
 function addToList(artifact, x, y) {
 
@@ -20,13 +20,42 @@ function addToList(artifact, x, y) {
         toAdd = new celestialArtifact(artifact, x, y);
         knownArtifacts.push(toAdd);
         addToLog(artifact, x, y); // display to the log
+        celestial = document.createElement("img");
+        if (artifact == "Pentium 1")
+            celestial.src = "img/pentium_1.jpg";
+        else if (artifact == "Pentium 2")
+            celestial.src = "img/pentium_2.jpg";
+        else if (artifact == "Pentium 3")
+            celestial.src = "img/pentium_3.jpg";
+        else if (artifact == "Pentium 4")
+            celestial.src = "img/pentium_4.jpg";
+        else if (artifact == "Pentium 5")
+            celestial.src = "img/pentium_5.jpg";
+        else if (artifact == "Pentium 6")
+            celestial.src = "img/pentium_6.jpg";
+        else if (artifact == "Pentium 7")
+            celestial.src = "img/pentium_7.jpg";
+        else if (artifact == "Celeron")
+            celestial.src = "img/celeron.jpg";
+        else if (artifact == "Xeon")
+            celestial.src = "img/xeon.jpg";
+        else if (artifact == "SpaceStation")
+            celestial.src = "img/spacestation.jpg";
+        else if (artifact == "Asteroid")
+            celestial.src = "img/asteroid.png";
+        else if (artifact == "Wormhole")
+            celestial.src = "img/wormhole.jpg";
+        celestial.classList.add("artifact");
+        celestial.id = "artifact-" + knownArtifacts.length;
+        worldCanvas.addToCanvas(celestial, x, y);
         return 1;
     }
 
     else { // If the list is not empty...
         for (i = 0; i < knownArtifacts.length; ++i) { // check through the list to see if it has already been added
             if (knownArtifacts[i].artifactname == artifact) { // if an artifact is already in the list then return without displaying to log or adding agian
-                return 0;
+                if (knownArtifacts[i].x == x && knownArtifacts[i].y == y) // if artifact has same coordinates then it is already sensed.
+                    return 0;
             }
         }
 
@@ -34,11 +63,40 @@ function addToList(artifact, x, y) {
         toAdd = new celestialArtifact(artifact, x, y);
         knownArtifacts.push(toAdd);
         addToLog(artifact, x, y);
+        celestial = document.createElement("img");
+        if (artifact == "Pentium 1")
+            celestial.src = "img/pentium_1.jpg";
+        else if (artifact == "Pentium 2")
+            celestial.src = "img/pentium_2.jpg";
+        else if (artifact == "Pentium 3")
+            celestial.src = "img/pentium_3.jpg";
+        else if (artifact == "Pentium 4")
+            celestial.src = "img/pentium_4.jpg";
+        else if (artifact == "Pentium 5")
+            celestial.src = "img/pentium_5.jpg";
+        else if (artifact == "Pentium 6")
+            celestial.src = "img/pentium_6.jpg";
+        else if (artifact == "Pentium 7")
+            celestial.src = "img/pentium_7.jpg";
+        else if (artifact == "Celeron")
+            celestial.src = "img/celeron.jpg";
+        else if (artifact == "Xeon")
+            celestial.src = "img/xeon.jpg";
+        else if (artifact == "SpaceStation")
+            celestial.src = "img/spacestation.jpg";
+        else if (artifact == "Asteroid")
+            celestial.src = "img/asteroid.png";
+        else if (artifact == "Wormhole")
+            celestial.src = "img/wormhole.jpg";
+
+        celestial.classList.add("artifact");
+        celestial.id = "artifact-" + knownArtifacts.length;
+        worldCanvas.addToCanvas(celestial, x, y);
         return 1;
 
     }
-
 }
+
 
 // get the celestial artifact and its coordinates then output a text to the textarea of the log
 function addToLog(artifact, x, y) {
@@ -62,7 +120,7 @@ function deploySensor() {
 
         // Create a loop that goes around twice to check within +2CP of the current CP
 
-        for (var i = 1; i < 3; ++i) {
+        for (var i = 1; i <= sensorCP; ++i) {
             coordx = currentx;
             coordx += i;
             // Check 2 above X
@@ -81,10 +139,12 @@ function deploySensor() {
         }
 
         // Create a loop that goes around twice to check within -2CP of the current CP
-        for (var i = 0; i < 3; ++i) {
+        for (var i = 1; i <= sensorCP; ++i) {
             coordx = currentx;
             coordx -= i;
             // Check 2 below X
+            if (coordx <= 0)
+                return;
             if (Map[coordx][currenty] != null) {
                 artifact = Map[coordx][currenty];
                 addToList(artifact, coordx, currenty);
@@ -92,9 +152,50 @@ function deploySensor() {
             coordy = currenty;
             coordy -= i;
             // Check 2 right Y
+            if (coordy <= 0)
+                return;
             if (Map[currentx][coordy] != null) {
                 artifact = Map[currentx][coordy];
                 addToList(artifact, currentx, coordy);
+            }
+        }
+
+        for (var i = 1; i <= sensorCP; ++i) {
+            coordx = currentx;
+            coordx -= i;
+
+            for (var x = 1; x <= sensorCP; ++x) {
+                coordy = currenty;
+                coordy -= x;
+                if (Map[coordx][coordy] != null) {
+                    artifact = Map[coordx][coordy];
+                    addToList(artifact, coordx, coordy);
+                }
+                coordy = currenty;
+                coordy += x;
+                if (Map[coordx][coordy] != null) {
+                    artifact = Map[coordx][coordy];
+                    addToList(artifact, coordx, coordy);
+                }
+            }
+        }
+
+        for (var i = 1; i <= sensorCP; ++i) {
+            coordx = currentx;
+            coordx += i;
+            for (var x = 1; x <= sensorCP; ++x) {
+                coordy = currenty;
+                coordy -= x;
+                if (Map[coordx][coordy] != null) {
+                    artifact = Map[coordx][coordy];
+                    addToList(artifact, coordx, coordy);
+                }
+                coordy = currenty;
+                coordy += x;
+                if (Map[coordx][coordy] != null) {
+                    artifact = Map[coordx][coordy];
+                    addToList(artifact, coordx, coordy);
+                }
             }
         }
 

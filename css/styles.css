@@ -1,3 +1,76 @@
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.col-1,
+.col-3{
+    float: left;
+    width: 20%;
+}
+
+.col-2{
+    float: left;
+    width: 60%
+}
+
+/* Game world  */
+#viewport{
+    margin: auto;
+    border: 1px solid gray;
+    width: 650px;  /* Must be divisible by 50 */
+    height: 650px; /* Must be divisible by 50 */
+    display: block;
+    overflow: hidden;
+    background-color: rgb(13, 39, 79);
+}
+
+#gameWorld{
+    width: 4000px;  /* Set dynamically, must be divisible by 50 and >= 650px */
+    height: 4000px; /* Set dynamically, must be divisible by 50 and >= 650px */
+    position: relative;
+    background: url("../img/gameWorldBackground.png");
+    z-index: 0;
+}
+
+.cellObject{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 400;
+}
+
+#player{
+    position: sticky;
+    color: red;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 500;
+}
+
+.enemy{
+    z-index: 400;
+}
+
+.planet{
+    z-index: 300;
+}
+
+/* Outside gameworld */
+#UI{
+    display: inline-block;
+    width: 200px;
+}
+
+#logarea{
+    margin: auto;
+    display: inline-block;
+    width: 200px;
+    height: 600px;
+}
+
 /* Makes all divs within main vanish if they don't have the "visible" class applied to them */
 #main > div:not(.visible){
     display: none;
@@ -17,6 +90,6 @@
 }
 
 #gazarea {
-    float:left;
+    float:right;
     visibility: hidden;
 }

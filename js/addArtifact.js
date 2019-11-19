@@ -12,6 +12,7 @@ function addArtifact(x, y, type) {
                                   Ryzen
                                   Asteroid
                                   SpaceStation
+                                  Wormhole
 
          to the global "Map" 2D array (which is initialized
          to contain null values in js/initializeMap.js) and
@@ -21,18 +22,23 @@ function addArtifact(x, y, type) {
          the user is alerted.
 
      */
-    if(isInBounds(x,y) && markAdded(type)){
+    if(isInBounds(x,y) && markAdded(type)) {
         if(Map[x][y] === null) {
             Map[x][y] = type;
-            loadOptions("planetType");
+            if(type !== "Asteroid" && type !== "SpaceStation" && type !== "Wormhole") {
+                loadOptions("planetType");
+            }
             alert(type + " was added to " + x + ", " + y);
+            addToGazetteer(type, x, y); // add the artifact to the celestial gazetteer
             return true;
         } else {
             alert("A Celestial Artifact Already Exists at that location");
             unmarkAdded(type);
         }
     } else {
-        loadOptions("planetType");
+        if(type !== "Asteroid" && type !== "SpaceStation" && type !== "Wormhole") {
+            loadOptions("planetType");
+        }
         alert("error occurred when adding artifact");
         return false;
     }
@@ -134,6 +140,8 @@ function markAdded(type){
             return true;
         case "SpaceStation":
             return true;
+        case "Wormhole":
+            return true;
         default:
             return false;
     }
@@ -217,7 +225,6 @@ function isInBounds(x, y) {
     */
     let goodx = false;
     let goody = false;
-    let config = getConfig();
     if(x >= 0 && x < config.boardWidth){
         goodx = true;
     }

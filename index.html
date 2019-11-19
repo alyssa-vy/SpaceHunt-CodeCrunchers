@@ -8,6 +8,7 @@
 
 
         <script src="js/config.js"></script>
+        <script src="js/worldCanvas.js"></script>
         <script src="js/Resources.js"></script>
         <script src="js/Sensors.js"></script>
         <script src="js/SpaceCraftMovement.js"></script>
@@ -15,8 +16,13 @@
         <script src="js/addArtifact.js"></script>
         <script src="js/initializeMap.js"></script>
         <script src="js/loadOptions.js"></script>
-        <script src="js/map.js"></script>
-        <script src ="js/Gazetteer.js"></script>
+        <script src="js/mapClass.js"></script>
+        <script src="js/Gazetteer.js"></script>
+        <script src="js/switchIfChecked.js"></script>
+        <script src="js/checkCollision.js"></script>
+        <script src="js/saveGame.js"></script>
+        <script src="js/loadGame.js"></script>
+        <script src="js/checkSaveNames.js"></script>
 
         <script src="js/main.js"></script>
 
@@ -27,45 +33,56 @@
             <h1>SpaceHunt</h1>
             <div class="page visible" id="mainMenu">
                 <form name="menuButtons">
-                    <input type=button value="Start" onclick=switchToPage("mainGame");position.initPosition();initGame()>
+                    <input type=button value="Start" onclick=initGame()>
                     <input type=button value="Configure" onclick=switchToPage("configuration")>
+                    <input type=button value="Load/Save" onclick=loadSavedSessions()>
                 </form>
             </div>
-            <div class="page" id="mainGame">
-                <form id="UI" name=UI>
-                    STATUS
-                    <p>Current Location:
-                    X <input type=text name=xValue size=4>
-                    Y <input type=text name=yValue size=4>
-                    </p>
-                    <p></p>
-                    <p>Energy <input type=text name=energy size=4 onChange="resources.updateResources()">
-                    <p>Supplies <input type=text name=supplies size=4 onChange="resources.updateResources()">%
-                    <p>
-                    <hr>
-                    MAKE A MOVE
-                    <p>Distance <input type=text name=distance size=4>
-                    <p>
-                    <input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)">
-                    <input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)">
-                    <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
-                    <input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
-                    <!-- The commented out code below organizes the buttons top-down-left-right. -->
-                    <!--
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)"><br>
-                    <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
-                    &nbsp;&nbsp;<input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)"><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
-                    <br>
-                    <br>
-                    -->
-                    <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
-                </form>
-                <div id="map"></div>
-                <!-- Log area where the user can see points on the map they have traveled to and/or used sensors on -->
-                <div id="logarea">
-                    <h2 align="center"> Log </h2>
-                    <textarea readonly id="log" cols="70" rows="10"></textarea>
+            <div class="page clearfix" id="mainGame">
+                <div class="col-1">
+                    <form id="UI" name=UI>
+                        <h2>STATUS</h2>
+                        <p>Coordinates:
+                        X <input type=text name=xValue size=4>
+                        Y <input type=text name=yValue size=4>
+                        </p>
+                        <p></p>
+                        <p>Energy <input type=text name=energy size=4 onChange="resources.updateResources()">
+                        <p>Supplies <input type=text name=supplies size=4 onChange="resources.updateResources()">%
+                        <p>
+                        <hr>
+                        MAKE A MOVE
+                        <p>Distance <input type=number value=1 min=1 name=distance size=4>
+                        <p>
+                        <!--
+                        <input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)">
+                        <input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)">
+                        <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
+                        <input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
+                        -->
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)"><br>
+                        <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
+                        &nbsp;&nbsp;<input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)"><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
+                        <br>
+                        <br>
+                        <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
+                        <input type=button value="Save Game" onclick=loadSavedSessions()>
+                    </form>
+                </div>
+                <div class="col-2">
+                    <div id="viewport">
+                        <div id="gameWorld">
+                            <img class="cellObject" id="player" src="img/player.jpeg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <!-- Log area where the user can see points on the map they have traveled to and/or used sensors on -->
+                    <div id="logarea" align="center">
+                        <h2> LOG </h2>
+                        <textarea readonly id="log" cols="40" rows="40"></textarea>
+                    </div>
                 </div>
                 <!-- Gazetteer area where a checkbox in config determines whether this textarea shows up or not -->
                 <div id="gazarea"  align="right">
@@ -73,7 +90,7 @@
                     <textarea readonly id="gazette" cols="40" rows="10"></textarea>
                 </div>
             </div>
-            <div class="page" id="configuration" oninput=validate() onclick=validate()>
+            <div class="page" id="configuration" oninput=validate(); onclick=validate()>
                 <h2> Properties and behavior </h2>
                 <form name="configurationSelectors">
                     <div class="coordinateField">
@@ -108,17 +125,20 @@
                     <br>
                     <input type="checkbox" name="staticWormholeBehavior">Static wormhole behavior
                     <br>
-                    <input type="checkbox" id="gazetteer" onclick=displayGazetteer()> Celestial Gazetteer
+                    <input type="checkbox" name="gazetteer" id="gazetteer" onclick=displayGazetteer()>Celestial Gazetteer
+                    <br>
+                    <input type=checkbox name="administrator" id="administrator" value="Administrator" oninput=switchIfChecked("mapCreatorButton","configurationDoneButton")>Game Administrator
                     <br>
                     <input type=button value="Default" onclick=setConfigurationDefault()>
-                    <input id="configurationSubmitButton" type=button value="Next" onclick=initializeMap()>
+                    <input class="configurationSubmitButton" id="mapCreatorButton" type=button value="Place Artifacts" onclick=initializeMap(); hidden>
+                    <input class="configurationSubmitButton" id="configurationDoneButton" type=button value="Done" onclick=switchToPage("mainMenu")>
                 </form>
             </div>
 
             <div class="page" id="artifactPlacement">
                 <h2> Configure Artifacts </h2>
-                <input id="planetXLocation" type="number" name="planetXLocation" value="0" oninput=disablePlanetAdd()>Planet X<br>
-                <input id="planetYLocation" type="number" name="planetYLocation" value="0" oninput=disablePlanetAdd()>Planet Y<br>
+                <input id="planetXLocation" type="number" name="planetXLocation" value="0" oninput=disablePlanetAdd()> Planet X<br>
+                <input id="planetYLocation" type="number" name="planetYLocation" value="0" oninput=disablePlanetAdd()> Planet Y<br>
                 <select id="planetType" name="planetType" oninput=disablePlanetAdd()>
                     <option value="" disabled selected> Select Planet</option>
                     <option value="Pentium 1">Pentium 1</option>
@@ -147,13 +167,30 @@
                 <br>
 
                 <br>
+                <input id="wormholeXLocation" name="wormholeXLocation" type=number value="0" oninput=disableAddIfInvalid(wormholeXLocation.value,wormholeYLocation.value,"addWormholeButton")> Wormhole X<br>
+                <input id="wormholeYLocation" name="wormholeYLocation" type=number value="0" oninput=disableAddIfInvalid(wormholeXLocation.value,wormholeYLocation.value,"addWormholeButton")> Wormhole Y<br>
+                <input id="addWormholeButton" name="addWormholeButton" type="button" value="Add Wormhole" onclick=addArtifact(wormholeXLocation.value,wormholeYLocation.value,"Wormhole")>
+                <br>
+
+                <br>
                 <input type="button" value="Back" onclick=switchToPage("configuration")>
                 <input id="artifactSubmitButton" name="artifactSubmitButton" type="button" value="Done" onclick=switchToPage("mainMenu")>
             </div>
+
+            <div class="page" id="savePage">
+                <h2>Nameable Persistent State</h2>
+                <input type="text" id="filename"> Filename <input type="button" value="Save and Exit" onclick=saveGame(filename.value)>
+                <br><br>
+                <select id="saveName" name="saveName" oninput=enableBtn()>
+                </select>
+                <input type="button" id="loadbtn" value="Load and Play" onclick=loadGame(saveName.value); disabled>
+                <br><br>
+                <input type="button" value="Return to Main Menu" onclick=switchToPage("mainMenu")>
+            </div>
+
             <div class="page" id="GameOver">
                 <h1>Game Over!</h1>
             </div>
         </div>
-    <!-- FOR MESSING AROUND ONLY -->
     </body>
 </html>
