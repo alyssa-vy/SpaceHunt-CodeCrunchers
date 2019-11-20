@@ -57,6 +57,10 @@ const resources = {
 			gameOver();
 			return false;
 		}
+		if (document.UI.energy.value > this._maxEnergy) {
+			this._energy = this._maxEnergy;
+			document.UI.energy.value = this._energy;
+		}
 		return true;
 	},
 
@@ -67,6 +71,9 @@ const resources = {
 			return false;
 		}
 		this._energy += evaledAdd;
+		if (document.UI.energy.value > this._maxEnergy) {
+			this._energy = this._maxEnergy;
+		}
 		document.UI.energy.value = this._energy;
 		return true;
 	},
@@ -91,6 +98,10 @@ const resources = {
 			gameOver();
 			return false;
 		}
+		if (document.UI.supplies.value > this._maxSupplies) {
+			this._supplies = this._maxSupplies;
+			document.UI.supplies.value = this._supplies;
+		}
 		return true;
 	},
 
@@ -101,6 +112,9 @@ const resources = {
 			return false;
 		}
 		this._supplies += evaledAdd;
+		if (document.UI.supplies.value > this._maxSupplies) {
+			this._supplies = this._maxSupplies;
+		}
 		document.UI.supplies.value = this._supplies;
 		return true;
 	},
@@ -159,6 +173,10 @@ const resources = {
 			gameOver();
 			return false;
 		}
+		if (document.UI.health.value > this._maxHealth) {
+			this._health = this._maxHealth;
+			document.UI.health.value = this._health;
+		}
 		return true;
 	},
 
@@ -169,6 +187,9 @@ const resources = {
 			return false;
 		}
 		this._health += evaledAdd;
+		if (document.UI.health.value > this._maxHealth) {
+			this._health = this._maxHealth;
+		}
 		document.UI.health.value = this._health;
 		return true;
 	},
@@ -192,10 +213,13 @@ const resources = {
 	},
 
 	initResources() {
-		this._energy = config.initialEnergy;
-		this._supplies = config.initialSupplies;
+		this._maxEnergy = config.initialEnergy;
+		this._energy = this._maxEnergy;
+		this._maxSupplies = config.initialSupplies;
+		this._supplies = this._maxSupplies;
 		this._credits = config.initialCredits;
-		this._health = config.initialHealth;
+		this._maxHealth = config.initialHealth;
+		this._health = this._maxHealth;
 		this.updateUI();
 	}
 };
