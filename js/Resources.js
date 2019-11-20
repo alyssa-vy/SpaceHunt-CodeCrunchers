@@ -1,6 +1,8 @@
 const resources = {
 	_energy:0,
 	_supplies:0,
+	_credits:0,
+	_health:0,
     _initd:false,
 
 	setEnergy(newEnergy){
@@ -11,14 +13,26 @@ const resources = {
 		this._supplies = eval(newSupplies);
 	},
 
+	setCredits(newCredits){
+		this._credits = eval(newCredits);
+	},
+
+	setHealth(newHealth){
+		this._health = eval(newHealth);
+	},
+
 	updateResources(){
 		this._energy = eval(document.UI.energy.value);
 		this._supplies = eval(document.UI.supplies.value);
+		this._credits = eval(document.UI.credits.value);
+		this._health = eval(document.UI.health.value);
 	},
 
 	updateUI(){
 		document.UI.energy.value = this._energy;
 		document.UI.supplies.value = this._supplies;
+		document.UI.credits.value = this._credits;
+		document.UI.health.value = this._health;
 	},
 
 	checkEnergy(){
@@ -89,6 +103,30 @@ const resources = {
 		return true;
 	},
 
+	checkCredits(){
+
+	},
+
+	addCredits(){
+
+	},
+
+	subtractCredits(){
+
+	},
+
+	checkHealth(){
+
+	},
+
+	addHealth(){
+
+	},
+
+	subtractHealth(){
+
+	},
+
 	subtractSuppliesTwo() {
 		this.subtractSupplies(2);
 	},
@@ -96,6 +134,8 @@ const resources = {
 	initResources() {
 		this._energy = config.initialEnergy;
 		this._supplies = config.initialSupplies;
+		this._credits = config.initialCredits;
+		this._health = config.initialHealth;
 		this.updateUI();
 	}
 };
