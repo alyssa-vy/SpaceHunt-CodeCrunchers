@@ -3,6 +3,10 @@ const resources = {
 	_supplies:0,
 	_credits:0,
 	_health:0,
+
+	_maxEnergy:1000,
+	_maxSupplies:100,
+	_maxHealth:100,
     _initd:false,
 
 	setEnergy(newEnergy){
@@ -19,6 +23,18 @@ const resources = {
 
 	setHealth(newHealth){
 		this._health = eval(newHealth);
+	},
+
+	setMaxEnergy(newMax){
+		this._maxEnergy = eval(newMax);
+	},
+
+	setMaxSupplies(newMax){
+		this._maxSupplies = eval(newMax);
+	},
+
+	setMaxHealth(newMax){
+		this._maxHealth = eval(newMax);
 	},
 
 	updateResources(){
@@ -103,28 +119,72 @@ const resources = {
 		return true;
 	},
 
-	checkCredits(){
-
+	//Use this function to check if the player has "toCheck" number of credits or greater.
+	checkCredits(toCheck){
+		let evaledCheck = eval(toCheck);
+		if (this._credits - evaledCheck >= 0){
+			return true;
+		}
+		return false;
 	},
 
-	addCredits(){
-
+	addCredits(toAdd){
+		let evaledAdd = eval(toAdd);
+		if (evaledAdd < 0){
+			alert ("Do not call addCredits with negative value - call subtractCredits to lower credits");
+			return false;
+		}
+		this._credits += evaledAdd;
+		document.UI.credits.value = this._credits;
+		return true;
 	},
 
-	subtractCredits(){
-
+	subtractCredits(toSubtract){
+		let evaledSubtract = eval(toSubtract);
+		if (evaledSubtract < 0){
+			alert ("Do not call subtractCredits with negative value - call with positive value to be subtracted");
+			return false;
+		}
+		this._credits -= evaledSubtract;
+		if (this._credits < 0){
+			this._credits = 0;
+		}
+		document.UI.credits.value = this._credits;
+		return true;
 	},
 
 	checkHealth(){
-
+		if (document.UI.health.value <= 0 && !config.godMode){
+			alert ("Your ship ran out of health!");
+			gameOver();
+			return false;
+		}
+		return true;
 	},
 
-	addHealth(){
-
+	addHealth(toAdd){
+		let evaledAdd = eval(toAdd);
+		if (evaledAdd < 0){
+			alert ("Do not call addHealth with negative value - call subtractHealth to lower health");
+			return false;
+		}
+		this._health += evaledAdd;
+		document.UI.health.value = this._health;
+		return true;
 	},
 
-	subtractHealth(){
-
+	subtractHealth(toSubtract){
+		let evaledSubtract = eval(toSubtract);
+		if (evaledSubtract < 0){
+			alert ("Do not call subtractHealth with negative value - call with positive value to be subtracted");
+			return false;
+		}
+		this._health -= evaledSubtract;
+		if (this._health < 0){
+			this._health = 0;
+		}
+		document.UI.health.value = this._health;
+		return true;
 	},
 
 	subtractSuppliesTwo() {
