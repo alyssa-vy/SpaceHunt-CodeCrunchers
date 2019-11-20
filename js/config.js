@@ -6,6 +6,7 @@ var config = {
     get initialEnergy() { return parseInt(configurationSelectors.initialEnergy.value) },
     get initialSupplies() { return parseInt(configurationSelectors.initialSupplies.value) },
     get initialCredits() { return parseInt(configurationSelectors.initialCredits.value) },
+    get initialHealth() { return parseInt(configurationSelectors.initialHealth.value) },
     get godMode() { return configurationSelectors.godMode.checked },
     get randomWormholeBehavior() { return !configurationSelectors.staticWormholeBehavior.checked },
     get gazetteer() {return configurationSelectors.gazetteer.checked},
@@ -33,6 +34,7 @@ var defaultConfig = {
     initialEnergy: 1000,
     initialSupplies: 100,
     initialCredits: 1000,
+    initialHealth: 100,
     godMode: false,
     randomWormholeBehavior: true,
     gazetteer: false,
@@ -154,6 +156,7 @@ function setConfigurationDefault(){
     configurationSelectors.initialEnergy.value = defaultConfig.initialEnergy
     configurationSelectors.initialSupplies.value = defaultConfig.initialSupplies
     configurationSelectors.initialCredits.value = defaultConfig.initialCredits
+    configurationSelectors.initialHealth.value = defaultConfig.initialHealth
     configurationSelectors.godMode.checked = defaultConfig.godMode
     configurationSelectors.staticWormholeBehavior.checked = !defaultConfig.randomWormholeBehavior
     configurationSelectors.gazetteer.checked = defaultConfig.gazetteer
