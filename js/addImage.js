@@ -1,3 +1,6 @@
+// This function serves to relate an object (obj) with the document.createElement item (itm)
+// Feel free to add another if statement for other objects so this isn't tied to just Celestial Artifacts
+
 function addImage(item, obj) {
     if (obj == "Pentium 1")
         item.src = "img/pentium_1.jpg";
