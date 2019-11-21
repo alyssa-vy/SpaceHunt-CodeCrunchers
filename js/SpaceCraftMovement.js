@@ -24,13 +24,14 @@ const position = {
     initPosition() {
         this._x = config.initialLocationX;
         this._y = config.initialLocationY;
-        this.updatePoints();
+        this.updateFormCPs();
         worldCanvas.repositionPlayer(this._x, this._y);
         played = true;
     },
 
     moveSpacecraft(angle, distance) {
         let evaledDistance = eval(distance);
+        let i;
         //Error checking to make sure that the values passes in for
         //angle and distance are indeed numbers.
         if(evaledDistance < 1) {
@@ -38,87 +39,112 @@ const position = {
             return false;
         }
 
-        if(angle === 0) {
-            //User wants to move East.
-            if((this._x + evaledDistance) >= config.boardWidth) {
-                //User has tried to move off the map.
-                this.wormhole();
-                alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
+        //Now start the movement one step at a time.
+        for(i = 1; i <= evaledDistance; ++i)
+        {
+
+            if(angle === 0) {
+                //User wants to move East.
+                if((this._x + 1) >= config.boardWidth) {
+                    //User has tried to move off the map.
+                    this.wormhole();
+                    break;
+                }
+                else {
+                    this._x += 1;
+                    worldCanvas.movePlayerEast(1);
+                    if(checkCollision() === true) {
+                        break;
+                    }
+                }
+            } else if(angle === 90) {
+                //User wants to move North.
+                if((this._y - 1) < 0) {
+                    //User has tried to move off the map.
+                    this.wormhole();
+                    break;
+                }
+                else {
+                    this._y -= 1;
+                    worldCanvas.movePlayerNorth(1);
+                    if(checkCollision() === true) {
+                        break;
+                    }
+                }
+                } else if(angle === 180) {
+                    //User wants to move West.
+                    if((this._x - 1) < 0) {
+                        //User has tried to move off the map.
+                        this.wormhole();
+                        break;
+                    }
+                    else {
+                        this._x -= 1;
+                        worldCanvas.movePlayerWest(1);
+                        if(checkCollision() === true) {
+                            break;
+                        }
+                    }
+                } else if(angle === 270) {
+                    //User wants to move South.
+                    if((this._y + 1) >= config.boardWidth) {
+                        //User has tried to move off the map.
+                        this.wormhole();
+                        break;
+                    }
+                    else {
+                        this._y += 1;
+                        worldCanvas.movePlayerSouth(1);
+                        checkCollision();
+                    }
+                } else {
+                    //User did not specify a valid angle when trying to move.
+                    alert("Error when attempting to move.\nMust enter a valid angle (0, 90, 180, or 270).");
+                    return false;
+                }
             }
-            else {
-                this._x += evaledDistance;
-                worldCanvas.movePlayerEast(evaledDistance);
+
+            //Call the functions to subtract energy and supplies as well as
+            //make sure those fields are still valid to play the game.
+            resources.subtractEnergy(10*i);
+            resources.subtractSuppliesTwo();
+            resources.checkEnergy();
+            resources.checkSupplies();
+
+            this.updateFormCPs()
+            return true;    //Movement was executed successfully.
+        },
+
+            wormhole() {
+                alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
+
+                if (config.randomWormholeBehavior){
+                    this._x = Math.floor(Math.random() * config.boardWidth);
+                    this._y = Math.floor(Math.random() * config.boardWidth);
+                }
+                else{
+                    this._x = Math.floor(config.boardWidth / 2);
+                    this._y = Math.floor(config.boardHeight / 2);
+                }
+                worldCanvas.repositionPlayer(this._x, this._y);
+                checkCollision();
+            },
+
+            updateFormCPs() {
+                document.UI.xValue.value = this._x;
+                document.UI.yValue.value = this._y;
+            },
+
+            updateCPs() {
+                this._x = eval(document.UI.xValue.value);
+                this._y = eval(document.UI.yValue.value);
+
+                if(this._x < 0 || this._y < 0 || this._x > config.boardWidth || this._y > config.boardHeight) {
+                    this.wormhole();
+                    this.updateFormCPs();
+                }
+
+                worldCanvas.repositionPlayer(this._x, this._y);
                 checkCollision();
             }
-        } else if(angle === 90) {
-            //User wants to move North.
-            if((this._y - evaledDistance) < 0) {
-                //User has tried to move off the map.
-                this.wormhole();
-                alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
-            }
-            else {
-                this._y -= evaledDistance;
-                worldCanvas.movePlayerNorth(evaledDistance);
-                checkCollision();
-            }
-        } else if(angle === 180) {
-            //User wants to move West.
-            if((this._x - evaledDistance) < 0) {
-                //User has tried to move off the map.
-                this.wormhole();
-                alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
-            }
-            else {
-                this._x -= evaledDistance;
-                worldCanvas.movePlayerWest(evaledDistance);
-                checkCollision();
-            }
-        } else if(angle === 270) {
-            //User wants to move South.
-            if((this._y + evaledDistance) >= config.boardWidth) {
-                //User has tried to move off the map.
-                this.wormhole();
-                alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
-            }
-            else {
-                this._y += evaledDistance;
-                worldCanvas.movePlayerSouth(evaledDistance);
-                checkCollision();
-            }
-        } else {
-            //User did not specify a valid angle when trying to move.
-            alert("Error when attempting to move.\nMust enter a valid angle (0, 90, 180, or 270).");
-            return false;
-        }
-
-        //Call the functions to subtract energy and supplies as well as
-        //make sure those fields are still valid to play the game.
-        resources.subtractEnergy(10*evaledDistance);
-        resources.subtractSuppliesTwo();
-        resources.checkEnergy();
-        resources.checkSupplies();
-
-        this.updatePoints();
-        return true;    //Movement was executed successfully.
-    },
-
-    wormhole() {
-        if (config.randomWormholeBehavior){
-            this._x = Math.floor(Math.random() * config.boardWidth);
-            this._y = Math.floor(Math.random() * config.boardWidth);
-        }
-        else{
-            this._x = Math.floor(config.boardWidth / 2);
-            this._y = Math.floor(config.boardHeight / 2);
-        }
-        worldCanvas.repositionPlayer(this._x, this._y);
-        checkCollision();
-    },
-
-    updatePoints() {
-        document.UI.xValue.value = this._x;
-        document.UI.yValue.value = this._y;
-    }
-
-};
+    };

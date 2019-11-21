@@ -24,6 +24,7 @@
         <script src="js/saveGame.js"></script>
         <script src="js/loadGame.js"></script>
         <script src="js/checkSaveNames.js"></script>
+        <script src="js/addImage.js"></script>
 
         <script src="js/main.js"></script>
 
@@ -44,8 +45,8 @@
                     <form id="UI" name=UI>
                         <h2>STATUS</h2>
                         <p>Coordinates:
-                        X <input type=text name=xValue size=4>
-                        Y <input type=text name=yValue size=4>
+                        X <input type=text name=xValue size=4 onChange="position.updateCPs()">
+                        Y <input type=text name=yValue size=4 onChange="position.updateCPs()">
                         </p>
                         <p></p>
                         <p>Energy <input type=text name=energy size=4 onChange="resources.updateResources()">

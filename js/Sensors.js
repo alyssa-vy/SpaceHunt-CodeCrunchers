@@ -21,30 +21,7 @@ function addToList(artifact, x, y) {
         knownArtifacts.push(toAdd);
         addToLog(artifact, x, y); // display to the log
         celestial = document.createElement("img");
-        if (artifact == "Pentium 1")
-            celestial.src = "img/pentium_1.jpg";
-        else if (artifact == "Pentium 2")
-            celestial.src = "img/pentium_2.jpg";
-        else if (artifact == "Pentium 3")
-            celestial.src = "img/pentium_3.jpg";
-        else if (artifact == "Pentium 4")
-            celestial.src = "img/pentium_4.jpg";
-        else if (artifact == "Pentium 5")
-            celestial.src = "img/pentium_5.jpg";
-        else if (artifact == "Pentium 6")
-            celestial.src = "img/pentium_6.jpg";
-        else if (artifact == "Pentium 7")
-            celestial.src = "img/pentium_7.jpg";
-        else if (artifact == "Celeron")
-            celestial.src = "img/celeron.jpg";
-        else if (artifact == "Xeon")
-            celestial.src = "img/xeon.jpg";
-        else if (artifact == "SpaceStation")
-            celestial.src = "img/spacestation.jpg";
-        else if (artifact == "Asteroid")
-            celestial.src = "img/asteroid.png";
-        else if (artifact == "Wormhole")
-            celestial.src = "img/wormhole.jpg";
+        addImage(celestial, artifact);
         celestial.classList.add("artifact");
         celestial.id = "artifact-" + knownArtifacts.length;
         worldCanvas.addToCanvas(celestial, x, y);
@@ -64,31 +41,7 @@ function addToList(artifact, x, y) {
         knownArtifacts.push(toAdd);
         addToLog(artifact, x, y);
         celestial = document.createElement("img");
-        if (artifact == "Pentium 1")
-            celestial.src = "img/pentium_1.jpg";
-        else if (artifact == "Pentium 2")
-            celestial.src = "img/pentium_2.jpg";
-        else if (artifact == "Pentium 3")
-            celestial.src = "img/pentium_3.jpg";
-        else if (artifact == "Pentium 4")
-            celestial.src = "img/pentium_4.jpg";
-        else if (artifact == "Pentium 5")
-            celestial.src = "img/pentium_5.jpg";
-        else if (artifact == "Pentium 6")
-            celestial.src = "img/pentium_6.jpg";
-        else if (artifact == "Pentium 7")
-            celestial.src = "img/pentium_7.jpg";
-        else if (artifact == "Celeron")
-            celestial.src = "img/celeron.jpg";
-        else if (artifact == "Xeon")
-            celestial.src = "img/xeon.jpg";
-        else if (artifact == "SpaceStation")
-            celestial.src = "img/spacestation.jpg";
-        else if (artifact == "Asteroid")
-            celestial.src = "img/asteroid.png";
-        else if (artifact == "Wormhole")
-            celestial.src = "img/wormhole.jpg";
-
+        addImage(celestial, artifact);
         celestial.classList.add("artifact");
         celestial.id = "artifact-" + knownArtifacts.length;
         worldCanvas.addToCanvas(celestial, x, y);
@@ -123,18 +76,22 @@ function deploySensor() {
         for (var i = 1; i <= sensorCP; ++i) {
             coordx = currentx;
             coordx += i;
+            if (coordx < config.boardWidth) {
             // Check 2 above X
-            if (Map[coordx][currenty] != null) {
-                artifact = Map[coordx][currenty];
-                addToList(artifact, coordx, currenty);
+                if (Map[coordx][currenty] != null) {
+                    artifact = Map[coordx][currenty];
+                    addToList(artifact, coordx, currenty);
+                }
             }
 
             coordy = currenty;
             coordy += i;
-            // Check 2 right Y
-            if (Map[currentx][coordy] != null) {
-                artifact = Map[currentx][coordy];
-                addToList(artifact, currentx, coordy);
+            if (coordy < config.boardHeight) {
+                // Check 2 right Y
+                if (Map[currentx][coordy] != null) {
+                    artifact = Map[currentx][coordy];
+                    addToList(artifact, currentx, coordy);
+                }
             }
         }
 
@@ -143,8 +100,6 @@ function deploySensor() {
             coordx = currentx;
             coordx -= i;
             // Check 2 below X
-            if (coordx <= 0)
-                return;
             if (Map[coordx][currenty] != null) {
                 artifact = Map[coordx][currenty];
                 addToList(artifact, coordx, currenty);
@@ -152,8 +107,6 @@ function deploySensor() {
             coordy = currenty;
             coordy -= i;
             // Check 2 right Y
-            if (coordy <= 0)
-                return;
             if (Map[currentx][coordy] != null) {
                 artifact = Map[currentx][coordy];
                 addToList(artifact, currentx, coordy);
@@ -162,17 +115,16 @@ function deploySensor() {
 
         for (var i = 1; i <= sensorCP; ++i) {
             coordx = currentx;
-            coordx -= i;
-
-            for (var x = 1; x <= sensorCP; ++x) {
+            coordx += i;
+            for (var z = 1; z <= sensorCP; ++z) {
                 coordy = currenty;
-                coordy -= x;
+                coordy += z;
                 if (Map[coordx][coordy] != null) {
                     artifact = Map[coordx][coordy];
                     addToList(artifact, coordx, coordy);
                 }
                 coordy = currenty;
-                coordy += x;
+                coordy -= z;
                 if (Map[coordx][coordy] != null) {
                     artifact = Map[coordx][coordy];
                     addToList(artifact, coordx, coordy);
@@ -182,23 +134,22 @@ function deploySensor() {
 
         for (var i = 1; i <= sensorCP; ++i) {
             coordx = currentx;
-            coordx += i;
-            for (var x = 1; x <= sensorCP; ++x) {
+            coordx -= i;
+            for (var z = 1; z <= sensorCP; ++z) {
                 coordy = currenty;
-                coordy -= x;
+                coordy += z;
                 if (Map[coordx][coordy] != null) {
                     artifact = Map[coordx][coordy];
                     addToList(artifact, coordx, coordy);
                 }
                 coordy = currenty;
-                coordy += x;
+                coordy -= z;
                 if (Map[coordx][coordy] != null) {
                     artifact = Map[coordx][coordy];
                     addToList(artifact, coordx, coordy);
                 }
             }
         }
-
 
     }
 

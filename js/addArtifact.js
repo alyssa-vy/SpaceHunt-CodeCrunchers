@@ -23,9 +23,10 @@ function addArtifact(x, y, type) {
 
      */
     if(isInBounds(x,y) && markAdded(type)) {
+        //TODO: Clean up if conditions with simple ifNotPlanet(type) method
         if(Map[x][y] === null) {
             Map[x][y] = type;
-            if(type !== "Asteroid" && type !== "SpaceStation" && type !== "Wormhole") {
+            if(type !== "Asteroid" && type !== "SpaceStation" && type !== "Wormhole" && type !== "BadMax") {
                 loadOptions("planetType");
             }
             alert(type + " was added to " + x + ", " + y);
@@ -36,7 +37,7 @@ function addArtifact(x, y, type) {
             unmarkAdded(type);
         }
     } else {
-        if(type !== "Asteroid" && type !== "SpaceStation" && type !== "Wormhole") {
+        if(type !== "Asteroid" && type !== "SpaceStation" && type !== "Wormhole" && type !== "BadMax") {
             loadOptions("planetType");
         }
         alert("error occurred when adding artifact");
@@ -142,6 +143,8 @@ function markAdded(type){
             return true;
         case "Wormhole":
             return true;
+        case "BadMax":
+            return true;
         default:
             return false;
     }
@@ -219,9 +222,9 @@ function unmarkAdded(type){
 }
 function isInBounds(x, y) {
     /*
-        Uses the getConfig() method to determine
+        Uses the current config to determine
         if a given x and y coordinate are in bounds.
-        Returns the result.
+        Returns the resulting boolean.
     */
     let goodx = false;
     let goody = false;
