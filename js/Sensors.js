@@ -76,18 +76,22 @@ function deploySensor() {
         for (var i = 1; i <= sensorCP; ++i) {
             coordx = currentx;
             coordx += i;
+            if (coordx < config.boardWidth) {
             // Check 2 above X
-            if (Map[coordx][currenty] != null) {
-                artifact = Map[coordx][currenty];
-                addToList(artifact, coordx, currenty);
+                if (Map[coordx][currenty] != null) {
+                    artifact = Map[coordx][currenty];
+                    addToList(artifact, coordx, currenty);
+                }
             }
 
             coordy = currenty;
             coordy += i;
-            // Check 2 right Y
-            if (Map[currentx][coordy] != null) {
-                artifact = Map[currentx][coordy];
-                addToList(artifact, currentx, coordy);
+            if (coordy < config.boardHeight) {
+                // Check 2 right Y
+                if (Map[currentx][coordy] != null) {
+                    artifact = Map[currentx][coordy];
+                    addToList(artifact, currentx, coordy);
+                }
             }
         }
 
@@ -96,8 +100,6 @@ function deploySensor() {
             coordx = currentx;
             coordx -= i;
             // Check 2 below X
-            if (coordx <= 0)
-                return;
             if (Map[coordx][currenty] != null) {
                 artifact = Map[coordx][currenty];
                 addToList(artifact, coordx, currenty);
@@ -105,8 +107,6 @@ function deploySensor() {
             coordy = currenty;
             coordy -= i;
             // Check 2 right Y
-            if (coordy <= 0)
-                return;
             if (Map[currentx][coordy] != null) {
                 artifact = Map[currentx][coordy];
                 addToList(artifact, currentx, coordy);
@@ -115,17 +115,16 @@ function deploySensor() {
 
         for (var i = 1; i <= sensorCP; ++i) {
             coordx = currentx;
-            coordx -= i;
-
-            for (var x = 1; x <= sensorCP; ++x) {
+            coordx += i;
+            for (var z = 1; z <= sensorCP; ++z) {
                 coordy = currenty;
-                coordy -= x;
+                coordy += z;
                 if (Map[coordx][coordy] != null) {
                     artifact = Map[coordx][coordy];
                     addToList(artifact, coordx, coordy);
                 }
                 coordy = currenty;
-                coordy += x;
+                coordy -= z;
                 if (Map[coordx][coordy] != null) {
                     artifact = Map[coordx][coordy];
                     addToList(artifact, coordx, coordy);
@@ -135,22 +134,23 @@ function deploySensor() {
 
         for (var i = 1; i <= sensorCP; ++i) {
             coordx = currentx;
-            coordx += i;
-            for (var x = 1; x <= sensorCP; ++x) {
+            coordx -= i;
+            for (var z = 1; z <= sensorCP; ++z) {
                 coordy = currenty;
-                coordy -= x;
+                coordy += z;
                 if (Map[coordx][coordy] != null) {
                     artifact = Map[coordx][coordy];
                     addToList(artifact, coordx, coordy);
                 }
                 coordy = currenty;
-                coordy += x;
+                coordy -= z;
                 if (Map[coordx][coordy] != null) {
                     artifact = Map[coordx][coordy];
                     addToList(artifact, coordx, coordy);
                 }
             }
         }
+
     }
 
     else // if supplies are 0 or below, then return and do not use sensors (end game)
