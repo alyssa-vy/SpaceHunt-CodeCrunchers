@@ -5,8 +5,10 @@ class Planet{
         this.hasStrongbox = false;
         this.hasRepairShop = false;
         this.hasSuppliesShop = false;
-        this.pricePerDamage = undefined;
-        this.pricePerSupplies = undefined;
+        this.pricePerDamage = 2;
+        this.pricePerSupplies = 1;
+        this.suppliesPerStrongboxSearch = 1;
+        this.prompt = null;
     }
 
     // This is the main functionality of the planet class. It pops up a small interactable menu.
@@ -48,6 +50,7 @@ class Planet{
             enableShipMovement();
         }.bind(box));
 
+        this.prompt = box;
         return box;
     }
 
