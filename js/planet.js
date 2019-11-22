@@ -16,14 +16,13 @@ class Planet{
         this.hasSuppliesShop = false;
         this.pricePerDamage = undefined;
         this.pricePerSupplies = undefined;
-        this.hasLanded = false;
     }
 
     interact(){
         if (!this.playerWantsToLand()) return;
-        // Add an event listener to close the box and give input back to user as soon as box closes
         var prompt = this.getPrompt();
         prompt.open();
+        disableShipMovement();
     }
 
     playerWantsToLand(){
@@ -54,8 +53,10 @@ class Planet{
         }
 
         box.addButton(`Leave ${this.name}`, function(){
-            this.hasLanded = false;
-        }.bind(this));
+            enableShipMovement();
+            this.close();
+        }.bind(box));
+
         return box;
     }
 
@@ -77,7 +78,7 @@ class Planet{
     searchForStrongbox(){
         resources.subtractSupplies(1);
         if (this.hasStrongBox){
-            foundStrongBox();
+            resources.foundStrongBox();
         }
         else{
             alert("Looks like the strongbox is nowhere to be found.")
