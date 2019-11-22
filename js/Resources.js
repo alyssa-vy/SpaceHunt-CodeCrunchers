@@ -9,6 +9,8 @@ const resources = {
 	_maxHealth:100,
     _initd:false,
 
+	_hasStrongbox: false,
+
 	setEnergy(newEnergy){
 		this._energy = eval(newEnergy);
 	},
@@ -221,5 +223,10 @@ const resources = {
 		this._maxHealth = config.initialHealth;
 		this._health = this._maxHealth;
 		this.updateUI();
+	},
+
+	foundStrongBox(){
+		alert("Wow, you found the strongbox! Return it to Xeon before Badmax finds out.")
+		this.hasStrongBox = true;
 	}
 };
