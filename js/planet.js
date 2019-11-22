@@ -21,12 +21,9 @@ class Planet{
 
     interact(){
         if (!this.playerWantsToLand()) return;
-        while (this.hasLanded){
-
-        }
-        var e = document.createElement("div");
-        e.classList.add("inputPanel");
-        e.innerHTML = "Hello, world!";
+        // Add an event listener to close the box and give input back to user as soon as box closes
+        var prompt = this.getPrompt();
+        prompt.open();
     }
 
     playerWantsToLand(){
@@ -34,24 +31,36 @@ class Planet{
         return this.hasLanded;
     }
 
-    openPrompt(){
+    getPrompt(){
         var box = new InputPanel();
         box.message = this.buildWelcomeMessage();
         box.addButton("Search for strongbox (-1 supplies)", function(){
             this.searchForStrongbox();
-        }.bind(this))
+        }.bind(this));
 
-        box.addButton("Btn1", function(){
-            alert("hey");
-        })
-        box.addButton("Btn2", function(){
-            alert("hey2");
-        })
-        box.open();
+        if (this.hasRepairShop){
+            box.addButton(`Repair ship (-${this.pricePerDamage*5} credits, +5 health)`, function(){
+                resources.addHealth(5);
+                resources.subtractCredits(this.pricePerDamage * 5);
+            }.bind(this));
+        }
+
+        if (this.hasSuppliesShop){
+            box.addButton(`Buy resources (-${this.pricePerSupplies*5} credits, +5 energy/supplies)`, function(){
+                resources.addSupplies(5);
+                resources.addEnergy(5);
+                resources.subtractCredits(this.pricePerSupplies* 5);
+            }.bind(this));
+        }
+
+        box.addButton(`Leave ${this.name}`, function(){
+            this.hasLanded = false;
+        }.bind(this));
+        return box;
     }
 
     buildWelcomeMessage(){
-        var message = `Welcome to ${this.name}.`;
+        var message = `Welcome to ${this.name}. `;
         var interactables = 0;
         if (this.hasSuppliesShop) interactables++;
         if (this.hasRepairShop) interactables++;
@@ -66,7 +75,7 @@ class Planet{
     }
 
     searchForStrongbox(){
-        subtractSupplies(1);
+        resources.subtractSupplies(1);
         if (this.hasStrongBox){
             foundStrongBox();
         }
@@ -74,14 +83,4 @@ class Planet{
             alert("Looks like the strongbox is nowhere to be found.")
         }
     }
-
-    landOnPlanet(){
-
-    }
-
-    // set hasStrongBox(bool) { this.hasStrongbox = bool; }
-    // set hasRepairShop(bool) { this.hasRepairshop = bool; }
-    // set hasSuppliesShop(bool) { this.hasRepairshop = bool; }
-    // set pricePerSupplies(credits) { this.pricePerSupplies = credits; }
-    // set pricePerDamage(credits) { this.pricePerDamage = credits; }
 }
