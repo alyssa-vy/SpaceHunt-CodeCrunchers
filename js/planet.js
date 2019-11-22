@@ -52,9 +52,8 @@ class Planet{
             }.bind(this));
         }
 
-        box.addButton(`Leave ${this.name}`, function(){
+        box.addCloseButton(`Leave ${this.name}`, function(){
             enableShipMovement();
-            this.close();
         }.bind(box));
 
         return box;
