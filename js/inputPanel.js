@@ -14,6 +14,13 @@ class InputPanel{
         this.buttonElements.push(newButton);
     }
 
+    addCloseButton(value, func){
+        this.addButton(value, function(){
+            func();
+            this.close();
+        }.bind(this))
+    }
+
     open(){
         var inputPanel = document.createElement("div");
         var msgBox = document.createElement("div");
