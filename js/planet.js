@@ -25,19 +25,19 @@ class Planet{
     getPrompt(){
         var box = new InputPanel();
         box.message = this.buildWelcomeMessage();
-        box.addButton("Search for strongbox (-1 supplies)", function(){
+        box.addButton(this.strongBoxButtonMessage, function(){
             this.searchForStrongbox();
         }.bind(this));
 
         if (this.hasRepairShop){
-            box.addButton(`Repair ship (-${this.pricePerDamage*5} credits, +5 health)`, function(){
+            box.addButton(this.repairShopButtonMessage, function(){
                 resources.addHealth(5);
                 resources.subtractCredits(this.pricePerDamage * 5);
             }.bind(this));
         }
 
         if (this.hasSuppliesShop){
-            box.addButton(`Buy resources (-${this.pricePerSupplies*5} credits, +5 energy/supplies)`, function(){
+            box.addButton(this.suppliesShopButtonMessage, function(){
                 resources.addSupplies(5);
                 resources.addEnergy(5);
                 resources.subtractCredits(this.pricePerSupplies* 5);
@@ -49,6 +49,18 @@ class Planet{
         }.bind(box));
 
         return box;
+    }
+
+    get strongBoxButtonMessage(){
+        return `Search for strongbox (-${this.suppliesPerStrongboxSearch} supplies)`;
+    }
+
+    get repairShopButtonMessage(){
+        return `Repair ship (-${this.pricePerDamage*5} credits, +5 health)`;
+    }
+
+    get suppliesShopButtonMessage(){
+        return `Buy resources (-${this.pricePerSupplies*5} credits, +5 energy/supplies)`
     }
 
     buildWelcomeMessage(){
@@ -67,12 +79,13 @@ class Planet{
     }
 
     searchForStrongbox(){
-        resources.subtractSupplies(1);
+        resources.subtractSupplies(this.suppliesPerStrongboxSearch);
         if (this.hasStrongBox){
             resources.foundStrongBox();
         }
         else{
             alert("Looks like the strongbox is nowhere to be found.")
         }
+        this.prompt.removeButton(this.strongBoxButtonMessage);
     }
 }
