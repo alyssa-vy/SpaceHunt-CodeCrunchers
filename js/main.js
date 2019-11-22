@@ -7,7 +7,6 @@ function initGame() {
     resources.initResources();
     worldCanvas.updateBoundaries(config.boardWidth, config.boardHeight);
     position.initPosition();
-    m = new MapClass(config.boardWidth, config.boardHeight);
 
 
     document.addEventListener('keydown', function(event) {
