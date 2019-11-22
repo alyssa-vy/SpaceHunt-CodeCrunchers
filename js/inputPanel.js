@@ -14,6 +14,19 @@ class InputPanel{
         this.buttonElements.push(newButton);
     }
 
+    removeButton(value){
+        var inputPanel = document.getElementById(this.windowId);
+        if (!inputPanel) return;
+        var buttonBox = inputPanel.getElementsByClassName("inputPanelButtonBox")[0];
+        var buttons = inputPanel.getElementsByClassName("inputPanelButton");
+        for (let i = 0; i < buttons.length; i++){
+            if (buttons[i].value = value){
+                buttonBox.removeChild(buttons[i]);
+                return;
+            }
+        }
+    }
+
     addCloseButton(value, func){
         this.addButton(value, function(){
             func();
