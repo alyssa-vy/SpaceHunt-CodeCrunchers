@@ -3,6 +3,7 @@
 
 //Global for persistent state
 let played = false;
+var canMove = true;
 
 //Nested position object within the spacecraft object representing
 //its current position at any given time.
@@ -30,6 +31,7 @@ const position = {
     },
 
     moveSpacecraft(angle, distance) {
+        if (!canMove) return;
         let evaledDistance = eval(distance);
         let i;
         //Error checking to make sure that the values passes in for
@@ -148,3 +150,11 @@ const position = {
                 checkCollision();
             }
     };
+
+function disableShipMovement(){
+    canMove = false;
+}
+
+function enableShipMovement(){
+    canMove = true;
+}
