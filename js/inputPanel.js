@@ -37,4 +37,5 @@ class InputPanel{
         if (inputPanel)
             document.getElementById("viewport").removeChild(inputPanel);
     }
+
 }
