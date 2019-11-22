@@ -1,12 +1,3 @@
-/* All planets will have
-    - imageSrc
-    - hasStrongbox
-    - hasRepairshop
-    - hasSuppliesShop
-    - repairshop price
-    - suppliesshop price
-*/
-
 class Planet{
     constructor(name, imageSrc){
         this.name = name;
@@ -18,6 +9,8 @@ class Planet{
         this.pricePerSupplies = undefined;
     }
 
+    // This is the main functionality of the planet class. It pops up a small interactable menu.
+    // When a player lands on a planet, call this function.
     interact(){
         if (!this.playerWantsToLand()) return;
         var prompt = this.getPrompt();
@@ -26,8 +19,7 @@ class Planet{
     }
 
     playerWantsToLand(){
-        this.hasLanded = window.confirm(`You are within ${this.name}'s orbit. Would you like to land?`)
-        return this.hasLanded;
+        return window.confirm(`You are within ${this.name}'s orbit. Would you like to land?`)
     }
 
     getPrompt(){
