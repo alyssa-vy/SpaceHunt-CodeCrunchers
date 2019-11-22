@@ -68,7 +68,10 @@ class Planet{
     searchForStrongbox(){
         subtractSupplies(1);
         if (this.hasStrongBox){
-            alert("Wow, you've found the strongbox! Return it to ")
+            foundStrongBox();
+        }
+        else{
+            alert("Looks like the strongbox is nowhere to be found.")
         }
     }
 
