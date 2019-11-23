@@ -8,18 +8,11 @@ function enterOrbit(planet) {
         if (resources.checkSupplies()) {
             disableShipMovement();
             inOrbit = true;
-            if (confirm("Would you like to search for the strongbox?")) {
-                searchForStrongbox();
-            }
         }
-
     }
     else {
-        enableShipMovement();
-        inOrbit = false;
         return;
     }
-
 }
 
 function leaveOrbit(planet) {

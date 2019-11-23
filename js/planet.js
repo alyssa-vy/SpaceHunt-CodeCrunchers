@@ -9,6 +9,7 @@ class Planet{
         this.pricePerSupplies = 1;
         this.suppliesPerStrongboxSearch = 1;
         this.prompt = null;
+        this.inOrbit = false; // automatically false;
     }
 
     // This is the main functionality of the planet class. It pops up a small interactable menu.
@@ -18,6 +19,32 @@ class Planet{
         var prompt = this.getPrompt();
         prompt.open();
         disableShipMovement();
+    }
+
+    enterOrbit() {
+        if (confirm("Would you like to enter " + this.name + "'s orbit?'")) {
+            resources.subtractSuppliesTwo(); // subtract 2% supplies
+            if (resources.checkSupplies()) { // check if supplies are greater than 0
+                disableShipMovement(); // stop ship from being able to move once in orbit
+                inOrbit = true; // set boolean value inOrbit to true
+            }
+        }
+        else {
+            return;
+        }
+    }
+
+    leaveOrbit() {
+        if (confirm("Would you like to leave " + this.name + "'s orbit?'")) {
+            resources.subtractSuppliesTwo();
+            if (resources.checkSupplies()) {
+                enableShipMovement(); // renable ship's movement for leaving orbit
+                inOrbit = false; // set boolean value inOrbit to false for leaving
+            }
+        }
+        else {
+            return;
+        }
     }
 
     playerWantsToLand(){
