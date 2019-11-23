@@ -100,16 +100,20 @@ function deploySensor() {
             coordx = currentx;
             coordx -= i;
             // Check 2 below X
-            if (Map[coordx][currenty] != null) {
-                artifact = Map[coordx][currenty];
-                addToList(artifact, coordx, currenty);
+            if (coordx >= 0) {
+                if (Map[coordx][currenty] != null) {
+                    artifact = Map[coordx][currenty];
+                    addToList(artifact, coordx, currenty);
+                }
             }
             coordy = currenty;
             coordy -= i;
             // Check 2 right Y
-            if (Map[currentx][coordy] != null) {
-                artifact = Map[currentx][coordy];
-                addToList(artifact, currentx, coordy);
+            if (coordy >= 0) {
+                if (Map[currentx][coordy] != null) {
+                    artifact = Map[currentx][coordy];
+                    addToList(artifact, currentx, coordy);
+                }
             }
         }
 
@@ -125,9 +129,11 @@ function deploySensor() {
                 }
                 coordy = currenty;
                 coordy -= z;
-                if (Map[coordx][coordy] != null) {
-                    artifact = Map[coordx][coordy];
-                    addToList(artifact, coordx, coordy);
+                if (coordy >= 0) {
+                    if (Map[coordx][coordy] != null) {
+                        artifact = Map[coordx][coordy];
+                        addToList(artifact, coordx, coordy);
+                    }
                 }
             }
         }
@@ -135,18 +141,22 @@ function deploySensor() {
         for (var i = 1; i <= sensorCP; ++i) {
             coordx = currentx;
             coordx -= i;
-            for (var z = 1; z <= sensorCP; ++z) {
-                coordy = currenty;
-                coordy += z;
-                if (Map[coordx][coordy] != null) {
-                    artifact = Map[coordx][coordy];
-                    addToList(artifact, coordx, coordy);
-                }
-                coordy = currenty;
-                coordy -= z;
-                if (Map[coordx][coordy] != null) {
-                    artifact = Map[coordx][coordy];
-                    addToList(artifact, coordx, coordy);
+            if (coordx >= 0) {
+                for (var z = 1; z <= sensorCP; ++z) {
+                    coordy = currenty;
+                    coordy += z;
+                    if (Map[coordx][coordy] != null) {
+                        artifact = Map[coordx][coordy];
+                        addToList(artifact, coordx, coordy);
+                    }
+                    coordy = currenty;
+                    coordy -= z;
+                    if (coordy >= 0) {
+                        if (Map[coordx][coordy] != null) {
+                            artifact = Map[coordx][coordy];
+                            addToList(artifact, coordx, coordy);
+                        }
+                    }
                 }
             }
         }
