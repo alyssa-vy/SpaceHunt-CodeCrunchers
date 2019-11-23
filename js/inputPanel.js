@@ -1,7 +1,7 @@
 class InputPanel{
     constructor(){
         this.windowId = "inputPanel";
-        this.buttonElements = [];
+        this.buttons = [];
         this.message = "";
     }
 
@@ -11,17 +11,14 @@ class InputPanel{
         newButton.type = "button";
         newButton.value = value;
         newButton.onclick = func;
-        this.buttonElements.push(newButton);
+        this.buttons.push(newButton);
     }
 
     removeButton(value){
-        var inputPanel = document.getElementById(this.windowId);
-        if (!inputPanel) return;
-        var buttonBox = inputPanel.getElementsByClassName("inputPanelButtonBox")[0];
-        var buttons = inputPanel.getElementsByClassName("inputPanelButton");
-        for (let i = 0; i < buttons.length; i++){
-            if (buttons[i].value = value){
-                buttonBox.removeChild(buttons[i]);
+        for (let i = 0; i < this.buttons.length; i++){
+            if (this.buttons[i].value = value){
+                this.buttons[i].remove();
+                this.buttons = this.buttons.splice(i, 1);
                 return;
             }
         }
@@ -45,8 +42,8 @@ class InputPanel{
         buttonBox.classList.add("inputPanelButtonBox");
         inputPanel.appendChild(msgBox);
         inputPanel.appendChild(buttonBox);
-        for (var i = 0; i < this.buttonElements.length; i++){
-            buttonBox.appendChild(this.buttonElements[i]);
+        for (var i = 0; i < this.buttons.length; i++){
+            buttonBox.appendChild(this.buttons[i]);
         }
 
         document.getElementById("viewport").appendChild(inputPanel);
