@@ -13,6 +13,7 @@ function checkCollision(){
                 return true;
             default:
                 alert("You ran into " + Map[position.x][position.y]);
+                enterOrbit(Map[position.x][position.y]);
                 return true;
         }
     }
