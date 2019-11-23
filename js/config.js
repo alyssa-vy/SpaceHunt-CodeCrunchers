@@ -1,12 +1,17 @@
+/* The config interface. To get any value from the config, simply call:
+    config.valueName;
+    EX. To get a number for the board width, call:
+    config.boardWidth
+*/
 var config = {
     get boardWidth() { return parseInt(configurationSelectors.boardWidth.value) },
     get boardHeight() { return parseInt(configurationSelectors.boardHeight.value) },
     get initialLocationX() { return parseInt(configurationSelectors.initialLocationX.value) },
     get initialLocationY() { return parseInt(configurationSelectors.initialLocationY.value) },
-    get initialEnergy() { return parseInt(configurationSelectors.initialEnergy.value) },
-    get initialSupplies() { return parseInt(configurationSelectors.initialSupplies.value) },
-    get initialCredits() { return parseInt(configurationSelectors.initialCredits.value) },
-    get initialHealth() { return parseInt(configurationSelectors.initialHealth.value) },
+    get maximumEnergy() { return parseInt(configurationSelectors.maximumEnergy.value) },
+    get maximumSupplies() { return parseInt(configurationSelectors.maximumSupplies.value) },
+    get maximumCredits() { return parseInt(configurationSelectors.maximumCredits.value) },
+    get maximumHealth() { return parseInt(configurationSelectors.maximumHealth.value) },
     get godMode() { return configurationSelectors.godMode.checked },
     get randomWormholeBehavior() { return !configurationSelectors.staticWormholeBehavior.checked },
     get gazetteer() {return configurationSelectors.gazetteer.checked},
@@ -31,10 +36,10 @@ var defaultConfig = {
         x: 0,
         y: 0
     },
-    initialEnergy: 1000,
-    initialSupplies: 100,
-    initialCredits: 1000,
-    initialHealth: 100,
+    maximumEnergy: 1000,
+    maximumSupplies: 100,
+    maximumCredits: 1000,
+    maximumHealth: 100,
     godMode: false,
     randomWormholeBehavior: true,
     gazetteer: false,
@@ -49,6 +54,8 @@ var validateEvent = new Event("validate", {
 function initConfig(){
     // Adds validate event listeners to all the necessary config fields
     numberFields = document.getElementsByClassName("numberField")
+    x_coord_div = configurationSelectors.initialLocationX.parentElement
+    y_coord_div = configurationSelectors.initialLocationY.parentElement
     for (var i = 0; i < numberFields.length; i++){
         numberFields[i].addEventListener("validate", function(){
             // Must bind this function to give a context to what "this" is
@@ -56,8 +63,6 @@ function initConfig(){
             validateNumber(this.querySelector("input"))
         }.bind(numberFields[i]));
     }
-    x_coord_div = configurationSelectors.initialLocationX.parentElement
-    y_coord_div = configurationSelectors.initialLocationY.parentElement
     x_coord_div.addEventListener("validate", function(){
         validateXCoordinate(this.querySelector("input"))
     }.bind(x_coord_div))
@@ -153,10 +158,10 @@ function setConfigurationDefault(){
     configurationSelectors.initialLocationY.value = defaultConfig.initialLocation.y
     configurationSelectors.boardWidth.value = defaultConfig.boardWidth
     configurationSelectors.boardHeight.value = defaultConfig.boardHeight
-    configurationSelectors.initialEnergy.value = defaultConfig.initialEnergy
-    configurationSelectors.initialSupplies.value = defaultConfig.initialSupplies
-    configurationSelectors.initialCredits.value = defaultConfig.initialCredits
-    configurationSelectors.initialHealth.value = defaultConfig.initialHealth
+    configurationSelectors.maximumEnergy.value = defaultConfig.maximumEnergy
+    configurationSelectors.maximumSupplies.value = defaultConfig.maximumSupplies
+    configurationSelectors.maximumCredits.value = defaultConfig.maximumCredits
+    configurationSelectors.maximumHealth.value = defaultConfig.maximumHealth
     configurationSelectors.godMode.checked = defaultConfig.godMode
     configurationSelectors.staticWormholeBehavior.checked = !defaultConfig.randomWormholeBehavior
     configurationSelectors.gazetteer.checked = defaultConfig.gazetteer
