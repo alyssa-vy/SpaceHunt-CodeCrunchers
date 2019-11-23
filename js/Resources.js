@@ -1,12 +1,12 @@
 const resources = {
-	_energy:0,
-	_supplies:0,
-	_credits:0,
-	_health:0,
+	_energy:undefined,
+	_supplies:undefined,
+	_credits:undefined,
+	_health:undefined,
 
-	_maxEnergy:1000,
-	_maxSupplies:100,
-	_maxHealth:100,
+	_maxEnergy:undefined,
+	_maxSupplies:undefined,
+	_maxHealth:undefined,
     _initd:false,
 
 	_hasStrongbox: false,
@@ -215,12 +215,12 @@ const resources = {
 	},
 
 	initResources() {
-		this._maxEnergy = config.initialEnergy;
+		this._maxEnergy = config.maximumEnergy;
 		this._energy = this._maxEnergy;
-		this._maxSupplies = config.initialSupplies;
+		this._maxSupplies = config.maximumSupplies;
 		this._supplies = this._maxSupplies;
-		this._credits = config.initialCredits;
-		this._maxHealth = config.initialHealth;
+		this._credits = config.maximumCredits;
+		this._maxHealth = config.maximumHealth;
 		this._health = this._maxHealth;
 		this.updateUI();
 	},
