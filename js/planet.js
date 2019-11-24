@@ -15,9 +15,11 @@ class Planet{
     // This is the main functionality of the planet class. It pops up a small interactable menu.
     // When a player lands on a planet, call this function.
     interact(){
-        if (!this.playerWantsToLand()) return;
-        var prompt = this.getPrompt();
+        var prompt = this.getOrbitPrompt();
         prompt.open();
+        //if (!this.playerWantsToLand()) return;
+        //var prompt = this.getPrompt();
+        //prompt.open();
         disableShipMovement();
     }
 
@@ -26,7 +28,7 @@ class Planet{
             resources.subtractSuppliesTwo(); // subtract 2% supplies
             if (resources.checkSupplies()) { // check if supplies are greater than 0
                 disableShipMovement(); // stop ship from being able to move once in orbit
-                inOrbit = true; // set boolean value inOrbit to true
+                this.inOrbit = true; // set boolean value inOrbit to true
             }
         }
         else {
@@ -34,12 +36,12 @@ class Planet{
         }
     }
 
-    leaveOrbit() {
-        if (confirm("Would you like to leave " + this.name + "'s orbit?'")) {
+    leaveOrbit(name) {
+        if (confirm("Would you like to leave " +  name + "'s orbit?'")) {
             resources.subtractSuppliesTwo();
             if (resources.checkSupplies()) {
                 enableShipMovement(); // renable ship's movement for leaving orbit
-                inOrbit = false; // set boolean value inOrbit to false for leaving
+                this.inOrbit = false; // set boolean value inOrbit to false for leaving
             }
         }
         else {
@@ -49,6 +51,19 @@ class Planet{
 
     playerWantsToLand(){
         return window.confirm(`You are within ${this.name}'s orbit. Would you like to land?`)
+    }
+
+// This is a new prompt shown when a user has entered a planet's orbit. The buttons contained are to either leave orbit or land
+    getOrbitPrompt() {
+        var box = new InputPanel();
+        box.message = "You are floating in " + this.name + "'s orbit.";
+
+        box.addCloseButton("Leave Orbit?", function() {
+            leaveOrbit(this.name);
+        }.bind(this));
+
+        this.prompt = box;
+        return box;
     }
 
     getPrompt(){
@@ -74,7 +89,8 @@ class Planet{
         }
 
         box.addCloseButton(`Leave ${this.name}`, function(){
-            enableShipMovement();
+            leaveOrbit(this.name);
+            //enableShipMovement();
         }.bind(box));
 
         this.prompt = box;

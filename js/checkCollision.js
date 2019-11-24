@@ -12,8 +12,7 @@ function checkCollision(){
                 alert("You ran into a " + Map[position.x][position.y]);
                 return true;
             default:
-                alert("You ran into " + Map[position.x][position.y]);
-                //enterOrbit(Map[position.x][position.y]);
+                //alert("You ran into " + Map[position.x][position.y]);
                 celestial = document.createElement("img");
                 addImage(celestial, Map[position.x][position.y])
                 onPlanet = new Planet(Map[position.x][position.y], celestial); // for testing purposes!!
