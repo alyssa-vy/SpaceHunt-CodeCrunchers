@@ -98,7 +98,9 @@ class Map{
     }
 
     getObjectAtCoordinates(x, y){
-        return this.cells[y][x];
+        if (this.objectExistsAtPosition)
+            return this.cells[y][x].object;
+        return null;
     }
 
     getObjectCoordinates(id){
