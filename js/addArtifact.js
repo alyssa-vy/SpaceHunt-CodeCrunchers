@@ -1,18 +1,6 @@
 function addArtifact(x, y, type) {
     /*
-        Adds an artifact of type: Pentium 1
-                                  Pentium 2
-                                  Pentium 3
-                                  Pentium 4
-                                  Pentium 5
-                                  Pentium 6
-                                  Pentium 7
-                                  Xeon
-                                  Celeron
-                                  Ryzen
-                                  Asteroid
-                                  SpaceStation
-                                  Wormhole
+        Type is a string that exists within the "artifacts" global variable
 
          to the global "Map" 2D array (which is initialized
          to contain null values in js/initializeMap.js) and
@@ -22,27 +10,26 @@ function addArtifact(x, y, type) {
          the user is alerted.
 
      */
-    if(isInBounds(x,y) && markAdded(type)) {
-        //TODO: Clean up if conditions with simple ifNotPlanet(type) method
-        if(Map[x][y] === null) {
-            Map[x][y] = type;
-            if(type !== "Asteroid" && type !== "SpaceStation" && type !== "Wormhole" && type !== "BadMax") {
-                loadOptions("planetType");
-            }
-            alert(type + " was added to " + x + ", " + y);
-            addToGazetteer(type, x, y); // add the artifact to the celestial gazetteer
-            return true;
-        } else {
-            alert("A Celestial Artifact Already Exists at that location");
-            unmarkAdded(type);
-        }
-    } else {
-        if(type !== "Asteroid" && type !== "SpaceStation" && type !== "Wormhole" && type !== "BadMax") {
-            loadOptions("planetType");
-        }
-        alert("error occurred when adding artifact");
-        return false;
+    if (worldMap.objectExistsAtPosition(x, y)){
+        alert("A Celestial Artifact Already Exists at that location");
+        unmarkAdded(type);
+        return;
     }
+    else if (worldMap.isOutOfBounds(x, y)){
+        alert(`(${x}, ${y}) is out of bounds.`);
+        unmarkAdded(type);
+        return;
+    }
+    var object = artifacts[type];
+    worldMap.addObject(object, type, x, y);
+    addToGazetteer(type, x, y); // add the artifact to the celestial gazetteer
+    alert(type + " was added to " + x + ", " + y);
+
+    //TODO: Clean up if conditions with simple ifNotPlanet(type) method
+    if(type !== "Asteroid" && type !== "SpaceStation" && type !== "Wormhole" && type !== "BadMax") {
+        loadOptions("planetType");
+    }
+    markAdded(type);
 }
 function disablePlanetAdd() {
     /*
