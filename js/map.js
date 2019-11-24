@@ -1,3 +1,4 @@
+// TODO Automatically add wormholes on the map boarder
 class Map{
     constructor(width, height){
         this.width = width;
@@ -13,6 +14,9 @@ class Map{
 
     }
 
+    /* Add a celestial artifact to the map. Will throw an error if there is an object already at x and y
+    id is assigned to this object. This will be the way to manipulate it within the Map object
+    */
     addObject(object, id, x, y){
         if (this.objectExistsAtPosition(x, y))
             throw new ObjectAlreadyExistsAtPostion(`There is an object that already exists at (${x}, ${y})`);
@@ -20,7 +24,7 @@ class Map{
         this.cells[y][x] = newArtifact;
     }
 
-    /*  Not sure how to do this with worldCanvis and internal cells array
+    /*  Not sure how to do this with worldCanvis and this.cells
     removeObject(id){
         var artifact = document.getElementById(id);
         artifact.remove();
