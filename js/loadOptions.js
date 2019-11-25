@@ -22,11 +22,11 @@ function loadOptions(elementId){
     element.options.length = 0;
 
     //See what planets have been added
-    for(i = 0; i < 10; ++i){
+    for(let i = 0; i < 10; ++i){
         if(!PlanetsAdded[i]) {
             if(i < 7) {
                 var opt = document.createElement('option');
-                opt.value, opt.innerHTML = ('Pentium ' + (i + 1));
+                opt.value, opt.innerHTML = ('Pentium-' + (i + 1));
                 element.appendChild(opt);
                 atLeastOne = true;
             } else {
