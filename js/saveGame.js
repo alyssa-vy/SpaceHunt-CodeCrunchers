@@ -72,6 +72,6 @@ function saveGame(filename) {
         localStorage.setItem(filename + ".cfga", defaultConfig.gameAdministrator);
     }
     document.getElementById("filename").value = "";
-    loadSavedSessions();
+    loadSavedSessionsToSelector();
     switchToPage("mainMenu");
 }

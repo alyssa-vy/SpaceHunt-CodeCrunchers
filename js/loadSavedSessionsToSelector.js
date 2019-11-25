@@ -1,6 +1,6 @@
 let firstRun = true;
 
-function loadSavedSessions() {
+function loadSavedSessionsToSelector() {
     let length = localStorage.getItem("ZZZ");
     if (length !== null) {
         length = parseInt(length);

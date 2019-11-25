@@ -25,7 +25,7 @@
         <script src="js/inputPanel.js"></script>
         <script src="js/saveGame.js"></script>
         <script src="js/loadGame.js"></script>
-        <script src="js/checkSaveNames.js"></script>
+        <script src="js/loadSavedSessionsToSelector.js"></script>
         <script src="js/addImage.js"></script>
         <script src = "js/orbit.js"></script>
 
@@ -40,7 +40,7 @@
                 <form name="menuButtons">
                     <input type=button value="Start" onclick=initGame()>
                     <input type=button value="Configure" onclick=switchToPage("configuration")>
-                    <input type=button value="Load/Save" onclick=loadSavedSessions()>
+                    <input type=button value="Load/Save" onclick=loadSavedSessionsToSelector()>
                 </form>
             </div>
             <div class="page clearfix" id="mainGame">
@@ -74,7 +74,7 @@
                         <br>
                         <br>
                         <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
-                        <input type=button value="Save Game" onclick=loadSavedSessions()>
+                        <input type=button value="Save Game" onclick=loadSavedSessionsToSelector()>
                     </form>
                 </div>
                 <div class="col-2">
