@@ -1,4 +1,4 @@
-var artifacts = {
+var planets = {
     "Pentium-1": new Planet("Pentium-1", "img/pentium_1.jpg"),
     "Pentium-2": new Planet("Pentium-2", "img/pentium_2.jpg"),
     "Pentium-3": new Planet("Pentium-3", "img/pentium_3.jpg"),
@@ -9,10 +9,6 @@ var artifacts = {
     "Ryzen": new Planet("Ryzen", "img/ryzen.jpg"),
     "Celeron": new Planet("Celeron", "img/celeron.jpg"),
     "Xeon": new Planet("Xeon", "img/xeon.jpg"),
-    "Asteroid": undefined,  // asteroid object has not been made yet
-    "Spacestation": undefined, // spacestation object has not been made yet
-    "Badmax": undefined, // badmax object has not been made yet
-    "Wormhole": undefined // wormhole object has not been made yet
 }
 
 // This function sets all the variables for each planet within artifacts
