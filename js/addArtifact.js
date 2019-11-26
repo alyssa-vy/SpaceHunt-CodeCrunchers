@@ -243,26 +243,9 @@ function isInBounds(x, y) {
     }
     return goodx && goody;
 }
-function isPlanet(type){
-    switch(type){
-        case "Pentium-1":
-        case "Pentium-2":
-        case "Pentium-3":
-        case "Pentium-4":
-        case "Pentium-5":
-        case "Pentium-6":
-        case "Pentium-7":
-        case "Celeron":
-        case "Xeon":
-        case "Ryzen":
-            return true;
-        default:
-            return false;
-    }
-}
 
 function randomizeMap(){
-    // Items to add is BoardArea * percentOfTheBoard 
+    // Items to add is BoardArea * percentOfTheBoard
     var meteorsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.85);
     var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
