@@ -1,6 +1,7 @@
 var meteorsAdded = 0;
 var spacestationsAdded = 0;
 var wormholesAdded = 0;
+var freightersAdded = 0;
 
 function addPlanet(x, y, name){
     if (canAddArtifact(x, y)){
@@ -35,6 +36,20 @@ function addWormhole(x, y){
         worldMap.addObject(new Wormhole(id, "img/wormhole.jpg"), x, y);
         alert("Wormhole was added to " + x + ", " + y);
         wormholesAdded++;
+    }
+}
+
+function addFreighter(x, y, k){
+    /*  
+     *  Place an abandoned freighter (referred to internally as a "Freighter" object)
+     *  at an (x, y) location on the map if able, and set the amount of supplies that
+     *  the player scavanges from the freighter to the third argument, k
+     */
+    if(canAddArtifact(x, y)){
+        var id = "Freighter-" + freightersAdded;
+        worldMap.addObject(new Freighter(id, "img/freighter.jph", k), x, y);
+        alert("Abandoned Freighter was added to " + x + ", " + y);
+        ++freightersAdded;
     }
 }
 
