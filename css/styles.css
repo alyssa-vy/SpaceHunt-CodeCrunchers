@@ -4,6 +4,10 @@
     clear: both;
 }
 
+body {
+    background-color: grey;
+}
+
 .col-1,
 .col-3{
     float: left;
