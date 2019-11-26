@@ -235,6 +235,10 @@ const resources = {
 
 	foundStrongBox(){
 		alert("Wow, you found the strongbox! Return it to Xeon before Badmax finds out.")
-		this.hasStrongBox = true;
+		this._hasStrongBox = true;
+	},
+
+	hasStrongBox(){
+		return this._hasStrongBox;
 	}
 };
