@@ -11,6 +11,14 @@ const resources = {
 
 	_hasStrongbox: false,
 
+    get supplies() {
+        return this._supplies;
+    },
+    
+    get credits() {
+        return this._credits;
+    },
+
 	setEnergy(newEnergy){
 		this._energy = eval(newEnergy);
 	},

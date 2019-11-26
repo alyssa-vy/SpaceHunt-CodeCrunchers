@@ -81,50 +81,50 @@ function disableAddIfInvalid(x, y, submitButtonId) {
      */
     document.getElementById(submitButtonId).disabled = !isInBounds(x, y);
 }
-function markAdded(type){
+function notAlreadyAdded(type){
     /*
         If the artifact we are adding has not already
         been added then mark it added and return true.
         Otherwise no-op and return false.
      */
     switch(type){
-        case "Pentium 1":
+        case "Pentium-1":
             if(!PlanetsAdded[0]){
                 PlanetsAdded[0] = true;
                 return true;
             }
             return false;
-        case "Pentium 2":
+        case "Pentium-2":
             if(!PlanetsAdded[1]){
                 PlanetsAdded[1] = true;
                 return true;
             }
             return false;
-        case "Pentium 3":
+        case "Pentium-3":
             if(!PlanetsAdded[2]){
                 PlanetsAdded[2] = true;
                 return true;
             }
             return false;
-        case "Pentium 4":
+        case "Pentium-4":
             if(!PlanetsAdded[3]){
                 PlanetsAdded[3] = true;
                 return true;
             }
             return false;
-        case "Pentium 5":
+        case "Pentium-5":
             if(!PlanetsAdded[4]){
                 PlanetsAdded[4] = true;
                 return true;
             }
             return false;
-        case "Pentium 6":
+        case "Pentium-6":
             if(!PlanetsAdded[5]){
                 PlanetsAdded[5] = true;
                 return true;
             }
             return false;
-        case "Pentium 7":
+        case "Pentium-7":
             if(!PlanetsAdded[6]){
                 PlanetsAdded[6] = true;
                 return true;
@@ -167,43 +167,43 @@ function unmarkAdded(type){
         Otherwise no-op and return false.
      */
     switch(type){
-        case "Pentium 1":
+        case "Pentium-1":
             if(PlanetsAdded[0]){
                 PlanetsAdded[0] = false;
                 return true;
             }
             return false;
-        case "Pentium 2":
+        case "Pentium-2":
             if(PlanetsAdded[1]){
                 PlanetsAdded[1] = false;
                 return true;
             }
             return false;
-        case "Pentium 3":
+        case "Pentium-3":
             if(PlanetsAdded[2]){
                 PlanetsAdded[2] = false;
                 return true;
             }
             return false;
-        case "Pentium 4":
+        case "Pentium-4":
             if(PlanetsAdded[3]){
                 PlanetsAdded[3] = false;
                 return true;
             }
             return false;
-        case "Pentium 5":
+        case "Pentium-5":
             if(PlanetsAdded[4]){
                 PlanetsAdded[4] = false;
                 return true;
             }
             return false;
-        case "Pentium 6":
+        case "Pentium-6":
             if(PlanetsAdded[5]){
                 PlanetsAdded[5] = false;
                 return true;
             }
             return false;
-        case "Pentium 7":
+        case "Pentium-7":
             if(PlanetsAdded[6]){
                 PlanetsAdded[6] = false;
                 return true;
@@ -246,4 +246,21 @@ function isInBounds(x, y) {
         goody = true;
     }
     return goodx && goody;
+}
+function isPlanet(type){
+    switch(type){
+        case "Pentium-1":
+        case "Pentium-2":
+        case "Pentium-3":
+        case "Pentium-4":
+        case "Pentium-5":
+        case "Pentium-6":
+        case "Pentium-7":
+        case "Celeron":
+        case "Xeon":
+        case "Ryzen":
+            return true;
+        default:
+            return false;
+    }
 }
