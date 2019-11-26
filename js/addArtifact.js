@@ -4,8 +4,8 @@ var wormholesAdded = 0;
 
 function addPlanet(x, y, name){
     if (canAddArtifact(x, y)){
-        var object = artifacts[name];
-        worldMap.addObject(object, name, x, y);
+        var object = planets[name];
+        worldMap.addObject(object, x, y);
         addToGazetteer(name, x, y);
         alert(name + " was added to " + x + ", " + y);
     }
@@ -14,8 +14,7 @@ function addPlanet(x, y, name){
 function addMeteor(x, y){
     if (canAddArtifact(x, y)){
         var id = "Meteor-" + meteorsAdded;
-        worldMap.addObject(new Meteor(), id, x, y);
-        addToGazetteer("Meteor", x, y);
+        worldMap.addObject(new Meteor(id, "img/asteroid.png"), x, y);
         alert("Meteor was added to " + x + ", " + y);
         meteorsAdded++;
     }
@@ -24,8 +23,7 @@ function addMeteor(x, y){
 function addSpacestation(x, y){
     if (canAddArtifact(x, y)){
         var id = "Spacestation-" + spacestationsAdded;
-        worldMap.addObject(new Spacestation(), id, x, y);
-        addToGazetteer("Space Station", x, y);
+        worldMap.addObject(new Spacestation(id, "img/spacestation.jpg"), x, y);
         alert("Space station was added to " + x + ", " + y);
         spacestationsAdded++;
     }
@@ -34,8 +32,7 @@ function addSpacestation(x, y){
 function addWormhole(x, y){
     if (canAddArtifact(x, y)){
         var id = "Wormhole-" + wormholesAdded;
-        worldMap.addObject(new Wormhole(), id, x, y);
-        addToGazetteer("Wormhole", x, y);
+        worldMap.addObject(new Wormhole(id, "img/wormhole.jpg"), x, y);
         alert("Wormhole was added to " + x + ", " + y);
         wormholesAdded++;
     }
@@ -44,12 +41,10 @@ function addWormhole(x, y){
 function canAddArtifact(x, y){
     if (worldMap.objectExistsAtPosition(x, y)){
         alert("A Celestial Artifact Already Exists at that location");
-        unmarkAdded(type);
         return false;
     }
     else if (worldMap.isOutOfBounds(x, y)){
         alert(`(${x}, ${y}) is out of bounds.`);
-        unmarkAdded(type);
         return false;
     }
     return true;
@@ -231,6 +226,7 @@ function unmarkAdded(type){
             return false;
     }
 }
+
 function isInBounds(x, y) {
     /*
         Uses the current config to determine
