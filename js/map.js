@@ -11,7 +11,6 @@ class Map{
                 this.cells[j][i] = null;
             }
         }
-
     }
 
     /* Add a celestial artifact to the map. Will throw an error if there is an object already at x and y
