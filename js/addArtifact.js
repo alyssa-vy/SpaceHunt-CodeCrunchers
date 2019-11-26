@@ -260,3 +260,35 @@ function isPlanet(type){
             return false;
     }
 }
+
+function randomizeMap(){
+    // Items to add is BoardArea * percentOfTheBoard 
+    var meteorsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.85);
+    var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
+    var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
+
+    console.log(meteorsToAdd, meteorsAdded)
+
+    for (meteorsAdded; meteorsAdded <= meteorsToAdd; meteorsAdded++){
+        var id = "Meteor-" + meteorsAdded;
+        placeArtifactRandomly(new Meteor(id, "asteroid.png"));
+    }
+    for (wormholesAdded; wormholesAdded <= wormholesToAdd; wormholesAdded++){
+        var id = "Wormhole-" + wormholesAdded;
+        placeArtifactRandomly(new Wormhole(id, "wormhole.jpg"));
+    }
+    for (spacestationsAdded; spacestationsAdded <= spacestationsToAdd; spacestationsAdded++){
+        var id = "Spacestation-" + spacesationsToAdd;
+        placeArtifactRandomly(new Spacestation(id, "spacestation.jpg"));
+    }
+}
+
+function placeArtifactRandomly(artifact){
+    var x = Math.floor(Math.random() * config.boardWidth);
+    var y = Math.floor(Math.random() * config.boardHeight);
+    while (worldMap.objectExistsAtPosition(x, y)){
+        var x = Math.floor(Math.random() * config.boardWidth);
+        var y = Math.floor(Math.random() * config.boardHeight);
+    }
+    worldMap.addObject(artifact, x, y);
+}

@@ -7,6 +7,7 @@ function initGame() {
     resources.initResources();
     worldCanvas.updateBoundaries(config.boardWidth, config.boardHeight);
     position.initPosition();
+    // randomizeMap();  Commented out until Meteor, Spacestation, and Wormhole object is created
     badMax.setPosition();
 
 
