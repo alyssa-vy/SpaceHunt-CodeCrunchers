@@ -7,6 +7,7 @@ function initGame() {
     resources.initResources();
     worldCanvas.updateBoundaries(config.boardWidth, config.boardHeight);
     position.initPosition();
+    badMax.setPosition();
 
 
     document.addEventListener('keydown', function(event) {
@@ -24,4 +25,6 @@ function initGame() {
         }
     });
     switchToPage("mainGame");
+    
+    badMax.welcome();
 }
