@@ -16,11 +16,12 @@ class Map{
     /* Add a celestial artifact to the map. Will throw an error if there is an object already at x and y
     id is assigned to this object. This will be the way to manipulate it within the Map object
     */
-    addObject(object, id, x, y){
+    addObject(object, x, y){
         if (this.objectExistsAtPosition(x, y))
             throw new ObjectAlreadyExistsAtPostion(`There is an object that already exists at (${x}, ${y})`);
-        var newArtifact = new CellObject(id, object);
+        var newArtifact = object;
         this.cells[y][x] = newArtifact;
+        addToGazetteer(object.id, x, y);
     }
 
     /*  Not sure how to do this with worldCanvis and this.cells
@@ -98,7 +99,7 @@ class Map{
 
     getObjectAtCoordinates(x, y){
         if (this.objectExistsAtPosition)
-            return this.cells[y][x].object;
+            return this.cells[y][x];
         return null;
     }
 
@@ -112,13 +113,6 @@ class Map{
                 }
             }
         }
-    }
-}
-
-class CellObject{
-    constructor(id, object){
-        this.id = id;
-        this.object = object;
     }
 }
 
