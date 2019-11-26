@@ -1,7 +1,6 @@
-class Planet{
-    constructor(name, imageSrc){
-        this.name = name;
-        this.asset = imageSrc;
+class Planet extends CelestialArtifact{
+    constructor(id, imageSrc){
+        super(id, imageSrc);
         this.hasStrongbox = false;
         this.hasRepairShop = false;
         this.hasSuppliesShop = false;
@@ -24,7 +23,7 @@ class Planet{
     }
 
     enterOrbit() {
-        if (confirm("Would you like to enter " + this.name + "'s orbit?'")) {
+        if (confirm("Would you like to enter " + this.id + "'s orbit?'")) {
             resources.subtractSuppliesTwo(); // subtract 2% supplies
             if (resources.checkSupplies()) { // check if supplies are greater than 0
                 disableShipMovement(); // stop ship from being able to move once in orbit
@@ -36,8 +35,8 @@ class Planet{
         }
     }
 
-    leaveOrbit(name) {
-        if (confirm("Would you like to leave " +  name + "'s orbit?'")) {
+    leaveOrbit(id) {
+        if (confirm("Would you like to leave " +  id + "'s orbit?'")) {
             resources.subtractSuppliesTwo();
             if (resources.checkSupplies()) {
                 enableShipMovement(); // renable ship's movement for leaving orbit
@@ -50,16 +49,16 @@ class Planet{
     }
 
     playerWantsToLand(){
-        return window.confirm(`You are within ${this.name}'s orbit. Would you like to land?`)
+        return window.confirm(`You are within ${this.id}'s orbit. Would you like to land?`)
     }
 
 // This is a new prompt shown when a user has entered a planet's orbit. The buttons contained are to either leave orbit or land
     getOrbitPrompt() {
         var box = new InputPanel();
-        box.message = "You are floating in " + this.name + "'s orbit.";
+        box.message = "You are floating in " + this.id + "'s orbit.";
 
         box.addCloseButton("Leave Orbit?", function() {
-            leaveOrbit(this.name);
+            leaveOrbit(this.id);
         }.bind(this));
 
         this.prompt = box;
@@ -88,8 +87,8 @@ class Planet{
             }.bind(this));
         }
 
-        box.addCloseButton(`Leave ${this.name}`, function(){
-            leaveOrbit(this.name);
+        box.addCloseButton(`Leave ${this.id}`, function(){
+            leaveOrbit(this.id);
             //enableShipMovement();
         }.bind(box));
 
@@ -110,7 +109,7 @@ class Planet{
     }
 
     buildWelcomeMessage(){
-        var message = `Welcome to ${this.name}. `;
+        var message = `Welcome to ${this.id}. `;
         var interactables = 0;
         if (this.hasSuppliesShop) interactables++;
         if (this.hasRepairShop) interactables++;
