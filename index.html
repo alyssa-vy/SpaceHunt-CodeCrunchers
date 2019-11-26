@@ -164,24 +164,24 @@
                     <option value="Xeon">Xeon</option>
                     <option value="Ryzen">Ryzen</option>
                 </select>
-                <input id="addPlanetButton" name="addPlanetButton" type="button" value="Add Planet" disabled onclick=addArtifact(planetXLocation.value,planetYLocation.value,planetType.value)><br>
+                <input id="addPlanetButton" name="addPlanetButton" type="button" value="Add Planet" disabled onclick=addPlanet(planetXLocation.value,planetYLocation.value,planetType.value)><br>
 
                 <br>
                 <input id="stationXLocation" name="stationXLocation" type=number value="0" oninput=disableAddIfInvalid(stationXLocation.value,stationYLocation.value,"addSpaceStationButton")> Space Station X<br>
                 <input id="stationYLocation" name="stationYLocation" type=number value="0" oninput=disableAddIfInvalid(stationXLocation.value,stationYLocation.value,"addSpaceStationButton")> Space Station Y<br>
-                <input id="addSpaceStationButton" name="addSPaceStationButton" type="button" value="Add Space Station" onclick=addArtifact(stationXLocation.value,stationYLocation.value,"SpaceStation")>
+                <input id="addSpaceStationButton" name="addSPaceStationButton" type="button" value="Add Space Station" onclick=addSpacestation(stationXLocation.value,stationYLocation.value)>
                 <br>
 
                 <br>
                 <input id="asteroidXLocation" name="asteroidXLocation" type=number value="0" oninput=disableAddIfInvalid(asteroidXLocation.value,asteroidYLocation.value,"addAsteroidButton")> Asteroid X<br>
                 <input id="asteroidYLocation" name="asteroidYLocation" type=number value="0" oninput=disableAddIfInvalid(asteroidXLocation.value,asteroidYLocation.value,"addAsteroidButton")> Asteroid Y<br>
-                <input id="addAsteroidButton" name="addAsteroidButton" type="button" value="Add Asteroid" onclick=addArtifact(asteroidXLocation.value,asteroidYLocation.value,"Asteroid")>
+                <input id="addAsteroidButton" name="addAsteroidButton" type="button" value="Add Asteroid" onclick=addMeteor(asteroidXLocation.value,asteroidYLocation.value)>
                 <br>
 
                 <br>
                 <input id="wormholeXLocation" name="wormholeXLocation" type=number value="0" oninput=disableAddIfInvalid(wormholeXLocation.value,wormholeYLocation.value,"addWormholeButton")> Wormhole X<br>
                 <input id="wormholeYLocation" name="wormholeYLocation" type=number value="0" oninput=disableAddIfInvalid(wormholeXLocation.value,wormholeYLocation.value,"addWormholeButton")> Wormhole Y<br>
-                <input id="addWormholeButton" name="addWormholeButton" type="button" value="Add Wormhole" onclick=addArtifact(wormholeXLocation.value,wormholeYLocation.value,"Wormhole")>
+                <input id="addWormholeButton" name="addWormholeButton" type="button" value="Add Wormhole" onclick=addWormhole(wormholeXLocation.value,wormholeYLocation.value)>
                 <br>
 
                 <br>
