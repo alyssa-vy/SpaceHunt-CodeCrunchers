@@ -246,7 +246,7 @@ function isInBounds(x, y) {
 
 function randomizeMap(){
     // Items to add is BoardArea * percentOfTheBoard
-    var meteorsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.85);
+    var meteorsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
 
