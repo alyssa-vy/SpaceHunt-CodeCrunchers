@@ -47,7 +47,7 @@ function addFreighter(x, y, k){
      */
     if(canAddArtifact(x, y)){
         var id = "Freighter-" + freightersAdded;
-        worldMap.addObject(new Freighter(id, "img/freighter.jph", k), x, y);
+        worldMap.addObject(new Freighter(id, "img/freighter.jpg", k), x, y);
         alert("Abandoned Freighter was added to " + x + ", " + y);
         ++freightersAdded;
     }
