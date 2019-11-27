@@ -29,31 +29,35 @@
 
 const worldCanvas = {
     initCanvas() {
+        this.viewPortWidth = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).width);
+        this.viewPortHeight = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).height);
         this.pxPerCell = 50;  // The width & height of one unit cell
         this.rows = config.boardHeight;
         this.cols = config.boardWidth;
-        this.pxFromLeftSide = 300;
-        this.pxFromTopSide = 300;
-        this.viewPortWidth = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).width);
-        this.viewPortHeight = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).height);
+        this.pxFromLeftSide = 300 + this.viewPortWidth;
+        this.pxFromTopSide = 300 + this.viewPortHeight;
         this.gameWorld = document.getElementById("gameWorld");
-        this.gameWorld.style.width = this.rows * this.pxPerCell + "px";
-        this.gameWorld.style.height = this.cols * this.pxPerCell + "px";
+        this.gameWorld.style.width = this.rows * this.pxPerCell + this.viewPortWidth + "px";
+        this.gameWorld.style.height = this.cols * this.pxPerCell + this.viewPortHeight + "px";
         this.gameWorld.style.left = this.pxFromLeftSide + "px";
         this.gameWorld.style.top = this.pxFromTopSide + "px";
     },
 
-    updateBoundaries(rows, cols){
-        this.rows = rows;
-        this.cols = cols;
-        this.gameWorld.style.width = this.rows * this.pxPerCell + "px";
-        this.gameWorld.style.height = this.cols * this.pxPerCell + "px";
-    },
+    // updateBoundaries(rows, cols){
+    //     this.rows = rows;
+    //     this.cols = cols;
+    //     this.gameWorld.style.width = this.rows * this.pxPerCell + "px";
+    //     this.gameWorld.style.height = this.cols * this.pxPerCell + "px";
+    // },
 
     addToCanvas(element, x, y){
         element.classList.add("cellObject");
         this.gameWorld.appendChild(element);
         this.reposition(element.id, x, y);
+    },
+
+    updateImage(id, imgSrc){
+        document.getElementById(id).src = imgSrc;
     },
 
     reposition(id, x, y){
@@ -62,16 +66,12 @@ const worldCanvas = {
         }
         else{
             var element = document.getElementById(id);
-            var newLeftValue = x * this.pxPerCell;
-            var newTopValue = y * this.pxPerCell;
-            element.style.left = newLeftValue + "px";
-            element.style.top = newTopValue + "px";
+            var px = this._translateObjectCoordsToPx(x, y);
+            element.style.left = px[0]+ "px";
+            element.style.top = px[1] + "px";
         }
     },
 
-    updateImage(id, imgSrc){
-        document.getElementById(id).src = imgSrc;
-    },
 
     repositionPlayer(x, y){
         var px = this._translatePlayerCoordsToPx(x,y);
@@ -149,9 +149,13 @@ const worldCanvas = {
     },
 
     _translatePlayerCoordsToPx(x, y){
-        // Player coordinates are off by 300 px. When player is at (0,0), the top and left px values are 300
-        x = 300 - (x * this.pxPerCell);
-        y = 300 - (y * this.pxPerCell);
+        x = -(x * this.pxPerCell);
+        y = -(y * this.pxPerCell);
         return [x, y];
+    },
+    _translateObjectCoordsToPx(x, y){
+        x = x * this.pxPerCell + 300;
+        y = y * this.pxPerCell + 300;
+        return [x, y]
     }
 }
