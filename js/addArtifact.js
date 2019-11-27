@@ -7,7 +7,6 @@ function addPlanet(x, y, name){
     if (canAddArtifact(x, y)){
         var object = planets[name];
         worldMap.addObject(object, x, y);
-        addToGazetteer(name, x, y);
         alert(name + " was added to " + x + ", " + y);
     }
 }

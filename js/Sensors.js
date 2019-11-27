@@ -5,8 +5,8 @@
 // 3. Verify that celestial objects within two CP of the current CP are added to the Celestial Map
 
 // This is a function that acts as a class for a celestial artifact. It contains the artifact name and its x/y coordinates
-function celestialArtifact(artifactname, x, y) {
-    this.artifactname = artifactname;
+function celestialArtifact(artifactClass, x, y) {
+    this.artifactClass = artifactClass;
     this.x = x;
     this.y = y;
 }
@@ -30,7 +30,7 @@ function addToList(artifact, x, y) {
 
     else { // If the list is not empty...
         for (var i = 0; i < knownArtifacts.length; ++i) { // check through the list to see if it has already been added
-            if (knownArtifacts[i].artifactname == artifact) { // if an artifact is already in the list then return without displaying to log or adding agian
+            if (knownArtifacts[i].artifactClass.id == artifact) { // if an artifact is already in the list then return without displaying to log or adding agian
                 if (knownArtifacts[i].x == x && knownArtifacts[i].y == y) // if artifact has same coordinates then it is already sensed.
                     return 0;
             }
@@ -60,10 +60,8 @@ function deploySensor() {
     resources.subtractSuppliesTwo(); // subtract two from supplies
     if (resources.checkSupplies()) { // if supplies are above 0 then continue using the sensors
         alert("Deploying Sensors");
-        currentx = document.UI.xValue.value;
-        currenty = document.UI.yValue.value;
-        currentx = parseInt(currentx); // it is originally a string so convert to an integer number
-        currenty = parseInt(currenty);
+        currentx = parseInt(document.UI.xValue.value);
+        currenty = parseInt(document.UI.yValue.value);
 
         // First check the coordinate the user is on currently to see if there is a celestial artifact there
         /*

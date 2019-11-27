@@ -1,30 +1,30 @@
-// This function serves to relate an object (obj) with the document.createElement item (itm)
-// Feel free to add another if statement for other objects so this isn't tied to just Celestial Artifacts
+// This function serves to relate an obj.idect (obj.id) with the document.createElement item (itm)
+// Feel free to add another if statement for other obj.idects so this isn't tied to just Celestial Artifacts
 
 function addImage(item, obj) {
-    if (obj === "Pentium-1")
+    if (obj.id === "Pentium-1")
         item.src = "img/pentium_1.jpg";
-    else if (obj === "Pentium-2")
+    else if (z === "Pentium-2")
         item.src = "img/pentium_2.jpg";
-    else if (obj === "Pentium-3")
+    else if (obj.id === "Pentium-3")
         item.src = "img/pentium_3.jpg";
-    else if (obj === "Pentium-4")
+    else if (obj.id === "Pentium-4")
         item.src = "img/pentium_4.jpg";
-    else if (obj === "Pentium-5")
+    else if (obj.id === "Pentium-5")
         item.src = "img/pentium_5.jpg";
-    else if (obj === "Pentium-6")
+    else if (obj.id === "Pentium-6")
         item.src = "img/pentium_6.jpg";
-    else if (obj === "Pentium-7")
+    else if (obj.id === "Pentium-7")
         item.src = "img/pentium_7.jpg";
-    else if (obj === "Celeron")
+    else if (obj.id === "Celeron")
         item.src = "img/celeron.jpg";
-    else if (obj === "Xeon")
+    else if (obj.id === "Xeon")
         item.src = "img/xeon.jpg";
-    else if (obj === "SpaceStation")
+    else if (obj.id === "SpaceStation")
         item.src = "img/spacestation.jpg";
-    else if (obj === "Asteroid")
+    else if (obj.id === "Asteroid")
         item.src = "img/asteroid.png";
-    else if (obj === "Wormhole")
+    else if (obj.id === "Wormhole")
         item.src = "img/wormhole.jpg";
 
 
