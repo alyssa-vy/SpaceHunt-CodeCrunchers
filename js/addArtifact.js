@@ -40,7 +40,7 @@ function addWormhole(x, y){
 }
 
 function addFreighter(x, y, k){
-    /*  
+    /*
      *  Place an abandoned freighter (referred to internally as a "Freighter" object)
      *  at an (x, y) location on the map if able, and set the amount of supplies that
      *  the player scavanges from the freighter to the third argument, k
