@@ -5,7 +5,6 @@ function main() {
 function initGame() {
     worldMap.loadCanvas();
     resources.initResources();
-    worldCanvas.updateBoundaries(config.boardWidth, config.boardHeight);
     position.initPosition();
     //randomizeMap();
 
