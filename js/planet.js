@@ -53,6 +53,10 @@ class Planet extends CelestialArtifact{
     getOrbitPrompt() {
         var box = new InputPanel();
         box.message = "You are floating in " + this.id + "'s orbit.";
+        box.addButton("Land on Planet", function() {
+            var prompt = this.getPrompt();
+            prompt.open();
+        }.bind(this));
 
         box.addCloseButton("Leave Orbit?", function() {
             this.leaveOrbit();
@@ -85,7 +89,7 @@ class Planet extends CelestialArtifact{
         }
 
         box.addCloseButton(`Leave ${this.id}`, function(){
-            leaveOrbit(this.id);
+            leaveOrbit();
             //enableShipMovement();
         }.bind(box));
 
