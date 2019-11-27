@@ -10,6 +10,7 @@ const resources = {
     _initd:false,
 
 	_hasStrongbox: false,
+	_isDamaged:false,
 
     get supplies() {
         return this._supplies;
@@ -18,6 +19,14 @@ const resources = {
     get credits() {
         return this._credits;
     },
+
+	setDamaged(toSet) {
+		this._isDamaged = toSet;
+	},
+
+	isDamaged(){
+		return this._isDamaged;
+	},
 
 	setEnergy(newEnergy){
 		this._energy = eval(newEnergy);

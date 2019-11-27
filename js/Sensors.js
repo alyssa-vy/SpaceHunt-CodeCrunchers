@@ -5,8 +5,8 @@
 // 3. Verify that celestial objects within two CP of the current CP are added to the Celestial Map
 
 // This is a function that acts as a class for a celestial artifact. It contains the artifact name and its x/y coordinates
-function celestialArtifact(artifactname, x, y) {
-    this.artifactname = artifactname;
+function celestialArtifact(artifactClass, x, y) {
+    this.artifactClass = artifactClass;
     this.x = x;
     this.y = y;
 }
@@ -29,8 +29,8 @@ function addToList(artifact, x, y) {
     }
 
     else { // If the list is not empty...
-        for (i = 0; i < knownArtifacts.length; ++i) { // check through the list to see if it has already been added
-            if (knownArtifacts[i].artifactname == artifact) { // if an artifact is already in the list then return without displaying to log or adding agian
+        for (var i = 0; i < knownArtifacts.length; ++i) { // check through the list to see if it has already been added
+            if (knownArtifacts[i].artifactClass.id == artifact) { // if an artifact is already in the list then return without displaying to log or adding agian
                 if (knownArtifacts[i].x == x && knownArtifacts[i].y == y) // if artifact has same coordinates then it is already sensed.
                     return 0;
             }
@@ -53,24 +53,27 @@ function addToList(artifact, x, y) {
 
 // get the celestial artifact and its coordinates then output a text to the textarea of the log
 function addToLog(artifact, x, y) {
-    document.getElementById('log').value += artifact + " detected at celestial point (" + x + ", " + y + ")\n"
+    document.getElementById('log').value += artifact.id + " detected at celestial point (" + x + ", " + y + ")\n"
 }
 
 function deploySensor() {
     resources.subtractSuppliesTwo(); // subtract two from supplies
     if (resources.checkSupplies()) { // if supplies are above 0 then continue using the sensors
         alert("Deploying Sensors");
-        currentx = document.UI.xValue.value;
-        currenty = document.UI.yValue.value;
-        currentx = parseInt(currentx); // it is originally a string so convert to an integer number
-        currenty = parseInt(currenty);
+        currentx = parseInt(document.UI.xValue.value);
+        currenty = parseInt(document.UI.yValue.value);
 
         // First check the coordinate the user is on currently to see if there is a celestial artifact there
+        /*
         if (Map[currentx][currenty] != null) {
             artifact = Map[currentx][currenty];
             addToList(artifact, currentx, currenty);
         }
-
+        */
+        if(worldMap.objectExistsAtPosition(currentx, currenty)) {
+        //if (worldMap.getObjectAtCoordinates(currentx, currenty) != null) {
+            addToList(worldMap.getObjectAtCoordinates(currentx, currenty), currentx, currenty);
+        }
         // Create a loop that goes around twice to check within +2CP of the current CP
 
         for (var i = 1; i <= sensorCP; ++i) {
@@ -78,9 +81,8 @@ function deploySensor() {
             coordx += i;
             if (coordx < config.boardWidth) {
             // Check 2 above X
-                if (Map[coordx][currenty] != null) {
-                    artifact = Map[coordx][currenty];
-                    addToList(artifact, coordx, currenty);
+                if (worldMap.objectExistsAtPosition(coordx, currenty)){
+                    addToList(worldMap.getObjectAtCoordinates(coordx, currenty));
                 }
             }
 
@@ -88,10 +90,15 @@ function deploySensor() {
             coordy += i;
             if (coordy < config.boardHeight) {
                 // Check 2 right Y
+                if (worldMap.objectExistsAtPosition(currentx, coordy)) {
+                    addToList(worldMap.getObjectAtCoordinates(currentx, coordy), currentx, coordy);
+                }
+                /*
                 if (Map[currentx][coordy] != null) {
                     artifact = Map[currentx][coordy];
                     addToList(artifact, currentx, coordy);
                 }
+                */
             }
         }
 
@@ -101,18 +108,28 @@ function deploySensor() {
             coordx -= i;
             // Check 2 below X
             if (coordx >= 0) {
+                /*
                 if (Map[coordx][currenty] != null) {
                     artifact = Map[coordx][currenty];
                     addToList(artifact, coordx, currenty);
+                }
+                */
+                if (worldMap.objectExistsAtPosition(coordx, currenty)) {
+                    addToList(worldMap.getObjectAtCoordinates(coordx, currenty), coordx, currenty);
                 }
             }
             coordy = currenty;
             coordy -= i;
             // Check 2 right Y
             if (coordy >= 0) {
+                /*
                 if (Map[currentx][coordy] != null) {
                     artifact = Map[currentx][coordy];
                     addToList(artifact, currentx, coordy);
+                }
+                */
+                if (worldMap.objectExistsAtPosition(currentx, coordy)) {
+                    addToList(worldMap.getObjectAtCoordinates(currentx, coordy), currentx, coordy);
                 }
             }
         }
@@ -123,16 +140,26 @@ function deploySensor() {
             for (var z = 1; z <= sensorCP; ++z) {
                 coordy = currenty;
                 coordy += z;
+                /*
                 if (Map[coordx][coordy] != null) {
                     artifact = Map[coordx][coordy];
                     addToList(artifact, coordx, coordy);
                 }
+                */
+                if (worldMap.objectExistsAtPosition(coordx, coordy)) {
+                    addToList(worldMap.getObjectAtCoordinates(coordx, coordy), coordx, coordy);
+                }
                 coordy = currenty;
                 coordy -= z;
                 if (coordy >= 0) {
+                    /*
                     if (Map[coordx][coordy] != null) {
                         artifact = Map[coordx][coordy];
                         addToList(artifact, coordx, coordy);
+                    }
+                    */
+                    if (worldMap.objectExistsAtPosition(coordx, coordy)) {
+                        addToList(worldMap.getObjectAtCoordinates(coordx, coordy), coordx, coordy);
                     }
                 }
             }
@@ -145,16 +172,26 @@ function deploySensor() {
                 for (var z = 1; z <= sensorCP; ++z) {
                     coordy = currenty;
                     coordy += z;
+                    /*
                     if (Map[coordx][coordy] != null) {
                         artifact = Map[coordx][coordy];
                         addToList(artifact, coordx, coordy);
                     }
+                    */
+                    if (worldMap.objectExistsAtPosition(coordx, coordy)) {
+                        addToList(worldMap.getObjectAtCoordinates(coordx, coordy), coordx, coordy);
+                    }
                     coordy = currenty;
                     coordy -= z;
                     if (coordy >= 0) {
+                        /*
                         if (Map[coordx][coordy] != null) {
                             artifact = Map[coordx][coordy];
                             addToList(artifact, coordx, coordy);
+                        }
+                        */
+                        if (worldMap.objectExistsAtPosition(coordx, coordy)) {
+                            addToList(worldMap.getObjectAtCoordinates(coordx, coordy), coordx, coordy);
                         }
                     }
                 }

@@ -14,12 +14,16 @@ class Planet extends CelestialArtifact{
     // This is the main functionality of the planet class. It pops up a small interactable menu.
     // When a player lands on a planet, call this function.
     interact(){
-        var prompt = this.getOrbitPrompt();
-        prompt.open();
+        this.enterOrbit();
+        if (this.inOrbit) {
+            var prompt = this.getOrbitPrompt();
+            prompt.open();
+        }
+
         //if (!this.playerWantsToLand()) return;
-        //var prompt = this.getPrompt();
+        //prompt = this.getPrompt();
         //prompt.open();
-        disableShipMovement();
+        //disableShipMovement();
     }
 
     enterOrbit() {
@@ -31,20 +35,16 @@ class Planet extends CelestialArtifact{
             }
         }
         else {
-            return;
+            return; // replace this with code to keep ship from moving into space
         }
     }
 
-    leaveOrbit(id) {
-        if (confirm("Would you like to leave " +  id + "'s orbit?'")) {
-            resources.subtractSuppliesTwo();
-            if (resources.checkSupplies()) {
-                enableShipMovement(); // renable ship's movement for leaving orbit
-                this.inOrbit = false; // set boolean value inOrbit to false for leaving
-            }
-        }
-        else {
-            return;
+    leaveOrbit() {
+        alert("You have left " + this.id + "'s orbit!");
+        resources.subtractSuppliesTwo();
+        if (resources.checkSupplies()) {
+            enableShipMovement();
+            this.inOrbit = false;
         }
     }
 
@@ -56,9 +56,13 @@ class Planet extends CelestialArtifact{
     getOrbitPrompt() {
         var box = new InputPanel();
         box.message = "You are floating in " + this.id + "'s orbit.";
+        box.addButton("Land on Planet", function() {
+            var prompt = this.getPrompt();
+            prompt.open();
+        }.bind(this));
 
         box.addCloseButton("Leave Orbit?", function() {
-            leaveOrbit(this.id);
+            this.leaveOrbit();
         }.bind(this));
 
         this.prompt = box;
@@ -88,9 +92,12 @@ class Planet extends CelestialArtifact{
         }
 
         box.addCloseButton(`Leave ${this.id}`, function(){
-            leaveOrbit(this.id);
+            var prompt = this.getOrbitPrompt();
+            prompt.open();
+            //this.leaveOrbit(); // swap this out for the menu page again
+
             //enableShipMovement();
-        }.bind(box));
+        }.bind(this));
 
         this.prompt = box;
         return box;
