@@ -36,7 +36,7 @@ const badMax = {
             alert("You have been attacked by Bad Max, but you and your crew have fought him off!\n");
         }
 
-        else if(prob < 7) {
+        else if(prob < 7 && !config.godMode) {
             alert("You have been attacked by Bad Max and they have blown up your ship... The game is now over\n");
             gameOver();
         }
