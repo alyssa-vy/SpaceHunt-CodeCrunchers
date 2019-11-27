@@ -3,7 +3,6 @@
 
 const badMax = {
 
-    //X and Y CPs to represent where Bad Max is at on the map.
     _x: 0,
     _y: 0,
 
@@ -29,7 +28,7 @@ const badMax = {
     },
 
     //Called when the user is attacked by BadMax and their CPs are equal
-    attack() {
+    interact() {
         let prob = Math.floor(Math.random() * 10);
 
         if(prob < 5) {
@@ -55,7 +54,7 @@ const badMax = {
         //First check to see if the user has flown in the same CP as
         //Bad Max was already residing in.
         if(this._x === x && this._y === y) {
-            this.attack();
+            this.interact();
         }
 
         //Then get his X and Y coordinates closer to that of the users.
@@ -70,7 +69,7 @@ const badMax = {
 
         //If after the advancement their CPs match, attack.
         if(this._x === x && this._y === y) {
-            this.attack();
+            this.interact();
         }
     },
 
@@ -79,8 +78,8 @@ const badMax = {
     getXCloser(x) {
         if(this._x < x)
         {
-            if((this._x + 5) < x) {
-                this._x += 5;
+            if((this._x + 3) < x) {
+                this._x += 3;
             }
             else {
                 for(i = 0; this._x !== x && i < 3; ++i) {
@@ -91,8 +90,8 @@ const badMax = {
 
         else
         {
-            if((this._x - 5) > x) {
-                this._x -= 5;
+            if((this._x - 3) > x) {
+                this._x -= 3;
             }
             else {
                 for(i = 0; this._x !== x && i < 3; ++i) {
@@ -107,8 +106,8 @@ const badMax = {
     getYCloser(y) {
         if(this._y < y)
         {
-            if((this._y + 5) < y) {
-                this._y += 5;
+            if((this._y + 3) < y) {
+                this._y += 3;
             }
             else {
                 for(i = 0; this._y !== y && i < 3; ++i) {
@@ -119,8 +118,8 @@ const badMax = {
 
         else
         {
-            if((this._y - 5) > y) {
-                this._y -= 5;
+            if((this._y - 3) > y) {
+                this._y -= 3;
             }
             else {
                 for(i = 0; this._y !== y && i < 3; ++i) {
