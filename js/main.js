@@ -1,9 +1,9 @@
 function main() {
     initConfig();
-    worldCanvas.initCanvas();
 }
 
 function initGame() {
+    worldMap.loadCanvas();
     resources.initResources();
     worldCanvas.updateBoundaries(config.boardWidth, config.boardHeight);
     position.initPosition();
