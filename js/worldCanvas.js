@@ -43,13 +43,6 @@ const worldCanvas = {
         this.gameWorld.style.top = this.pxFromTopSide + "px";
     },
 
-    // updateBoundaries(rows, cols){
-    //     this.rows = rows;
-    //     this.cols = cols;
-    //     this.gameWorld.style.width = this.rows * this.pxPerCell + "px";
-    //     this.gameWorld.style.height = this.cols * this.pxPerCell + "px";
-    // },
-
     addToCanvas(element, x, y){
         element.classList.add("cellObject");
         this.gameWorld.appendChild(element);
@@ -69,9 +62,10 @@ const worldCanvas = {
             var px = this._translateObjectCoordsToPx(x, y);
             element.style.left = px[0]+ "px";
             element.style.top = px[1] + "px";
+            element.boardXPos = x;
+            element.boardYPos = y;
         }
     },
-
 
     repositionPlayer(x, y){
         var px = this._translatePlayerCoordsToPx(x,y);
@@ -90,9 +84,7 @@ const worldCanvas = {
         else{
             // Shift an element on the gameWorld from origin
             var element = document.getElementById(id);
-            var oldLeftValue = this._pxToInt(element.style.left);
-            var newLeftValue = oldLeftValue + this.pxPerCell * magnitude;
-            element.style.left = newLeftValue + "px";
+            this.reposition(id, element.boardXPos + magnitude, element.boardYPos)
         }
     },
 
@@ -119,9 +111,7 @@ const worldCanvas = {
         else{
             // Shift an element on the gameWorld from origin
             var element = document.getElementById(id);
-            var oldTopValue = this._pxToInt(element.style.top);
-            var newTopValue = oldTopValue + this.pxPerCell * magnitude;
-            element.style.top = newTopValue + "px";
+            this.reposition(id, element.boardXPos + magnitude, element.boardYPos)
         }
     },
 
@@ -141,6 +131,10 @@ const worldCanvas = {
         this.movePlayerSouth(magnitude * -1);
     },
 
+    objectExistsOnCanvas(id){
+        return document.getElementById(id) !== null;
+    },
+
     _pxToInt(pixelValue){
         if (pixelValue === undefined || pixelValue === "")
             return 0;
@@ -158,4 +152,12 @@ const worldCanvas = {
         y = y * this.pxPerCell + 300;
         return [x, y]
     }
+}
+
+function createElementFromCelestialArtifact(artifact){
+    var element = document.createElement("img");
+    element.id = artifact.id;
+    element.classList.add("cellObject");
+    element.src = artifact.imageSrc;
+    return element;
 }

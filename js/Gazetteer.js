@@ -21,33 +21,4 @@ function displayGazetteer() {
 // Add a celestial artifact to the gazetteer
 function addToGazetteer(artifact, x, y) {
     document.getElementById("gazette").value += artifact + " at (" + x + ", " + y + ")\n";
-    drawToCanvisIfIsAlwaysVisiblePlanet(artifact, x, y);
-}
-
-function drawToCanvisIfIsAlwaysVisiblePlanet(type, x, y){
-    var planetElement;
-    var imgSrc = "";
-    var id = "";
-    switch(type){
-        case "Ryzen":
-            planetElement = document.createElement("img");
-            imgSrc = "img/ryzen.jpeg";
-            id = "ryzen";
-            break;
-        case "Xeon":
-            planetElement = document.createElement("img");
-            imgSrc = "img/xeon.jpg";
-            id = "xeon";
-            break;
-        case "Celeron":
-            planetElement = document.createElement("img");
-            imgSrc = "img/celeron.jpg";
-            id = "celeron";
-            break;
-        default:
-            return;
-    }
-    planetElement.src = imgSrc;
-    planetElement.id = id;
-    worldCanvas.addToCanvas(planetElement, x, y);
 }

@@ -11,6 +11,7 @@ class Map{
                 this.cells[j][i] = null;
             }
         }
+        worldCanvas.initCanvas();
     }
 
     /* Add a celestial artifact to the map. Will throw an error if there is an object already at x and y
@@ -40,6 +41,34 @@ class Map{
             this.moveWest(id, magnitude);
         else if (angle === 270)
             this.moveSouth(id, magnitude);
+    }
+
+    loadCanvas(){
+        worldCanvas.initCanvas();
+        for (var i = 0; i < this.width; i++){
+            for (var j = 0; j < this.height; j++){
+                if (this.objectExistsAtPosition(i, j)){
+                    var obj = this.getObjectAtCoordinates(i, j);
+                    if (this._isAlwaysVisible(obj.id)){
+                        this.makeVisible(i, j);
+                    }
+                }
+            }
+        }
+    }
+
+    // Will make an object visible if it's not already visible. Does nothing if nothing exists at (x, y)
+    makeVisible(x, y){
+        if (!this.objectExistsAtPosition(x,y)) return;
+        var object = this.getObjectAtCoordinates(x, y);
+        if (!worldCanvas.objectExistsOnCanvas(object.id)){
+            var element = createElementFromCelestialArtifact(object);
+            worldCanvas.addToCanvas(element, x, y);
+        }
+    }
+
+    _isAlwaysVisible(id){
+        return true;
     }
 
     moveNorth(id, magnitude){
