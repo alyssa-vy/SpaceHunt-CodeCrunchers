@@ -53,7 +53,7 @@ function addToList(artifact, x, y) {
 
 // get the celestial artifact and its coordinates then output a text to the textarea of the log
 function addToLog(artifact, x, y) {
-    document.getElementById('log').value += artifact + " detected at celestial point (" + x + ", " + y + ")\n"
+    document.getElementById('log').value += artifact.id + " detected at celestial point (" + x + ", " + y + ")\n"
 }
 
 function deploySensor() {
@@ -66,11 +66,16 @@ function deploySensor() {
         currenty = parseInt(currenty);
 
         // First check the coordinate the user is on currently to see if there is a celestial artifact there
+        /*
         if (Map[currentx][currenty] != null) {
             artifact = Map[currentx][currenty];
             addToList(artifact, currentx, currenty);
         }
-
+        */
+        if(worldMap.objectExistsAtPosition(currentx, currenty)) {
+        //if (worldMap.getObjectAtCoordinates(currentx, currenty) != null) {
+            addToList(worldMap.getObjectAtCoordinates(currentx, currenty), currentx, currenty);
+        }
         // Create a loop that goes around twice to check within +2CP of the current CP
 
         for (var i = 1; i <= sensorCP; ++i) {
@@ -78,9 +83,8 @@ function deploySensor() {
             coordx += i;
             if (coordx < config.boardWidth) {
             // Check 2 above X
-                if (Map[coordx][currenty] != null) {
-                    artifact = Map[coordx][currenty];
-                    addToList(artifact, coordx, currenty);
+                if (worldMap.objectExistsAtPosition(coordx, currenty)){
+                    addToList(worldMap.getObjectAtCoordinates(coordx, currenty));
                 }
             }
 

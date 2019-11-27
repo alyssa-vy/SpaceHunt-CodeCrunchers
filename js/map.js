@@ -94,7 +94,12 @@ class Map{
     }
 
     objectExistsAtPosition(x, y){
-        return this.cells[y][x] !== null;
+        if (this.cells[y][x] != null)
+            return true;
+        else {
+            return false;
+        }
+        //return this.cells[y][x] !== null;
     }
 
     getObjectAtCoordinates(x, y){
