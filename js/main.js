@@ -26,4 +26,5 @@ function initGame() {
     switchToPage("mainGame");
 
     badMax.setPosition();
+    badMax.welcome();
 }
