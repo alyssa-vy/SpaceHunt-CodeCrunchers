@@ -90,6 +90,7 @@ function disableAddIfInvalid(x, y, submitButtonId) {
      */
     document.getElementById(submitButtonId).disabled = !isInBounds(x, y);
 }
+
 function notAlreadyAdded(type){
     /*
         If the artifact we are adding has not already
@@ -264,8 +265,6 @@ function randomizeMap(){
     var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
 
-    console.log(meteorsToAdd, meteorsAdded)
-
     for (meteorsAdded; meteorsAdded <= meteorsToAdd; meteorsAdded++){
         var id = "Meteor-" + meteorsAdded;
         placeArtifactRandomly(new Meteor(id, "asteroid.png"));
@@ -277,6 +276,12 @@ function randomizeMap(){
     for (spacestationsAdded; spacestationsAdded <= spacestationsToAdd; spacestationsAdded++){
         var id = "Spacestation-" + spacesationsToAdd;
         placeArtifactRandomly(new Spacestation(id, "spacestation.jpg"));
+    }
+
+    for (var planet in planets){
+        if (notAlreadyAdded(planet)){
+            placeArtifactRandomly(planets[planet]);
+        }
     }
 }
 
