@@ -4,7 +4,7 @@
 function addImage(item, obj) {
     if (obj.id === "Pentium-1")
         item.src = "img/pentium_1.jpg";
-    else if (z === "Pentium-2")
+    else if (obj.id === "Pentium-2")
         item.src = "img/pentium_2.jpg";
     else if (obj.id === "Pentium-3")
         item.src = "img/pentium_3.jpg";
