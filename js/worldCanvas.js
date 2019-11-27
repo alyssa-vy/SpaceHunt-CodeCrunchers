@@ -29,18 +29,17 @@
 
 const worldCanvas = {
     initCanvas() {
-        this.viewPortWidth = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).width);
-        this.viewPortHeight = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).height);
+        this.viewPortWidth = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).width) - 50;
+        this.viewPortHeight = this._pxToInt(window.getComputedStyle(document.getElementById("viewport")).height) - 50;
         this.pxPerCell = 50;  // The width & height of one unit cell
         this.rows = config.boardHeight;
         this.cols = config.boardWidth;
-        this.pxFromLeftSide = 300 + this.viewPortWidth;
-        this.pxFromTopSide = 300 + this.viewPortHeight;
+        this.pxFromLeftSide = 0;
+        this.pxFromTopSide = 0;
         this.gameWorld = document.getElementById("gameWorld");
         this.gameWorld.style.width = this.rows * this.pxPerCell + this.viewPortWidth + "px";
         this.gameWorld.style.height = this.cols * this.pxPerCell + this.viewPortHeight + "px";
-        this.gameWorld.style.left = this.pxFromLeftSide + "px";
-        this.gameWorld.style.top = this.pxFromTopSide + "px";
+        this.repositionPlayer(0, 0);
     },
 
     addToCanvas(element, x, y){
@@ -148,8 +147,8 @@ const worldCanvas = {
         return [x, y];
     },
     _translateObjectCoordsToPx(x, y){
-        x = x * this.pxPerCell + 300;
-        y = y * this.pxPerCell + 300;
+        x = x * this.pxPerCell + this.viewPortWidth / 2;
+        y = y * this.pxPerCell + this.viewPortHeight / 2;
         return [x, y]
     }
 }
