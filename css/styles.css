@@ -106,7 +106,7 @@ body {
     width: 500px;
     height: 100px;
     background-color: white;
-    z-index = 100;
+    z-index: 100;
 }
 
 .inputPanelMessage {

@@ -21,6 +21,12 @@ function loadOptions(elementId){
     let atLeastOne = false;
     element.options.length = 0;
 
+    var first = document.createElement('option');
+    first.value = "";
+    first.disabled = true;
+    first.innerHTML = ("Select Planet");
+    element.appendChild(first);
+
     //See what planets have been added
     for(let i = 0; i < 10; ++i){
         if(!PlanetsAdded[i]) {
@@ -49,12 +55,16 @@ function loadOptions(elementId){
             }
         }
     }
+    first.selected = true;
     if(!atLeastOne){
+        element.options.length = 0;
         var opt = document.createElement('option');
         opt.value = "";
+        opt.selected = true;
         opt.innerHTML = ("All Planets Added");
         element.appendChild(opt);
         element.disabled = true;
         document.getElementById("addPlanetButton").disabled = true;
     }
+    disablePlanetAddIfInvalidInput();
 }

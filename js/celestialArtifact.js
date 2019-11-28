@@ -1,6 +1,6 @@
 class CelestialArtifact{
     // All CelestialArtifacts must have an imageSrc and a unique ID
-    constructor(id, imageSrc){
+    constructor(id, imageSrc) {
         if (new.target === CelestialArtifact){
             throw new TypeError("Cannot construct abstract base class CelestialArtifact directly");
         }

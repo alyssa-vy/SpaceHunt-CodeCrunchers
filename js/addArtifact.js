@@ -47,8 +47,10 @@ function addFreighter(x, y, k){
      */
     if(canAddArtifact(x, y)){
         var id = "Freighter-" + freightersAdded;
-        worldMap.addObject(new Freighter(id, "img/freighter.jpg", k), x, y);
-        alert("Abandoned Freighter was added to " + x + ", " + y);
+        var freighter = new Freighter(id, "img/freighter.png", k);
+        worldMap.addObject(freighter, x, y);
+        addToGazetteer(freighter, x, y);
+        alert("Abandoned Freighter was added to " + x + ", " + y + " with " + k + " salvageable supplies");
         ++freightersAdded;
     }
 }
@@ -65,7 +67,57 @@ function canAddArtifact(x, y){
     return true;
 }
 
-function disablePlanetAdd() {
+function addExtraInput(type) {
+    /*
+     * Makes the extraInput input field visible if the artifact
+     * type being added needs it
+     */
+    switch(type){
+        case "Freighter":
+            document.getElementById("extraInput").style.display = 'inline';
+            document.getElementById("extraInputLabel").innerHTML = 'Supplies<br>';
+            document.getElementById("extraInputLabel").style.display = 'inline';
+            break;
+        case "Asteroid":
+        case "Wormhole":
+        case "SpaceStation":
+        default:
+            document.getElementById("extraInputLabel").innerHTML = "document.getElementById(\"extraInputLabel\").innerHTML unset";
+            document.getElementById("extraInputLabel").style.display = 'none';
+            document.getElementById("extraInput").style.display = 'none';
+            break;
+    }
+    /* Check if input is valid */
+    disableAddIfInvalid(
+        document.getElementById("addArtifactX").value,
+        document.getElementById("addArtifactY").value,
+        "addArtifactButton");
+}
+
+function addArtifact(type, x, y, extraInput){
+    /*
+     * Operates similarly to a funciton dispatch table in C.
+     * Allows for simplicity in the html file by determining
+     * the type of artifact being added here, and calling
+     * the appropriate method for each object type.
+     */
+    switch(type){
+        case "Freighter":
+            addFreighter(x, y, extraInput);
+            break;
+        case "SpaceStation":
+            addSpacestation(x, y);
+            break;
+        case "Asteroid":
+            addMeteor(x, y); //rename Meteor
+            break;
+        case "Wormhole":
+            addWormhole(x, y);
+            break;
+    }
+}
+
+function disablePlanetAddIfInvalidInput() {
     /*
         Examines the input inside the planetXLocation and
         planetYLocation input fields and disables their
@@ -89,7 +141,10 @@ function disableAddIfInvalid(x, y, submitButtonId) {
         which is passed by id is enabled, otherwise
         it is disabled.
      */
-    document.getElementById(submitButtonId).disabled = !isInBounds(x, y);
+    if(isInBounds(x, y) && document.getElementById("artifactType").value !== "")
+        document.getElementById(submitButtonId).disabled = false;
+    else
+        document.getElementById(submitButtonId).disabled = true;
 }
 
 function planetHasBeenAdded(type){

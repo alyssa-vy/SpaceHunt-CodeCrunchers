@@ -31,6 +31,7 @@
 
         <script src="js/badmax.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/freighter.js"></script>
 
     </head>
 
@@ -149,9 +150,9 @@
 
             <div class="page" id="artifactPlacement">
                 <h2> Configure Artifacts </h2>
-                <input id="planetXLocation" type="number" name="planetXLocation" value="0" oninput=disablePlanetAdd()> Planet X<br>
-                <input id="planetYLocation" type="number" name="planetYLocation" value="0" oninput=disablePlanetAdd()> Planet Y<br>
-                <select id="planetType" name="planetType" oninput=disablePlanetAdd()>
+                <input id="planetXLocation" type="number" name="planetXLocation" value="0" oninput=disablePlanetAddIfInvalidInput()> Planet X<br>
+                <input id="planetYLocation" type="number" name="planetYLocation" value="0" oninput=disablePlanetAddIfInvalidInput()> Planet Y<br>
+                <select id="planetType" name="planetType" oninput=disablePlanetAddIfInvalidInput()>
                     <option value="" disabled selected> Select Planet</option>
                     <option value="Pentium-1">Pentium-1</option>
                     <option value="Pentium-2">Pentium-2</option>
@@ -164,24 +165,24 @@
                     <option value="Xeon">Xeon</option>
                     <option value="Ryzen">Ryzen</option>
                 </select>
-                <input id="addPlanetButton" name="addPlanetButton" type="button" value="Add Planet" disabled onclick=addPlanet(planetXLocation.value,planetYLocation.value,planetType.value)><br>
+                <input id="addPlanetButton" name="addPlanetButton" type="button" value="Add Planet" disabled onclick=addPlanet(planetXLocation.value,planetYLocation.value,planetType.value),loadOptions("planetType")><br>
 
                 <br>
-                <input id="stationXLocation" name="stationXLocation" type=number value="0" oninput=disableAddIfInvalid(stationXLocation.value,stationYLocation.value,"addSpaceStationButton")> Space Station X<br>
-                <input id="stationYLocation" name="stationYLocation" type=number value="0" oninput=disableAddIfInvalid(stationXLocation.value,stationYLocation.value,"addSpaceStationButton")> Space Station Y<br>
-                <input id="addSpaceStationButton" name="addSPaceStationButton" type="button" value="Add Space Station" onclick=addSpacestation(stationXLocation.value,stationYLocation.value)>
+                <input id="addArtifactX" name="addArtifactX" type="number" value="0" min="0" oninput="disableAddIfInvalid(addArtifactX.value, addArtifactY.value,'addArtifactButton')"> Artifact X<br>
+                <input id="addArtifactY" name="addArtifactY" type="number" value="0" min="0" oninput="disableAddIfInvalid(addArtifactX.value, addArtifactY.value,'addArtifactButton')"> Artifact Y<br>
+                <input id="extraInput" name="extraInput" type="number" value="0" min="0" hidden>
+                <label id="extraInputLabel" name="extraInputLabel" hidden> Supplies </label>
+                <select id="artifactType" name="artifactType" oninput="addExtraInput(this.value)">
+                    <option value="" disabled selected> Select Artifact Type</option>
+                    <option value="Asteroid">Asteroid</option>
+                    <option value="SpaceStation">Space Station</option>
+                    <option value="Wormhole">Wormhole</option>
+                    <option value="Freighter">Abandoned Freighter</option>
+                </select>
                 <br>
-
                 <br>
-                <input id="asteroidXLocation" name="asteroidXLocation" type=number value="0" oninput=disableAddIfInvalid(asteroidXLocation.value,asteroidYLocation.value,"addAsteroidButton")> Asteroid X<br>
-                <input id="asteroidYLocation" name="asteroidYLocation" type=number value="0" oninput=disableAddIfInvalid(asteroidXLocation.value,asteroidYLocation.value,"addAsteroidButton")> Asteroid Y<br>
-                <input id="addAsteroidButton" name="addAsteroidButton" type="button" value="Add Asteroid" onclick=addMeteor(asteroidXLocation.value,asteroidYLocation.value)>
-                <br>
-
-                <br>
-                <input id="wormholeXLocation" name="wormholeXLocation" type=number value="0" oninput=disableAddIfInvalid(wormholeXLocation.value,wormholeYLocation.value,"addWormholeButton")> Wormhole X<br>
-                <input id="wormholeYLocation" name="wormholeYLocation" type=number value="0" oninput=disableAddIfInvalid(wormholeXLocation.value,wormholeYLocation.value,"addWormholeButton")> Wormhole Y<br>
-                <input id="addWormholeButton" name="addWormholeButton" type="button" value="Add Wormhole" onclick=addWormhole(wormholeXLocation.value,wormholeYLocation.value)>
+                <!-- "extraInput" is needed for an abandoned freighter" -->
+                <input id="addArtifactButton" name="addArtifactButton" type="button" value="Add Artifact" onclick="addArtifact(artifactType.value, addArtifactX.value, addArtifactY.value, extraInput.value)" disabled>
                 <br>
 
                 <br>
