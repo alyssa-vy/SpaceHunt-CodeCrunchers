@@ -7,6 +7,7 @@ function addPlanet(x, y, name){
     if (canAddArtifact(x, y)){
         var object = planets[name];
         worldMap.addObject(object, x, y);
+        markPlanetAdded(name);
         alert(name + " was added to " + x + ", " + y);
     }
 }
@@ -91,7 +92,7 @@ function disableAddIfInvalid(x, y, submitButtonId) {
     document.getElementById(submitButtonId).disabled = !isInBounds(x, y);
 }
 
-function notAlreadyAdded(type){
+function planetHasBeenAdded(type){
     /*
         If the artifact we are adding has not already
         been added then mark it added and return true.
@@ -99,146 +100,74 @@ function notAlreadyAdded(type){
      */
     switch(type){
         case "Pentium-1":
-            if(!PlanetsAdded[0]){
-                PlanetsAdded[0] = true;
-                return true;
-            }
-            return false;
+            return PlanetsAdded[0];
+            break;
         case "Pentium-2":
-            if(!PlanetsAdded[1]){
-                PlanetsAdded[1] = true;
-                return true;
-            }
-            return false;
+            return PlanetsAdded[1];
+            break;
         case "Pentium-3":
-            if(!PlanetsAdded[2]){
-                PlanetsAdded[2] = true;
-                return true;
-            }
-            return false;
+            return PlanetsAdded[2];
+            break;
         case "Pentium-4":
-            if(!PlanetsAdded[3]){
-                PlanetsAdded[3] = true;
-                return true;
-            }
-            return false;
+            return PlanetsAdded[3];
+            break;
         case "Pentium-5":
-            if(!PlanetsAdded[4]){
-                PlanetsAdded[4] = true;
-                return true;
-            }
-            return false;
+            return PlanetsAdded[4];
+            break;
         case "Pentium-6":
-            if(!PlanetsAdded[5]){
-                PlanetsAdded[5] = true;
-                return true;
-            }
-            return false;
+            return PlanetsAdded[5];
+            break;
         case "Pentium-7":
-            if(!PlanetsAdded[6]){
-                PlanetsAdded[6] = true;
-                return true;
-            }
-            return false;
+            return PlanetsAdded[6];
+            break;
         case "Celeron":
-            if(!PlanetsAdded[7]){
-                PlanetsAdded[7] = true;
-                return true;
-            }
-            return false;
+            return PlanetsAdded[7];
+            break;
         case "Xeon":
-            if(!PlanetsAdded[8]){
-                PlanetsAdded[8] = true;
-                return true;
-            }
-            return false;
+            return PlanetsAdded[8];
+            break;
         case "Ryzen":
-            if(!PlanetsAdded[9]){
-                PlanetsAdded[9] = true;
-                return true;
-            }
-            return false;
-        case "Asteroid":
-            return true;
-        case "SpaceStation":
-            return true;
-        case "Wormhole":
-            return true;
-        case "BadMax":
-            return true;
+            return PlanetsAdded[9];
+            break;
         default:
-            return false;
+            return null;
     }
 }
-function unmarkAdded(type){
-    /*
-        If the artifact we are adding has already
-        been added then unmark it added and return true.
-        Otherwise no-op and return false.
-     */
+
+function markPlanetAdded(type){
     switch(type){
         case "Pentium-1":
-            if(PlanetsAdded[0]){
-                PlanetsAdded[0] = false;
-                return true;
-            }
-            return false;
+            PlanetsAdded[0] = true;
+            break;
         case "Pentium-2":
-            if(PlanetsAdded[1]){
-                PlanetsAdded[1] = false;
-                return true;
-            }
-            return false;
+            PlanetsAdded[1] = true;
+            break;
         case "Pentium-3":
-            if(PlanetsAdded[2]){
-                PlanetsAdded[2] = false;
-                return true;
-            }
-            return false;
+            PlanetsAdded[2] = true;
+            break;
         case "Pentium-4":
-            if(PlanetsAdded[3]){
-                PlanetsAdded[3] = false;
-                return true;
-            }
-            return false;
+            PlanetsAdded[3] = true;
+            break;
         case "Pentium-5":
-            if(PlanetsAdded[4]){
-                PlanetsAdded[4] = false;
-                return true;
-            }
-            return false;
+            PlanetsAdded[4] = true;
+            break;
         case "Pentium-6":
-            if(PlanetsAdded[5]){
-                PlanetsAdded[5] = false;
-                return true;
-            }
-            return false;
+            PlanetsAdded[5] = true;
+            break;
         case "Pentium-7":
-            if(PlanetsAdded[6]){
-                PlanetsAdded[6] = false;
-                return true;
-            }
-            return false;
+            PlanetsAdded[6] = true;
+            break;
         case "Celeron":
-            if(PlanetsAdded[7]){
-                PlanetsAdded[7] = false;
-                return true;
-            }
-            return false;
+            PlanetsAdded[7] = true;
+            break;
         case "Xeon":
-            if(PlanetsAdded[8]){
-                PlanetsAdded[8] = false;
-                return true;
-            }
-            return false;
+            PlanetsAdded[8] = true;
+            break;
         case "Ryzen":
-            if(PlanetsAdded[9]){
-                PlanetsAdded[9] = false;
-                return true;
-            }
-            return false;
+            PlanetsAdded[9] = true;
+            break;
         default:
-            return false;
+            return;
     }
 }
 
@@ -279,7 +208,7 @@ function randomizeMap(){
     }
 
     for (var planet in planets){
-        if (notAlreadyAdded(planet)){
+        if (!planetHasBeenAdded(planet)){
             placeArtifactRandomly(planets[planet]);
         }
     }
@@ -292,5 +221,6 @@ function placeArtifactRandomly(artifact){
         var x = Math.floor(Math.random() * config.boardWidth);
         var y = Math.floor(Math.random() * config.boardHeight);
     }
+    console.log(x, y);
     worldMap.addObject(artifact, x, y);
 }
