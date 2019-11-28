@@ -4,6 +4,7 @@ class Map{
         this.width = width;
         this.height = height;
         this.cells = new Array(this.height);
+        this.canvasInitialized = false;
         for (let i = 0; i < this.height; i++)
             this.cells[i] = new Array(this.width);
         for (let j = 0; j < this.height; j++){
@@ -23,6 +24,10 @@ class Map{
         var newArtifact = object;
         this.cells[y][x] = newArtifact;
         addToGazetteer(object.id, x, y);
+        if (this.canvasInitialized){
+            var element = createElementFromCelestialArtifact(object);
+            worldCanvas.addToCanvas(element, x, y);
+        }
     }
 
     /*  Not sure how to do this with worldCanvis and this.cells
@@ -55,6 +60,7 @@ class Map{
                 }
             }
         }
+        this.canvasInitialized = true;
     }
 
     // Will make an object visible if it's not already visible. Does nothing if nothing exists at (x, y)
