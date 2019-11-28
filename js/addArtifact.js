@@ -49,7 +49,6 @@ function addFreighter(x, y, k){
         var id = "Freighter-" + freightersAdded;
         var freighter = new Freighter(id, "img/freighter.png", k);
         worldMap.addObject(freighter, x, y);
-        addToGazetteer(freighter, x, y);
         alert("Abandoned Freighter was added to " + x + ", " + y + " with " + k + " salvageable supplies");
         ++freightersAdded;
     }
