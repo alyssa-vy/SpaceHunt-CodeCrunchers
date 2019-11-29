@@ -4,6 +4,9 @@
     <head>
         <title>SpaceHunt</title>
         <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/ui.css">
+        <!-- Google Font Link -->
+        <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
         <meta charset="utf-8">
 
 
@@ -36,20 +39,23 @@
     </head>
 
     <body onload="main()">
-        <div id="main">
+        <header>
             <h1>SpaceHunt</h1>
+        </header>
+        <div id="main">
+            <!-- <h1>SpaceHunt</h1> -->
             <div class="page visible" id="mainMenu">
                 <form name="menuButtons">
-                    <input type=button value="Start" onclick=initGame()>
-                    <input type=button value="Configure" onclick=switchToPage("configuration")>
-                    <input type=button value="Load/Save" onclick=loadSavedSessionsToSelector()>
+                    <input type=button value="Start" onclick=initGame() class="btn-blue">
+                    <input type=button value="Configure" onclick=switchToPage("configuration") class="btn-grey">
+                    <input type=button value="Load/Save" onclick=loadSavedSessionsToSelector() class="btn-black">
                 </form>
             </div>
             <div class="page clearfix" id="mainGame">
                 <div class="col-1">
                     <form id="UI" name=UI>
                         <h2>STATUS</h2>
-                        <p>Coordinates:
+                        <p>Coordinates: <br>
                         X <input type=text name=xValue size=4 onChange="position.updateCPs()">
                         Y <input type=text name=yValue size=4 onChange="position.updateCPs()">
                         </p>
@@ -62,17 +68,28 @@
                         <hr>
                         MAKE A MOVE
                         <p>Distance <input type=number value=1 min=1 name=distance size=4>
-                        <p>
-                        <!--
-                        <input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)">
-                        <input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)">
-                        <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
-                        <input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
-                        -->
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)"><br>
-                        <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
-                        &nbsp;&nbsp;<input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)"><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)">
+
+                        <!-- DPAD -->
+                        <div id="dpad">
+                            <button type="button" id="dpad-up" onclick="position.moveSpacecraft(90,distance.value)">
+                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-square-up" class="svg-inline--fa fa-caret-square-up fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 432V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48zm355.515-140.485l-123.03-123.03c-4.686-4.686-12.284-4.686-16.971 0L92.485 291.515c-7.56 7.56-2.206 20.485 8.485 20.485h246.059c10.691 0 16.045-12.926 8.486-20.485z"></path></svg>
+                            </button>
+                            <button type="button" id="dpad-left" onclick="position.moveSpacecraft(180,distance.value)">
+                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-square-left" class="svg-inline--fa fa-caret-square-left fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M400 480H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48v352c0 26.51-21.49 48-48 48zM259.515 124.485l-123.03 123.03c-4.686 4.686-4.686 12.284 0 16.971l123.029 123.029c7.56 7.56 20.485 2.206 20.485-8.485V132.971c.001-10.691-12.925-16.045-20.484-8.486z"></path></svg>
+                            </button>
+                            <button type="button" id="dpad-right" onclick="position.moveSpacecraft(0,distance.value)">
+                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-square-right" class="svg-inline--fa fa-caret-square-right fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M48 32h352c26.51 0 48 21.49 48 48v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48zm140.485 355.515l123.029-123.029c4.686-4.686 4.686-12.284 0-16.971l-123.029-123.03c-7.56-7.56-20.485-2.206-20.485 8.485v246.059c0 10.691 12.926 16.045 20.485 8.486z"></path></svg>
+                            </button>
+                            <button type="button" id="dpad-down" onclick="position.moveSpacecraft(270,distance.value)">
+                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-square-down" class="svg-inline--fa fa-caret-square-down fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M448 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48zM92.5 220.5l123 123c4.7 4.7 12.3 4.7 17 0l123-123c7.6-7.6 2.2-20.5-8.5-20.5H101c-10.7 0-16.1 12.9-8.5 20.5z"></path></svg>
+                            </button>
+
+                            <!-- <input type=button value="90" onclick="position.moveSpacecraft(90,distance.value)"> -->
+                            <!-- <input type=button value="180" onclick="position.moveSpacecraft(180,distance.value)">
+                            <input type=button value="0" onclick="position.moveSpacecraft(0,distance.value)">
+                            <input type=button value="270" onclick="position.moveSpacecraft(270,distance.value)"> -->
+                        </div>
+
                         <br>
                         <br>
                         <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
@@ -90,14 +107,15 @@
                     <!-- Log area where the user can see points on the map they have traveled to and/or used sensors on -->
                     <div id="logarea" align="center">
                         <h2> LOG </h2>
-                        <textarea readonly id="log" cols="40" rows="40"></textarea>
+                        <textarea readonly id="log"></textarea>
+                    </div>
+                    <div id="gazarea"  align="right">
+                        <h2 align="center"> Celestial Gazetteer </h2>
+                        <textarea readonly id="gazette"></textarea>
                     </div>
                 </div>
                 <!-- Gazetteer area where a checkbox in config determines whether this textarea shows up or not -->
-                <div id="gazarea"  align="right">
-                    <h2 align="center"> Celestial Gazetteer </h2>
-                    <textarea readonly id="gazette" cols="40" rows="10"></textarea>
-                </div>
+
             </div>
             <div class="page" id="configuration" oninput=validate(); onclick=validate()>
                 <h2> Properties and behavior </h2>
@@ -142,9 +160,9 @@
                     <br>
                     <input type=checkbox name="administrator" id="administrator" value="Administrator" oninput=switchIfChecked("mapCreatorButton","configurationDoneButton")>Game Administrator
                     <br>
-                    <input type=button value="Default" onclick=setConfigurationDefault()>
-                    <input class="configurationSubmitButton" id="mapCreatorButton" type=button value="Place Artifacts" onclick=initializeMap(); hidden>
-                    <input class="configurationSubmitButton" id="configurationDoneButton" type=button value="Done" onclick=switchToPage("mainMenu")>
+                    <input type=button value="Default" onclick=setConfigurationDefault() class="btn-grey">
+                    <input class="configurationSubmitButton btn-blue" id="mapCreatorButton" type=button value="Place Artifacts" onclick=initializeMap(); hidden>
+                    <input class="configurationSubmitButton btn-black" id="configurationDoneButton" type=button value="Done" onclick=switchToPage("mainMenu")>
                 </form>
             </div>
 
