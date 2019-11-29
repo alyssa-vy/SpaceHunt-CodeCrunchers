@@ -20,20 +20,13 @@ function addToList(artifact, x, y) {
         toAdd = new celestialArtifact(artifact, x, y);
         knownArtifacts.push(toAdd);
         addToLog(artifact, x, y); // display to the log
-        /*
-        celestial = document.createElement("img");
-        addImage(celestial, artifact);
-        celestial.classList.add("artifact");
-        celestial.id = "artifact-" + knownArtifacts.length;
-        worldCanvas.addToCanvas(celestial, x, y);
-        */
         worldMap.makeVisible(x, y);
         return 1;
     }
 
     else { // If the list is not empty...
         for (var i = 0; i < knownArtifacts.length; ++i) { // check through the list to see if it has already been added
-            if (knownArtifacts[i].artifactClass.id == artifact) { // if an artifact is already in the list then return without displaying to log or adding agian
+            if (knownArtifacts[i].artifactClass == artifact) { // if an artifact is already in the list then return without displaying to log or adding agian
                 if (knownArtifacts[i].x == x && knownArtifacts[i].y == y) // if artifact has same coordinates then it is already sensed.
                     return 0;
             }
@@ -43,11 +36,7 @@ function addToList(artifact, x, y) {
         toAdd = new celestialArtifact(artifact, x, y);
         knownArtifacts.push(toAdd);
         addToLog(artifact, x, y);
-        celestial = document.createElement("img");
-        addImage(celestial, artifact);
-        celestial.classList.add("artifact");
-        celestial.id = "artifact-" + knownArtifacts.length;
-        worldCanvas.addToCanvas(celestial, x, y);
+        worldMap.makeVisible(x, y);
         return 1;
 
     }

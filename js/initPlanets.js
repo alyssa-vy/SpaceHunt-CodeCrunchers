@@ -6,7 +6,7 @@ var planets = {
     "Pentium-5": new Planet("Pentium-5", "img/pentium_5.jpg"),
     "Pentium-6": new Planet("Pentium-6", "img/pentium_6.jpg"),
     "Pentium-7": new Planet("Pentium-7", "img/pentium_7.jpg"),
-    "Ryzen": new Planet("Ryzen", "img/ryzen.jpg"),
+    "Ryzen": new Planet("Ryzen", "img/ryzen.jpeg"),
     "Celeron": new Planet("Celeron", "img/celeron.jpg"),
     "Xeon": new Planet("Xeon", "img/xeon.jpg"),
 }
