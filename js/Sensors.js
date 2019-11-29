@@ -82,14 +82,14 @@ function deploySensor() {
             if (coordx < config.boardWidth) {
             // Check 2 above X
                 if (worldMap.objectExistsAtPosition(coordx, currenty)){
-                    addToList(worldMap.getObjectAtCoordinates(coordx, currenty));
+                    addToList(worldMap.getObjectAtCoordinates(coordx, currenty), coordx, currenty);
                 }
             }
 
             coordy = currenty;
             coordy += i;
             if (coordy < config.boardHeight) {
-                // Check 2 right Y
+                // Check 2 above Y
                 if (worldMap.objectExistsAtPosition(currentx, coordy)) {
                     addToList(worldMap.getObjectAtCoordinates(currentx, coordy), currentx, coordy);
                 }
@@ -120,7 +120,7 @@ function deploySensor() {
             }
             coordy = currenty;
             coordy -= i;
-            // Check 2 right Y
+            // Check 2 below Y
             if (coordy >= 0) {
                 /*
                 if (Map[currentx][coordy] != null) {
