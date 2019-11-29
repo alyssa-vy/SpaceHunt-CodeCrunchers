@@ -20,11 +20,14 @@ function addToList(artifact, x, y) {
         toAdd = new celestialArtifact(artifact, x, y);
         knownArtifacts.push(toAdd);
         addToLog(artifact, x, y); // display to the log
+        /*
         celestial = document.createElement("img");
         addImage(celestial, artifact);
         celestial.classList.add("artifact");
         celestial.id = "artifact-" + knownArtifacts.length;
         worldCanvas.addToCanvas(celestial, x, y);
+        */
+        worldMap.makeVisible(x, y);
         return 1;
     }
 
@@ -64,12 +67,6 @@ function deploySensor() {
         currenty = parseInt(document.UI.yValue.value);
 
         // First check the coordinate the user is on currently to see if there is a celestial artifact there
-        /*
-        if (Map[currentx][currenty] != null) {
-            artifact = Map[currentx][currenty];
-            addToList(artifact, currentx, currenty);
-        }
-        */
         if(worldMap.objectExistsAtPosition(currentx, currenty)) {
         //if (worldMap.getObjectAtCoordinates(currentx, currenty) != null) {
             addToList(worldMap.getObjectAtCoordinates(currentx, currenty), currentx, currenty);
@@ -93,12 +90,6 @@ function deploySensor() {
                 if (worldMap.objectExistsAtPosition(currentx, coordy)) {
                     addToList(worldMap.getObjectAtCoordinates(currentx, coordy), currentx, coordy);
                 }
-                /*
-                if (Map[currentx][coordy] != null) {
-                    artifact = Map[currentx][coordy];
-                    addToList(artifact, currentx, coordy);
-                }
-                */
             }
         }
 
@@ -108,12 +99,6 @@ function deploySensor() {
             coordx -= i;
             // Check 2 below X
             if (coordx >= 0) {
-                /*
-                if (Map[coordx][currenty] != null) {
-                    artifact = Map[coordx][currenty];
-                    addToList(artifact, coordx, currenty);
-                }
-                */
                 if (worldMap.objectExistsAtPosition(coordx, currenty)) {
                     addToList(worldMap.getObjectAtCoordinates(coordx, currenty), coordx, currenty);
                 }
@@ -122,12 +107,6 @@ function deploySensor() {
             coordy -= i;
             // Check 2 below Y
             if (coordy >= 0) {
-                /*
-                if (Map[currentx][coordy] != null) {
-                    artifact = Map[currentx][coordy];
-                    addToList(artifact, currentx, coordy);
-                }
-                */
                 if (worldMap.objectExistsAtPosition(currentx, coordy)) {
                     addToList(worldMap.getObjectAtCoordinates(currentx, coordy), currentx, coordy);
                 }
@@ -140,24 +119,12 @@ function deploySensor() {
             for (var z = 1; z <= sensorCP; ++z) {
                 coordy = currenty;
                 coordy += z;
-                /*
-                if (Map[coordx][coordy] != null) {
-                    artifact = Map[coordx][coordy];
-                    addToList(artifact, coordx, coordy);
-                }
-                */
                 if (worldMap.objectExistsAtPosition(coordx, coordy)) {
                     addToList(worldMap.getObjectAtCoordinates(coordx, coordy), coordx, coordy);
                 }
                 coordy = currenty;
                 coordy -= z;
                 if (coordy >= 0) {
-                    /*
-                    if (Map[coordx][coordy] != null) {
-                        artifact = Map[coordx][coordy];
-                        addToList(artifact, coordx, coordy);
-                    }
-                    */
                     if (worldMap.objectExistsAtPosition(coordx, coordy)) {
                         addToList(worldMap.getObjectAtCoordinates(coordx, coordy), coordx, coordy);
                     }
@@ -172,24 +139,12 @@ function deploySensor() {
                 for (var z = 1; z <= sensorCP; ++z) {
                     coordy = currenty;
                     coordy += z;
-                    /*
-                    if (Map[coordx][coordy] != null) {
-                        artifact = Map[coordx][coordy];
-                        addToList(artifact, coordx, coordy);
-                    }
-                    */
                     if (worldMap.objectExistsAtPosition(coordx, coordy)) {
                         addToList(worldMap.getObjectAtCoordinates(coordx, coordy), coordx, coordy);
                     }
                     coordy = currenty;
                     coordy -= z;
                     if (coordy >= 0) {
-                        /*
-                        if (Map[coordx][coordy] != null) {
-                            artifact = Map[coordx][coordy];
-                            addToList(artifact, coordx, coordy);
-                        }
-                        */
                         if (worldMap.objectExistsAtPosition(coordx, coordy)) {
                             addToList(worldMap.getObjectAtCoordinates(coordx, coordy), coordx, coordy);
                         }
