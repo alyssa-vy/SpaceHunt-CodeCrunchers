@@ -9,6 +9,8 @@ class Planet extends CelestialArtifact{
         this.suppliesPerStrongboxSearch = 1;
         this.prompt = null;
         this.inOrbit = false; // automatically false;
+        this.usedSensors = false; // check if user has already used sensors
+        this.searched = false; // check if user has already searched for the strongbox
     }
 
     // This is the main functionality of the planet class. It pops up a small interactable menu.
@@ -48,12 +50,14 @@ class Planet extends CelestialArtifact{
             resources.subtractSuppliesTwo();
             if (this.hasStrongBox){
                 //resources.foundStrongBox();
-                alert("The sensor has caught a signal from the strongbox on this planet!")
+                alert("The sensor has caught a strong signal from the strongbox on this planet!")
             }
             else{
-                alert("The sensor did not pick up any signal.")
+                alert("The sensor did not pick up any signal from the strongbox on this planet. Try another planet!")
             }
+            this.usedSensors = true; // user has already used sensors for strongbox
             this.prompt.removeButton(this.strongBoxButtonMessage);
+
     }
 
     playerWantsToLand(){
@@ -64,10 +68,11 @@ class Planet extends CelestialArtifact{
     getOrbitPrompt() {
         var box = new InputPanel();
         box.message = "You are floating in " + this.id + "'s orbit.";
-
-        box.addButton("Use Sensors to Search For Strongbox", function(){
-            this.strongboxSensor();
-        }.bind(this));
+        if (!this.usedSensors) {
+            box.addButton("Use Sensors to Search For Strongbox", function(){
+                this.strongboxSensor();
+            }.bind(this));
+        }
 
         box.addButton("Land on Planet", function() {
             box.close();
@@ -86,10 +91,11 @@ class Planet extends CelestialArtifact{
     getPrompt(){
         var box = new InputPanel();
         box.message = this.buildWelcomeMessage();
-        box.addButton(this.strongBoxButtonMessage, function(){
-            this.searchForStrongbox();
-        }.bind(this));
-
+        if (!this.searched) {
+            box.addButton(this.strongBoxButtonMessage, function(){
+                this.searchForStrongbox();
+            }.bind(this));
+        }
         if (this.hasRepairShop){
             box.addButton(this.repairShopButtonMessage, function(){
                 resources.addHealth(5);
@@ -150,5 +156,6 @@ class Planet extends CelestialArtifact{
             alert("Looks like the strongbox is nowhere to be found.")
         }
         this.prompt.removeButton(this.strongBoxButtonMessage);
+        this.searched = true; // user has already searched
     }
 }
