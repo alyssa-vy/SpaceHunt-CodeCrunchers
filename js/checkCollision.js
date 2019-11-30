@@ -6,6 +6,7 @@ function checkCollision(){
     if(worldMap === null) return false;
     if (worldMap.objectExistsAtPosition(position.x, position.y)){
         var artifact = worldMap.getObjectAtCoordinates(position.x, position.y);
+        worldMap.makeVisible(position.x, position.y);
         artifact.interact();
         return true;
     }

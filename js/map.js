@@ -55,7 +55,7 @@ class Map{
                 if (this.objectExistsAtPosition(i, j)){
                     var obj = this.getObjectAtCoordinates(i, j);
                     if (this._isAlwaysVisible(obj.id)){
-                        this.makeVisible(i, j);
+                        //this.makeVisible(i, j);
                     }
                 }
             }
