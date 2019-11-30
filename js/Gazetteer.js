@@ -31,17 +31,17 @@ function drawToCanvisIfIsAlwaysVisiblePlanet(type, x, y){
     switch(type){
         case "Ryzen":
             planetElement = document.createElement("img");
-            imgSrc = "img/ryzen.jpeg";
+            imgSrc = "img/ryzen.png";
             id = "ryzen";
             break;
         case "Xeon":
             planetElement = document.createElement("img");
-            imgSrc = "img/xeon.jpg";
+            imgSrc = "img/xeon.png";
             id = "xeon";
             break;
         case "Celeron":
             planetElement = document.createElement("img");
-            imgSrc = "img/celeron.jpg";
+            imgSrc = "img/celeron.png";
             id = "celeron";
             break;
         default:
