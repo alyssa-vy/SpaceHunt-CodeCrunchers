@@ -19,11 +19,6 @@ class Planet extends CelestialArtifact{
             var prompt = this.getOrbitPrompt();
             prompt.open();
         }
-
-        //if (!this.playerWantsToLand()) return;
-        //prompt = this.getPrompt();
-        //prompt.open();
-        //disableShipMovement();
     }
 
     enterOrbit() {
@@ -62,6 +57,7 @@ class Planet extends CelestialArtifact{
         }.bind(this));
 
         box.addButton("Land on Planet", function() {
+            box.close();
             var prompt = this.getPrompt();
             prompt.open();
         }.bind(this));
@@ -97,7 +93,6 @@ class Planet extends CelestialArtifact{
         }
 
         box.addCloseButton(`Leave ${this.id}`, function(){
-            box.close();
             var prompt = this.getOrbitPrompt();
             prompt.open();
         }.bind(this));
