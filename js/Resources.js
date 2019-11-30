@@ -21,7 +21,13 @@ const resources = {
     },
 
 	setDamaged(toSet) {
+        if(this._isDamaged === false) {
 		this._isDamaged = toSet;
+        return;
+        }
+
+        alert("You ships was already damaged and has now blown up...\n");
+        gameOver();
 	},
 
 	isDamaged(){

@@ -108,6 +108,9 @@ const position = {
 
         //Call the functions to subtract energy and supplies as well as
         //make sure those fields are still valid to play the game.
+        if(Resources.isDamaged() === true) {
+            i *= 5;
+        }
         resources.subtractEnergy(10*i);
         resources.subtractSuppliesTwo();
         resources.checkEnergy();
