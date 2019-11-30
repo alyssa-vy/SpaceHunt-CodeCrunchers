@@ -1,4 +1,5 @@
 var meteorsAdded = 0;
+var asteroidsAdded = 0;
 var spacestationsAdded = 0;
 var wormholesAdded = 0;
 var freightersAdded = 0;
@@ -12,10 +13,19 @@ function addPlanet(x, y, name){
     }
 }
 
+function addAsteroid(x, y){
+    if (canAddArtifact(x, y)){
+        var id = "Asteroid-" + asteroidsAdded;
+        worldMap.addObject(new Astroid(id, "img/asteroid.png"), x, y);
+        alert("Asteroid was added to " + x + ", " + y);
+        asteroidsAdded++;
+    }
+}
+
 function addMeteor(x, y){
     if (canAddArtifact(x, y)){
         var id = "Meteor-" + meteorsAdded;
-        worldMap.addObject(new Meteor(id, "img/asteroid.png"), x, y);
+        worldMap.addObject(new Meteor(id, "img/meteor.jpeg"), x, y);
         alert("Meteor was added to " + x + ", " + y);
         meteorsAdded++;
     }
@@ -108,10 +118,13 @@ function addArtifact(type, x, y, extraInput){
             addSpacestation(x, y);
             break;
         case "Asteroid":
-            addMeteor(x, y); //rename Meteor
+            addAsteroid(x, y);
             break;
         case "Wormhole":
             addWormhole(x, y);
+            break;
+        case "Meteor":
+            addMeteor(x, y);
             break;
     }
 }
@@ -245,12 +258,17 @@ function isInBounds(x, y) {
 function randomizeMap(){
     // Items to add is BoardArea * percentOfTheBoard
     var meteorsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
+    var asteroidsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
 
     for (meteorsAdded; meteorsAdded <= meteorsToAdd; meteorsAdded++){
         var id = "Meteor-" + meteorsAdded;
-        placeArtifactRandomly(new Meteor(id, "asteroid.png"));
+        placeArtifactRandomly(new Meteor(id, "meteor.png"));
+    }
+    for (asteroidsAdded; asteroidsAdded <= asteroidsToAdd; asteroidsAdded++){
+        var id = "Asteroid-" + asteroidsAdded;
+        placeArtifactRandomly(new Asteroid(id, "asteroid.png"));
     }
     for (wormholesAdded; wormholesAdded <= wormholesToAdd; wormholesAdded++){
         var id = "Wormhole-" + wormholesAdded;

@@ -1,6 +1,6 @@
 //JS file for the meteor celestial object
 
-class meteor extends CelestialArtifact {
+class Meteor extends CelestialArtifact {
     constructor(id, imageSrc) {
         super(id, imageSrc);
     }
