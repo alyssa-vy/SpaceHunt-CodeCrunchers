@@ -43,6 +43,18 @@ class Planet extends CelestialArtifact{
         }
     }
 
+    strongboxSensor() {
+            //resources.subtractSupplies(this.suppliesPerStrongboxSearch);
+            if (this.hasStrongBox){
+                //resources.foundStrongBox();
+                alert("The sensor has caught a signal from the strongbox on this planet!")
+            }
+            else{
+                alert("The sensor did not pick up any signal.")
+            }
+            this.prompt.removeButton(this.strongBoxButtonMessage);
+    }
+
     playerWantsToLand(){
         return window.confirm(`You are within ${this.id}'s orbit. Would you like to land?`)
     }
@@ -52,8 +64,8 @@ class Planet extends CelestialArtifact{
         var box = new InputPanel();
         box.message = "You are floating in " + this.id + "'s orbit.";
 
-        box.addButton(this.strongBoxButtonMessage, function(){
-            this.searchForStrongbox();
+        box.addButton("Use Sensors to Search For Strongbox", function(){
+            this.strongboxSensor();
         }.bind(this));
 
         box.addButton("Land on Planet", function() {
