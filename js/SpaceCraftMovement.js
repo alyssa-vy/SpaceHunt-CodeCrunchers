@@ -98,11 +98,16 @@ const position = {
                     worldCanvas.movePlayerSouth(1);
                     worldCanvas.setRotation('player', 270);
                     checkCollision();
+                    break;
                 }
             } else {
                 //User did not specify a valid angle when trying to move.
                 alert("Error when attempting to move.\nMust enter a valid angle (0, 90, 180, or 270).");
                 return false;
+            }
+
+            if(i === evaledDistance) {
+                break;
             }
         }
 

@@ -6,7 +6,14 @@ class Meteor extends CelestialArtifact {
     }
     
     interact() {
-        alert("You have flown through a meteor storm! Your ship has been damaged and you will now use up energy 5 times as fast. Seek a repair station to repair your damaged ship.");
+        alert("You have flown through a meteor storm!");
+
+        if(resources.isDamaged() === true && !config.godMode) {
+            alert("You ship was already damaged and has now blown up...\n");
+            gameOver();
+        }
+
+        alert("Your ship has been damaged and you will now use up energy 5 times as fast. Seek a repair station to repair your damaged ship.");
         resources.setDamaged(true);
     }
 }
