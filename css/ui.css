@@ -102,6 +102,7 @@ input, textarea {
 
 #dpad{
     text-align: center;
+    vertical-align: middle;
 }
 
 #dpad button {
@@ -122,4 +123,22 @@ input, textarea {
 
 #dpad-left, #dpad-right{
     margin: 0px 5px;
+    vertical-align: middle;
+}
+#dpad-center {
+    background-color: black;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#GameOver h1{
+    position: absolute;
+    text-align: center;
+    font-size: 5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
