@@ -45,6 +45,7 @@ class Planet extends CelestialArtifact{
 
     strongboxSensor() {
             //resources.subtractSupplies(this.suppliesPerStrongboxSearch);
+            resources.subtractSuppliesTwo();
             if (this.hasStrongBox){
                 //resources.foundStrongBox();
                 alert("The sensor has caught a signal from the strongbox on this planet!")
