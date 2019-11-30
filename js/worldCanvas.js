@@ -52,6 +52,22 @@ const worldCanvas = {
         document.getElementById(id).src = imgSrc;
     },
 
+    setRotation(id, degree){
+        switch(degree){
+            case 0: degree = 90
+                    break;
+            case 90: degree = 0;
+                    break;
+            case 180: degree = 270;
+                    break;
+            case 270: degree = 180;
+                    break;
+        }; // Converts from mathematical degrees to CSS degrees
+        var element = document.getElementById(id);
+        element.style.transform = `translate(-50%, -50%) rotate(${degree}deg)`;
+        console.log(degree);
+    },
+
     reposition(id, x, y){
         if (id === "player"){
             this.repositionPlayer(x, y);

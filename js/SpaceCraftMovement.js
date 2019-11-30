@@ -51,6 +51,7 @@ const position = {
                 else {
                     this._x += 1;
                     worldCanvas.movePlayerEast(1);
+                    worldCanvas.setRotation('player', 0);
                     if(checkCollision() === true) {
                         break;
                     }
@@ -65,6 +66,7 @@ const position = {
                 else {
                     this._y -= 1;
                     worldCanvas.movePlayerNorth(1);
+                    worldCanvas.setRotation('player', 90);
                     if(checkCollision() === true) {
                         break;
                     }
@@ -79,6 +81,7 @@ const position = {
                 else {
                     this._x -= 1;
                     worldCanvas.movePlayerWest(1);
+                    worldCanvas.setRotation('player', 180);
                     if(checkCollision() === true) {
                         break;
                     }
@@ -93,6 +96,7 @@ const position = {
                 else {
                     this._y += 1;
                     worldCanvas.movePlayerSouth(1);
+                    worldCanvas.setRotation('player', 270);
                     checkCollision();
                 }
             } else {

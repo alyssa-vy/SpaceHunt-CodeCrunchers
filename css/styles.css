@@ -52,6 +52,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transform-origin: center center;
     z-index: 500;
 }
 
@@ -94,7 +95,7 @@ body {
     visibility: hidden;
     /* Needs to be changed to display: none */
 }
-
+/*
 .inputPanel {
     position: fixed;
     left: 650px;
@@ -114,6 +115,19 @@ body {
 .inputPanelButtonBox {
 }
 
-.inputPanelButton {
+.inputPanelButton { */
 
+/* } */
+
+.inputPanel {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 30px 0;
+    background-color: rgba(255, 255, 255, 0.85);
+    z-index: 100;
+    text-align: center;
+    border-radius: 10px;
 }
