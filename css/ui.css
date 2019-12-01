@@ -168,6 +168,15 @@ input, textarea {
     transform: translate(-50%, -50%);
 }
 
+#GameWin h1 {
+    position: absolute;
+    text-align: center;
+    font-size: 5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 #UI{
     display: inline-block;
     width: 200px;

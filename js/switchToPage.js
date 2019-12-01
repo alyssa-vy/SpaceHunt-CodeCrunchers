@@ -9,3 +9,7 @@ function switchToPage(id){
 function gameOver(){
     switchToPage("GameOver");
 }
+
+function gameWin() {
+    switchToPage("GameWin");
+}

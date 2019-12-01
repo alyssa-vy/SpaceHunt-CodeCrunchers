@@ -7,8 +7,9 @@ function initGame() {
     worldMap.loadCanvas();
     resources.initResources();
     position.initPosition();
+    worldMap.addObject(new Eniac("eniac", "img/eniac.png"), 0, 0);
+    worldMap.makeVisible(0,0);
     randomizeMap();
-
     document.addEventListener('keydown', function(event) {
         if (event.code == 'ArrowRight') {
             position.moveSpacecraft(0, document.UI.distance.value);
