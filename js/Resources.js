@@ -15,7 +15,7 @@ const resources = {
     get supplies() {
         return this._supplies;
     },
-    
+
     get credits() {
         return this._credits;
     },
@@ -243,7 +243,7 @@ const resources = {
 	},
 
 	foundStrongBox(){
-		alert("Wow, you found the strongbox! Return it to Xeon before Badmax finds out.")
+		alert("Wow, you found the strongbox! Return it to Eniac before Badmax finds out.")
 		this._hasStrongBox = true;
 	},
 

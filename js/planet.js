@@ -1,7 +1,7 @@
 class Planet extends CelestialArtifact{
     constructor(id, imageSrc){
         super(id, imageSrc);
-        this.hasStrongbox = false;
+        this.containsStrongbox = false;
         this.hasRepairShop = false;
         this.hasSuppliesShop = false;
         this.pricePerDamage = 2;
@@ -47,7 +47,7 @@ class Planet extends CelestialArtifact{
     strongboxSensor() {
             //resources.subtractSupplies(this.suppliesPerStrongboxSearch);
             resources.subtractSuppliesTwo();
-            if (this.hasStrongBox){
+            if (this.containsStrongbox){
                 //resources.foundStrongBox();
                 alert("The sensor has caught a strong signal from the strongbox on this planet!")
             }
@@ -148,7 +148,7 @@ class Planet extends CelestialArtifact{
 
     searchForStrongbox(){
         resources.subtractSupplies(this.suppliesPerStrongboxSearch);
-        if (this.hasStrongBox){
+        if (this.containsStrongbox){
             resources.foundStrongBox();
         }
         else{
