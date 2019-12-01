@@ -1,7 +1,11 @@
 var worldMap = null;
 
-function initializeMap() {
-    worldMap = new Map(config.boardWidth, config.boardHeight);
+function prepareArtifactPlacement() {
+    initializeMap();
     switchToPage("artifactPlacement");
-    return worldMap;
+}
+
+function initializeMap(){
+    if (worldMap === null || config.boardWidth !== worldMap.width || config.boardHeight !== worldMap.height)
+        worldMap = new Map(config.boardWidth, config.boardHeight);
 }

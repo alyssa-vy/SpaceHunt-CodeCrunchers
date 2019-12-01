@@ -73,6 +73,7 @@ function canAddArtifact(x, y){
         alert(`(${x}, ${y}) is out of bounds.`);
         return false;
     }
+    disableResizingOfMap();
     return true;
 }
 
@@ -295,4 +296,9 @@ function placeArtifactRandomly(artifact){
     }
     console.log(x, y);
     worldMap.addObject(artifact, x, y);
+}
+
+function disableResizingOfMap(){
+    configurationSelectors.boardWidth.disabled = true;
+    configurationSelectors.boardHeight.disabled = true;
 }

@@ -163,7 +163,7 @@
                     <input type=checkbox name="administrator" id="administrator" value="Administrator" oninput=switchIfChecked("mapCreatorButton","configurationDoneButton")>Game Administrator
                     <br>
                     <input type=button value="Default" onclick=setConfigurationDefault() class="btn-grey">
-                    <input class="configurationSubmitButton btn-blue" id="mapCreatorButton" type=button value="Place Artifacts" onclick=initializeMap(); hidden>
+                    <input class="configurationSubmitButton btn-blue" id="mapCreatorButton" type=button value="Place Artifacts" onclick=prepareArtifactPlacement() hidden>
                     <input class="configurationSubmitButton btn-black" id="configurationDoneButton" type=button value="Done" onclick=switchToPage("mainMenu")>
                 </form>
             </div>
