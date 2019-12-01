@@ -1,4 +1,3 @@
-var meteorsAdded = 0;
 var asteroidsAdded = 0;
 var spacestationsAdded = 0;
 var wormholesAdded = 0;
@@ -22,19 +21,10 @@ function addAsteroid(x, y){
     }
 }
 
-function addMeteor(x, y){
-    if (canAddArtifact(x, y)){
-        var id = "Meteor-" + meteorsAdded;
-        worldMap.addObject(new Meteor(id, "img/meteor.jpeg"), x, y);
-        alert("Meteor was added to " + x + ", " + y);
-        meteorsAdded++;
-    }
-}
-
 function addSpacestation(x, y){
     if (canAddArtifact(x, y)){
         var id = "Spacestation-" + spacestationsAdded;
-        worldMap.addObject(new Spacestation(id, "img/spacestation.jpg"), x, y);
+        worldMap.addObject(new Spacestation(id, "img/spacestation.png"), x, y);
         alert("Space station was added to " + x + ", " + y);
         spacestationsAdded++;
     }
@@ -43,7 +33,7 @@ function addSpacestation(x, y){
 function addWormhole(x, y){
     if (canAddArtifact(x, y)){
         var id = "Wormhole-" + wormholesAdded;
-        worldMap.addObject(new Wormhole(id, "img/wormhole.jpg"), x, y);
+        worldMap.addObject(new Wormhole(id, "img/wormhole.png"), x, y);
         alert("Wormhole was added to " + x + ", " + y);
         wormholesAdded++;
     }
@@ -73,7 +63,6 @@ function canAddArtifact(x, y){
         alert(`(${x}, ${y}) is out of bounds.`);
         return false;
     }
-    disableResizingOfMap();
     return true;
 }
 
@@ -124,10 +113,8 @@ function addArtifact(type, x, y, extraInput){
         case "Wormhole":
             addWormhole(x, y);
             break;
-        case "Meteor":
-            addMeteor(x, y);
-            break;
     }
+    disableResizingOfMap();
 }
 
 function disablePlanetAddIfInvalidInput() {
@@ -258,26 +245,21 @@ function isInBounds(x, y) {
 
 function randomizeMap(){
     // Items to add is BoardArea * percentOfTheBoard
-    var meteorsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var asteroidsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
 
-    for (meteorsAdded; meteorsAdded <= meteorsToAdd; meteorsAdded++){
-        var id = "Meteor-" + meteorsAdded;
-        placeArtifactRandomly(new Meteor(id, "meteor.png"));
-    }
     for (asteroidsAdded; asteroidsAdded <= asteroidsToAdd; asteroidsAdded++){
-        var id = "Asteroid-" + asteroidsAdded;
-        placeArtifactRandomly(new Asteroid(id, "asteroid.png"));
+        var newCoords = getRandomUnusedCoordinates();
+        addAsteroid(newCoords[0], newCoords[1])
     }
     for (wormholesAdded; wormholesAdded <= wormholesToAdd; wormholesAdded++){
-        var id = "Wormhole-" + wormholesAdded;
-        placeArtifactRandomly(new Wormhole(id, "wormhole.jpg"));
+        var newCoords = getRandomUnusedCoordinates();
+        addWormhole(newCoords[0], newCoords[1])
     }
     for (spacestationsAdded; spacestationsAdded <= spacestationsToAdd; spacestationsAdded++){
-        var id = "Spacestation-" + spacesationsToAdd;
-        placeArtifactRandomly(new Spacestation(id, "spacestation.jpg"));
+        var newCoords = getRandomUnusedCoordinates();
+        addSpacestation(newCoords[0], newCoords[1])
     }
 
     for (var planet in planets){
@@ -294,8 +276,17 @@ function placeArtifactRandomly(artifact){
         var x = Math.floor(Math.random() * config.boardWidth);
         var y = Math.floor(Math.random() * config.boardHeight);
     }
-    console.log(x, y);
     worldMap.addObject(artifact, x, y);
+}
+
+function getRandomUnusedCoordinates(){
+    var x = Math.floor(Math.random() * config.boardWidth);
+    var y = Math.floor(Math.random() * config.boardHeight);
+    while (worldMap.objectExistsAtPosition(x, y)){
+        var x = Math.floor(Math.random() * config.boardWidth);
+        var y = Math.floor(Math.random() * config.boardHeight);
+    }
+    return [x, y];
 }
 
 function disableResizingOfMap(){
