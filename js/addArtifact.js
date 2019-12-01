@@ -1,4 +1,5 @@
 var asteroidsAdded = 0;
+var meteorsAdded = 0;
 var spacestationsAdded = 0;
 var wormholesAdded = 0;
 var freightersAdded = 0;
@@ -20,6 +21,16 @@ function addAsteroid(x, y, displayMessage){
         if (displayMessage)
             alert("Asteroid was added to " + x + ", " + y);
         asteroidsAdded++;
+    }
+}
+
+function addMeteor(x, y, displayMessage){
+    if (canAddArtifact(x, y)){
+        var id = "Meteor-" + meteorsAdded;
+        worldMap.addObject(new Meteor(id, "img/meteor.png"), x, y);
+        if (displayMessage)
+            alert("Meteor was added to " + x + ", " + y);
+        meteorssAdded++;
     }
 }
 
@@ -85,6 +96,7 @@ function addExtraInput(type) {
         case "Asteroid":
         case "Wormhole":
         case "SpaceStation":
+        case "Meteor":
         default:
             document.getElementById("extraInputLabel").innerHTML = "document.getElementById(\"extraInputLabel\").innerHTML unset";
             document.getElementById("extraInputLabel").style.display = 'none';
@@ -117,6 +129,9 @@ function addArtifact(type, x, y, extraInput, displayMessage){
             break;
         case "Wormhole":
             addWormhole(x, y, displayMessage);
+            break;
+        case "Meteor":
+            addMeteor(x, y, displayMessage);
             break;
     }
     disableResizingOfMap();
