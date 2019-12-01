@@ -65,7 +65,6 @@ const worldCanvas = {
         }; // Converts from mathematical degrees to CSS degrees
         var element = document.getElementById(id);
         element.style.transform = `translate(-50%, -50%) rotate(${degree}deg)`;
-        console.log(degree);
     },
 
     reposition(id, x, y){
