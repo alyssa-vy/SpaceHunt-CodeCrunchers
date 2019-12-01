@@ -253,7 +253,7 @@ function randomizeMap(){
     var asteroidsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
-    var freightersToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
+    var freightersToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.10);
 
     // for (asteroidsAdded; asteroidsAdded <= asteroidsToAdd; asteroidsAdded++){
     //     var newCoords = getRandomUnusedCoordinates();
