@@ -16,7 +16,7 @@ function addPlanet(x, y, name, displayMessage){
 function addAsteroid(x, y, displayMessage){
     if (canAddArtifact(x, y)){
         var id = "Asteroid-" + asteroidsAdded;
-        worldMap.addObject(new Astroid(id, "img/asteroid.png"), x, y);
+        worldMap.addObject(new Asteroid(id, "img/asteroid.png"), x, y);
         if (displayMessage)
             alert("Asteroid was added to " + x + ", " + y);
         asteroidsAdded++;
