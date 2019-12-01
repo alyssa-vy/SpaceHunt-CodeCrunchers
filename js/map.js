@@ -4,7 +4,7 @@ class Map{
         this.width = width;
         this.height = height;
         this.cells = new Array(this.height);
-        this.canvasInitialized = false;
+        this.canvasLoaded = false;
         for (let i = 0; i < this.height; i++)
             this.cells[i] = new Array(this.width);
         for (let j = 0; j < this.height; j++){
@@ -24,7 +24,7 @@ class Map{
         var newArtifact = object;
         this.cells[y][x] = newArtifact;
         addToGazetteer(object.id, x, y);
-        if (this.canvasInitialized){
+        if (this.canvasLoaded && this._isAlwaysVisible(object.id)){
             var element = createElementFromCelestialArtifact(object);
             worldCanvas.addToCanvas(element, x, y);
         }
@@ -55,12 +55,12 @@ class Map{
                 if (this.objectExistsAtPosition(i, j)){
                     var obj = this.getObjectAtCoordinates(i, j);
                     if (this._isAlwaysVisible(obj.id)){
-                        //this.makeVisible(i, j);
+                        this.makeVisible(i, j);
                     }
                 }
             }
         }
-        this.canvasInitialized = true;
+        this.canvasLoaded = true;
     }
 
     // Will make an object visible if it's not already visible. Does nothing if nothing exists at (x, y)
@@ -74,7 +74,13 @@ class Map{
     }
 
     _isAlwaysVisible(id){
-        return true;
+        switch(id){
+            case "Celeron":
+            case "Xeon":
+            case "Ryzen": return true;
+                           break;
+            default: return false;
+        }
     }
 
     moveNorth(id, magnitude){
@@ -138,7 +144,7 @@ class Map{
     }
 
     getObjectAtCoordinates(x, y){
-        if (this.objectExistsAtPosition)
+        if (this.objectExistsAtPosition(x, y))
             return this.cells[y][x];
         return null;
     }
@@ -152,6 +158,21 @@ class Map{
                         return [i, j];
                 }
             }
+        }
+    }
+
+    surroundMapWithWormholes(){
+        for (var i = 0; i < this.width; i++){
+            addWormhole(i, 0, false);
+            addWormhole(i, this.height - 1, false);
+            this.makeVisible(i, 0);
+            this.makeVisible(i, this.height-1);
+        }
+        for (var j = 1; j < this.height - 1; j++){
+            addWormhole(0, j, false);
+            addWormhole(this.width - 1, j, false);
+            this.makeVisible(0, j);
+            this.makeVisible(this.width-1, j);
         }
     }
 }

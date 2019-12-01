@@ -253,26 +253,27 @@ function randomizeMap(){
     var asteroidsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
-    var freightersToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
+    var freightersToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.10);
 
-    // for (asteroidsAdded; asteroidsAdded <= asteroidsToAdd; asteroidsAdded++){
-    //     var newCoords = getRandomUnusedCoordinates();
-    //     addAsteroid(newCoords[0], newCoords[1], false)
-    // }
-    // for (wormholesAdded; wormholesAdded <= wormholesToAdd; wormholesAdded++){
-    //     var newCoords = getRandomUnusedCoordinates();
-    //     addWormhole(newCoords[0], newCoords[1], false)
-    // }
-    // for (spacestationsAdded; spacestationsAdded <= spacestationsToAdd; spacestationsAdded++){
-    //     var newCoords = getRandomUnusedCoordinates();
-    //     addSpacestation(newCoords[0], newCoords[1], false)
-    // }
+    for (asteroidsAdded; asteroidsAdded <= asteroidsToAdd; asteroidsAdded++){
+        var newCoords = getRandomUnusedCoordinates();
+        addAsteroid(newCoords[0], newCoords[1], false)
+    }
+    for (wormholesAdded; wormholesAdded <= wormholesToAdd; wormholesAdded++){
+        var newCoords = getRandomUnusedCoordinates();
+        addWormhole(newCoords[0], newCoords[1], false)
+    }
+    for (spacestationsAdded; spacestationsAdded <= spacestationsToAdd; spacestationsAdded++){
+        var newCoords = getRandomUnusedCoordinates();
+        addSpacestation(newCoords[0], newCoords[1], false)
+    }
     for (freightersAdded; freightersAdded <= freightersToAdd; freightersAdded++){
         var newCoords = getRandomUnusedCoordinates();
         var supplies = Math.floor(Math.random() * 10 + 1);
         addFreighter(newCoords[0], newCoords[1], supplies, false);
     }
 
+    initializeAllPlanets();
     for (var planet in planets){
         if (!planetHasBeenAdded(planet)){
             placeArtifactRandomly(planets[planet]);

@@ -33,8 +33,8 @@ var defaultConfig = {
     boardWidth: 128,
     boardHeight: 128,
     initialLocation: {
-        x: 0,
-        y: 0
+        x: 4,
+        y: 4
     },
     maximumEnergy: 1000,
     maximumSupplies: 100,
@@ -114,6 +114,9 @@ function validateXCoordinate(numberInputField){
     if (value < borderLowerLimit || value > borderUpperLimit){
         setInvalid(numberInputField, "Coordinate must be within the map's \"width\" border");
     }
+    else if (value === borderLowerLimit || value === borderUpperLimit){
+        setInvalid(numberInputField, "You may not start on the edge of the map");
+    }
     else{
         setValid(numberInputField);
     }
@@ -130,6 +133,9 @@ function validateYCoordinate(numberInputField){
     borderLowerLimit = 0;
     if (value < borderLowerLimit || value > borderUpperLimit){
         setInvalid(numberInputField, "Coordinate must be within the map's \"height\" border");
+    }
+    else if (value === borderLowerLimit || value === borderUpperLimit){
+        setInvalid(numberInputField, "You may not start on the edge of the map");
     }
     else{
         setValid(numberInputField);

@@ -7,7 +7,7 @@ function initGame() {
     worldMap.loadCanvas();
     resources.initResources();
     position.initPosition();
-    //randomizeMap();
+    randomizeMap();
 
     document.addEventListener('keydown', function(event) {
         if (event.code == 'ArrowRight') {
