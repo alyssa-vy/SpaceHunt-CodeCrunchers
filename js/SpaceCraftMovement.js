@@ -33,7 +33,7 @@ const position = {
         //Error checking to make sure that the values passes in for
         //angle and distance are indeed numbers.
         if(evaledDistance < 1) {
-            alert("Error in attempting to move spacecraft.\nPlease provide a positive value for the distance in which you would like to travle.");
+            alert("Error in attempting to move spacecraft.\nPlease provide a positive value for the distance in which you would like to travel.");
             return false;
         }
 
@@ -45,7 +45,6 @@ const position = {
                 //User wants to move East.
                 if((this._x + 1) >= config.boardWidth) {
                     //User has tried to move off the map.
-                    this.wormhole();
                     break;
                 }
                 else {
@@ -60,7 +59,6 @@ const position = {
                 //User wants to move North.
                 if((this._y - 1) < 0) {
                     //User has tried to move off the map.
-                    this.wormhole();
                     break;
                 }
                 else {
@@ -75,7 +73,6 @@ const position = {
                 //User wants to move West.
                 if((this._x - 1) < 0) {
                     //User has tried to move off the map.
-                    this.wormhole();
                     break;
                 }
                 else {
@@ -90,7 +87,6 @@ const position = {
                 //User wants to move South.
                 if((this._y + 1) >= config.boardWidth) {
                     //User has tried to move off the map.
-                    this.wormhole();
                     break;
                 }
                 else {
@@ -127,21 +123,6 @@ const position = {
         return true;    //Movement was executed successfully.
     },
 
-    wormhole() {
-        alert("Error\nYou have tried to move of the map. You have now been sent through a worm hole.");
-
-        if (config.randomWormholeBehavior){
-            this._x = Math.floor(Math.random() * config.boardWidth);
-            this._y = Math.floor(Math.random() * config.boardWidth);
-        }
-        else{
-            this._x = Math.floor(config.boardWidth / 2);
-            this._y = Math.floor(config.boardHeight / 2);
-        }
-        worldCanvas.repositionPlayer(this._x, this._y);
-        checkCollision();
-    },
-
     updateFormCPs() {
         document.UI.xValue.value = this._x;
         document.UI.yValue.value = this._y;
@@ -152,7 +133,6 @@ const position = {
         this._y = eval(document.UI.yValue.value);
 
         if(this._x < 0 || this._y < 0 || this._x > config.boardWidth || this._y > config.boardHeight) {
-            this.wormhole();
             this.updateFormCPs();
         }
 

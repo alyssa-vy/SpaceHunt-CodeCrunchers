@@ -3,6 +3,7 @@ function main() {
 }
 
 function initGame() {
+    initializeMap();
     worldMap.loadCanvas();
     resources.initResources();
     position.initPosition();
