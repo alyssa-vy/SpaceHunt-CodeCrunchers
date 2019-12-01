@@ -3,20 +3,22 @@ var spacestationsAdded = 0;
 var wormholesAdded = 0;
 var freightersAdded = 0;
 
-function addPlanet(x, y, name){
+function addPlanet(x, y, name, displayMessage){
     if (canAddArtifact(x, y)){
         var object = planets[name];
         worldMap.addObject(object, x, y);
         markPlanetAdded(name);
-        alert(name + " was added to " + x + ", " + y);
+        if (displayMessage)
+            alert(name + " was added to " + x + ", " + y);
     }
 }
 
-function addAsteroid(x, y){
+function addAsteroid(x, y, displayMessage){
     if (canAddArtifact(x, y)){
         var id = "Asteroid-" + asteroidsAdded;
         worldMap.addObject(new Astroid(id, "img/asteroid.png"), x, y);
-        alert("Asteroid was added to " + x + ", " + y);
+        if (displayMessage)
+            alert("Asteroid was added to " + x + ", " + y);
         asteroidsAdded++;
     }
 }
@@ -25,21 +27,23 @@ function addSpacestation(x, y){
     if (canAddArtifact(x, y)){
         var id = "Spacestation-" + spacestationsAdded;
         worldMap.addObject(new Spacestation(id, "img/spacestation.png"), x, y);
-        alert("Space station was added to " + x + ", " + y);
+        if (displayMessage)
+            alert("Space station was added to " + x + ", " + y);
         spacestationsAdded++;
     }
 }
 
-function addWormhole(x, y){
+function addWormhole(x, y, displayMessage){
     if (canAddArtifact(x, y)){
         var id = "Wormhole-" + wormholesAdded;
         worldMap.addObject(new Wormhole(id, "img/wormhole.png"), x, y);
-        alert("Wormhole was added to " + x + ", " + y);
+        if (displayMessage)
+            alert("Wormhole was added to " + x + ", " + y);
         wormholesAdded++;
     }
 }
 
-function addFreighter(x, y, k){
+function addFreighter(x, y, k, displayMessage){
     /*
      *  Place an abandoned freighter (referred to internally as a "Freighter" object)
      *  at an (x, y) location on the map if able, and set the amount of supplies that
@@ -49,7 +53,8 @@ function addFreighter(x, y, k){
         var id = "Freighter-" + freightersAdded;
         var freighter = new Freighter(id, "img/freighter.png", k);
         worldMap.addObject(freighter, x, y);
-        alert("Abandoned Freighter was added to " + x + ", " + y + " with " + k + " salvageable supplies");
+        if (displayMessage)
+            alert("Abandoned Freighter was added to " + x + ", " + y + " with " + k + " salvageable supplies");
         ++freightersAdded;
     }
 }
@@ -93,7 +98,7 @@ function addExtraInput(type) {
         "addArtifactButton");
 }
 
-function addArtifact(type, x, y, extraInput){
+function addArtifact(type, x, y, extraInput, displayMessage){
     /*
      * Operates similarly to a funciton dispatch table in C.
      * Allows for simplicity in the html file by determining
@@ -102,16 +107,16 @@ function addArtifact(type, x, y, extraInput){
      */
     switch(type){
         case "Freighter":
-            addFreighter(x, y, extraInput);
+            addFreighter(x, y, extraInput, displayMessage);
             break;
         case "SpaceStation":
-            addSpacestation(x, y);
+            addSpacestation(x, y, displayMessage);
             break;
         case "Asteroid":
-            addAsteroid(x, y);
+            addAsteroid(x, y, displayMessage);
             break;
         case "Wormhole":
-            addWormhole(x, y);
+            addWormhole(x, y, displayMessage);
             break;
     }
     disableResizingOfMap();
@@ -248,18 +253,24 @@ function randomizeMap(){
     var asteroidsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
+    var freightersToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
 
-    for (asteroidsAdded; asteroidsAdded <= asteroidsToAdd; asteroidsAdded++){
+    // for (asteroidsAdded; asteroidsAdded <= asteroidsToAdd; asteroidsAdded++){
+    //     var newCoords = getRandomUnusedCoordinates();
+    //     addAsteroid(newCoords[0], newCoords[1], false)
+    // }
+    // for (wormholesAdded; wormholesAdded <= wormholesToAdd; wormholesAdded++){
+    //     var newCoords = getRandomUnusedCoordinates();
+    //     addWormhole(newCoords[0], newCoords[1], false)
+    // }
+    // for (spacestationsAdded; spacestationsAdded <= spacestationsToAdd; spacestationsAdded++){
+    //     var newCoords = getRandomUnusedCoordinates();
+    //     addSpacestation(newCoords[0], newCoords[1], false)
+    // }
+    for (freightersAdded; freightersAdded <= freightersToAdd; freightersAdded++){
         var newCoords = getRandomUnusedCoordinates();
-        addAsteroid(newCoords[0], newCoords[1])
-    }
-    for (wormholesAdded; wormholesAdded <= wormholesToAdd; wormholesAdded++){
-        var newCoords = getRandomUnusedCoordinates();
-        addWormhole(newCoords[0], newCoords[1])
-    }
-    for (spacestationsAdded; spacestationsAdded <= spacestationsToAdd; spacestationsAdded++){
-        var newCoords = getRandomUnusedCoordinates();
-        addSpacestation(newCoords[0], newCoords[1])
+        var supplies = Math.floor(Math.random() * 10 + 1);
+        addFreighter(newCoords[0], newCoords[1], supplies, false);
     }
 
     for (var planet in planets){

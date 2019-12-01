@@ -186,7 +186,7 @@
                     <option value="Xeon">Xeon</option>
                     <option value="Ryzen">Ryzen</option>
                 </select>
-                <input id="addPlanetButton" name="addPlanetButton" type="button" value="Add Planet" disabled onclick=addPlanet(planetXLocation.value,planetYLocation.value,planetType.value),loadOptions("planetType")><br>
+                <input id="addPlanetButton" name="addPlanetButton" type="button" value="Add Planet" disabled onclick=addPlanet(planetXLocation.value,planetYLocation.value,planetType.value,true),loadOptions("planetType")><br>
 
                 <br>
                 <input id="addArtifactX" name="addArtifactX" type="number" value="0" min="0" oninput="disableAddIfInvalid(addArtifactX.value, addArtifactY.value,'addArtifactButton')"> Artifact X<br>
@@ -204,7 +204,7 @@
                 <br>
                 <br>
                 <!-- "extraInput" is needed for an abandoned freighter" -->
-                <input id="addArtifactButton" name="addArtifactButton" type="button" value="Add Artifact" onclick="addArtifact(artifactType.value, addArtifactX.value, addArtifactY.value, extraInput.value)" disabled>
+                <input id="addArtifactButton" name="addArtifactButton" type="button" value="Add Artifact" onclick="addArtifact(artifactType.value, addArtifactX.value, addArtifactY.value, extraInput.value, true)" disabled>
                 <br>
 
                 <br>
