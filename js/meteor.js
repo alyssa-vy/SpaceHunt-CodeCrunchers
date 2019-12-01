@@ -9,7 +9,7 @@ class Meteor extends CelestialArtifact {
         alert("You have flown through a meteor storm!");
 
         if(resources.isDamaged() === true && !config.godMode) {
-            alert("You ship was already damaged and has now blown up...\n");
+            alert("You ship was already damaged and has now blown up...The game is now over.\n");
             gameOver();
         }
 

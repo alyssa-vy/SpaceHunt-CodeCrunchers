@@ -35,9 +35,14 @@ const badMax = {
             alert("You have been attacked by Bad Max, but you and your crew have fought him off!\n");
         }
 
-        else if(prob < 7 && !config.godMode) {
-            alert("You have been attacked by Bad Max and they have blown up your ship... The game is now over\n");
-            gameOver();
+        else if(prob < 7) {
+            if(config.godMode === false) {
+                alert("You have been attacked by Bad Max and they have blown up your ship... The game is now over\n");
+                gameOver();
+                return;
+            }
+
+            alert("You have been attacked by Bad Max but god mode has saved you from him blwoing up your ship!\n");
         }
 
         else {
@@ -55,6 +60,7 @@ const badMax = {
         //Bad Max was already residing in.
         if(this._x === x && this._y === y) {
             this.interact();
+            return;
         }
 
         //Then get his X and Y coordinates closer to that of the users.
