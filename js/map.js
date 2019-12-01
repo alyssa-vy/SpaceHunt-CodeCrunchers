@@ -160,6 +160,21 @@ class Map{
             }
         }
     }
+
+    surroundMapWithWormholes(){
+        for (var i = 0; i < this.width; i++){
+            addWormhole(i, 0, false);
+            addWormhole(i, this.height - 1, false);
+            this.makeVisible(i, 0);
+            this.makeVisible(i, this.height-1);
+        }
+        for (var j = 1; j < this.height - 1; j++){
+            addWormhole(0, j, false);
+            addWormhole(this.width - 1, j, false);
+            this.makeVisible(0, j);
+            this.makeVisible(this.width-1, j);
+        }
+    }
 }
 
 class ObjectAlreadyExistsAtPostion extends Error{
