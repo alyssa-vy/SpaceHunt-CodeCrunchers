@@ -23,6 +23,7 @@ function initializeAllPlanets(){
             planets[planet].setSuppliesShopPrice(suppliesShopPrice);
         }
     }
+    randomizeStrongboxPlacement();
 }
 
 function randomTrueOrFalse(){
