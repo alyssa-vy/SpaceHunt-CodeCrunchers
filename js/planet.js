@@ -157,4 +157,14 @@ class Planet extends CelestialArtifact{
         this.prompt.removeButton(this.strongBoxButtonMessage);
         this.searched = true; // user has already searched
     }
+
+    setRepairShopPrice(price){
+        this.hasRepairShop = true;
+        this.pricePerDamage = price;
+    }
+
+    setSuppliesShopPrice(price){
+        this.hasSuppliesShop = true;
+        this.pricePerSupplies = price;
+    }
 }

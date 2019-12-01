@@ -273,6 +273,7 @@ function randomizeMap(){
         addFreighter(newCoords[0], newCoords[1], supplies, false);
     }
 
+    initializeAllPlanets();
     for (var planet in planets){
         if (!planetHasBeenAdded(planet)){
             placeArtifactRandomly(planets[planet]);
