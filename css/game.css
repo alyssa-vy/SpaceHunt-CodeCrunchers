@@ -1,5 +1,6 @@
 #viewport{
     margin: auto;
+    position: relative;
     border: 1px solid gray;
     width: 650px;  /* Must be divisible by 50 */
     height: 650px; /* Must be divisible by 50 */
