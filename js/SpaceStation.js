@@ -52,7 +52,7 @@ class SpaceStation extends CelestialArtifact {
                 resources.addCredits(this._amountToWin + this._entryFee);
                 resources.updateUI();
                 alert("You won the game of chance and you clean house.\n" +
-                    "The Casinian reluctantly gives you your " + this._amountToWin + " credits, refunds your entry fee and mutters something under his breath." +
+                    "The Casinian reluctantly gives you your " + this._amountToWin + " credits, refunds your entry fee and mutters something under his breath.\n" +
                     "There is no longer anything to win at this SpaceStation.");
                 this._amountToWin = 0;
             } else { //lost the roll
