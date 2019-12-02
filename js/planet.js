@@ -97,16 +97,26 @@ class Planet extends CelestialArtifact{
         }
         if (this.hasRepairShop){
             box.addButton(this.repairShopButtonMessage, function(){
-                resources.addHealth(5);
-                resources.subtractCredits(this.pricePerDamage * 5);
+                if (resources.credits > this.pricePerDamage * 5){
+                    resources.addHealth(5);
+                    resources.subtractCredits(this.pricePerDamage * 5);
+                }
+                else{
+                    alert("You can't afford this.");
+                }
             }.bind(this));
         }
 
         if (this.hasSuppliesShop){
             box.addButton(this.suppliesShopButtonMessage, function(){
-                resources.addSupplies(5);
-                resources.addEnergy(5);
-                resources.subtractCredits(this.pricePerSupplies* 5);
+                if (resources.credits > this.pricePerSupplies * 5){
+                    resources.addSupplies(5);
+                    resources.addEnergy(5);
+                    resources.subtractCredits(this.pricePerSupplies* 5);
+                }
+                else{
+                    alert("You can't afford this.");
+                }
             }.bind(this));
         }
 

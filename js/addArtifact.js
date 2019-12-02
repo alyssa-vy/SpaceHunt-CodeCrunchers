@@ -4,6 +4,13 @@ var spacestationsAdded = 0;
 var wormholesAdded = 0;
 var freightersAdded = 0;
 
+// Below is coverage of the map based on percentage, 0.0 meaning 0% and 1.0 meaning 100%
+var asteroidCoverage = 0.05;
+var meteorCoverage = 0.05;
+var spaceStationCoverage = 0.1;
+var wormholeCoverage = 0.05;
+var freighterCoverage = 0.15;
+
 function addPlanet(x, y, name, displayMessage){
     if (canAddArtifact(x, y)){
         var object = planets[name];
@@ -194,9 +201,10 @@ function disablePlanetAddIfInvalidInput() {
         Invalid in this case meaning the x,y coordinate
         is out of bounds and a valid planet is selected.
     */
-    let x = document.getElementById("planetXLocation").value;
-    let y = document.getElementById("planetYLocation").value;
-    if(isInBounds(x, y) && document.getElementById("planetType").value !== ""){
+
+    let x = eval(document.getElementById("planetXLocation").value);
+    let y = eval(document.getElementById("planetYLocation").value);
+    if(isInBounds(x, y) && (document.getElementById("planetType").value !== "") && (x !== 1 || y !== 1)){
         document.getElementById("addPlanetButton").disabled = false;
     } else {
         document.getElementById("addPlanetButton").disabled = true;
@@ -208,7 +216,7 @@ function disableAddIfInvalid(x, y, submitButtonId) {
         which is passed by id is enabled, otherwise
         it is disabled.
      */
-    if(isInBounds(x, y) && document.getElementById("artifactType").value !== "")
+    if(isInBounds(x, y) && (document.getElementById("artifactType").value !== "") && (x !== "1" || y !== "1"))
         document.getElementById(submitButtonId).disabled = false;
     else
         document.getElementById(submitButtonId).disabled = true;
@@ -301,10 +309,10 @@ function isInBounds(x, y) {
     */
     let goodx = false;
     let goody = false;
-    if(x >= 0 && x < config.boardWidth){
+    if(x > 0 && x < config.boardWidth){
         goodx = true;
     }
-    if(y >= 0 && y < config.boardHeight){
+    if(y > 0 && y < config.boardHeight){
         goody = true;
     }
     return goodx && goody;
@@ -315,11 +323,11 @@ function randomizeMap(){
     worldMap.addObject(new Eniac("eniac", "img/eniac.png"), 1, 1);
     worldMap.makeVisible(1,1);
     // Items to add is BoardArea * percentOfTheBoard
-    var asteroidsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
-    var meteorsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
-    var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
-    var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
-    var freightersToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.10);
+    var asteroidsToAdd = Math.floor(config.boardWidth * config.boardHeight * asteroidCoverage);
+    var meteorsToAdd = Math.floor(config.boardWidth * config.boardHeight * meteorCoverage);
+    var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * wormholeCoverage);
+    var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * spaceStationCoverage);
+    var freightersToAdd = Math.floor(config.boardWidth * config.boardHeight * freighterCoverage);
 
     for (asteroidsAdded; asteroidsAdded <= asteroidsToAdd; asteroidsAdded++){
         var newCoords = getRandomUnusedCoordinates();
