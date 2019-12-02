@@ -186,6 +186,7 @@ function disablePlanetAddIfInvalidInput() {
         Invalid in this case meaning the x,y coordinate
         is out of bounds and a valid planet is selected.
     */
+
     let x = eval(document.getElementById("planetXLocation").value);
     let y = eval(document.getElementById("planetYLocation").value);
     if(isInBounds(x, y) && (document.getElementById("planetType").value !== "") && (x !== 1 || y !== 1)){
@@ -293,10 +294,10 @@ function isInBounds(x, y) {
     */
     let goodx = false;
     let goody = false;
-    if(x >= 0 && x < config.boardWidth){
+    if(x > 0 && x < config.boardWidth){
         goodx = true;
     }
-    if(y >= 0 && y < config.boardHeight){
+    if(y > 0 && y < config.boardHeight){
         goody = true;
     }
     return goodx && goody;
