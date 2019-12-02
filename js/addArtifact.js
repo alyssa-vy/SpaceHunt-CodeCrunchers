@@ -27,7 +27,7 @@ function addAsteroid(x, y, displayMessage){
 function addMeteor(x, y, displayMessage){
     if (canAddArtifact(x, y)){
         var id = "Meteor-" + meteorsAdded;
-        worldMap.addObject(new Meteor(id, "img/meteor.png"), x, y);
+        worldMap.addObject(new Meteor(id, "img/meteor.jpeg"), x, y);
         if (displayMessage)
             alert("Meteor was added to " + x + ", " + y);
         meteorssAdded++;

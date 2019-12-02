@@ -1,6 +1,7 @@
 //File for the implementation of the Bad Max character and his
 //corresponding functionality.
 
+
 const badMax = {
 
     _x: 0,
