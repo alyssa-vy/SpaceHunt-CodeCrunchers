@@ -186,12 +186,10 @@ function disablePlanetAddIfInvalidInput() {
         Invalid in this case meaning the x,y coordinate
         is out of bounds and a valid planet is selected.
     */
-    let x = document.getElementById("planetXLocation").value;
-    let y = document.getElementById("planetYLocation").value;
-    if (x == 1 && y == 1) {
-        document.getElemenyById("addPlanetButton").disabled = true;
-    }
-    else if(isInBounds(x, y) && document.getElementById("planetType").value !== ""){
+
+    let x = eval(document.getElementById("planetXLocation").value);
+    let y = eval(document.getElementById("planetYLocation").value);
+    if(isInBounds(x, y) && (document.getElementById("planetType").value !== "") && (x !== 1 || y !== 1)){
         document.getElementById("addPlanetButton").disabled = false;
     } else {
         document.getElementById("addPlanetButton").disabled = true;
@@ -203,10 +201,7 @@ function disableAddIfInvalid(x, y, submitButtonId) {
         which is passed by id is enabled, otherwise
         it is disabled.
      */
-     if (x == 1 && y == 1) {
-         document.getElementById(submitButtonId).disabled = true;
-     }
-    else if(isInBounds(x, y) && document.getElementById("artifactType").value !== "")
+    if(isInBounds(x, y) && (document.getElementById("artifactType").value !== "") && (x !== "1" || y !== "1"))
         document.getElementById(submitButtonId).disabled = false;
     else
         document.getElementById(submitButtonId).disabled = true;
