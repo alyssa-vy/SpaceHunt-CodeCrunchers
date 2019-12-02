@@ -30,7 +30,7 @@ function addMeteor(x, y, displayMessage){
         worldMap.addObject(new Meteor(id, "img/meteor.jpeg"), x, y);
         if (displayMessage)
             alert("Meteor was added to " + x + ", " + y);
-        meteorssAdded++;
+        meteorsAdded++;
     }
 }
 
@@ -317,7 +317,7 @@ function randomizeMap(){
         var newCoords = getRandomUnusedCoordinates();
         addAsteroid(newCoords[0], newCoords[1], false)
     }
-    for (meteorsAdded; meteorsAdded <= meteorssToAdd; meteorsAdded++){
+    for (meteorsAdded; meteorsAdded <= meteorsToAdd; meteorsAdded++){
         var newCoords = getRandomUnusedCoordinates();
         addMeteor(newCoords[0], newCoords[1], false);
     }
