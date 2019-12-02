@@ -27,10 +27,10 @@ function addAsteroid(x, y, displayMessage){
 function addMeteor(x, y, displayMessage){
     if (canAddArtifact(x, y)){
         var id = "Meteor-" + meteorsAdded;
-        worldMap.addObject(new Meteor(id, "img/meteor.png"), x, y);
+        worldMap.addObject(new Meteor(id, "img/meteor.jpeg"), x, y);
         if (displayMessage)
             alert("Meteor was added to " + x + ", " + y);
-        meteorssAdded++;
+        meteorsAdded++;
     }
 }
 
@@ -314,6 +314,7 @@ function randomizeMap(){
     worldMap.makeVisible(1,1);
     // Items to add is BoardArea * percentOfTheBoard
     var asteroidsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
+    var meteorsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
     var freightersToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.10);
@@ -321,6 +322,10 @@ function randomizeMap(){
     for (asteroidsAdded; asteroidsAdded <= asteroidsToAdd; asteroidsAdded++){
         var newCoords = getRandomUnusedCoordinates();
         addAsteroid(newCoords[0], newCoords[1], false)
+    }
+    for (meteorsAdded; meteorsAdded <= meteorsToAdd; meteorsAdded++){
+        var newCoords = getRandomUnusedCoordinates();
+        addMeteor(newCoords[0], newCoords[1], false);
     }
     for (wormholesAdded; wormholesAdded <= wormholesToAdd; wormholesAdded++){
         var newCoords = getRandomUnusedCoordinates();
