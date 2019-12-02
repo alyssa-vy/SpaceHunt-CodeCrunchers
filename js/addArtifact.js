@@ -188,7 +188,10 @@ function disablePlanetAddIfInvalidInput() {
     */
     let x = document.getElementById("planetXLocation").value;
     let y = document.getElementById("planetYLocation").value;
-    if(isInBounds(x, y) && document.getElementById("planetType").value !== ""){
+    if (x == 1 && y == 1) {
+        document.getElemenyById("addPlanetButton").disabled = true;
+    }
+    else if(isInBounds(x, y) && document.getElementById("planetType").value !== ""){
         document.getElementById("addPlanetButton").disabled = false;
     } else {
         document.getElementById("addPlanetButton").disabled = true;
@@ -200,7 +203,10 @@ function disableAddIfInvalid(x, y, submitButtonId) {
         which is passed by id is enabled, otherwise
         it is disabled.
      */
-    if(isInBounds(x, y) && document.getElementById("artifactType").value !== "")
+     if (x == 1 && y == 1) {
+         document.getElementById(submitButtonId).disabled = true;
+     }
+    else if(isInBounds(x, y) && document.getElementById("artifactType").value !== "")
         document.getElementById(submitButtonId).disabled = false;
     else
         document.getElementById(submitButtonId).disabled = true;
@@ -293,10 +299,10 @@ function isInBounds(x, y) {
     */
     let goodx = false;
     let goody = false;
-    if(x >= 0 && x < config.boardWidth){
+    if(x > 0 && x < config.boardWidth){
         goodx = true;
     }
-    if(y >= 0 && y < config.boardHeight){
+    if(y > 0 && y < config.boardHeight){
         goody = true;
     }
     return goodx && goody;
