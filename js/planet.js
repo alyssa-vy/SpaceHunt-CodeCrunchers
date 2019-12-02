@@ -97,9 +97,10 @@ class Planet extends CelestialArtifact{
         }
         if (this.hasRepairShop){
             box.addButton(this.repairShopButtonMessage, function(){
-                if (resources.credits > this.pricePerDamage * 5)
+                if (resources.credits > this.pricePerDamage * 5){
                     resources.addHealth(5);
                     resources.subtractCredits(this.pricePerDamage * 5);
+                }
                 else{
                     alert("You can't afford this.");
                 }
