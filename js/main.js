@@ -8,6 +8,7 @@ function initGame() {
     resources.initResources();
     position.initPosition();
     randomizeMap();
+    //createBadMaxElement();
     document.addEventListener('keydown', function(event) {
         if (event.code == 'ArrowRight') {
             position.moveSpacecraft(0, document.UI.distance.value);

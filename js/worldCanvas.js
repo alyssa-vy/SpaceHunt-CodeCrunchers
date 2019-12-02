@@ -25,7 +25,7 @@
     EX.
     To move the world north (and thus, the player south), DECREMENT gameWorld.style.top
     That is because we are shifting gameworld's top left corner Y pixels UP from the origin
-*/
+    */
 
 const worldCanvas = {
     initCanvas() {
@@ -55,13 +55,13 @@ const worldCanvas = {
     setRotation(id, degree){
         switch(degree){
             case 0: degree = 90
-                    break;
+                break;
             case 90: degree = 0;
-                    break;
+                break;
             case 180: degree = 270;
-                    break;
+                break;
             case 270: degree = 180;
-                    break;
+                break;
         }; // Converts from mathematical degrees to CSS degrees
         var element = document.getElementById(id);
         element.style.transform = `translate(-50%, -50%) rotate(${degree}deg)`;
@@ -175,3 +175,13 @@ function createElementFromCelestialArtifact(artifact){
     element.src = artifact.imageSrc;
     return element;
 }
+
+/*
+function createBadMaxElement() {
+    var element = document.createElement("img");
+    element.id = badMax.id;
+    //element.classList.add("cellObject");
+    element.src = badMax.imageSrc;
+    return element;
+}
+*/

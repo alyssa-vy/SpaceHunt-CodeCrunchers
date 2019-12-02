@@ -34,6 +34,14 @@ function addMeteor(x, y, displayMessage){
     }
 }
 
+function addBadMax(obj) {
+    var newCoords = getRandomUnusedCoordinates();
+    worldMap.oddObject(obj, newCoords[0], newCoords[1]);
+    badMax.setX(newcoords[0]);
+    badMax.setY(newcoords[1]);
+}
+    
+
 function addSpaceStation(x, y, amountToWin, chanceToWin, entryFee, displayMessage){
     if (canAddArtifact(x, y)){
         var id = "SpaceStation-" + spacestationsAdded;
