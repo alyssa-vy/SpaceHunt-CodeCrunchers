@@ -4,6 +4,13 @@ var spacestationsAdded = 0;
 var wormholesAdded = 0;
 var freightersAdded = 0;
 
+// Below is coverage of the map based on percentage, 0.0 meaning 0% and 1.0 meaning 100%
+var asteroidCoverage = 0.05;
+var meteorCoverage = 0.05;
+var spaceStationCoverage = 0.1;
+var wormholeCoverage = 0.05;
+var freighterCoverage = 0.15;
+
 function addPlanet(x, y, name, displayMessage){
     if (canAddArtifact(x, y)){
         var object = planets[name];
@@ -308,11 +315,11 @@ function randomizeMap(){
     worldMap.addObject(new Eniac("eniac", "img/eniac.png"), 1, 1);
     worldMap.makeVisible(1,1);
     // Items to add is BoardArea * percentOfTheBoard
-    var asteroidsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
-    var meteorsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
-    var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
-    var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
-    var freightersToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.10);
+    var asteroidsToAdd = Math.floor(config.boardWidth * config.boardHeight * asteroidCoverage);
+    var meteorsToAdd = Math.floor(config.boardWidth * config.boardHeight * meteorCoverage);
+    var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * wormholeCoverage);
+    var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * spaceStationCoverage);
+    var freightersToAdd = Math.floor(config.boardWidth * config.boardHeight * freighterCoverage);
 
     for (asteroidsAdded; asteroidsAdded <= asteroidsToAdd; asteroidsAdded++){
         var newCoords = getRandomUnusedCoordinates();
