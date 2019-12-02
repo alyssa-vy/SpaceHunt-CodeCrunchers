@@ -89,14 +89,14 @@ const badMax = {
         {
             if((this._x + 3) < x) {
                 this._x += 3;
-
+                worldCanvas.reposition(this.id, this._x, this._y);
             }
             else {
                 for(i = 0; this._x !== x && i < 3; ++i) {
                     ++this._x;
+                    worldCanvas.reposition(this.id, this._x, this._y);
                 }
             }
-            worldCanvas.reposition(this.id, this._x, this._y);
             worldCanvas.setRotation(this.id, 0);
         }
 
@@ -104,13 +104,14 @@ const badMax = {
         {
             if((this._x - 3) > x) {
                 this._x -= 3;
+                worldCanvas.reposition(this.id, this._x, this._y);
             }
             else {
                 for(i = 0; this._x !== x && i < 3; ++i) {
                     --this._x;
+                    worldCanvas.reposition(this.id, this._x, this._y);
                 }
             }
-            worldCanvas.reposition(this.id, this._x, this._y);
             worldCanvas.setRotation(this.id, 180);
         }
     },
@@ -122,13 +123,14 @@ const badMax = {
         {
             if((this._y + 3) < y) {
                 this._y += 3;
+                worldCanvas.reposition(this.id, this._x, this._y);
             }
             else {
                 for(i = 0; this._y !== y && i < 3; ++i) {
                     ++this._y;
+                    worldCanvas.reposition(this.id, this._x, this._y);
                 }
             }
-            worldCanvas.reposition(this.id, this._x, this._y);
             worldCanvas.setRotation(this.id, 270);
         }
 
@@ -136,13 +138,14 @@ const badMax = {
         {
             if((this._y - 3) > y) {
                 this._y -= 3;
+                worldCanvas.reposition(this.id, this._x, this._y);
             }
             else {
                 for(i = 0; this._y !== y && i < 3; ++i) {
                     --this._y;
+                    worldCanvas.reposition(this.id, this._x, this._y);
                 }
             }
-            worldCanvas.reposition(this.id, this._x, this._y);
             worldCanvas.setRotation(this.id, 90);
         }
     }
