@@ -303,6 +303,9 @@ function isInBounds(x, y) {
 }
 
 function randomizeMap(){
+    // First add Eniac to the map at (1,1) before anyhting else
+    worldMap.addObject(new Eniac("eniac", "img/eniac.png"), 1, 1);
+    worldMap.makeVisible(1,1);
     // Items to add is BoardArea * percentOfTheBoard
     var asteroidsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
@@ -331,8 +334,6 @@ function randomizeMap(){
     }
 
     initializeAllPlanets();
-    worldMap.addObject(new Eniac("eniac", "img/eniac.png"), 1, 1);
-    worldMap.makeVisible(1,1);
     for (var planet in planets){
         if (!planetHasBeenAdded(planet)){
             placeArtifactRandomly(planets[planet]);
