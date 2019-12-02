@@ -5,7 +5,7 @@ class Eniac extends CelestialArtifact {
 
     interact() {
         alert("You have entered Eniac.");
-        if (!resources.hasStrongBox) {
+        if (!resources.hasStrongBox()) {
             alert("Come back with the strongbox containing the ancient recipe for Koca-Kola in order to gain a zillion credits!");
         }
         else {
