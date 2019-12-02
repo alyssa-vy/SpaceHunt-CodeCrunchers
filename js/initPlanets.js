@@ -41,7 +41,7 @@ function randomizeStrongboxPlacement(){
     var currentPlanet = 0;
     for (var planet in planets){
         if (currentPlanet === planet){
-            planets[planet].hasStrongBox = true;
+            planets[planet].containsStrongbox = true;
             return;
         }
         currentPlanet++;

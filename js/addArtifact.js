@@ -17,7 +17,7 @@ function addPlanet(x, y, name, displayMessage){
 function addAsteroid(x, y, displayMessage){
     if (canAddArtifact(x, y)){
         var id = "Asteroid-" + asteroidsAdded;
-        worldMap.addObject(new Asteroid(id, "img/asteroid.png"), x, y);
+        //worldMap.addObject(new Asteroid(id, "img/asteroid.png"), x, y);
         if (displayMessage)
             alert("Asteroid was added to " + x + ", " + y);
         asteroidsAdded++;
@@ -34,10 +34,10 @@ function addMeteor(x, y, displayMessage){
     }
 }
 
-function addSpacestation(x, y){
+function addSpacestation(x, y, displayMessage){
     if (canAddArtifact(x, y)){
         var id = "Spacestation-" + spacestationsAdded;
-        worldMap.addObject(new Spacestation(id, "img/spacestation.png"), x, y);
+        //worldMap.addObject(new Spacestation(id, "img/spacestation.png"), x, y);
         if (displayMessage)
             alert("Space station was added to " + x + ", " + y);
         spacestationsAdded++;
@@ -289,6 +289,8 @@ function randomizeMap(){
     }
 
     initializeAllPlanets();
+    worldMap.addObject(new Eniac("eniac", "img/eniac.png"), 1, 1);
+    worldMap.makeVisible(1,1);
     for (var planet in planets){
         if (!planetHasBeenAdded(planet)){
             placeArtifactRandomly(planets[planet]);
