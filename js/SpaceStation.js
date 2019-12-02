@@ -18,7 +18,7 @@ class SpaceStation extends CelestialArtifact {
     interact() {
 
         if(this._amountToWin <= 0){
-            alert("You have docked at SpaceStation-" + this.id + "\n" +
+            alert("You have docked at " + this.id + "\n" +
                 "There happens to be a Casinian playing a game of chance.\n\n" +
                 "However, there is nothing to win in the game of chance, so you carry on about your business.");
             return;
@@ -26,7 +26,7 @@ class SpaceStation extends CelestialArtifact {
 
         //If the user cannot participate, print a special message.
         if(resources.credits < this._entryFee) {
-            alert("You have docked at SpaceStation-" + this.id + "\n" +
+            alert("You have docked at " + this.id + "\n" +
                 "There happens to be a Casinian playing a game of chance.\n\n" +
                 "Unfortunately, you are too poor to afford the entry fee.\n" +
                 "The Casinian laughs at you.");
@@ -34,7 +34,7 @@ class SpaceStation extends CelestialArtifact {
         }
 
         //If the user can participate, goad them into playing.
-        if(confirm("You have docked at SpaceStation-" + this.id +"\n" +
+        if(confirm("You have docked at " + this.id +"\n" +
             "There happens to be a Casinian playing a game of chance.\n\n" +
             this._chanceToWin + "% chance to win.\n" +
             this._entryFee + " credit entry fee.\n" +
