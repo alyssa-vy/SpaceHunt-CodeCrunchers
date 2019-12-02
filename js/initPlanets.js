@@ -37,13 +37,14 @@ function randomInt(lower, upper){
 }
 
 function randomizeStrongboxPlacement(){
-    var planet = randomInt(0, 10);
+    var randomPlanet = randomInt(0, 10);
     var currentPlanet = 0;
     for (var planet in planets){
-        if (currentPlanet === planet){
+        if (currentPlanet === randomPlanet){
             planets[planet].containsStrongbox = true;
             return;
         }
         currentPlanet++;
     }
+
 }
