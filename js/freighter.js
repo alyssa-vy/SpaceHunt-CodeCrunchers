@@ -3,8 +3,8 @@ class Freighter extends CelestialArtifact {
     get supplies() { return this._supplies; }
     set supplies(num) { this._supplies = eval(num); }
 
-    constructor(id, imgSrc, k){
-        super(id, imgSrc);
+    constructor(id, img, k){
+        super(id, img);
         this._supplies = eval(k);
     }
 

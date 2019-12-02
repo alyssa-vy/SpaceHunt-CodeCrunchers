@@ -37,6 +37,7 @@
         <script src="js/badmax.js"></script>
         <script src="js/main.js"></script>
         <script src="js/freighter.js"></script>
+        <script src="js/SpaceStation.js"></script>
 
     </head>
 
@@ -64,7 +65,7 @@
                         <p></p>
                         <p>Energy <input type=text name=energy size=4 onChange="resources.updateResources()">
                         <p>Supplies <input type=text name=supplies size=4 onChange="resources.updateResources()">%
-                        <p>Credits <input type=text name=credits size=4 onChange="resources.updateResources()">%
+                        <p>Credits <input type=text name=credits size=4 onChange="resources.updateResources()">
                         <p>Health <input type=text name=health size=4 onChange="resources.updateResources()">%
                         <p>
                         <hr>
@@ -191,20 +192,24 @@
                 <br>
                 <input id="addArtifactX" name="addArtifactX" type="number" value="0" min="0" oninput="disableAddIfInvalid(addArtifactX.value, addArtifactY.value,'addArtifactButton')"> Artifact X<br>
                 <input id="addArtifactY" name="addArtifactY" type="number" value="0" min="0" oninput="disableAddIfInvalid(addArtifactX.value, addArtifactY.value,'addArtifactButton')"> Artifact Y<br>
-                <input id="extraInput" name="extraInput" type="number" value="0" min="0" hidden>
-                <label id="extraInputLabel" name="extraInputLabel" hidden> Supplies </label>
+                <input id="extraInput" name="extraInput" type="number" value="0" min="0" hidden> <!-- Used for supplies for Abandoned Freighter  and Amount to Win for SpaceStation-->
+                <label id="extraInputLabel" name="extraInputLabel" hidden></label>
+                <input id="extraInput2" name="extraInput2" type="number" value=0.0 min=0 hidden oninput=setToMinOrMax(this.id)> <!-- Used for Chance to Win for SpaceStation -->
+                <label id="extraInputLabel2" name="extraInputLabel2" hidden></label>
+                <input id="extraInput3" name="extraInput3" type="number" value="0" min="0" hidden> <!-- Used for Entry Fee for SpaceStation -->
+                <label id="extraInputLabel3" name="extraInputLabel3" hidden></label>
                 <select id="artifactType" name="artifactType" oninput="addExtraInput(this.value)">
                     <option value="" disabled selected> Select Artifact Type</option>
                     <option value="Asteroid">Asteroid</option>
-                    <option value="SpaceStation">Space Station</option>
+                    <option value="SpaceStation">SpaceStation</option>
                     <option value="Wormhole">Wormhole</option>
                     <option value="Freighter">Abandoned Freighter</option>
                     <option value="Meteor">Meteor</option>
                 </select>
                 <br>
                 <br>
-                <!-- "extraInput" is needed for an abandoned freighter" -->
-                <input id="addArtifactButton" name="addArtifactButton" type="button" value="Add Artifact" onclick="addArtifact(artifactType.value, addArtifactX.value, addArtifactY.value, extraInput.value, true)" disabled>
+
+                <input id="addArtifactButton" name="addArtifactButton" type="button" value="Add Artifact" onclick="addArtifact(artifactType.value, addArtifactX.value, addArtifactY.value, extraInput.value, extraInput2.value, extraInput3.value, true)" disabled>
                 <br>
 
                 <br>

@@ -4284,7 +4284,7 @@
       "target": "id=addSpaceStationButton",
       "targets": [
         ["id=addSpaceStationButton", "id"],
-        ["name=addSPaceStationButton", "name"],
+        ["name=addSpaceStationButton", "name"],
         ["css=#addSpaceStationButton", "css:finder"],
         ["xpath=//input[@id='addSpaceStationButton']", "xpath:attributes"],
         ["xpath=//div[@id='artifactPlacement']/input[6]", "xpath:idRelative"],
@@ -4896,7 +4896,7 @@
       "target": "id=addSpaceStationButton",
       "targets": [
         ["id=addSpaceStationButton", "id"],
-        ["name=addSPaceStationButton", "name"],
+        ["name=addSpaceStationButton", "name"],
         ["css=#addSpaceStationButton", "css:finder"],
         ["xpath=//input[@id='addSpaceStationButton']", "xpath:attributes"],
         ["xpath=//div[@id='artifactPlacement']/input[6]", "xpath:idRelative"],
@@ -4910,7 +4910,7 @@
       "target": "id=addSpaceStationButton",
       "targets": [
         ["id=addSpaceStationButton", "id"],
-        ["name=addSPaceStationButton", "name"],
+        ["name=addSpaceStationButton", "name"],
         ["css=#addSpaceStationButton", "css:finder"],
         ["xpath=//input[@id='addSpaceStationButton']", "xpath:attributes"],
         ["xpath=//div[@id='artifactPlacement']/input[6]", "xpath:idRelative"],
@@ -4924,7 +4924,7 @@
       "target": "id=addSpaceStationButton",
       "targets": [
         ["id=addSpaceStationButton", "id"],
-        ["name=addSPaceStationButton", "name"],
+        ["name=addSpaceStationButton", "name"],
         ["css=#addSpaceStationButton", "css:finder"],
         ["xpath=//input[@id='addSpaceStationButton']", "xpath:attributes"],
         ["xpath=//div[@id='artifactPlacement']/input[6]", "xpath:idRelative"],
@@ -4938,7 +4938,7 @@
       "target": "id=addSpaceStationButton",
       "targets": [
         ["id=addSpaceStationButton", "id"],
-        ["name=addSPaceStationButton", "name"],
+        ["name=addSpaceStationButton", "name"],
         ["css=#addSpaceStationButton", "css:finder"],
         ["xpath=//input[@id='addSpaceStationButton']", "xpath:attributes"],
         ["xpath=//div[@id='artifactPlacement']/input[6]", "xpath:idRelative"],
@@ -6468,7 +6468,7 @@
       "target": "id=addSpaceStationButton",
       "targets": [
         ["id=addSpaceStationButton", "id"],
-        ["name=addSPaceStationButton", "name"],
+        ["name=addSpaceStationButton", "name"],
         ["css=#addSpaceStationButton", "css:finder"],
         ["xpath=//input[@id='addSpaceStationButton']", "xpath:attributes"],
         ["xpath=//div[@id='artifactPlacement']/input[6]", "xpath:idRelative"],
@@ -6517,7 +6517,7 @@
       "target": "id=addSpaceStationButton",
       "targets": [
         ["id=addSpaceStationButton", "id"],
-        ["name=addSPaceStationButton", "name"],
+        ["name=addSpaceStationButton", "name"],
         ["css=#addSpaceStationButton", "css:finder"],
         ["xpath=//input[@id='addSpaceStationButton']", "xpath:attributes"],
         ["xpath=//div[@id='artifactPlacement']/input[6]", "xpath:idRelative"],
@@ -6930,7 +6930,7 @@
       "target": "id=addSpaceStationButton",
       "targets": [
         ["id=addSpaceStationButton", "id"],
-        ["name=addSPaceStationButton", "name"],
+        ["name=addSpaceStationButton", "name"],
         ["css=#addSpaceStationButton", "css:finder"],
         ["xpath=//input[@id='addSpaceStationButton']", "xpath:attributes"],
         ["xpath=//div[@id='artifactPlacement']/input[6]", "xpath:idRelative"],
@@ -7238,7 +7238,7 @@
       "target": "id=addSpaceStationButton",
       "targets": [
         ["id=addSpaceStationButton", "id"],
-        ["name=addSPaceStationButton", "name"],
+        ["name=addSpaceStationButton", "name"],
         ["css=#addSpaceStationButton", "css:finder"],
         ["xpath=//input[@id='addSpaceStationButton']", "xpath:attributes"],
         ["xpath=//div[@id='artifactPlacement']/input[6]", "xpath:idRelative"],
@@ -7287,7 +7287,7 @@
       "target": "id=addSpaceStationButton",
       "targets": [
         ["id=addSpaceStationButton", "id"],
-        ["name=addSPaceStationButton", "name"],
+        ["name=addSpaceStationButton", "name"],
         ["css=#addSpaceStationButton", "css:finder"],
         ["xpath=//input[@id='addSpaceStationButton']", "xpath:attributes"],
         ["xpath=//div[@id='artifactPlacement']/input[6]", "xpath:idRelative"],
@@ -7819,7 +7819,7 @@
       "target": "id=addSpaceStationButton",
       "targets": [
         ["id=addSpaceStationButton", "id"],
-        ["name=addSPaceStationButton", "name"],
+        ["name=addSpaceStationButton", "name"],
         ["css=#addSpaceStationButton", "css:finder"],
         ["xpath=//input[@id='addSpaceStationButton']", "xpath:attributes"],
         ["xpath=//div[@id='artifactPlacement']/input[6]", "xpath:idRelative"],
@@ -7868,7 +7868,7 @@
       "target": "id=addSpaceStationButton",
       "targets": [
         ["id=addSpaceStationButton", "id"],
-        ["name=addSPaceStationButton", "name"],
+        ["name=addSpaceStationButton", "name"],
         ["css=#addSpaceStationButton", "css:finder"],
         ["xpath=//input[@id='addSpaceStationButton']", "xpath:attributes"],
         ["xpath=//div[@id='artifactPlacement']/input[6]", "xpath:idRelative"],

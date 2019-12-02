@@ -34,12 +34,15 @@ function addMeteor(x, y, displayMessage){
     }
 }
 
-function addSpacestation(x, y, displayMessage){
+function addSpaceStation(x, y, amountToWin, chanceToWin, entryFee, displayMessage){
     if (canAddArtifact(x, y)){
-        var id = "Spacestation-" + spacestationsAdded;
-        //worldMap.addObject(new Spacestation(id, "img/spacestation.png"), x, y);
+        var id = "SpaceStation-" + spacestationsAdded;
+        worldMap.addObject(new SpaceStation(id, "img/spacestation.png", amountToWin, chanceToWin, entryFee), x, y);
         if (displayMessage)
-            alert("Space station was added to " + x + ", " + y);
+            alert("SpaceStation was added to " + x + ", " + y + " with:\n" +
+                chanceToWin + "% chance to win,\n" +
+                amountToWin + " credits possible to win and a\n" +
+                entryFee + " credit entry fee.");
         spacestationsAdded++;
     }
 }
@@ -89,18 +92,45 @@ function addExtraInput(type) {
      */
     switch(type){
         case "Freighter":
+            //"extraInput" = Supplies
             document.getElementById("extraInput").style.display = 'inline';
             document.getElementById("extraInputLabel").innerHTML = 'Supplies<br>';
             document.getElementById("extraInputLabel").style.display = 'inline';
             break;
+        case "SpaceStation":
+            //"extraInput" = Amount To Win
+            document.getElementById("extraInput").style.display = 'inline';
+            document.getElementById("extraInputLabel").innerHTML = "Amount To Win<br>";
+            document.getElementById("extraInputLabel").style.display = 'inline';
+
+            //"extraInput2" = Chance To Win
+            document.getElementById("extraInput2").style.display = 'inline';
+            document.getElementById("extraInputLabel2").innerHTML = "Chance To Win<br>";
+            document.getElementById("extraInputLabel2").style.display = 'inline';
+
+            //"extraInput3" = Entry Fee
+            document.getElementById("extraInput3").style.display = 'inline';
+            document.getElementById("extraInputLabel3").innerHTML = "Entry Fee<br>";
+            document.getElementById("extraInputLabel3").style.display = 'inline';
+            break;
+        case "Meteor":
         case "Asteroid":
         case "Wormhole":
-        case "SpaceStation":
-        case "Meteor":
         default:
+            //Hide "extraInput" -> Supplies or Amount to Win
             document.getElementById("extraInputLabel").innerHTML = "document.getElementById(\"extraInputLabel\").innerHTML unset";
             document.getElementById("extraInputLabel").style.display = 'none';
             document.getElementById("extraInput").style.display = 'none';
+
+            //Hide "extraInput2" -> Chance to Win
+            document.getElementById("extraInputLabel2").innerHTML = "document.getElementById(\"extraInputLabel2\").innerHTML unset";
+            document.getElementById("extraInputLabel2").style.display = 'none';
+            document.getElementById("extraInput2").style.display = 'none';
+
+            //Hide "extraInput3" -> Entry Fee
+            document.getElementById("extraInputLabel3").innerHTML = "document.getElementById(\"extraInputLabel3\").innerHTML unset";
+            document.getElementById("extraInputLabel3").style.display = 'none';
+            document.getElementById("extraInput3").style.display = 'none';
             break;
     }
     /* Check if input is valid */
@@ -110,7 +140,16 @@ function addExtraInput(type) {
         "addArtifactButton");
 }
 
-function addArtifact(type, x, y, extraInput, displayMessage){
+function setToMinOrMax(id){
+    num = eval(document.getElementById(id).value);
+    if(num > 100){
+        document.getElementById(id).value = 100;
+    } else if(num < 0){
+        document.getElementById(id).value = 0;
+    }
+}
+
+function addArtifact(type, x, y, extraInput, extraInput2, extraInput3, displayMessage){
     /*
      * Operates similarly to a funciton dispatch table in C.
      * Allows for simplicity in the html file by determining
@@ -122,7 +161,7 @@ function addArtifact(type, x, y, extraInput, displayMessage){
             addFreighter(x, y, extraInput, displayMessage);
             break;
         case "SpaceStation":
-            addSpacestation(x, y, displayMessage);
+            addSpaceStation(x, y, extraInput, extraInput2, extraInput3, displayMessage);
             break;
         case "Asteroid":
             addAsteroid(x, y, displayMessage);
@@ -280,7 +319,10 @@ function randomizeMap(){
     }
     for (spacestationsAdded; spacestationsAdded <= spacestationsToAdd; spacestationsAdded++){
         var newCoords = getRandomUnusedCoordinates();
-        addSpacestation(newCoords[0], newCoords[1], false)
+        var amountToWin = Math.floor(Math.random() * Math.floor(1000));
+        var chanceToWin = Math.floor(Math.random() * Math.floor(100));
+        var entryFee = Math.floor(Math.random() * Math.floor(100));
+        addSpaceStation(newCoords[0], newCoords[1], amountToWin, chanceToWin, entryFee, false)
     }
     for (freightersAdded; freightersAdded <= freightersToAdd; freightersAdded++){
         var newCoords = getRandomUnusedCoordinates();

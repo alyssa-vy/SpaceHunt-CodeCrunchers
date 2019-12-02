@@ -26,12 +26,6 @@ function addImage(item, obj) {
         item.src = "img/asteroid.png";
     else if (obj.id === "Wormhole")
         item.src = "img/wormhole.jpg";
-    //TODO: Test if includes behaves as expected.
-    //Freighter/Asteroid/Wormhole ID's have a number
-    //at the end in order to be unique
-    else if (obj.id.includes("Freighter")){
-        item.src = "img/letter_c.jpg";
-    }
 
 
 }
