@@ -4,6 +4,7 @@ class Wormhole extends CelestialArtifact {
     }
 
     interact(){
+        alert("You have been sucked into a wormhole!")
         if (config.randomWormholeBehavior){
             var x = Math.floor(Math.random() * config.boardWidth);
             var y = Math.floor(Math.random() * config.boardWidth);
