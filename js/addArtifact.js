@@ -308,6 +308,7 @@ function randomizeMap(){
     worldMap.makeVisible(1,1);
     // Items to add is BoardArea * percentOfTheBoard
     var asteroidsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
+    var meteorsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var wormholesToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.05);
     var spacestationsToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.15);
     var freightersToAdd = Math.floor(config.boardWidth * config.boardHeight * 0.10);
@@ -315,6 +316,10 @@ function randomizeMap(){
     for (asteroidsAdded; asteroidsAdded <= asteroidsToAdd; asteroidsAdded++){
         var newCoords = getRandomUnusedCoordinates();
         addAsteroid(newCoords[0], newCoords[1], false)
+    }
+    for (meteorsAdded; meteorsAdded <= meteorssToAdd; meteorsAdded++){
+        var newCoords = getRandomUnusedCoordinates();
+        addMeteor(newCoords[0], newCoords[1], false);
     }
     for (wormholesAdded; wormholesAdded <= wormholesToAdd; wormholesAdded++){
         var newCoords = getRandomUnusedCoordinates();
