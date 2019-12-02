@@ -49,7 +49,7 @@ class SpaceStation extends CelestialArtifact {
             let roll = Math.floor(Math.random() * Math.floor(100));
 
             if (roll < this._chanceToWin) { // Won the roll
-                resources.addCredits(this._chanceToWin + this._entryFee);
+                resources.addCredits(this._amountToWin + this._entryFee);
                 resources.updateUI();
                 alert("You won the game of chance and you clean house.\n" +
                     "The Casinian reluctantly gives you your " + this._amountToWin + " credits, refunds your entry fee and mutters something under his breath." +
