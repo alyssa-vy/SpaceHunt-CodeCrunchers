@@ -42,9 +42,13 @@ function randomizeStrongboxPlacement(){
     for (var planet in planets){
         if (currentPlanet === randomPlanet){
             planets[planet].containsStrongbox = true;
+            if (document.getElementById("gazetteer").checked == true) {
+                alert(planets[planet].id + " has the strongbox!");
+            }
             return;
         }
         currentPlanet++;
     }
+
 
 }
