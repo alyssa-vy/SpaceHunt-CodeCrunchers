@@ -123,7 +123,9 @@ function loadGame(filename){
 
     //Reposition the player and make them face the right way.
     worldCanvas.repositionPlayer(position.x, position.y);
-    worldCanvas.setRotation('player', localStorage.getItem(filename + ".degree"));
+    let deg = eval(localStorage.getItem(filename + ".degree"));
+    if(deg !== null)
+        worldCanvas.setRotation('player', deg);
 
     //Make sure the GUI is updated
     resources.updateUI();
