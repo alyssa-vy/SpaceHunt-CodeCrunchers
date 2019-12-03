@@ -44,10 +44,10 @@ const resources = {
 		this._health = eval(newHealth);
 	},
 
-	subtractHealth(newHealth){
+	/*subtractHealth(newHealth){
 		this._health -= eval(newHealth);
-	},
-    
+	},*/ //there is already a subtractHealth function written that is more elaborate than this one.
+
     get health() {return this._health;},
 
 	setMaxEnergy(newMax){
@@ -82,7 +82,7 @@ const resources = {
 			gameOver();
 			return false;
 		}
-		if (document.UI.energy.value > this._maxEnergy) {
+		if (this._energy > this._maxEnergy) {
 			this._energy = this._maxEnergy;
 			document.UI.energy.value = this._energy;
 		}
@@ -96,7 +96,7 @@ const resources = {
 			return false;
 		}
 		this._energy += evaledAdd;
-		if (document.UI.energy.value > this._maxEnergy) {
+		if (this._energy > this._maxEnergy) {
 			this._energy = this._maxEnergy;
 		}
 		document.UI.energy.value = this._energy;
@@ -123,7 +123,7 @@ const resources = {
 			gameOver();
 			return false;
 		}
-		if (document.UI.supplies.value > this._maxSupplies) {
+		if (this._supplies > this._maxSupplies) {
 			this._supplies = this._maxSupplies;
 			document.UI.supplies.value = this._supplies;
 		}
@@ -137,7 +137,7 @@ const resources = {
 			return false;
 		}
 		this._supplies += evaledAdd;
-		if (document.UI.supplies.value > this._maxSupplies) {
+		if (this._supplies > this._maxSupplies) {
 			this._supplies = this._maxSupplies;
 		}
 		document.UI.supplies.value = this._supplies;
@@ -198,7 +198,7 @@ const resources = {
 			gameOver();
 			return false;
 		}
-		if (document.UI.health.value > this._maxHealth) {
+		if (this._health > this._maxHealth) {
 			this._health = this._maxHealth;
 			document.UI.health.value = this._health;
 		}
@@ -212,7 +212,7 @@ const resources = {
 			return false;
 		}
 		this._health += evaledAdd;
-		if (document.UI.health.value > this._maxHealth) {
+		if (this._health > this._maxHealth) {
 			this._health = this._maxHealth;
 		}
 		document.UI.health.value = this._health;
