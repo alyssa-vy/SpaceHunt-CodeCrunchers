@@ -66,14 +66,41 @@ const badMax = {
             return;
         }
 
+        let degreeX = -1;
+        let degreeY = -1;
+
         //Then get his X and Y coordinates closer to that of the users.
         if(this._x !== x)
         {
-            this.getXCloser(x);
+            degreeX = this.getXCloser(x);
         }
         if(this._y !== y)
         {
-            this.getYCloser(y);
+            degreeY = this.getYCloser(y);
+        }
+
+        //Now based on the return code, figure out which way to
+        //position the rotation of bad max by figuring out if he is
+        //farther from the user on the x or y coordinate.
+        if(degreeX === -1) {
+            worldCanvas.setRotation(this.id, degreeY);
+        }
+        
+        else if(degreeY === -1) {
+            worldCanvas.setRotation(this.id, degreeX);
+        }
+
+        else {
+            let xDiff = Math.abs(x - this._x);
+            let yDiff = Math.abs(y - this._y);
+
+            if(xDiff >= yDiff) {
+                worldCanvas.setRotation(this.id, degreeX);
+            }
+            else {
+                worldCanvas.setRotation(this.id, degreeY);
+            }
+
         }
 
         //If after the advancement their CPs match, attack.
@@ -85,6 +112,8 @@ const badMax = {
     //Used by the chasedown function to specifically get BadMax's X
     //coordinate closer to that of the user's.
     getXCloser(x) {
+        let degree;
+
         if(this._x < x)
         {
             if((this._x + 3) < x) {
@@ -97,7 +126,9 @@ const badMax = {
                     worldCanvas.reposition(this.id, this._x, this._y);
                 }
             }
-            worldCanvas.setRotation(this.id, 0);
+            //worldCanvas.setRotation(this.id, 0);
+
+            degree = 0;
         }
 
         else
@@ -112,13 +143,19 @@ const badMax = {
                     worldCanvas.reposition(this.id, this._x, this._y);
                 }
             }
-            worldCanvas.setRotation(this.id, 180);
+            //worldCanvas.setRotation(this.id, 180);
+            
+            degree = 180;
         }
+
+        return degree;
     },
 
     //Used by the chasedown function to specifically get BadMax's Y
     //coordinate closer to that of the user's.
     getYCloser(y) {
+        let degree;
+
         if(this._y < y)
         {
             if((this._y + 3) < y) {
@@ -131,7 +168,9 @@ const badMax = {
                     worldCanvas.reposition(this.id, this._x, this._y);
                 }
             }
-            worldCanvas.setRotation(this.id, 270);
+            //worldCanvas.setRotation(this.id, 270);
+            
+            degree = 270;
         }
 
         else
@@ -146,8 +185,12 @@ const badMax = {
                     worldCanvas.reposition(this.id, this._x, this._y);
                 }
             }
-            worldCanvas.setRotation(this.id, 90);
+            //worldCanvas.setRotation(this.id, 90);
+            
+            degree = 90;
         }
+        
+        return degree;
     }
 }
 
