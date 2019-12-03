@@ -1,7 +1,5 @@
-let firstRun = true;
-
 function loadSavedSessionsToSelector() {
-    let length = localStorage.getItem("ZZZ");
+    let length = localStorage.getItem("SavedSessions");
     if (length !== null) {
         length = parseInt(length);
         let element = document.getElementById("saveName");
@@ -15,7 +13,7 @@ function loadSavedSessionsToSelector() {
         element.appendChild(opt0);
 
         for (let i = 1; i <= length; ++i){
-            let searchkey = "zz" + String(i);
+            let searchkey = "ss" + String(i);
             let fileName = localStorage.getItem(searchkey);
             var opt = document.createElement('option');
             opt.value, opt.innerHTML = String(fileName);

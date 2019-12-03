@@ -50,9 +50,9 @@
             <!-- <h1>SpaceHunt</h1> -->
             <div class="page visible" id="mainMenu">
                 <form name="menuButtons">
-                    <input type=button value="Start" onclick=initGame() class="btn-blue">
-                    <input type=button value="Configure" onclick=switchToPage("configuration") class="btn-grey">
-                    <input type=button value="Load/Save" onclick=loadSavedSessionsToSelector() class="btn-black">
+                    <input type=button id="StartButton" value="Start" onclick=initGame() class="btn-blue">
+                    <input type=button id="ConfigureButton" value="Configure" onclick=switchToPage("configuration") class="btn-grey">
+                    <input type=button id="LoadSaveButton" value="Load" onclick=loadSavedSessionsToSelector() class="btn-black">
                 </form>
             </div>
             <div class="page clearfix" id="mainGame">
@@ -98,7 +98,7 @@
                         <br>
                         <br>
                         <input type=button value="Use Sensors" onclick=deploySensor()> <!--Use Sensor Button calls deploySensor() -->
-                        <input type=button value="Save Game" onclick=loadSavedSessionsToSelector()>
+                        <input type=button value="Return to Main Menu" onclick=switchToPage("mainMenu")>
                     </form>
                 </div>
                 <div class="col-2">
@@ -221,7 +221,7 @@
 
             <div class="page" id="savePage">
                 <h2>Nameable Persistent State</h2>
-                <input type="text" id="filename"> Filename <input type="button" value="Save and Exit" onclick=saveGame(filename.value)>
+                <input type="text" id="filename" hidden><label id="savetxt"></label><input type="button"  id="savebtn" value="Save and Exit" onclick=saveGame(filename.value) hidden>
                 <br><br>
                 <select id="saveName" name="saveName" oninput=enableBtn()>
                 </select>

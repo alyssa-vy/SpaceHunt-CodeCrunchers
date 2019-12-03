@@ -26,6 +26,7 @@
     To move the world north (and thus, the player south), DECREMENT gameWorld.style.top
     That is because we are shifting gameworld's top left corner Y pixels UP from the origin
     */
+let globalDegree = 90;
 
 const worldCanvas = {
     initCanvas() {
@@ -53,8 +54,9 @@ const worldCanvas = {
     },
 
     setRotation(id, degree){
+        globalDegree = degree;
         switch(degree){
-            case 0: degree = 90
+            case 0: degree = 90;
                 break;
             case 90: degree = 0;
                 break;

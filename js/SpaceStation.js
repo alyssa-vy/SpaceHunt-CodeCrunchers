@@ -1,8 +1,8 @@
 class SpaceStation extends CelestialArtifact {
 
-    get chanceToWin() { return this._chanceToWin; }
-    get amountToWin() { return this._amountToWin; }
-    get entryFee() { return this._entryFee; }
+    get chanceToWin() { return eval(this._chanceToWin); }
+    get amountToWin() { return eval(this._amountToWin); }
+    get entryFee() { return eval(this._entryFee); }
 
     set chanceToWin(num) { this._chanceToWin = eval(num); }
     set amountToWin(num) { this._amountToWin = eval(num); }
