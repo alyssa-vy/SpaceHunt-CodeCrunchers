@@ -44,6 +44,12 @@ const resources = {
 		this._health = eval(newHealth);
 	},
 
+	subtractHealth(newHealth){
+		this._health -= eval(newHealth);
+	},
+    
+    get health() {return this._health;},
+
 	setMaxEnergy(newMax){
 		this._maxEnergy = eval(newMax);
 	},
