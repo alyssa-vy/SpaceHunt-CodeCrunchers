@@ -176,6 +176,14 @@
                 <h2> Configure Artifacts </h2>
                 <input id="planetXLocation" type="number" name="planetXLocation" value="0" oninput=disablePlanetAddIfInvalidInput()> Planet X<br>
                 <input id="planetYLocation" type="number" name="planetYLocation" value="0" oninput=disablePlanetAddIfInvalidInput()> Planet Y<br>
+
+                <input id="strongBoxCheckbox" type="checkbox">Has Koca Kola recipe<br>
+
+                <input id="repairShopCheckbox" name="addRepairShop" type="checkbox" value="Add repair shop" onchange=toggleRepairShopInput()>Add repair shop<br>
+                <input hidden id="repairShopPrice" type="number"><label hidden id="repairShopPriceMessage"> Price per ship damage<br></label>
+
+                <input id="supplyShopCheckbox" name="addSupplyShop" type="checkbox" value="Add supply shop" onchange=toggleSupplyShopInput()>Add supply shop<br>
+                <input hidden id="supplyShopPrice" name="supplyShopPrice" type="number"><label hidden id="supplyShopPriceMessage"> Price per energy/supplies<br></label>
                 <select id="planetType" name="planetType" oninput=disablePlanetAddIfInvalidInput()>
                     <option value="" disabled selected> Select Planet</option>
                     <option value="Pentium-1">Pentium-1</option>
@@ -189,8 +197,8 @@
                     <option value="Xeon">Xeon</option>
                     <option value="Ryzen">Ryzen</option>
                 </select>
-                <input id="addPlanetButton" name="addPlanetButton" type="button" value="Add Planet" disabled onclick=addPlanet(planetXLocation.value,planetYLocation.value,planetType.value,true),loadOptions("planetType")><br>
-
+                <input id="addPlanetButton" name="addPlanetButton" type="button" value="Add Planet" disabled onclick=interpretAndAddPlanet(),loadOptions("planetType")>
+                <br>
                 <br>
                 <input id="addArtifactX" name="addArtifactX" type="number" value="0" min="0" oninput="disableAddIfInvalid(addArtifactX.value, addArtifactY.value,'addArtifactButton')"> Artifact X<br>
                 <input id="addArtifactY" name="addArtifactY" type="number" value="0" min="0" oninput="disableAddIfInvalid(addArtifactX.value, addArtifactY.value,'addArtifactButton')"> Artifact Y<br>

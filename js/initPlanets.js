@@ -14,13 +14,15 @@ var planets = {
 // This function sets all the variables for each planet within artifacts
 function initializeAllPlanets(){
     for (var planet in planets){
-        if (randomTrueOrFalse()){
-            var repairShopPrice = randomInt(0, 3);
-            planets[planet].setRepairShopPrice(repairShopPrice);
-        }
-        if (randomTrueOrFalse()){
-            var suppliesShopPrice = randomInt(0, 2);
-            planets[planet].setSuppliesShopPrice(suppliesShopPrice);
+        if (!planetHasBeenAdded(planet)){
+            if (randomTrueOrFalse()){
+                var repairShopPrice = randomInt(0, 3);
+                planets[planet].setRepairShopPrice(repairShopPrice);
+            }
+            if (randomTrueOrFalse()){
+                var suppliesShopPrice = randomInt(0, 2);
+                planets[planet].setSuppliesShopPrice(suppliesShopPrice);
+            }
         }
     }
     randomizeStrongboxPlacement();
@@ -37,18 +39,14 @@ function randomInt(lower, upper){
 }
 
 function randomizeStrongboxPlacement(){
+    if (planetHasStrongbox) return;
     var randomPlanet = randomInt(0, 10);
     var currentPlanet = 0;
     for (var planet in planets){
         if (currentPlanet === randomPlanet){
             planets[planet].containsStrongbox = true;
-            if (document.getElementById("gazetteer").checked == true) {
-                alert(planets[planet].id + " has the strongbox!");
-            }
             return;
         }
         currentPlanet++;
     }
-
-
 }

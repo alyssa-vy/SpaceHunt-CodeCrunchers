@@ -3,6 +3,7 @@ var meteorsAdded = 0;
 var spacestationsAdded = 0;
 var wormholesAdded = 0;
 var freightersAdded = 0;
+var planetHasStrongbox = false;
 
 // Below is coverage of the map based on percentage, 0.0 meaning 0% and 1.0 meaning 100%
 var asteroidCoverage = 0.05;
@@ -11,14 +12,56 @@ var spaceStationCoverage = 0.1;
 var wormholeCoverage = 0.05;
 var freighterCoverage = 0.15;
 
-function addPlanet(x, y, name, displayMessage){
+function addPlanet(x, y, name, repairPrice, suppliesPrice, hasStrongbox, displayMessage){
+    /*
+    x, y are coordinates to add the planet at
+    name is the name of the planet, Must be described in the planets object
+    repairPrice is the price per damage at the repair shop. If null, the repair shop will not be added
+    repairPrice is the price per supplies and energy at the supply shop. If null, the supply shop will not be added
+    hasStrongbox is a boolean that determines if the player has a strongbox or not
+    displayMessage is a boolean that, when true, will alert the user stating that a planet has been added
+    */
     if (canAddArtifact(x, y)){
         var object = planets[name];
+        object.containsStrongbox = hasStrongbox;
+        if (repairPrice !== null){
+            object.hasRepairShop = true;
+            object.pricePerDamage = repairPrice;
+        }
+        if (suppliesPrice !== null){
+            object.hasSuppliesShop = true;
+            object.pricePerSupplies = suppliesPrice;
+        }
         worldMap.addObject(object, x, y);
         markPlanetAdded(name);
         if (displayMessage)
             alert(name + " was added to " + x + ", " + y);
     }
+}
+
+function interpretAndAddPlanet(){
+    var x = eval(planetXLocation.value);
+    var y = eval(planetYLocation.value);
+    var name = planetType.value;
+    var repairShopPrice = null;
+    var supplyShopPrice = null;
+    var hasStrongBox = document.getElementById("strongBoxCheckbox").checked;
+    if (document.getElementById("repairShopCheckbox").checked){
+        var repairShopPrice = eval(document.getElementById("repairShopPrice").value)
+        if (repairShopPrice === undefined || repairShopPrice < 0){
+            repairShopPrice = 0;
+        }
+    }
+    if (document.getElementById("supplyShopCheckbox").checked){
+        var supplyShopPrice = eval(document.getElementById("repairShopPrice").value)
+        if (supplyShopPrice === undefined || supplyShopPrice < 0){
+            supplyShopPrice = 0;
+        }
+    }
+    if (hasStrongBox){
+        planetHasStrongbox = true;
+    }
+    addPlanet(x, y, name, repairShopPrice, supplyShopPrice, hasStrongBox, true);
 }
 
 function addAsteroid(x, y, displayMessage){
@@ -47,7 +90,7 @@ function addBadMax(obj) {
     badMax.setX(newcoords[0]);
     badMax.setY(newcoords[1]);
 }
-    
+
 
 function addSpaceStation(x, y, amountToWin, chanceToWin, entryFee, displayMessage){
     if (canAddArtifact(x, y)){

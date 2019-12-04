@@ -193,3 +193,17 @@ function disableSubmitIfInvalid(){
         }
     }
 }
+
+function toggleRepairShopInput(){
+    var input = document.getElementById("repairShopPrice");
+    var label = document.getElementById("repairShopPriceMessage");
+    input.hidden = !input.hidden;
+    label.hidden = !label.hidden;
+}
+
+function toggleSupplyShopInput(){
+    var input = document.getElementById("supplyShopPrice");
+    var label = document.getElementById("supplyShopPriceMessage");
+    input.hidden = !input.hidden;
+    label.hidden = !label.hidden;
+}
