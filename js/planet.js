@@ -25,8 +25,8 @@ class Planet extends CelestialArtifact{
 
     enterOrbit() {
         if (confirm(`Would you like to enter ${this.id}'s orbit?`)) {
-            resources.subtractSuppliesTwo(); // subtract 2% supplies
-            if (resources.checkSupplies()) { // check if supplies are greater than 0
+            resources.subtractEnergy(1); // subtract energy
+            if (resources.checkEnergy()) { // check if supplies are greater than 0
                 disableShipMovement(); // stop ship from being able to move once in orbit
                 this.inOrbit = true; // set boolean value inOrbit to true
             }
@@ -37,8 +37,8 @@ class Planet extends CelestialArtifact{
     }
 
     leaveOrbit() {
-        resources.subtractSuppliesTwo();
-        if (resources.checkSupplies()) {
+        resources.subtractEnergy(1);
+        if (resources.checkEnergy()) {
             enableShipMovement();
             this.inOrbit = false;
         }
