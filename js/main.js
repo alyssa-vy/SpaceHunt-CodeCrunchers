@@ -26,10 +26,34 @@ function initGame() {
         });
         badMax.setPosition();
         badMax.welcome();
+        if (document.getElementById("gazetteer").checked == true) {
+            alertWhereStrongboxIs()
+        }
     }
-
-
     switchToPage("mainGame");
+}
 
-
+function alertWhereStrongboxIs(){
+    var planetsThatHaveStrongbox = [];
+    for (var planet in planets){
+        if (planets[planet].containsStrongbox){
+            planetsThatHaveStrongbox.push(planet);
+        }
+    }
+    if (planetsThatHaveStrongbox.length === 1){
+        var msg = `The planet ${planetsThatHaveStrongbox[0]} has the strongbox!`;
+    }
+    else{
+        var msg = "Planets ";
+        for (var i = 0; i < planetsThatHaveStrongbox.length; i++){
+            if (i === planetsThatHaveStrongbox.length - 1){
+                msg += "and " + planetsThatHaveStrongbox[i];
+            }
+            else{
+                msg += planetsThatHaveStrongbox[i] + ', ';
+            }
+        }
+        msg += " contain the strongbox!"
+    }
+    alert(msg);
 }
