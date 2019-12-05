@@ -93,8 +93,9 @@ const position = {
                     this._y += 1;
                     worldCanvas.movePlayerSouth(1);
                     worldCanvas.setRotation('player', 270);
-                    checkCollision();
-                    break;
+                    if(checkCollision() === true) {
+                        break;
+                    }
                 }
             } else {
                 //User did not specify a valid angle when trying to move.
