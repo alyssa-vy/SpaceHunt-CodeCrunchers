@@ -70,6 +70,7 @@ function addAsteroid(x, y, displayMessage){
         worldMap.addObject(new Asteroid(id, "img/asteroid.png"), x, y);
         if (displayMessage)
             alert("Asteroid was added to " + x + ", " + y);
+        worldMap.makeVisible(x, y);
         asteroidsAdded++;
     }
 }
